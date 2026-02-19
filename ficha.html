@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        if (localStorage.getItem('cosmerium_auth') !== 'true') {
+            window.location.href = "index.html";
+        }
+    </script>
+    <title>COSMERIUM // FICHA DE PERSONAJE</title>
+    <script src="js/live-notifications.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root {
+            --bg: #05080e;
+            --panel: #0b0f16;
+            --border: #2a3344;
+            --cyan: #00e5ff;
+            --red: #ff003c;
+            --yellow: #fcee0a;
+            --purple: #bd00ff;
+            --green: #00ff9d;
+            --dim: #4a5a75;
+            --white: #ffffff;
+            --text: #a0aab8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--red) var(--bg);
+            outline: none;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            font-size: 16px;
+            padding-top: 80px;
+            background-image:
+                linear-gradient(rgba(255, 0, 60, .03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 60, .03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* UTILITIES */
+        .c {
+            color: var(--cyan);
+        }
+
+        .r {
+            color: var(--red);
+        }
+
+        .y {
+            color: var(--yellow);
+        }
+
+        .p {
+            color: var(--purple);
+        }
+
+        .g {
+            color: var(--green);
+        }
+
+        .w {
+            color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.1rem 6vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(to bottom, rgba(4, 6, 10, .97) 60%, transparent);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(17, 28, 40, .5);
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            color: var(--white);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .nav-logo em {
+            color: var(--yellow);
+            font-style: normal;
+        }
+
+        .nav-logo .nsub {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.4rem;
+            color: var(--dim);
+            letter-spacing: 0.3em;
+            margin-top: 0.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 0.1rem;
+            color: var(--dim);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--red);
+            text-shadow: 0 0 8px rgba(255, 0, 60, 0.6);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--red);
+        }
+
+        .nav-btn {
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.2rem;
+            font-size: 0.75rem;
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 0.15em;
+            color: var(--red);
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 0, 60, 0.1);
+            border-color: var(--red);
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.2);
+        }
+
+        /* FORM STYLES */
+        input,
+        select,
+        textarea {
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        /* HIDE SPINNERS */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+        }
+
+        .cyber-input {
+            border-bottom: 2px solid var(--dim);
+            padding: 0.5rem 0;
+            transition: 0.3s;
+            color: var(--cyan);
+            font-family: 'Share Tech Mono';
+        }
+
+        .cyber-input:focus {
+            border-bottom-color: var(--cyan);
+            box-shadow: 0 4px 10px -4px rgba(0, 229, 255, 0.3);
+        }
+
+        .cyber-select {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            padding: 0.5rem;
+            color: var(--white);
+            font-family: 'Share Tech Mono';
+            cursor: pointer;
+        }
+
+        .cyber-select:focus {
+            border-color: var(--red);
+        }
+
+        /* MAIN LAYOUT */
+        .profile-container {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 3rem;
+        }
+
+        /* LEFT SIDEBAR */
+        .sidebar {
+            position: relative;
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 450px;
+            background: #0f141f;
+            border: 2px solid var(--red);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
+            margin-bottom: 2rem;
+        }
+
+        .photo-frame::before {
+            content: 'NO_SIGNAL';
+            font-family: 'Share Tech Mono';
+            font-size: 2rem;
+            color: rgba(255, 0, 60, 0.2);
+            letter-spacing: 0.2em;
+            animation: blink 2s infinite;
+        }
+
+        .photo-corner {
+            position: absolute;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--red);
+            transition: .3s;
+        }
+
+        .pc-tl {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .pc-tr {
+            top: -2px;
+            right: -2px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .pc-bl {
+            bottom: -2px;
+            left: -2px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .sidebar-block {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-label {
+            font-family: 'Share Tech Mono';
+            font-size: 0.7rem;
+            color: var(--red);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* RIGHT CONTENT */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .header-block {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .char-name-input {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--white);
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .char-name-input:focus {
+            border-bottom-color: var(--red);
+        }
+
+        .char-name-input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .id-chip {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* STATS GRID */
+        .stats-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .points-display {
+            font-family: 'Share Tech Mono';
+            color: var(--cyan);
+            font-size: 1.2rem;
+            border: 1px solid var(--cyan);
+            padding: 0.2rem 1rem;
+            background: rgba(0, 229, 255, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-hex {
+            background: rgba(255, 0, 60, 0.05);
+            border: 1px solid var(--red);
+            padding: 1.5rem 0.5rem;
+            text-align: center;
+            clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+            transition: .3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-hex:hover {
+            background: rgba(255, 0, 60, 0.1);
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.2);
+        }
+
+        .stat-input {
+            font-family: 'Bebas Neue';
+            font-size: 2.5rem;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            text-align: center;
+            width: 60px;
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-input:focus {
+            color: var(--yellow);
+        }
+
+        .stat-label {
+            font-family: 'Share Tech Mono';
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--red);
+        }
+
+        /* DERIVED STATS ROW */
+        .derived-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .derived-card {
+            background: var(--panel);
+            border: 1px solid var(--dim);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dc-label {
+            font-family: 'Share Tech Mono';
+            font-size: 1rem;
+            color: var(--dim);
+        }
+
+        .dc-val {
+            font-family: 'Bebas Neue';
+            font-size: 2.5rem;
+            color: var(--white);
+        }
+
+        /* DATA GRID */
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .data-box {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .data-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--dim);
+        }
+
+        .data-box.active::before {
+            background: var(--cyan);
+            width: 6px;
+            z-index: 5;
+        }
+
+        .data-box.danger::before {
+            background: var(--red);
+            width: 6px;
+            z-index: 5;
+        }
+
+        .data-box.warn::before {
+            background: var(--yellow);
+            width: 6px;
+            z-index: 5;
+        }
+
+        .box-title {
+            font-family: 'Share Tech Mono';
+            font-size: 0.8rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-wrapper {
+            margin-bottom: 1rem;
+        }
+
+        .input-label {
+            font-size: 0.7rem;
+            color: var(--dim);
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid var(--cyan);
+            color: var(--cyan);
+            font-family: 'Share Tech Mono';
+            font-size: 0.7rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .dynamic-reputation {
+            font-family: 'Bebas Neue';
+            font-size: 1.5rem;
+            color: var(--yellow);
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 1.8rem 6vw;
+            margin-top: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            color: var(--white);
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* OLD TV SCANLINE ANIMATION */
+        @keyframes scanlineMove {
+            0% {
+                top: -100px;
+            }
+
+            100% {
+                top: 100%;
+            }
+        }
+
+        /* VHS scanlines restricted to frame */
+        .photo-frame .old-tv-scanline {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            /* Much thinner line */
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            animation: scanlineMove 4s linear infinite;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .tech-beacon {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+            display: inline-block;
+        }
+
+        .tech-beacon.red {
+            background: var(--red);
+            box-shadow: 0 0 10px var(--red);
+        }
+
+        .tech-beacon.yellow {
+            background: var(--yellow);
+            box-shadow: 0 0 10px var(--yellow);
+        }
+
+        .tech-beacon.cyan {
+            background: var(--cyan);
+            box-shadow: 0 0 10px var(--cyan);
+        }
+
+        /* Static scanlines for PDF (restricted to photo frame) */
+        body.pdf-print-mode #charPhotoFrame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.2) 0px,
+                    rgba(0, 0, 0, 0.2) 1px,
+                    transparent 1px,
+                    transparent 3px);
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        .vhs-noise {
+            position: absolute;
+            inset: 0;
+            background-image: url("https://www.transparenttextures.com/patterns/p6.png");
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* PDF PRINT MODE OVERRIDES */
+        body.pdf-print-mode {
+            padding-top: 0 !important;
+            background: #05080e !important;
+        }
+
+        body.pdf-print-mode nav,
+        body.pdf-print-mode footer,
+        body.pdf-print-mode #removePhotoBtn,
+        body.pdf-print-mode #dragHint,
+        body.pdf-print-mode .download-btn-area {
+            display: none !important;
+        }
+
+        body.pdf-print-mode .profile-container {
+            margin: 0 !important;
+            padding: 20px !important;
+            box-shadow: none !important;
+            width: 1200px !important;
+            background: #05080e !important;
+        }
+
+        /* Eliminate the gray line bleed in PDF */
+        body.pdf-print-mode .data-box::before {
+            display: none !important;
+        }
+
+        body.pdf-print-mode .data-box.active::before,
+        body.pdf-print-mode .data-box.danger::before,
+        body.pdf-print-mode .data-box.warn::before {
+            display: block !important;
+        }
+
+        /* Only allow specific containers to grow vertically */
+        body.pdf-print-mode .data-box,
+        body.pdf-print-mode .cyber-panel {
+            height: auto !important;
+            min-height: 0 !important;
+            overflow: visible !important;
+        }
+
+        body.pdf-print-mode textarea {
+            height: auto !important;
+            overflow: visible !important;
+        }
+
+        /* CYBERPUNK PRELOADER */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: #fcee0a;
+            /* Cyberpunk Yellow */
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Share Tech Mono', monospace;
+            color: #000;
+            transition: opacity 0.3s ease, visibility 0.3s;
+        }
+
+        #preloader.loaded {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            width: 300px;
+            text-align: left;
+        }
+
+        .loader-text {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .loader-bar-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-bar {
+            width: 0%;
+            height: 100%;
+            background: #000;
+            animation: loadBar 0.8s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+        }
+
+        @keyframes loadBar {
+            0% {
+                width: 0%;
+            }
+
+            20% {
+                width: 30%;
+            }
+
+            50% {
+                width: 35%;
+            }
+
+            80% {
+                width: 85%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        .glitch-load {
+            animation: glitchText 0.2s infinite;
+        }
+
+        @keyframes glitchText {
+            0% {
+                transform: translate(0);
+                text-shadow: 2px 0 #ff003c;
+            }
+
+            50% {
+                transform: translate(-2px, 2px);
+                text-shadow: -2px 0 #00e5ff;
+            }
+
+            100% {
+                transform: translate(2px, -2px);
+                text-shadow: 2px 0 #ff003c;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="loader-text glitch-load">INITIALIZING_COSMERIUM_OS...</div>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+            <div style="font-size: 0.6rem; margin-top: 1rem; opacity: 0.7;">
+                AUTHENTICATING_USER_PROFILE...<br>
+                SYNCING_NEURAL_LINK_v3.0.2...<br>
+                LOADING_NIGHT_CITY_DATABASE...
+            </div>
+        </div>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+        <a class="nav-logo" href="home.html">COSMERIUM <em>ERA III</em><span class="nsub">NIGHT CITY · 2077</span></a>
+        <ul class="nav-links">
+            <li><a href="home.html">Inicio</a></li>
+            <li><a href="mundo.html">El Mundo</a></li>
+            <li><a href="roles.html">Roles</a></li>
+            <li><a href="sistema.html">Sistema</a></li>
+            <li><a href="objetos.html">Objetos</a></li>
+            <li><a href="ficha.html" class="active">Ficha</a></li>
+            <li><a href="normativa.html">Normativa</a></li>
+        </ul>
+        <a class="nav-btn" href="https://discord.gg/DWacKAK373">&#9654; Discord</a>
+    </nav>
+
+    <!-- FICHA CONTAINER -->
+    <div class="profile-container">
+
+        <!-- SIDEBAR IDENTITY -->
+        <aside class="sidebar">
+            <div class="photo-frame" id="charPhotoFrame">
+                <div class="photo-corner pc-tl"></div>
+                <div class="photo-corner pc-tr"></div>
+                <div class="photo-corner pc-bl"></div>
+
+                <img id="charImage" src=""
+                    style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;display:none;">
+                <div id="scanlineOverlay"
+                    style="position:absolute;inset:0;background:repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(0,0,0,0.3) 3px);pointer-events:none;z-index:2">
+                </div>
+                <div class="old-tv-scanline"></div>
+                <div class="vhs-noise" style="z-index:98"></div>
+
+                <div id="uploadPlaceholder"
+                    style="text-align:center;opacity:0.5;position:relative;z-index:3;cursor:pointer"
+                    onclick="document.getElementById('imgUpload').click()">
+                    <div style="font-size:3rem;color:var(--red)">[ + ]</div>
+                    <div style="font-family:'Share Tech Mono';font-size:0.8rem;margin-top:1rem">
+                        SUBIR IMAGEN
+                        <div style="font-size:0.6rem;opacity:0.7;margin-top:0.3rem">FORMATO: 400x600 PX</div>
+                    </div>
+                </div>
+
+                <!-- REMOVE BUTTON -->
+                <div id="removePhotoBtn" onclick="removeImage(event)"
+                    style="display:none;position:absolute;top:10px;right:10px;width:30px;height:30px;background:var(--red);color:var(--bg);font-weight:bold;text-align:center;line-height:30px;cursor:pointer;z-index:10;clip-path:polygon(20% 0, 100% 0, 100% 80%, 80% 100%, 0 100%, 0 20%);font-family:'Share Tech Mono'">
+                    X
+                </div>
+
+                <input type="file" id="imgUpload" accept="image/*" style="display:none" onchange="uploadImage(this)">
+            </div>
+
+            <div class="sidebar-block">
+                <div class="sidebar-label">ROL PRINCIPAL</div>
+                <select class="cyber-select" id="roleSelect" style="width:100%">
+                    <option value="SOLO">SOLO</option>
+                    <option value="ROCKERO">ROCKERO</option>
+                    <option value="NETRUNNER">NETRUNNER</option>
+                    <option value="TÉCNICO">TÉCNICO</option>
+                    <option value="NÓMADA">NÓMADA</option>
+                    <option value="PERIODISTA">MEDIA</option>
+                    <option value="POLICÍA">EX-AGENTE</option>
+                    <option value="EJECUTIVO">EJECUTIVO</option>
+                    <option value="FIXER">FIXER</option>
+                    <option value="MEDTECH">MEDTECH</option>
+                </select>
+                </select>
+                <div id="roleDetails"
+                    style="margin-top:0.5rem;border-left:2px solid var(--red);padding-left:0.5rem;display:none">
+                    <div id="roleAbility" style="color:var(--white);font-family:'Share Tech Mono';font-size:0.8rem">
+                    </div>
+                    <div id="roleDesc" style="color:var(--dim);font-size:0.7rem;line-height:1.2;margin-top:0.2rem">
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-block">
+                <div class="sidebar-label">ORIGEN</div>
+                <select class="cyber-select" id="originSelect" style="width:100%">
+                    <option value="Street Kid">STREET KID</option>
+                    <option value="Nómada">NÓMADA</option>
+                    <option value="Corpo">CORPO</option>
+                </select>
+                </select>
+                <div id="originDetails"
+                    style="margin-top:0.5rem;border-left:2px solid var(--yellow);padding-left:0.5rem;display:none">
+                    <div id="originTag" style="color:var(--yellow);font-family:'Share Tech Mono';font-size:0.8rem">
+                    </div>
+                    <div id="originDesc" style="color:var(--dim);font-size:0.7rem;line-height:1.2;margin-top:0.2rem">
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-block">
+                <div class="sidebar-label">ETNIA</div>
+                <select class="cyber-select" id="ethnicitySelect" style="width:100%">
+                    <option value="Norteamérica">Norteamérica</option>
+                    <option value="Centroamérica/Sudamérica">Centroamérica/Sudamérica</option>
+                    <option value="Europa occidental">Europa occidental</option>
+                    <option value="Europa oriental">Europa oriental</option>
+                    <option value="Oriente Medio/Norte de África">Oriente Medio/Norte de África</option>
+                    <option value="África subsahariana">África subsahariana</option>
+                    <option value="Asia del Sur">Asia del Sur</option>
+                    <option value="Sudeste asiático">Sudeste asiático</option>
+                    <option value="Asia oriental">Asia oriental</option>
+                    <option value="Oceanía/Islas del Pacífico">Oceanía/Islas del Pacífico</option>
+                </select>
+            </div>
+
+            <div class="sidebar-block">
+                <div class="sidebar-label">IDIOMA (INGLÉS Y ...)</div>
+                <select class="cyber-select" id="languageSelect" style="width:100%">
+                    <option value="Chino">Chino</option>
+                    <option value="Español">Español</option>
+                    <option value="Italiano">Italiano</option>
+                    <option value="Alemán">Alemán</option>
+                    <option value="Japonés">Japonés</option>
+                    <option value="Francés">Francés</option>
+                    <option value="Ruso">Ruso</option>
+                    <option value="Portugués">Portugués</option>
+                    <option value="Nepalí">Nepalí</option>
+                    <option value="Rumano">Rumano</option>
+                    <option value="Árabe">Árabe</option>
+                    <option value="Coreano">Coreano</option>
+                    <option value="Brasileño">Brasileño</option>
+                    <option value="Noruego">Noruego</option>
+                    <option value="Yoruba">Yoruba</option>
+                </select>
+            </div>
+
+            <div class="sidebar-block">
+                <div class="sidebar-label">EDAD</div>
+                <input type="number" class="cyber-input" value="24"
+                    style="font-size:1.5rem;font-family:'Bebas Neue';color:var(--white);border:1px solid var(--dim);padding:0.5rem;text-align:center">
+            </div>
+
+            <div class="sidebar-block download-btn-area" style="margin-top:20px">
+                <button class="cyber-btn" onclick="downloadPDF()"
+                    style="width:100%;background:var(--red);color:var(--bg);padding:1rem;font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:0.1em;border:none;cursor:pointer">
+                    DESCARGAR FICHA [PDF]
+                </button>
+            </div>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <div class="header-block">
+                <div style="flex:1">
+                    <input type="text" class="cyber-input" placeholder="ALIAS / HANDLE"
+                        style="font-size:1rem;width:200px;margin-bottom:0.5rem">
+                    <input type="text" class="char-name-input" placeholder="NOMBRE DEL PERSONAJE">
+                </div>
+                <div class="id-chip">
+                    <span style="font-size:0.7rem;color:var(--dim)">ID_CHIP:</span>
+                    <span style="color:var(--cyan);font-family:'Share Tech Mono'">NC-7749-X2</span>
+                </div>
+            </div>
+
+            <!-- STATS -->
+            <div>
+                <div class="stats-header">
+                    <div class="box-title" style="margin:0">ESTADÍSTICAS <span>// ATTRIBUTES</span></div>
+                    <div class="points-display">PUNTOS: <span id="pointsLeft">55</span> / 55</div>
+                </div>
+
+                <div class="stats-grid">
+                    <!-- INT -->
+                    <div class="stat-hex">
+                        <input type="number" class="stat-input" id="stat-int" value="5" min="0" max="8"
+                            onchange="calcStats()">
+                        <div class="stat-label">INT</div>
+                    </div>
+                    <!-- REF -->
+                    <div class="stat-hex">
+                        <input type="number" class="stat-input" id="stat-ref" value="5" min="0" max="8"
+                            onchange="calcStats()">
+                        <div class="stat-label">REF</div>
+                    </div>
+                    <!-- DES -->
+                    <div class="stat-hex">
+                        <input type="number" class="stat-input" id="stat-des" value="5" min="0" max="8"
+                            onchange="calcStats()">
+                        <div class="stat-label">DES</div>
+                    </div>
+                    <!-- TEC -->
+                    <div class="stat-hex">
+                        <input type="number" class="stat-input" id="stat-tec" value="5" min="0" max="8"
+                            onchange="calcStats()">
+                        <div class="stat-label">TEC</div>
+                    </div>
+                    <!-- FRI -->
+                    <div class="stat-hex">
+                        <input type="number" class="stat-input" id="stat-fri" value="5" min="0" max="8"
+                            onchange="calcStats()">
+                        <div class="stat-label">FRI</div>
+                    </div>
+                    <!-- VOL -->
+                    <div class="stat-hex">
+                        <input type="number" class="stat-input" id="stat-vol" value="5" min="0" max="8"
+                            onchange="calcStats()">
+                        <div class="stat-label">VOL</div>
+                    </div>
+                    <!-- SUE -->
+                    <div class="stat-hex">
+                        <input type="number" class="stat-input" id="stat-sue" value="5" min="0" max="8"
+                            onchange="calcStats()">
+                        <div class="stat-label">SUE</div>
+                    </div>
+                    <!-- MOV -->
+                    <div class="stat-hex">
+                        <input type="number" class="stat-input" id="stat-mov" value="5" min="0" max="8"
+                            onchange="calcStats()">
+                        <div class="stat-label">MOV</div>
+                    </div>
+                    <!-- TCO -->
+                    <div class="stat-hex">
+                        <input type="number" class="stat-input" id="stat-tco" value="5" min="0" max="8"
+                            onchange="calcStats()">
+                        <div class="stat-label">TCO</div>
+                    </div>
+                    <!-- EMP -->
+                    <div class="stat-hex">
+                        <input type="number" class="stat-input" id="stat-emp" value="5" min="0" max="8"
+                            onchange="calcStats()">
+                        <div class="stat-label">EMP</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DERIVED STATS -->
+            <div class="derived-row">
+                <div class="derived-card" style="border-color:var(--red)">
+                    <div>
+                        <div class="dc-label r">PUNTOS DE VIDA (PV)</div>
+                        <div style="font-size:0.7rem;color:var(--dim)">((TCO + VOL) x 5 / 2) + 10</div>
+                    </div>
+                    <div class="dc-val r" id="val-hp">30</div>
+                </div>
+                <div class="derived-card" style="border-color:var(--purple)">
+                    <div>
+                        <div class="dc-label p">HUMANIDAD</div>
+                        <div style="font-size:0.7rem;color:var(--dim)">EMP x 10</div>
+                    </div>
+                    <div class="dc-val p" id="val-hum">50</div>
+                </div>
+            </div>
+
+            <!-- DATA GRID -->
+            <div class="data-grid">
+
+                <!-- ESTILO DE VIDA -->
+                <div class="data-box warn">
+                    <div class="box-title">ESTILO DE VIDA <span>// LIFESTYLE</span></div>
+                    <div class="input-wrapper">
+                        <label class="input-label">NIVEL DE VIDA MENSUAL</label>
+                        <select class="cyber-select" id="styleSelect" onchange="updateLifestyle()"
+                            style="width:100%;color:var(--yellow)">
+                            <option value="pienso" data-rep="-10">PIENSO (100 eb)</option>
+                            <option value="generico" data-rep="0" selected>PRECOCINADOS GENÉRICOS (300 eb)</option>
+                            <option value="calidad" data-rep="5">PRECOCINADOS DE CALIDAD (600 eb)</option>
+                            <option value="fresco" data-rep="15">ALIMENTOS FRESCOS (1500 eb)</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-top:1.5rem;border-top:1px dashed var(--dim);padding-top:1rem">
+                        <label class="input-label">REPUTACIÓN ACTUAL</label>
+                        <span class="dynamic-reputation" id="repDisplay">0 (NADIE)</span>
+                    </div>
+                </div>
+
+                <!-- DISTRITO -->
+                <div class="data-box active">
+                    <div class="box-title">DISTRITO BASE <span>// HOME</span></div>
+                    <div class="input-wrapper">
+                        <select class="cyber-select" id="districtSelect" onchange="updateDistrict()"
+                            style="width:100%;color:var(--cyan)">
+                            <option value="Watson" data-danger="ALTA">WATSON</option>
+                            <option value="Westbrook" data-danger="MEDIA">WESTBROOK</option>
+                            <option value="City Center" data-danger="BAJA (SEGURIDAD MAX)">CITY CENTER</option>
+                            <option value="Heywood" data-danger="ALTA">HEYWOOD</option>
+                            <option value="Santo Domingo" data-danger="MEDIA">SANTO DOMINGO</option>
+                            <option value="Pacifica" data-danger="EXTREMA">PACIFICA</option>
+                            <option value="Badlands" data-danger="ALTA (ENTORNO)">BADLANDS</option>
+                        </select>
+                    </div>
+                    <div id="districtTags" style="margin-top:1rem;min-height:2rem"></div>
+
+                    <div
+                        style="margin-top:1rem;border-top:1px dashed var(--dim);padding-top:0.5rem;display:flex;justify-content:space-between;align-items:center">
+                        <span class="input-label">PELIGROSIDAD:</span>
+                        <span id="districtDanger" style="color:var(--red);font-family:'Share Tech Mono'">ALTA</span>
+                    </div>
+                </div>
+
+                <!-- DESCRIPCION -->
+                <div class="data-box" style="grid-column: 1 / -1">
+                    <div class="box-title">DESCRIPCIÓN <span>// VISUALS</span></div>
+                    <div class="box-content" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+                        <div>
+                            <input type="text" class="cyber-input" placeholder="ALTURA (ej. 1.85m)"
+                                style="margin-bottom:1rem">
+                            <input type="text" class="cyber-input" placeholder="OJOS (ej. Azules)"
+                                style="margin-bottom:1rem">
+                            <input type="text" class="cyber-input" placeholder="PIEL (ej. Bronceada)"
+                                style="margin-bottom:1rem">
+                        </div>
+                        <div>
+                            <textarea class="cyber-input" placeholder="DETALLES VISIBLES Y ESTILO..." rows="4"
+                                style="background:rgba(0,0,0,0.2);padding:0.5rem"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- SYSTEM WARNING -->
+                    <div
+                        style="margin-top:2rem;background:rgba(0,0,0,0.4);border-left:6px solid var(--yellow);padding:1rem">
+                        <div
+                            style="color:var(--yellow);font-family:'Share Tech Mono';font-size:0.8rem;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem;letter-spacing:0.1em">
+                            <span class="tech-beacon yellow"></span>
+                            // AVISO DEL SISTEMA
+                        </div>
+                        <div style="color:var(--text);font-family:'Rajdhani';font-size:0.95rem;line-height:1.4">
+                            El personaje no puede tener ninguna modificación corporal estética, ni piel sintética, ni
+                            ojos kiroshi, todo debe ser conseguido IC, vamos, de pelao a sudao.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CYBERWARE (TECH STYLE) -->
+                <div class="data-box danger"
+                    style="min-height:180px;position:relative;overflow:hidden;border-color:var(--red);background:linear-gradient(45deg, rgba(255,0,60,0.08) 0%, rgba(0,0,0,0) 100%)">
+                    <!-- Tech Accents -->
+                    <div
+                        style="position:absolute;top:0;right:0;padding:0.2rem 0.5rem;background:var(--red);color:var(--bg);font-family:'Bebas Neue';font-size:0.8rem;letter-spacing:0.1em">
+                        SYS_DIAGNOSTIC</div>
+                    <div
+                        style="position:absolute;bottom:0;left:0;width:40px;height:40px;border-right:2px solid var(--red);border-top:2px solid var(--red)">
+                    </div>
+                    <div class="tech-beacon red" style="position:absolute;top:12px;left:12px;">
+                    </div>
+
+                    <div
+                        style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;text-align:center;position:relative;z-index:1">
+                        <!-- Tech Icon CSS -->
+                        <div
+                            style="width:60px;height:60px;border:2px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;position:relative;box-shadow:0 0 15px rgba(255,0,60,0.2)">
+                            <div style="width:40px;height:2px;background:var(--red);position:absolute"></div>
+                            <div style="width:2px;height:40px;background:var(--red);position:absolute"></div>
+                            <div style="width:30px;height:30px;border:1px dashed var(--red);border-radius:50%">
+                            </div>
+                        </div>
+
+                        <div class="box-title"
+                            style="width:auto;margin:0;color:var(--red);border-bottom:none;font-size:1rem">CYBERWARE
+                            INSTALADO</div>
+                        <div
+                            style="font-family:'Share Tech Mono';color:var(--text);font-size:0.85rem;margin-top:0.5rem;font-style:italic;opacity:0.8">
+                            "Nada. Toca conseguirlo IC."
+                        </div>
+                    </div>
+                    <!-- Scanline -->
+                    <div
+                        style="position:absolute;inset:0;background:repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,0,60,0.05) 3px);pointer-events:none">
+                    </div>
+                </div>
+
+                <!-- GEAR (TECH STYLE) -->
+                <div class="data-box warn"
+                    style="min-height:180px;position:relative;overflow:hidden;border-color:var(--yellow);background:linear-gradient(135deg, rgba(252,238,10,0.08) 0%, rgba(0,0,0,0) 100%)">
+                    <!-- Tech Accents -->
+                    <div
+                        style="position:absolute;top:0;left:0;padding:0.2rem 0.5rem;background:var(--yellow);color:var(--bg);font-family:'Bebas Neue';font-size:0.8rem;letter-spacing:0.1em">
+                        INVENTORY_LOG</div>
+                    <div
+                        style="position:absolute;bottom:0;right:0;width:40px;height:40px;border-left:2px solid var(--yellow);border-top:2px solid var(--yellow)">
+                    </div>
+                    <div class="tech-beacon yellow" style="position:absolute;top:12px;right:12px;">
+                    </div>
+
+                    <div
+                        style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;text-align:center;position:relative;z-index:1">
+                        <!-- Tech Icon CSS -->
+                        <div
+                            style="width:60px;height:40px;border:2px solid var(--yellow);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;position:relative;box-shadow:0 0 15px rgba(252,238,10,0.2)">
+                            <div style="width:100%;height:1px;background:var(--yellow)"></div>
+                            <div
+                                style="position:absolute;top:-5px;left:10px;width:40px;height:5px;border:1px solid var(--yellow);border-bottom:none">
+                            </div>
+                        </div>
+
+                        <div class="box-title"
+                            style="width:auto;margin:0;color:var(--yellow);border-bottom:none;font-size:1rem">EQUIPO
+                            E
+                            INVENTARIO</div>
+                        <div
+                            style="font-family:'Share Tech Mono';color:var(--text);font-size:0.85rem;margin-top:0.5rem;padding:0 2rem;opacity:0.8">
+                            "Unos cigarros rancios, algunos eddies y por suerte salud, bueno a medias."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HISTORY -->
+                <div class="data-box" style="grid-column: 1 / -1">
+                    <div class="box-title">PASADO & ANTECEDENTES <span>// HISTORY</span></div>
+                    <textarea class="cyber-input"
+                        placeholder="Resumen de tu historia, aliados, enemigos y motivaciones..." rows="6"
+                        style="background:rgba(0,0,0,0.2);padding:0.5rem"></textarea>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">COSMERIUM <em>ERA III</em></div>
+        <div style="font-size:0.7rem;color:var(--dim)">NIGHT CITY DATABASE // VER. 3.0.2</div>
+    </footer>
+
+    <script>
+        // --- CONFIG ---
+        const MAX_POINTS = 55;
+        const MAX_STAT = 8;
+        const MIN_STAT = 0; // Updated to 0
+
+        // --- DISTRICT DATA ---
+        const districtData = {
+            'Watson': ['Lockdown', 'Industrial', 'Zona de Combate', 'Maelstrom'],
+            'Westbrook': ['Turismo', 'Japantown', 'Lujo', 'Tyger Claws'],
+            'City Center': ['Corporativo', 'Alta Seguridad', 'Rascacielos', 'Arasaka'],
+            'Heywood': ['Residencial', 'Valentinos', 'Callejones', 'Comunidad'],
+            'Santo Domingo': ['Factorías', '6th Street', 'Contaminación', 'Obrero'],
+            'Pacifica': ['Anarquía', 'Ruinas', 'Voodoo Boys', 'Sin Ley'],
+            'Badlands': ['Nómadas', 'Desierto', 'Aldecaldos', 'Wraiths']
+        };
+
+        // --- STAT CALCULATOR ---
+        function calcStats() {
+            const stats = [
+                'int', 'ref', 'des', 'tec', 'fri',
+                'vol', 'sue', 'mov', 'tco', 'emp'
+            ];
+
+            let usedPoints = 0;
+
+            stats.forEach(s => {
+                let el = document.getElementById('stat-' + s);
+                let val = parseInt(el.value) || 0;
+
+                // Enforce limits
+                if (val > MAX_STAT) { val = MAX_STAT; el.value = val; }
+                if (val < MIN_STAT) { val = MIN_STAT; el.value = val; }
+
+                usedPoints += val;
+            });
+
+            // Update Points Display
+            const remain = MAX_POINTS - usedPoints;
+            const pDisplay = document.getElementById('pointsLeft');
+            pDisplay.innerText = remain;
+
+            if (remain < 0) {
+                pDisplay.style.color = 'var(--red)';
+                pDisplay.parentElement.style.borderColor = 'var(--red)';
+            } else {
+                pDisplay.style.color = 'var(--cyan)';
+                pDisplay.parentElement.style.borderColor = 'var(--cyan)';
+            }
+
+            // Calc Derived
+            const tco = parseInt(document.getElementById('stat-tco').value) || 0;
+            const vol = parseInt(document.getElementById('stat-vol').value) || 0;
+            const emp = parseInt(document.getElementById('stat-emp').value) || 0;
+
+            // HP Formula: ((TCO + VOL) * 5 / 2) + 10
+            // User specified: ((TCO + VOL) x 5 / 2) + 10
+            // Base 10 is separate.
+            const hpBase = (tco + vol) * 5 / 2;
+            const hp = Math.ceil(hpBase + 10);
+
+            document.getElementById('val-hp').innerText = hp;
+
+            // Humanity Formula: EMP * 10
+            const hum = emp * 10;
+            document.getElementById('val-hum').innerText = hum;
+        }
+
+        // --- LIFESTYLE LOGIC ---
+        function updateLifestyle() {
+            const sel = document.getElementById('styleSelect');
+            const opt = sel.options[sel.selectedIndex];
+            const repVal = parseInt(opt.getAttribute('data-rep'));
+
+            let repText = "";
+            if (repVal <= -10) repText = "PARIA";
+            else if (repVal === 0) repText = "NADIE";
+            else if (repVal > 0 && repVal < 15) repText = "CIUDADANO";
+            else if (repVal >= 15) repText = "RESPETABLE";
+
+            document.getElementById('repDisplay').innerText = repVal + " (" + repText + ")";
+        }
+
+        // --- DISTRICT LOGIC ---
+        function updateDistrict() {
+            const sel = document.getElementById('districtSelect');
+            const val = sel.value; // Name
+            const opt = sel.options[sel.selectedIndex];
+            const danger = opt.getAttribute('data-danger'); // Danger Level
+
+            // Update Tags
+            const tags = districtData[val] || [];
+            const container = document.getElementById('districtTags');
+            container.innerHTML = '';
+
+            tags.forEach(t => {
+                const span = document.createElement('span');
+                span.className = 'tag';
+                span.innerText = t;
+                container.appendChild(span);
+            });
+
+            // Update Danger
+            const dElem = document.getElementById('districtDanger');
+            if (dElem) {
+                dElem.innerText = danger;
+                if (danger.includes('ALTA') || danger.includes('EXTREMA')) dElem.style.color = 'var(--red)';
+                else if (danger.includes('MEDIA')) dElem.style.color = 'var(--yellow)';
+                else dElem.style.color = 'var(--cyan)';
+            }
+        }
+
+        // --- ROLE & ORIGIN DATA ---
+        const roleData = {
+            'SOLO': { ability: 'COMBAT SENSE', desc: 'Mercenario de combate. Iniciativa y percepción mejoradas.' },
+            'ROCKERO': { ability: 'CHARISMATIC IMPACT', desc: 'Líder rebelde. Capacidad para influir en las masas.' },
+            'NETRUNNER': { ability: 'INTERFACE', desc: 'Hacker de combate. Control de sistemas y ciberataque.' },
+            'TÉCNICO': { ability: 'MAKER', desc: 'Ingeniero versátil. Reparación y fabricación de tecnología.' },
+            'NÓMADA': { ability: 'MOTO', desc: 'Guerrero de la carretera. Conducción y lealtad tribal.' },
+            'PERIODISTA': { ability: 'CREDIBILITY', desc: 'Manipulador de la verdad. Información y reputación.' },
+            'POLICÍA': { ability: 'AUTHORITY', desc: 'Agente de la ley. Capacidad de arresto e intimidación.' },
+            'EJECUTIVO': { ability: 'TEAMWORK', desc: 'Poder corporativo. Gestión de recursos y subordinados.' },
+            'FIXER': { ability: 'OPERATOR', desc: 'Conector del mercado negro. Tráfico de influencias.' },
+            'MEDTECH': { ability: 'MEDICINE', desc: 'Experto médico. Cirugía y fármacos de combate.' }
+        };
+
+        const originData = {
+            'Street Kid': { tag: 'CALLEJERO', desc: 'Creciste en las calles. Conoces el idioma de la supervivencia y los bajos fondos.' },
+            'Nómada': { tag: 'BADLANDER', desc: 'La familia es lo primero. Experto en supervivencia y vehículos.' },
+            'Corpo': { tag: 'CORPORATIVO', desc: 'Mundo de tiburones. Sabes moverte en las altas esferas y manipular.' }
+        };
+
+        function updateRole() {
+            const sel = document.getElementById('roleSelect');
+            const box = document.getElementById('roleDetails');
+            const ab = document.getElementById('roleAbility');
+            const desc = document.getElementById('roleDesc');
+
+            const data = roleData[sel.value];
+            if (data) {
+                box.style.display = 'block';
+                ab.innerText = "HABILIDAD: " + data.ability;
+                desc.innerText = data.desc;
+            } else {
+                box.style.display = 'none';
+            }
+        }
+
+        function updateOrigin() {
+            const sel = document.getElementById('originSelect');
+            const box = document.getElementById('originDetails');
+            const tag = document.getElementById('originTag');
+            const desc = document.getElementById('originDesc');
+
+            const data = originData[sel.value];
+            if (data) {
+                box.style.display = 'block';
+                tag.innerText = "> " + data.tag;
+                desc.innerText = data.desc;
+            } else {
+                box.style.display = 'none';
+            }
+        }
+
+        // --- IMAGE UPLOAD & MANIPULATION ---
+        let isDragging = false;
+        let startX, startY, initialPosX = 50, initialPosY = 50;
+
+        function uploadImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.getElementById('charImage');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    img.style.cursor = 'move';
+                    img.style.objectPosition = '50% 50%'; // Reset position
+                    initialPosX = 50;
+                    initialPosY = 50;
+
+                    document.getElementById('uploadPlaceholder').style.display = 'none';
+                    document.getElementById('removePhotoBtn').style.display = 'block';
+
+                    // Show drag hint
+                    let hint = document.getElementById('dragHint');
+                    if (!hint) {
+                        hint = document.createElement('div');
+                        hint.id = 'dragHint';
+                        hint.innerText = "ARRASTRA PARA AJUSTAR / DRAG TO ADJUST";
+                        hint.style.position = 'absolute';
+                        hint.style.bottom = '10px';
+                        hint.style.width = '100%';
+                        hint.style.textAlign = 'center';
+                        hint.style.fontFamily = "'Share Tech Mono'";
+                        hint.style.fontSize = '0.7rem';
+                        hint.style.color = 'var(--dim)';
+                        hint.style.pointerEvents = 'none';
+                        document.getElementById('charPhotoFrame').appendChild(hint);
+                    }
+                    hint.style.display = 'block';
+
+                    // Init drag listeners
+                    img.addEventListener('mousedown', startDrag);
+                    window.addEventListener('mouseup', stopDrag);
+                    window.addEventListener('mousemove', dragImage);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function removeImage(e) {
+            e.stopPropagation(); // Prevent triggering upload click if overlapping
+            const img = document.getElementById('charImage');
+            img.src = "";
+            img.style.display = 'none';
+
+            document.getElementById('uploadPlaceholder').style.display = 'block';
+            document.getElementById('removePhotoBtn').style.display = 'none';
+            document.getElementById('imgUpload').value = ""; // Reset input
+
+            const hint = document.getElementById('dragHint');
+            if (hint) hint.style.display = 'none';
+        }
+
+        function startDrag(e) {
+            e.preventDefault();
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+        }
+
+        function stopDrag() {
+            isDragging = false;
+        }
+
+        function dragImage(e) {
+            if (!isDragging) return;
+            const img = document.getElementById('charImage');
+
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+
+            // Adjust sensitivity
+            initialPosX += dx * 0.1;
+            initialPosY += dy * 0.1;
+
+            // Clamp 0-100? No, let them free move, but maybe useful to clamp.
+            // Let's simpler logic:
+            startX = e.clientX;
+            startY = e.clientY;
+
+            img.style.objectPosition = `${initialPosX}% ${initialPosY}%`;
+        }
+
+        // --- PDF DOWNLOAD (ULTRA-STABLE VERSION) ---
+        async function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const element = document.querySelector(".profile-container");
+            const nameInput = document.querySelector(".char-name-input").value || "Character";
+            const btn = document.querySelector('.download-btn-area button');
+
+            const originalText = btn.innerText;
+            btn.innerText = "CAPTURA EN CURSO...";
+
+            // 1. Enter Print Mode (Hides UI)
+            document.body.classList.add('pdf-print-mode');
+
+            // 2. Capture using onclone for total control
+            const canvas = await html2canvas(element, {
+                backgroundColor: "#05080e",
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                windowWidth: 1250, // Force Desktop Width for the capture
+                onclone: (clonedDoc) => {
+                    const clonedEl = clonedDoc.querySelector('.profile-container');
+
+                    // A. FIX IMAGE STRETCHING (html2canvas doesn't support object-fit)
+                    const img = clonedEl.querySelector('#charImage');
+                    if (img && img.src) {
+                        const frame = clonedEl.querySelector('#charPhotoFrame');
+                        const bgDiv = document.createElement('div');
+                        bgDiv.style.width = '100%';
+                        bgDiv.style.height = '100%';
+                        bgDiv.style.backgroundImage = `url(${img.src})`;
+                        bgDiv.style.backgroundSize = 'cover';
+                        bgDiv.style.backgroundPosition = img.style.objectPosition || '50% 50%';
+                        // Copy filters (if any)
+                        bgDiv.style.filter = window.getComputedStyle(img).filter;
+                        bgDiv.style.position = 'absolute';
+                        bgDiv.style.top = '0';
+                        bgDiv.style.left = '0';
+                        img.parentNode.replaceChild(bgDiv, img);
+                    }
+
+                    // B. FIX MOVED NUMBERS/TEXT (Convert inputs to plain text)
+                    const inputs = clonedEl.querySelectorAll('input, select, textarea');
+                    inputs.forEach(inp => {
+                        if (inp.type === 'file') return; // Skip file inputs
+
+                        const val = inp.value;
+                        const span = document.createElement('div');
+                        span.innerText = val;
+
+                        // Inherit layout styles to keep positioning
+                        const style = window.getComputedStyle(inp);
+                        span.style.color = '#ffffff';
+
+                        // Special case colors
+                        if (inp.placeholder && (
+                            inp.placeholder.includes("ALIAS / HANDLE") ||
+                            inp.placeholder.includes("ALTURA") ||
+                            inp.placeholder.includes("OJOS") ||
+                            inp.placeholder.includes("PIEL")
+                        )) {
+                            span.style.color = '#00e5ff';
+                        }
+
+                        span.style.fontFamily = style.fontFamily;
+                        span.style.fontSize = style.fontSize;
+                        span.style.fontWeight = style.fontWeight;
+                        span.style.textAlign = style.textAlign;
+                        span.style.padding = style.padding;
+
+                        // CRITICAL: Textareas (History/Description) need pre-wrap and auto height
+                        if (inp.tagName === 'TEXTAREA') {
+                            span.style.whiteSpace = 'pre-wrap';
+                            span.style.wordBreak = 'break-word';
+                            span.style.height = 'auto';
+                            span.style.minHeight = style.height;
+                            span.style.display = 'block';
+                            // Apply Cyan color to specific textareas
+                            span.style.color = '#00e5ff';
+                        } else {
+                            span.style.height = style.height;
+                            span.style.display = 'flex';
+                            span.style.alignItems = 'center';
+                            span.style.justifyContent = style.textAlign === 'center' ? 'center' : 'flex-start';
+                            span.style.whiteSpace = 'nowrap';
+                        }
+
+                        span.style.width = style.width;
+                        span.style.borderBottom = style.borderBottom === 'none' ? 'none' : '1px solid #2a3344';
+
+                        if (inp.tagName === 'SELECT') {
+                            span.innerText = inp.options[inp.selectedIndex] ? inp.options[inp.selectedIndex].text : "";
+                            span.style.color = '#00e5ff';
+                        }
+                        inp.parentNode.replaceChild(span, inp);
+                    });
+                }
+            });
+
+            // 3. Cleanup after capture
+            document.body.classList.remove('pdf-print-mode');
+            btn.innerText = originalText;
+
+            // 4. Final PDF Assembly
+            const imgData = canvas.toDataURL('image/jpeg', 0.95);
+            const imgWidthMM = 210;
+            const imgHeightMM = (canvas.height * imgWidthMM) / canvas.width;
+
+            const pdf = new jsPDF({
+                orientation: 'p',
+                unit: 'mm',
+                format: [imgWidthMM, imgHeightMM]
+            });
+
+            pdf.addImage(imgData, 'JPEG', 0, 0, imgWidthMM, imgHeightMM);
+            pdf.save(nameInput + "_FICHA_COSMERIUM.pdf");
+        }
+
+        // Add listeners
+        document.getElementById('roleSelect').addEventListener('change', updateRole);
+        document.getElementById('originSelect').addEventListener('change', updateOrigin);
+
+        // INIT
+        window.onload = function () {
+            calcStats();
+            updateLifestyle();
+            updateDistrict();
+            updateRole();
+            updateOrigin();
+
+            // Hide Preloader
+            setTimeout(() => {
+                const loader = document.getElementById('preloader');
+                loader.classList.add('loaded');
+            }, 1000);
+        };
+
+    </script>
+
+</body>
+
+</html>

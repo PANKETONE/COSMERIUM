@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (localStorage.getItem('cosmerium_auth') !== 'true') {
+      window.location.href = "index.html";
+    }
+  </script>
+  <title>Normativa — Cosmerium Era III: Night City 2077</title>
+  <script src="js/live-notifications.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&display=swap');
+
+    :root {
+      --bg: #04060a;
+      --panel: #080c12;
+      --border: #111c28;
+      --red: #ff2a45;
+      --cyan: #00e5ff;
+      --yellow: #ffd200;
+      --purple: #bd00ff;
+      --orange: #ff6b00;
+      --green: #00ff9d;
+      --text: #a8c4d8;
+      --dim: #2e4558;
+      --white: #ecf4fa
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 900;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 210, 0, .004) 2px, rgba(255, 210, 0, .004) 4px)
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 1.1rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(4, 6, 10, .97) 60%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(17, 28, 40, .5)
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      letter-spacing: .08em;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1
+    }
+
+    .nav-logo .nsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .4rem;
+      letter-spacing: .3em;
+      color: var(--dim);
+      margin-top: .1rem
+    }
+
+    .nav-logo em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .nav-links {
+      display: flex;
+      gap: .2rem;
+      list-style: none;
+      align-items: center
+    }
+
+    .nav-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s;
+      padding: .4rem .8rem;
+      white-space: nowrap
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--yellow)
+    }
+
+    .nav-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .13em;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: .4rem .9rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+      white-space: nowrap
+    }
+
+    .nav-btn:hover {
+      background: var(--yellow);
+      color: #000
+    }
+
+    .page-hero {
+      min-height: 55vh;
+      padding: 9rem 6vw 5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end
+    }
+
+    .ph-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(255, 210, 0, .06) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 80% 80%, rgba(255, 42, 69, .07) 0%, transparent 55%), linear-gradient(135deg, #060500 0%, #080600 50%, #0a0802 100%)
+    }
+
+    .ph-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 210, 0, .018) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 210, 0, .012) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 20% 50%, rgba(0, 0, 0, .4) 0%, transparent 70%)
+    }
+
+    .ph-content {
+      position: relative;
+      z-index: 2
+    }
+
+    .ph-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .38em;
+      color: var(--yellow);
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem
+    }
+
+    .ph-kicker::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--yellow)
+    }
+
+    .ph-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 9rem);
+      line-height: .88;
+      color: var(--white);
+      letter-spacing: .02em
+    }
+
+    .ph-title .y {
+      color: var(--yellow)
+    }
+
+    .ph-title .r {
+      color: var(--red)
+    }
+
+    .ph-sub {
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 300;
+      letter-spacing: .06em;
+      max-width: 620px;
+      margin-top: .9rem;
+      line-height: 1.7
+    }
+
+    .ph-stat {
+      position: absolute;
+      bottom: 3rem;
+      right: 6vw;
+      text-align: right;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      line-height: 2
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), var(--dim), var(--border), transparent)
+    }
+
+    section {
+      padding: 5rem 6vw
+    }
+
+    .sec-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .33em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .sec-kicker::before {
+      content: '//';
+      color: var(--dim)
+    }
+
+    .sec-kicker.y {
+      color: var(--yellow)
+    }
+
+    .sec-kicker.r {
+      color: var(--red)
+    }
+
+    .sec-kicker.c {
+      color: var(--cyan)
+    }
+
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: .03em;
+      margin-bottom: .9rem
+    }
+
+    .sec-title .y {
+      color: var(--yellow)
+    }
+
+    .sec-title .r {
+      color: var(--red)
+    }
+
+    .sec-title .c {
+      color: var(--cyan)
+    }
+
+    .sec-desc {
+      font-size: .95rem;
+      color: var(--text);
+      line-height: 1.78;
+      font-weight: 300;
+      max-width: 700px;
+      margin-bottom: 2rem
+    }
+
+    /* PENDING NOTICE */
+    .pending-block {
+      background: var(--panel);
+      border: 1px solid rgba(255, 210, 0, .25);
+      padding: 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .pending-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255, 210, 0, .04) 0%, transparent 70%)
+    }
+
+    .pending-icon {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 8rem;
+      color: rgba(255, 210, 0, .1);
+      line-height: 1;
+      position: relative;
+      z-index: 1
+    }
+
+    .pending-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--yellow);
+      letter-spacing: .04em;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .pending-text {
+      font-size: .95rem;
+      color: var(--text);
+      line-height: 1.7;
+      font-weight: 300;
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1
+    }
+
+    /* PHILOSOPHY CARDS */
+    .phil-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem
+    }
+
+    .phil-card {
+      border: 1px solid var(--border);
+      padding: 2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: all .25s
+    }
+
+    .phil-card:hover {
+      border-color: rgba(255, 210, 0, .3);
+      background: rgba(255, 210, 0, .02)
+    }
+
+    .phil-num {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 3rem;
+      color: rgba(255, 210, 0, .08);
+      position: absolute;
+      top: .5rem;
+      right: 1rem;
+      line-height: 1
+    }
+
+    .phil-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--yellow);
+      letter-spacing: .04em;
+      margin-bottom: .8rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .phil-body {
+      font-size: .88rem;
+      color: var(--text);
+      line-height: 1.7;
+      font-weight: 300;
+      position: relative;
+      z-index: 1
+    }
+
+    /* SANCTION CARDS */
+    .sanction-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem
+    }
+
+    .sanction-card {
+      padding: 1.8rem 1.6rem;
+      border: 1px solid
+    }
+
+    .sc-1 {
+      border-color: rgba(255, 210, 0, .25);
+      background: rgba(255, 210, 0, .02)
+    }
+
+    .sc-2 {
+      border-color: rgba(255, 107, 0, .25);
+      background: rgba(255, 107, 0, .02)
+    }
+
+    .sc-3 {
+      border-color: rgba(255, 42, 69, .25);
+      background: rgba(255, 42, 69, .02)
+    }
+
+    .sanction-level {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .44rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: .4rem
+    }
+
+    .sanction-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: .04em;
+      margin-bottom: .6rem
+    }
+
+    .sanction-body {
+      font-size: .86rem;
+      color: var(--text);
+      line-height: 1.65;
+      font-weight: 300
+    }
+
+    /* INFO / WARN BOX */
+    .info-box {
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(0, 229, 255, .1);
+      background: rgba(0, 229, 255, .03);
+      font-size: .86rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 300;
+      margin: 1.5rem 0
+    }
+
+    .info-box strong {
+      color: var(--cyan)
+    }
+
+    .warn-box {
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(255, 42, 69, .15);
+      background: rgba(255, 42, 69, .03);
+      font-size: .86rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 300;
+      margin: 1.5rem 0
+    }
+
+    .warn-box strong {
+      color: var(--red)
+    }
+
+    /* CTA */
+    .cta {
+      padding: 5rem 6vw;
+      text-align: center;
+      position: relative;
+      border-top: 1px solid var(--border)
+    }
+
+    .cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 1.2rem
+    }
+
+    .cta-sub {
+      font-size: .97rem;
+      color: var(--text);
+      font-weight: 300;
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    .btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .18em;
+      text-decoration: none;
+      padding: .65rem 1.5rem;
+      text-transform: uppercase;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px))
+    }
+
+    .btn-y {
+      border: 1px solid var(--yellow);
+      color: var(--yellow)
+    }
+
+    .btn-y:hover {
+      background: var(--yellow);
+      color: #000
+    }
+
+    .btn-c {
+      border: 1px solid var(--cyan);
+      color: var(--cyan)
+    }
+
+    .btn-c:hover {
+      background: var(--cyan);
+      color: #000
+    }
+
+    .btn-r {
+      border: 1px solid var(--red);
+      color: var(--red)
+    }
+
+    .btn-r:hover {
+      background: var(--red);
+      color: #000
+    }
+
+    footer {
+      padding: 3rem 6vw;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      text-align: center
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: .12em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .2rem
+    }
+
+    .footer-logo em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .fsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .22em;
+      color: var(--dim)
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center
+    }
+
+    .footer-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s
+    }
+
+    .footer-links a:hover {
+      color: var(--yellow)
+    }
+
+    .footer-copy {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .15em;
+      color: var(--dim)
+    }
+
+    @media(max-width:900px) {
+
+      .phil-grid,
+      .sanction-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* CYBERPUNK PRELOADER */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #fcee0a;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Share Tech Mono', monospace;
+      color: #000;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      width: 300px;
+      text-align: left;
+    }
+
+    .loader-text {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .loader-bar-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      width: 0%;
+      height: 100%;
+      background: #000;
+      animation: loadBar 0.8s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+    }
+
+    @keyframes loadBar {
+      0% {
+        width: 0%;
+      }
+
+      20% {
+        width: 30%;
+      }
+
+      50% {
+        width: 35%;
+      }
+
+      80% {
+        width: 85%;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+
+    .glitch-load {
+      animation: glitchText 0.2s infinite;
+    }
+
+    @keyframes glitchText {
+      0% {
+        transform: translate(0);
+        text-shadow: 2px 0 #ff003c;
+      }
+
+      50% {
+        transform: translate(-2px, 2px);
+        text-shadow: -2px 0 #00e5ff;
+      }
+
+      100% {
+        transform: translate(2px, -2px);
+        text-shadow: 2px 0 #ff003c;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader-content">
+      <div class="loader-text glitch-load">INITIALIZING_COSMERIUM_OS...</div>
+      <div class="loader-bar-container">
+        <div class="loader-bar"></div>
+      </div>
+      <div style="font-size: 0.6rem; margin-top: 1rem; opacity: 0.7;">
+        AUTHENTICATING_USER_PROFILE...<br>
+        SYNCING_NEURAL_LINK_v3.0.2...<br>
+        LOADING_NIGHT_CITY_DATABASE...
+      </div>
+    </div>
+  </div>
+
+  <nav>
+    <a class="nav-logo" href="home.html">COSMERIUM <em>ERA III</em><span class="nsub">NIGHT CITY · 2077</span></a>
+    <ul class="nav-links">
+      <li><a href="home.html">Inicio</a></li>
+      <li><a href="mundo.html">El Mundo</a></li>
+      <li><a href="roles.html">Roles</a></li>
+      <li><a href="sistema.html">Sistema</a></li>
+      <li><a href="objetos.html">Objetos</a></li>
+      <li><a href="ficha.html">Ficha</a></li>
+      <li><a href="normativa.html" class="active">Normativa</a></li>
+    </ul>
+    <a class="nav-btn" href="https://discord.gg/DWacKAK373">&#9654; Discord</a>
+  </nav>
+
+  <section class="page-hero">
+    <div class="ph-bg"></div>
+    <div class="ph-grid"></div>
+    <div class="ph-stat">
+      ESTADO &nbsp;&nbsp; <span style="color:var(--yellow)">EN ESPERA</span><br>
+      NORMATIVA &nbsp;&nbsp; <span style="color:var(--red)">PENDIENTE</span><br>
+      PRÓXIMAMENTE &nbsp;&nbsp; <span style="color:var(--cyan)">SÍ</span>
+    </div>
+    <div class="ph-content">
+      <div class="ph-kicker">// Reglas del Servidor · Cosmerium</div>
+      <h1 class="ph-title">NORMA<span class="y">TIVA</span> DEL<br><span class="r">SERVIDOR</span></h1>
+      <p class="ph-sub">Las reglas que hacen posible el roleplay en Night City. El texto definitivo de la normativa se
+        publicará próximamente, una vez revisado y aprobado por el equipo de administración.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ESTADO PENDIENTE -->
+  <section style="background:var(--panel)">
+    <div class="pending-block">
+      <div class="pending-icon">!</div>
+      <div class="pending-title">NORMATIVA EN REVISIÓN</div>
+      <p class="pending-text">La normativa definitiva del servidor está siendo redactada. El administrador del servidor
+        ha indicado que enviará el texto del .txt tras confirmar los ajustes definitivos de roles, sistema y
+        objetos.<br><br>Esta página se actualizará con el contenido real en cuanto esté disponible.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FILOSOFÍA BASE (placeholder con principios CP2077) -->
+  <section>
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker y">Principios del servidor</div>
+      <h2 class="sec-title">FILOSOFÍA <span class="y">BASE</span></h2>
+      <p class="sec-desc">Mientras llega el texto definitivo, estas son las tres filosofías fundamentales que guían
+        Cosmerium Era III. Son el espíritu detrás de las reglas concretas que recibirás próximamente.</p>
+    </div>
+
+    <div class="phil-grid">
+      <div class="phil-card">
+        <div class="phil-num">01</div>
+        <div class="phil-title">EL LORE ES LEY</div>
+        <p class="phil-body">Cyberpunk 2077 y Cyberpunk Red tienen un universo establecido y coherente. En Cosmerium
+          respetamos ese lore: las corporaciones, las pandillas, los distritos, la tecnología y la política de Night
+          City son como el canon indica. Lo que inventamos debe encajar sin romper lo que ya existe.</p>
+      </div>
+      <div class="phil-card">
+        <div class="phil-num">02</div>
+        <div class="phil-title">EL ROL PRIMERO</div>
+        <p class="phil-body">Somos un servidor de rol narrativo. Las mecánicas existen para dar estructura, no para
+          ganar. El objetivo no es tener el personaje más poderoso — es construir historias interesantes en un mundo
+          brutal. El meta-gaming, el power-gaming y el god-modding rompen la experiencia de todos.</p>
+      </div>
+      <div class="phil-card">
+        <div class="phil-num">03</div>
+        <div class="phil-title">CONSECUENCIAS REALES</div>
+        <p class="phil-body">En Night City las acciones tienen peso. Los personajes pueden morir, sufrir heridas
+          permanentes, perder contactos o ganar enemigos. Ese riesgo es lo que hace que los momentos de triunfo valgan
+          la pena. Jugamos con consecuencias porque sin ellas el mundo pierde toda tensión.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SANCIONES PLACEHOLDER -->
+  <section style="background:var(--panel)">
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker r">Sistema de sanciones</div>
+      <h2 class="sec-title">NIVELES DE <span class="r">SANCIÓN</span></h2>
+      <p class="sec-desc">El sistema de sanciones seguirá una estructura de tres niveles. Los detalles exactos de cada
+        conducta sancionable se publicarán con la normativa definitiva.</p>
+    </div>
+
+    <div class="sanction-grid">
+      <div class="sanction-card sc-1">
+        <div class="sanction-level" style="color:var(--yellow)">Nivel 01</div>
+        <div class="sanction-name" style="color:var(--yellow)">ADVERTENCIA</div>
+        <p class="sanction-body">Para infracciones menores o primeras ocurrencias. El administrador notifica al jugador
+          y explica el problema. El personaje puede continuar jugando. Se registra en el historial del jugador.</p>
+      </div>
+      <div class="sanction-card sc-2">
+        <div class="sanction-level" style="color:var(--orange)">Nivel 02</div>
+        <div class="sanction-name" style="color:var(--orange)">SUSPENSIÓN TEMPORAL</div>
+        <p class="sanction-body">Para infracciones repetidas o moderadamente graves. El jugador queda excluido del
+          servidor temporalmente. Al regresar, cualquier reincidencia lleva a sanción permanente.</p>
+      </div>
+      <div class="sanction-card sc-3">
+        <div class="sanction-level" style="color:var(--red)">Nivel 03</div>
+        <div class="sanction-name" style="color:var(--red)">EXPULSIÓN PERMANENTE</div>
+        <p class="sanction-body">Para infracciones graves o reincidencia tras suspensión. El jugador y todos sus
+          personajes son eliminados permanentemente del servidor. No hay apelación posible en los casos más graves.</p>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>IMPORTANTE:</strong> La normativa definitiva especificará exactamente qué conductas corresponden a cada
+      nivel de sanción, qué constituye god-modding, metagaming y powergaming en el contexto de Cosmerium Era III, y el
+      procedimiento de reporte ante el equipo de administración. Este texto es provisional.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="cta">
+    <h2 class="cta-title">¿LISTO PARA<br><span style="color:var(--yellow)">ENTRAR</span>?</h2>
+    <p class="cta-sub">Mientras esperas la normativa definitiva, prepara tu personaje. Elige tu rol, estudia el sistema
+      y equípate. Night City no espera a nadie.</p>
+    <div class="cta-btns">
+      <a class="btn btn-c" href="roles.html">Ver Roles</a>
+      <a class="btn btn-y" href="sistema.html">Ver Sistema</a>
+      <a class="btn btn-r" href="objetos.html">Ver Objetos</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">COSMERIUM <em>ERA III</em><span class="fsub">NIGHT CITY 2077 · ROL · DISCORD</span></div>
+    <div class="footer-links">
+      <a href="home.html">Inicio</a>
+      <a href="mundo.html">El Mundo</a>
+      <a href="roles.html">Roles</a>
+      <a href="sistema.html">Sistema</a>
+      <a href="objetos.html">Objetos</a>
+      <a href="normativa.html">Normativa</a>
+      <a href="https://discord.gg/DWacKAK373">Discord</a>
+    </div>
+    <div class="footer-copy">Sistema: Cyberpunk Red (R. Talsorian Games) · Ambientación: Cyberpunk 2077 (CD Projekt Red)
+      · Servidor de rol narrativo</div>
+  </footer>
+
+  <script>
+    window.onload = function () {
+      setTimeout(() => {
+        document.getElementById('preloader').classList.add('loaded');
+      }, 1000);
+    };
+  </script>
+</body>
+
+</html>

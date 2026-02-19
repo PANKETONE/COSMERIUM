@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (localStorage.getItem('cosmerium_auth') !== 'true') {
+      window.location.href = "index.html";
+    }
+  </script>
+  <title>Sistema — Cosmerium Era III: Night City 2077</title>
+  <script src="js/live-notifications.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&display=swap');
+
+    :root {
+      --bg: #04060a;
+      --panel: #080c12;
+      --border: #111c28;
+      --red: #ff2a45;
+      --cyan: #00e5ff;
+      --yellow: #ffd200;
+      --purple: #bd00ff;
+      --orange: #ff6b00;
+      --green: #00ff9d;
+      --text: #a8c4d8;
+      --dim: #2e4558;
+      --white: #ecf4fa
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 900;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 42, 69, .004) 2px, rgba(255, 42, 69, .004) 4px)
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 1.1rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(4, 6, 10, .97) 60%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(17, 28, 40, .5)
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      letter-spacing: .08em;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1
+    }
+
+    .nav-logo .nsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .4rem;
+      letter-spacing: .3em;
+      color: var(--dim);
+      margin-top: .1rem
+    }
+
+    .nav-logo em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .nav-links {
+      display: flex;
+      gap: .2rem;
+      list-style: none;
+      align-items: center
+    }
+
+    .nav-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s;
+      padding: .4rem .8rem;
+      white-space: nowrap
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--red)
+    }
+
+    .nav-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .13em;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: .4rem .9rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+      white-space: nowrap
+    }
+
+    .nav-btn:hover {
+      background: var(--yellow);
+      color: #000
+    }
+
+    .page-hero {
+      min-height: 55vh;
+      padding: 9rem 6vw 5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end
+    }
+
+    .ph-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(255, 42, 69, .07) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 80% 80%, rgba(255, 210, 0, .06) 0%, transparent 55%), linear-gradient(135deg, #010204 0%, #060208 50%, #0a0306 100%)
+    }
+
+    .ph-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 42, 69, .018) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 42, 69, .012) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 20% 50%, rgba(0, 0, 0, .4) 0%, transparent 70%)
+    }
+
+    .ph-content {
+      position: relative;
+      z-index: 2
+    }
+
+    .ph-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .38em;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem
+    }
+
+    .ph-kicker::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--red)
+    }
+
+    .ph-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 9rem);
+      line-height: .88;
+      color: var(--white);
+      letter-spacing: .02em
+    }
+
+    .ph-title .r {
+      color: var(--red)
+    }
+
+    .ph-title .y {
+      color: var(--yellow)
+    }
+
+    .ph-sub {
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 300;
+      letter-spacing: .06em;
+      max-width: 620px;
+      margin-top: .9rem;
+      line-height: 1.7
+    }
+
+    .ph-nav {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap
+    }
+
+    .pnb {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .18em;
+      text-decoration: none;
+      padding: .55rem 1.2rem;
+      text-transform: uppercase;
+      border: 1px solid;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px))
+    }
+
+    .pnb.r {
+      border-color: rgba(255, 42, 69, .4);
+      color: var(--red)
+    }
+
+    .pnb.r:hover {
+      background: rgba(255, 42, 69, .1);
+      border-color: var(--red)
+    }
+
+    .pnb.y {
+      border-color: rgba(255, 210, 0, .4);
+      color: var(--yellow)
+    }
+
+    .pnb.y:hover {
+      background: rgba(255, 210, 0, .1);
+      border-color: var(--yellow)
+    }
+
+    .ph-stat {
+      position: absolute;
+      bottom: 3rem;
+      right: 6vw;
+      text-align: right;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      line-height: 2
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), var(--dim), var(--border), transparent)
+    }
+
+    section {
+      padding: 5rem 6vw
+    }
+
+    .sec-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .33em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .sec-kicker::before {
+      content: '//';
+      color: var(--dim)
+    }
+
+    .sec-kicker.r {
+      color: var(--red)
+    }
+
+    .sec-kicker.y {
+      color: var(--yellow)
+    }
+
+    .sec-kicker.c {
+      color: var(--cyan)
+    }
+
+    .sec-kicker.g {
+      color: var(--green)
+    }
+
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: .03em;
+      margin-bottom: .9rem
+    }
+
+    .sec-title .r {
+      color: var(--red)
+    }
+
+    .sec-title .c {
+      color: var(--cyan)
+    }
+
+    .sec-title .y {
+      color: var(--yellow)
+    }
+
+    .sec-title .g {
+      color: var(--green)
+    }
+
+    .sec-desc {
+      font-size: .95rem;
+      color: var(--text);
+      line-height: 1.78;
+      font-weight: 300;
+      max-width: 700px;
+      margin-bottom: 2.5rem
+    }
+
+    /* FORMULA DISPLAY */
+    .formula-block {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem
+    }
+
+    .formula-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255, 42, 69, .04) 0%, transparent 70%)
+    }
+
+    .formula-main {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(1.5rem, 4vw, 3.2rem);
+      letter-spacing: .12em;
+      color: var(--white);
+      position: relative;
+      z-index: 1;
+      line-height: 1.4
+    }
+
+    .formula-main .hl {
+      color: var(--red)
+    }
+
+    .formula-main .hly {
+      color: var(--yellow)
+    }
+
+    .formula-note {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .85rem;
+      letter-spacing: .05em;
+      color: var(--dim);
+      margin-top: 1rem;
+      position: relative;
+      z-index: 1;
+      line-height: 1.6
+    }
+
+    /* VD TABLE */
+    .vd-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem
+    }
+
+    .vd-table {
+      width: 100%;
+      border-collapse: collapse
+    }
+
+    .vd-table th {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .18em;
+      color: var(--dim);
+      text-align: left;
+      padding: .6rem .8rem;
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase
+    }
+
+    .vd-table td {
+      font-size: .87rem;
+      color: var(--text);
+      padding: .6rem .8rem;
+      border-bottom: 1px solid rgba(17, 28, 40, .4)
+    }
+
+    .vd-table tr:hover td {
+      background: rgba(255, 255, 255, .012)
+    }
+
+    .vd-table .vnum {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .6rem;
+      color: var(--yellow);
+      font-weight: 700
+    }
+
+    .vd-table .vname {
+      font-weight: 600;
+      color: var(--white)
+    }
+
+    /* COMBAT FLOW */
+    .combat-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 1.5rem
+    }
+
+    .cf-step {
+      background: var(--bg);
+      padding: 1.8rem 1.5rem;
+      position: relative
+    }
+
+    .cf-num {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 2.5rem;
+      color: var(--border);
+      position: absolute;
+      top: .8rem;
+      right: 1rem;
+      line-height: 1
+    }
+
+    .cf-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      color: var(--red);
+      letter-spacing: .04em;
+      margin-bottom: .5rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .cf-body {
+      font-size: .86rem;
+      color: var(--text);
+      line-height: 1.65;
+      font-weight: 300
+    }
+
+    .cf-formula {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .5rem;
+      color: var(--yellow);
+      margin-top: .7rem;
+      letter-spacing: .1em;
+      border: 1px solid rgba(255, 210, 0, .2);
+      padding: .3rem .6rem;
+      display: inline-block
+    }
+
+    /* WOUND STATES */
+    .wound-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 1.5rem
+    }
+
+    .wound-card {
+      background: var(--bg);
+      padding: 1.8rem 1.5rem
+    }
+
+    .wc-state {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .44rem;
+      letter-spacing: .2em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: .3rem
+    }
+
+    .wc-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: .04em;
+      margin-bottom: .5rem
+    }
+
+    .wc-threshold {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .5rem;
+      letter-spacing: .1em;
+      margin-bottom: .6rem
+    }
+
+    .wc-effect {
+      font-size: .84rem;
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 300
+    }
+
+    /* CRIT WOUNDS */
+    .crit-section {
+      background: var(--panel)
+    }
+
+    .crit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1.5rem
+    }
+
+    .crit-table {
+      width: 100%;
+      border-collapse: collapse
+    }
+
+    .crit-table th {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .16em;
+      color: var(--dim);
+      text-align: left;
+      padding: .6rem .8rem;
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase
+    }
+
+    .crit-table td {
+      font-size: .83rem;
+      color: var(--text);
+      padding: .55rem .8rem;
+      border-bottom: 1px solid rgba(17, 28, 40, .4);
+      vertical-align: top
+    }
+
+    .crit-table tr:hover td {
+      background: rgba(255, 255, 255, .01)
+    }
+
+    .crit-table .cnum {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      color: var(--yellow);
+      white-space: nowrap
+    }
+
+    .crit-table .cname {
+      font-weight: 600;
+      color: var(--white)
+    }
+
+    .crit-table .ceffect {
+      font-size: .8rem;
+      color: var(--text);
+      line-height: 1.5
+    }
+
+    .crit-table .cfatal {
+      color: var(--red);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .44rem
+    }
+
+    .crit-note {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      letter-spacing: .1em;
+      color: var(--red);
+      border: 1px solid rgba(255, 42, 69, .2);
+      background: rgba(255, 42, 69, .04);
+      padding: .8rem 1rem;
+      margin-bottom: 1.5rem
+    }
+
+    /* DEATH SAVES */
+    .death-track {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-top: 1.5rem
+    }
+
+    .dt-step {
+      flex: 1;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      background: var(--bg)
+    }
+
+    .dt-step:last-child {
+      border-right: none
+    }
+
+    .dt-vd {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.2rem;
+      color: var(--yellow);
+      font-weight: 700;
+      margin-bottom: .3rem
+    }
+
+    .dt-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .12em;
+      color: var(--dim);
+      margin-bottom: .4rem;
+      text-transform: uppercase
+    }
+
+    .dt-effect {
+      font-size: .78rem;
+      color: var(--text);
+      line-height: 1.5
+    }
+
+    .dt-dead {
+      background: rgba(255, 42, 69, .05);
+      border-color: rgba(255, 42, 69, .2)
+    }
+
+    .dt-dead .dt-vd {
+      color: var(--red)
+    }
+
+    .dt-dead .dt-label {
+      color: var(--red)
+    }
+
+    /* CYBERPSYCHOSIS */
+    .emp-bar {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-top: 1.5rem
+    }
+
+    .emp-step {
+      flex: 1;
+      padding: 1rem .6rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      background: var(--bg)
+    }
+
+    .emp-step:last-child {
+      border-right: none
+    }
+
+    .emp-val {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: .2rem
+    }
+
+    .emp-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .38rem;
+      letter-spacing: .1em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: .3rem
+    }
+
+    .emp-effect {
+      font-size: .75rem;
+      color: var(--text);
+      line-height: 1.45
+    }
+
+    /* INFO BOX */
+    .info-box {
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(0, 229, 255, .1);
+      background: rgba(0, 229, 255, .03);
+      font-size: .86rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 300;
+      margin-top: 1.5rem
+    }
+
+    .info-box strong {
+      color: var(--cyan)
+    }
+
+    .warn-box {
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(255, 210, 0, .15);
+      background: rgba(255, 210, 0, .03);
+      font-size: .86rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 300;
+      margin-top: 1.5rem
+    }
+
+    .warn-box strong {
+      color: var(--yellow)
+    }
+
+    .red-box {
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(255, 42, 69, .15);
+      background: rgba(255, 42, 69, .03);
+      font-size: .86rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 300;
+      margin-top: 1.5rem
+    }
+
+    .red-box strong {
+      color: var(--red)
+    }
+
+    /* ACTIONS */
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem
+    }
+
+    .action-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 1.3rem 1.2rem
+    }
+
+    .ac-type {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .18em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: .3rem
+    }
+
+    .ac-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: .4rem;
+      letter-spacing: .04em
+    }
+
+    .ac-desc {
+      font-size: .83rem;
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 300
+    }
+
+    /* CTA */
+    .cta {
+      padding: 5rem 6vw;
+      text-align: center;
+      position: relative;
+      border-top: 1px solid var(--border)
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255, 42, 69, .04) 0%, transparent 70%);
+      pointer-events: none
+    }
+
+    .cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .cta-sub {
+      font-size: .97rem;
+      color: var(--text);
+      font-weight: 300;
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1
+    }
+
+    .btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .18em;
+      text-decoration: none;
+      padding: .65rem 1.5rem;
+      text-transform: uppercase;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px))
+    }
+
+    .btn-y {
+      border: 1px solid var(--yellow);
+      color: var(--yellow)
+    }
+
+    .btn-y:hover {
+      background: var(--yellow);
+      color: #000
+    }
+
+    .btn-c {
+      border: 1px solid var(--cyan);
+      color: var(--cyan)
+    }
+
+    .btn-c:hover {
+      background: var(--cyan);
+      color: #000
+    }
+
+    .btn-r {
+      border: 1px solid var(--red);
+      color: var(--red)
+    }
+
+    .btn-r:hover {
+      background: var(--red);
+      color: #000
+    }
+
+    footer {
+      padding: 3rem 6vw;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      text-align: center
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: .12em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .2rem
+    }
+
+    .footer-logo em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .fsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .22em;
+      color: var(--dim)
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center
+    }
+
+    .footer-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s
+    }
+
+    .footer-links a:hover {
+      color: var(--red)
+    }
+
+    .footer-copy {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .15em;
+      color: var(--dim)
+    }
+
+    @media(max-width:900px) {
+
+      .combat-flow,
+      .wound-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .vd-grid,
+      .crit-grid {
+        grid-template-columns: 1fr
+      }
+
+      .actions-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .death-track {
+        flex-direction: column
+      }
+
+      .emp-bar {
+        flex-direction: column
+      }
+    }
+
+    @media(max-width:600px) {
+
+      .combat-flow,
+      .wound-grid,
+      .actions-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .glitch-layer {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glitch-layer::before,
+    .glitch-layer::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+      opacity: .07
+    }
+
+    .glitch-layer::before {
+      color: var(--cyan);
+      transform: translate(-3px, 0);
+      clip-path: polygon(0 20%, 100% 20%, 100% 45%, 0 45%)
+    }
+
+    .glitch-layer::after {
+      color: var(--red);
+      transform: translate(3px, 0);
+      clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
+      animation: chr 6s infinite
+    }
+
+    @keyframes chr {
+
+      0%,
+      88%,
+      100% {
+        opacity: .07
+      }
+
+      90% {
+        opacity: .2;
+        transform: translate(5px, 0)
+      }
+
+      93% {
+        opacity: .05;
+        transform: translate(-2px, 0)
+      }
+
+      96% {
+        opacity: .07
+      }
+    }
+
+    /* Tech UI Colors */
+    .ui-tl {
+      position: absolute;
+      top: 6rem;
+      left: 6vw;
+      z-index: 3;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .14em;
+      color: var(--dim);
+      line-height: 1.9
+    }
+
+    .ui-br {
+      position: absolute;
+      bottom: 2rem;
+      left: 6vw;
+      z-index: 3;
+      text-align: left;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .14em;
+      color: var(--dim)
+    }
+
+    /* Utility Colors */
+    .c {
+      color: var(--cyan)
+    }
+
+    .r {
+      color: var(--red)
+    }
+
+    .y {
+      color: var(--yellow)
+    }
+
+    .p {
+      color: var(--purple)
+    }
+
+    .g {
+      color: var(--green)
+    }
+
+    .o {
+      color: var(--orange)
+    }
+
+    .ui-status {
+      position: absolute;
+      top: 6rem;
+      right: 6vw;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem
+    }
+
+    .usi {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .14em;
+      color: var(--dim);
+      justify-content: flex-end
+    }
+
+    .sdot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      animation: sdp 2.2s ease infinite
+    }
+
+    .sdot.c {
+      background: var(--cyan);
+      box-shadow: 0 0 6px var(--cyan)
+    }
+
+    .sdot.r {
+      background: var(--red);
+      box-shadow: 0 0 6px var(--red);
+      animation-delay: .8s
+    }
+
+    .sdot.y {
+      background: var(--yellow);
+      box-shadow: 0 0 6px var(--yellow);
+      animation-delay: 1.6s
+    }
+
+    @keyframes sdp {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .2
+      }
+    }
+
+    .gh {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      pointer-events: none;
+      opacity: 0;
+      animation: gha 12s infinite
+    }
+
+    .gh:nth-child(1) {
+      background: var(--red);
+      animation-delay: 0s
+    }
+
+    .gh:nth-child(2) {
+      background: var(--cyan);
+      animation-delay: 4s
+    }
+
+    .gh:nth-child(3) {
+      background: var(--purple);
+      animation-delay: 8s
+    }
+
+    @keyframes gha {
+      0% {
+        top: -2%;
+        opacity: 0
+      }
+
+      2% {
+        opacity: .5
+      }
+
+      18% {
+        top: 108%;
+        opacity: .05
+      }
+
+      19% {
+        opacity: 0;
+        top: 108%
+      }
+
+      100% {
+        opacity: 0;
+        top: 108%
+      }
+    }
+
+    /* Hover Effects for Sistema */
+    .action-card {
+      transition: all 0.3s ease;
+    }
+
+    .action-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
+      z-index: 10;
+      background: rgba(0, 229, 255, 0.05);
+    }
+
+    .crit-table tr {
+      transition: background 0.2s ease;
+    }
+
+    .crit-table tr:hover td {
+      background: rgba(255, 42, 69, 0.08) !important;
+    }
+
+    /* CYBERPUNK PRELOADER */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #fcee0a;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Share Tech Mono', monospace;
+      color: #000;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      width: 300px;
+      text-align: left;
+    }
+
+    .loader-text {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .loader-bar-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      width: 0%;
+      height: 100%;
+      background: #000;
+      animation: loadBar 0.8s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+    }
+
+    @keyframes loadBar {
+      0% {
+        width: 0%;
+      }
+
+      20% {
+        width: 30%;
+      }
+
+      50% {
+        width: 35%;
+      }
+
+      80% {
+        width: 85%;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+
+    .glitch-load {
+      animation: glitchText 0.2s infinite;
+    }
+
+    @keyframes glitchText {
+      0% {
+        transform: translate(0);
+        text-shadow: 2px 0 #ff003c;
+      }
+
+      50% {
+        transform: translate(-2px, 2px);
+        text-shadow: -2px 0 #00e5ff;
+      }
+
+      100% {
+        transform: translate(2px, -2px);
+        text-shadow: 2px 0 #ff003c;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader-content">
+      <div class="loader-text glitch-load">INITIALIZING_COSMERIUM_OS...</div>
+      <div class="loader-bar-container">
+        <div class="loader-bar"></div>
+      </div>
+      <div style="font-size: 0.6rem; margin-top: 1rem; opacity: 0.7;">
+        AUTHENTICATING_USER_PROFILE...<br>
+        SYNCING_NEURAL_LINK_v3.0.2...<br>
+        LOADING_NIGHT_CITY_DATABASE...
+      </div>
+    </div>
+  </div>
+
+  <nav>
+    <a class="nav-logo" href="home.html">COSMERIUM <em>ERA III</em><span class="nsub">NIGHT CITY · 2077</span></a>
+    <ul class="nav-links">
+      <li><a href="home.html">Inicio</a></li>
+      <li><a href="mundo.html">El Mundo</a></li>
+      <li><a href="roles.html">Roles</a></li>
+      <li><a href="sistema.html" class="active">Sistema</a></li>
+      <li><a href="objetos.html">Objetos</a></li>
+      <li><a href="ficha.html">Ficha</a></li>
+      <li><a href="normativa.html">Normativa</a></li>
+    </ul>
+    <a class="nav-btn" href="https://discord.gg/DWacKAK373">&#9654; Discord</a>
+  </nav>
+
+  <section class="page-hero">
+    <div class="ph-bg"></div>
+    <div class="ph-grid"></div>
+    <div class="gh"></div>
+    <div class="gh"></div>
+    <div class="gh"></div>
+    <div class="ui-tl">
+      SYSTEM.COMBAT_LOG // ACTIVE<br>
+      TRAUMA_TEAM_LINK: SIGNAL_WEAK<br>
+      THREAT_LEVEL: HIGH
+    </div>
+    <div class="ui-status">
+      <div class="usi">VITALS <div class="sdot r"></div>
+      </div>
+      <div class="usi">CYBER <div class="sdot c"></div>
+      </div>
+      <div class="usi">AMMO <div class="sdot y"></div>
+      </div>
+    </div>
+    <div class="ui-br">
+      INITIATIVE: ROLLED<br>
+      RANGE: 15m<br>
+      VISIBILITY: CLEAR
+    </div>
+    <div class="ph-stat">
+      DADOS BASE &nbsp;&nbsp; <span style="color:var(--red)">d10</span><br>
+      NIVELES VD &nbsp;&nbsp; <span style="color:var(--yellow)">9–29+</span><br>
+      TURNOS DE COMBATE &nbsp;&nbsp; <span style="color:var(--cyan)">3 seg</span>
+    </div>
+    <div class="ph-content">
+      <div class="ph-kicker">// Mecánicas · Cyberpunk Red</div>
+      <h1 class="ph-title"><span class="glitch-layer" data-text="SISTEMA">SISTEMA</span><br><span class="r glitch-layer"
+          data-text="DE">DE</span> <span class="y glitch-layer" data-text="JUEGO">JUEGO</span></h1>
+      <p class="ph-sub">Cyberpunk Red es un sistema d10. Rápido, brutal y con consecuencias permanentes. Aquí no hay
+        segundas oportunidades — solo aquellos que entienden las reglas sobreviven más de una semana en Night City.</p>
+      <div class="ph-nav">
+        <a class="pnb r" href="#mecanica">Mecánica base</a>
+        <a class="pnb y" href="#combate">Combate</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- MECÁNICA BASE -->
+  <section id="mecanica">
+    <div style="max-width:800px;margin-bottom:3rem">
+      <div class="sec-kicker r">Fundamento del sistema</div>
+      <h2 class="sec-title">MECÁNICA <span class="r">BASE</span></h2>
+      <p class="sec-desc">Toda acción en Cyberpunk Red se resuelve con la misma fórmula: tira 1d10, suma el atributo
+        relevante y la habilidad correspondiente, y compara con la Valoración de Dificultad (VD). Supera el VD y tienes
+        éxito. No lo superas y asumes las consecuencias.</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-main">
+        <span class="hl">1d10</span> + <span class="hly">Atributo</span> + <span class="hl">Habilidad</span> ≥ <span
+          class="hly">VD</span>
+      </div>
+      <div class="formula-note">
+        CRÍTICO POSITIVO: 10 en el dado → tira de nuevo y suma el resultado (puede encadenar)<br>
+        CRÍTICO NEGATIVO: 1 en el dado → tira de nuevo y resta el resultado del total
+        <br><br>(Esta situación de críticos solo aplica a narrativas no a combate.)
+      </div>
+    </div>
+
+    <div class="vd-grid">
+      <div>
+        <div class="sec-kicker y" style="margin-bottom:1rem">Tabla de dificultades</div>
+        <table class="vd-table">
+          <thead>
+            <tr>
+              <th>VD</th>
+              <th>Dificultad</th>
+              <th>Ejemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="vnum">9</td>
+              <td class="vname">Fácil</td>
+              <td>Disparar a quemarropa</td>
+            </tr>
+            <tr>
+              <td class="vnum">13</td>
+              <td class="vname">Ordinario</td>
+              <td>Hackear un sistema básico</td>
+            </tr>
+            <tr>
+              <td class="vnum">15</td>
+              <td class="vname">Difícil</td>
+              <td>Tratar una herida crítica en campo</td>
+            </tr>
+            <tr>
+              <td class="vnum">17</td>
+              <td class="vname">Muy difícil</td>
+              <td>Cirugía de emergencia sin equipo</td>
+            </tr>
+            <tr>
+              <td class="vnum">21</td>
+              <td class="vname">Heroico</td>
+              <td>Desactivar una bomba bajo fuego</td>
+            </tr>
+            <tr>
+              <td class="vnum">24</td>
+              <td class="vname">Increíble</td>
+              <td>Hackear ICE negro de nivel alto</td>
+            </tr>
+            <tr>
+              <td class="vnum">29</td>
+              <td class="vname">Legendario</td>
+              <td>Lo que hacen las leyendas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="sec-kicker c" style="margin-bottom:1rem">Los 9 atributos</div>
+        <table class="vd-table">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Atributo</th>
+              <th>Gobierna</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="vnum">INT</td>
+              <td class="vname">Inteligencia</td>
+              <td>Habilidades técnicas, médicas, netrunning</td>
+            </tr>
+            <tr>
+              <td class="vnum">REF</td>
+              <td class="vname">Reflejos</td>
+              <td>Combate a distancia, conducción</td>
+            </tr>
+            <tr>
+              <td class="vnum">DES</td>
+              <td class="vname">Destreza</td>
+              <td>Combate cuerpo a cuerpo, sigilo</td>
+            </tr>
+            <tr>
+              <td class="vnum">TEC</td>
+              <td class="vname">Técnica</td>
+              <td>Fabricación, reparación, tecnología</td>
+            </tr>
+            <tr>
+              <td class="vnum">VOL</td>
+              <td class="vname">Voluntad</td>
+              <td>Resistencia, moral, aguante</td>
+            </tr>
+            <tr>
+              <td class="vnum">MOV</td>
+              <td class="vname">Movimiento</td>
+              <td>Velocidad, atletismo</td>
+            </tr>
+            <tr>
+              <td class="vnum">PER</td>
+              <td class="vname">Percepción</td>
+              <td>Sentidos, intuición</td>
+            </tr>
+            <tr>
+              <td class="vnum">EMP</td>
+              <td class="vname">Empatía</td>
+              <td>Social, manipulación, Humanidad</td>
+            </tr>
+            <tr>
+              <td class="vnum">SUE</td>
+              <td class="vname">Suerte</td>
+              <td>Puntos de suerte gasatbles cada sesión</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>PUNTOS DE DAÑO (PD):</strong> TCO × 5. La mayoría de personajes tienen entre 30 y 50 PD al inicio. El TCO
+      (Total Corporal) es la suma de (CUERPO + VOL) / 2, redondeado al alza. Aumentar el TCO con ciberequipo (Implante
+      de hueso y músculo) eleva los PD, el umbral de herida grave y la dificultad de salvaciones contra muerte.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- COMBATE -->
+  <section id="combate" style="background:var(--panel)">
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker r">Tiroteo del viernes por la noche</div>
+      <h2 class="sec-title">EL <span class="r">COMBATE</span></h2>
+      <p class="sec-desc">El combate en Cyberpunk Red es rápido y letal. Un turno dura aproximadamente 3 segundos. La
+        suma de todos los turnos de todos los participantes es un asalto (también ~3 segundos en tiempo de juego).</p>
+    </div>
+
+    <div class="combat-flow">
+      <div class="cf-step">
+        <div class="cf-num">01</div>
+        <div class="cf-title">INICIATIVA</div>
+        <p class="cf-body">Al inicio del combate, todos tiran iniciativa. El orden de mayor a menor determina quién
+          actúa primero. Los empates se resuelven con nueva tirada.</p>
+        <div class="cf-formula">INICIATIVA = REF + 1d10</div>
+      </div>
+      <div class="cf-step">
+        <div class="cf-num">02</div>
+        <div class="cf-title">ACCIONES</div>
+        <p class="cf-body">Cada turno tienes 1 acción de movimiento y 1 acción de combate/habilidad. Puedes renunciar al
+          movimiento para obtener una segunda acción, o al revés.</p>
+        <div class="cf-formula">1 ACCIÓN MOVIMIENTO + 1 ACCIÓN</div>
+      </div>
+      <div class="cf-step">
+        <div class="cf-num">03</div>
+        <div class="cf-title">ATACAR</div>
+        <p class="cf-body">Tira según el tipo de arma. Compara con el VD de alcance. Si superas el VD, has impactado.
+          Tira el daño del arma y resta la CP del blindaje del objetivo.</p>
+        <div class="cf-formula">REF + HABILIDAD + 1d10 vs VD alcance</div>
+      </div>
+      <div class="cf-step">
+        <div class="cf-num">04</div>
+        <div class="cf-title">DAÑO</div>
+        <p class="cf-body">El daño que supera la CP del blindaje reduce los PD del objetivo. El blindaje pierde 1 punto
+          de CP cada vez que recibe daño. Si 2+ dados sacan 6 → Herida Crítica.</p>
+        <div class="cf-formula">DAÑO - CP BLINDAJE = PD PERDIDOS</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem">
+      <div class="sec-kicker r" style="margin-bottom:1rem">Acciones de combate disponibles</div>
+      <div class="actions-grid">
+        <div class="action-card">
+          <div class="ac-type">Acción ofensiva</div>
+          <div class="ac-name">ATAQUE CUERPO A CUERPO</div>
+          <p class="ac-desc">Atacas a un enemigo adyacente con un arma cuerpo a cuerpo o tus propias manos. Usa DES +
+            Pelea/Espada/etc.</p>
+        </div>
+        <div class="action-card">
+          <div class="ac-type">Acción ofensiva</div>
+          <div class="ac-name">DISPARO ÚNICO</div>
+          <p class="ac-desc">Disparas una vez. Puedes apuntar a una localización específica con un tiro de precisión
+            (cabeza multiplica daño x2 tras armadura).</p>
+        </div>
+        <div class="action-card">
+          <div class="ac-type">Acción ofensiva</div>
+          <div class="ac-name">DISPARO AUTOMÁTICO</div>
+          <p class="ac-desc">Si el arma tiene modo automático, disparas una ráfaga. Multiplicas el daño según el
+            multiplicador del arma. Gasta más munición.</p>
+        </div>
+        <div class="action-card">
+          <div class="ac-type">Acción defensiva</div>
+          <div class="ac-name">ESQUIVAR / ESCAPAR</div>
+          <p class="ac-desc">Intentas esquivar un ataque cuerpo a cuerpo o escapar de un forcejeo. Usa REF + Esquivar o
+            DES + Atletismo.</p>
+        </div>
+        <div class="action-card">
+          <div class="ac-type">Acción táctica</div>
+          <div class="ac-name">APUNTAR</div>
+          <p class="ac-desc">Dedicas tu acción a apuntar. El siguiente disparo de esta arma obtiene +1 adicional a la
+            tirada de ataque.</p>
+        </div>
+        <div class="action-card">
+          <div class="ac-type">Acción de soporte</div>
+          <div class="ac-name">PRIMEROS AUXILIOS</div>
+          <p class="ac-desc">Intentas estabilizar a un aliado herido. VD10 para ligeramente herido, VD13 para
+            gravemente. La acción médica requiere un turno completo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ESTADOS DE HERIDA -->
+  <section id="heridas">
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker y">Sistema de heridas</div>
+      <h2 class="sec-title">ESTADOS DE <span class="y">HERIDA</span></h2>
+      <p class="sec-desc">A medida que recibes daño superas umbrales de estados de herida. Cada nuevo estado reemplaza
+        el efecto del anterior. El estado de herida determina las penalizaciones que sufres y si debes hacer salvaciones
+        contra muerte.</p>
+    </div>
+
+    <div class="wound-grid">
+      <div class="wound-card">
+        <div class="wc-state">Estado 01</div>
+        <div class="wc-name" style="color:var(--green)">INTACTO</div>
+        <div class="wc-threshold" style="color:var(--green)">PD MÁXIMOS → ½ PD</div>
+        <div class="wc-effect">Sin penalizaciones. Funcionas con total capacidad. Aún no has alcanzado el umbral de
+          herida grave.</div>
+      </div>
+      <div class="wound-card">
+        <div class="wc-state">Estado 02</div>
+        <div class="wc-name" style="color:var(--yellow)">GRAVEMENTE HERIDO</div>
+        <div class="wc-threshold" style="color:var(--yellow)">Por debajo de ½ PD (redondeado al alza)</div>
+        <div class="wc-effect"><strong style="color:var(--yellow)">-2 a todas las acciones.</strong> Estabilización:
+          VD10 con Primeros auxilios o Enfermería.</div>
+      </div>
+      <div class="wound-card">
+        <div class="wc-state">Estado 03</div>
+        <div class="wc-name" style="color:var(--orange)">MORTALMENTE HERIDO</div>
+        <div class="wc-threshold" style="color:var(--orange)">Por debajo de 1 PD</div>
+        <div class="wc-effect"><strong style="color:var(--orange)">-4 a todas las acciones. -6 a MOV.</strong> Al inicio
+          de cada turno propio: salvación contra muerte. Cada golpe adicional causa herida crítica. Estabilizar: VD15
+          (recupera 1 PD), inconsciente 1 min.</div>
+      </div>
+      <div class="wound-card" style="background:rgba(255,42,69,.04);border:1px solid rgba(255,42,69,.15)">
+        <div class="wc-state">Estado 04</div>
+        <div class="wc-name" style="color:var(--red)">MUERTO</div>
+        <div class="wc-threshold" style="color:var(--red)">Salvación contra muerte fallada</div>
+        <div class="wc-effect">El personaje ha muerto. Nunca regresará. En Cosmerium Era III, la muerte es permanente —
+          no hay reinicios.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- HERIDAS CRÍTICAS -->
+  <section class="crit-section" id="criticas">
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker r">Consecuencias permanentes</div>
+      <h2 class="sec-title">HERIDAS <span class="r">CRÍTICAS</span></h2>
+      <p class="sec-desc">Siempre que 2 o más dados del daño de un ataque cuerpo a cuerpo o a distancia muestren un 6,
+        has infligido una herida crítica. Las heridas críticas causan +5 de daño adicional directo a los PD (ignoran
+        blindaje) y tienen efectos permanentes hasta ser tratadas.</p>
+    </div>
+
+    <div class="crit-note">⚠ TODAS las heridas críticas causan +5 PD de daño adicional directo (sin blindaje). Para
+      curarlas se requiere Enfermería o Cirugía con la VD indicada. <br> Muchas de las heridas aquí mencionadas pueden
+      variar en redux en lo que corresponde el bono negativo a aplicar con la finalidad de adaptarlo lo mejor posible
+      intentando a su vez ser fiel al material original.</div>
+
+    <div class="crit-grid">
+      <div>
+        <div class="sec-kicker r" style="margin-bottom:.8rem">Heridas en el cuerpo (2d6)</div>
+        <table class="crit-table">
+          <thead>
+            <tr>
+              <th>2d6</th>
+              <th>Herida</th>
+              <th>Efecto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cnum">2</td>
+              <td class="cname">Brazo amputado</td>
+              <td class="ceffect">El brazo ya no está. Sueltas lo que portabas. <span class="cfatal">+1 pen. salvación
+                  muerte.</span></td>
+            </tr>
+            <tr>
+              <td class="cnum">3</td>
+              <td class="cname">Mano amputada</td>
+              <td class="ceffect">La mano ya no está. Sueltas lo que portabas. <span class="cfatal">+1 pen. salvación
+                  muerte.</span></td>
+            </tr>
+            <tr>
+              <td class="cnum">4</td>
+              <td class="cname">Colapso pulmonar</td>
+              <td class="ceffect">-2 a MOV (mínimo 1). <span class="cfatal">+1 pen. salvación muerte.</span></td>
+            </tr>
+            <tr>
+              <td class="cnum">5</td>
+              <td class="cname">Costillas rotas</td>
+              <td class="ceffect">Si te mueves más de 4m a pie en tu turno, vuelves a sufrir el daño adicional de la
+                herida.</td>
+            </tr>
+            <tr>
+              <td class="cnum">6</td>
+              <td class="cname">Brazo roto</td>
+              <td class="ceffect">No puedes usar ese brazo. Sueltas lo que portabas.</td>
+            </tr>
+            <tr>
+              <td class="cnum">7</td>
+              <td class="cname">Objeto extraño</td>
+              <td class="ceffect">Si te mueves más de 4m a pie en tu turno, vuelves a sufrir el daño adicional de la
+                herida.</td>
+            </tr>
+            <tr>
+              <td class="cnum">8</td>
+              <td class="cname">Pierna rota</td>
+              <td class="ceffect">-4 a MOV (mínimo 1).</td>
+            </tr>
+            <tr>
+              <td class="cnum">9</td>
+              <td class="cname">Desgarro muscular</td>
+              <td class="ceffect">-2 a ataques cuerpo a cuerpo.</td>
+            </tr>
+            <tr>
+              <td class="cnum">10</td>
+              <td class="cname">Lesión de columna</td>
+              <td class="ceffect">El siguiente turno solo puedes realizar movimiento. <span class="cfatal">+1 pen.
+                  salvación muerte.</span></td>
+            </tr>
+            <tr>
+              <td class="cnum">11</td>
+              <td class="cname">Dedos aplastados</td>
+              <td class="ceffect">-4 a todas las acciones con esa mano.</td>
+            </tr>
+            <tr>
+              <td class="cnum">12</td>
+              <td class="cname">Pierna amputada</td>
+              <td class="ceffect">-6 a MOV (mínimo 1). No puedes esquivar. <span class="cfatal">+1 pen. salvación
+                  muerte.</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="sec-kicker r" style="margin-bottom:.8rem">Heridas en la cabeza (2d6)</div>
+        <table class="crit-table">
+          <thead>
+            <tr>
+              <th>2d6</th>
+              <th>Herida</th>
+              <th>Efecto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cnum">2</td>
+              <td class="cname">Ojo perdido</td>
+              <td class="ceffect">-4 ataques distancia y Percepción visual. <span class="cfatal">+1 pen. salvación
+                  muerte.</span></td>
+            </tr>
+            <tr>
+              <td class="cnum">3</td>
+              <td class="cname">Lesión cerebral</td>
+              <td class="ceffect">-2 a todas las acciones. <span class="cfatal">+1 pen. salvación muerte.</span></td>
+            </tr>
+            <tr>
+              <td class="cnum">4</td>
+              <td class="cname">Ojo dañado</td>
+              <td class="ceffect">-2 a ataques a distancia y Percepción visual.</td>
+            </tr>
+            <tr>
+              <td class="cnum">5</td>
+              <td class="cname">Conmoción cerebral</td>
+              <td class="ceffect">-2 a todas las acciones.</td>
+            </tr>
+            <tr>
+              <td class="cnum">6</td>
+              <td class="cname">Mandíbula rota</td>
+              <td class="ceffect">-4 a todas las acciones que involucren hablar.</td>
+            </tr>
+            <tr>
+              <td class="cnum">7</td>
+              <td class="cname">Objeto extraño</td>
+              <td class="ceffect">Si te mueves más de 4m a pie en tu turno, vuelves a sufrir el daño adicional de la
+                herida.</td>
+            </tr>
+            <tr>
+              <td class="cnum">8</td>
+              <td class="cname">Latigazo cervical</td>
+              <td class="ceffect"><span class="cfatal">+1 pen. salvación muerte.</span></td>
+            </tr>
+            <tr>
+              <td class="cnum">9</td>
+              <td class="cname">Cráneo fracturado</td>
+              <td class="ceffect">Los tiros de precisión a la cabeza multiplican el daño x3 en lugar de x2. <span
+                  class="cfatal">+1 pen. salvación muerte.</span></td>
+            </tr>
+            <tr>
+              <td class="cnum">10</td>
+              <td class="cname">Oído dañado</td>
+              <td class="ceffect">Si te mueves más de 4m en un turno, no puedes moverte el turno siguiente. -2
+                Percepción auditiva.</td>
+            </tr>
+            <tr>
+              <td class="cnum">11</td>
+              <td class="cname">Tráquea aplastada</td>
+              <td class="ceffect">No puedes hablar. <span class="cfatal">+1 pen. salvación muerte.</span></td>
+            </tr>
+            <tr>
+              <td class="cnum">12</td>
+              <td class="cname">Oreja perdida</td>
+              <td class="ceffect">-2 Percepción auditiva. <span class="cfatal">+1 pen. salvación muerte.</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>TIRO DE PRECISIÓN A LA CABEZA:</strong> Al usar el modo de disparo único, puedes declarar un tiro de
+      precisión a la cabeza (VD +8 al atacar). Si impacta, el daño que supera la CP del blindaje de cabeza se multiplica
+      por 2. Si el objetivo no lleva blindaje en la cabeza, el multiplicador es x2 directamente sobre el daño total.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SALVACIÓN CONTRA MUERTE -->
+  <section id="muerte">
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker r">El umbral final</div>
+      <h2 class="sec-title">SALVACIÓN CONTRA <span class="r">MUERTE</span></h2>
+      <p class="sec-desc">Cuando un personaje está Mortalmente Herido (por debajo de 1 PD), debe realizar una salvación
+        contra muerte al inicio de cada uno de sus turnos si es que no se rinde antes. La penalización base es 0 y
+        aumenta con cada herida crítica que la incremente o cada vez que se falla una salvación.</p>
+    </div>
+
+    <div class="death-track">
+      <div class="dt-step">
+        <div class="dt-vd">VD10</div>
+        <div class="dt-label">Salvación base</div>
+        <div class="dt-effect">Tirada inicial cuando caes a 0 PD. BOD + VOL + 1d10 ≥ 10 para sobrevivir este turno.
+        </div>
+      </div>
+      <div class="dt-step">
+        <div class="dt-vd">VD11+</div>
+        <div class="dt-label">Penalización acumulada</div>
+        <div class="dt-effect">Cada herida crítica que indica "+1 pen. salvación muerte" eleva el VD en 1. Cada fallo
+          también eleva la penalización en 1.</div>
+      </div>
+      <div class="dt-step">
+        <div class="dt-vd">VD15</div>
+        <div class="dt-label">Estabilización</div>
+        <div class="dt-effect">Un aliado puede intentar estabilizarte con Enfermería o Primeros auxilios VD15. Si tiene
+          éxito, recuperas 1 PD y quedas inconsciente 1 minuto.</div>
+      </div>
+      <div class="dt-step dt-dead">
+        <div class="dt-vd">FALLO</div>
+        <div class="dt-label">Muerte</div>
+        <div class="dt-effect">Si fallas la salvación contra muerte, el personaje muere. En Cosmerium la muerte es
+          permanente. No hay reinicios ni clonación.</div>
+      </div>
+    </div>
+
+    <div class="red-box">
+      <strong>REGLA CLAVE:</strong> Mientras estás Mortalmente Herido, cada golpe adicional que recibas (cuerpo a cuerpo
+      o a distancia) causa automáticamente una Herida Crítica adicional, además del daño normal. Esto puede escalar
+      rápidamente y hacer que la situación sea imposible de remontar.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- HUMANIDAD Y CIBERPSICOSIS -->
+  <section id="humanidad" style="background:var(--panel)">
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker y">El precio del cromo</div>
+      <h2 class="sec-title">HUMANIDAD Y <span class="y">CIBERPSICOSIS</span></h2>
+      <p class="sec-desc">Cada pieza de ciberequipo que instalas te cuesta Humanidad — la conexión con tu ser humano
+        interior. La Empatía (EMP) se calcula dividiendo tu Humanidad actual entre 10 (redondeando al alza). Cuando tu
+        Humanidad llega a 0, sufres ciberpsicosis y te conviertes en un NPC bajo control del DJ.</p>
+    </div>
+
+    <div class="info-box" style="margin-bottom:1.5rem">
+      <strong>REGLA:</strong> Humanidad máxima = EMP inicial × 10. Cada implante tiene un coste en Pérdida de Humanidad
+      (PH) indicado en la tabla de ciberequipo. La PH se tira con los dados indicados (ej: 7 = 2d6 PH inicial; 3 = 1d6
+      PH). La EMP se recalcula como: Humanidad actual ÷ 10 (redondeado al alza). Una EMP reducida afecta a todas las
+      habilidades sociales.
+    </div>
+
+    <div class="emp-bar">
+      <div class="emp-step">
+        <div class="emp-val" style="color:var(--green)">EMP 8-10</div>
+        <div class="emp-label">Humanidad plena</div>
+        <div class="emp-effect">Sin efectos. Te sientes completamente humano. La ciberpsicosis está lejos.</div>
+      </div>
+      <div class="emp-step">
+        <div class="emp-val" style="color:var(--yellow)">EMP 6-7</div>
+        <div class="emp-label">Disociación leve</div>
+        <div class="emp-effect">Empiezas a notar que las relaciones humanas se sienten... extrañas. Habilidades sociales
+          levemente afectadas.</div>
+      </div>
+      <div class="emp-step">
+        <div class="emp-val" style="color:var(--orange)">EMP 4-5</div>
+        <div class="emp-label">Disociación grave</div>
+        <div class="emp-effect">El cromo empieza a pesar más que la carne. Las emociones se sienten lejanas.
+          Comportamiento errático posible.</div>
+      </div>
+      <div class="emp-step">
+        <div class="emp-val" style="color:var(--red)">EMP 1-3</div>
+        <div class="emp-label">Al límite</div>
+        <div class="emp-effect">Peligrosamente cerca de la ciberpsicosis. El DJ puede introducir comportamientos
+          involuntarios y comprobaciones de control.</div>
+      </div>
+      <div class="emp-step" style="background:rgba(255,42,69,.06);border:1px solid rgba(255,42,69,.2)">
+        <div class="emp-val" style="color:var(--red)">EMP 0</div>
+        <div class="emp-label">CIBERPSICOSIS</div>
+        <div class="emp-effect">El personaje entra en ciberpsicosis. Pasa a control del DJ. Solo el Psicoescuadrón puede
+          detenerle. Fin del personaje jugable.</div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>RECUPERACIÓN DE HUMANIDAD:</strong> Es posible recuperar Humanidad mediante terapia psicológica (habilidad
+      Psicología del tecnomédico) y tiempo fuera del campo. Cada sesión de terapia exitosa puede recuperar 2d6 de
+      Humanidad. Sin embargo, el ciberequipo ya instalado siempre mantiene su coste base — nunca recuperas Humanidad
+      hasta el máximo si tienes muchos implantes.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- NETRUNNING -->
+  <section class="net-section" id="netrunning" style="background:var(--bg)">
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker c">Interacción de Interface</div>
+      <h2 class="sec-title">NET<span class="c">RUNNING</span></h2>
+      <p class="sec-desc">Tras el <strong>DataKrash</strong> y la erección del <strong>Muro Negro</strong>, la antigua
+        Red global es un territorio prohibido patrullado por IAs asesinas. En 2077, el Netrunner opera principalmente en
+        subredes locales y desconectadas o lanza <strong>Quickhacks</strong> (Hackeos Rápidos) en combate. Para hackear
+        una arquitectura, debes estar físicamente cerca (6 metros) o conectado a un punto de acceso.</p>
+    </div>
+
+    <div class="combat-flow" style="grid-template-columns:repeat(3,1fr)">
+      <div class="cf-step">
+        <div class="cf-num">01</div>
+        <div class="cf-title">SISTEMA RPR</div>
+        <div class="cf-body">
+          Adaptación para Conan Exiles: Realizar un hackeo cuenta como tu <strong>Acción Principal</strong> del turno.
+          No puedes atacar físicamente y hackear a la vez.
+        </div>
+      </div>
+      <div class="cf-step">
+        <div class="cf-num">02</div>
+        <div class="cf-title">TIRADA ÚNICA</div>
+        <div class="cf-body">Toda acción de Netrunning se resuelve con una única tirada enfrentada: <br><strong>1d10 +
+            INTERFACE &nbsp; vs &nbsp; DIFICULTAD</strong></div>
+      </div>
+      <div class="cf-step">
+        <div class="cf-num">03</div>
+        <div class="cf-title">CONSECUENCIA</div>
+        <div class="cf-body">Si fallas la tirada contra una defensa activa (ICE), sufres daño directo o feedback neural.
+          Si tienes éxito, el efecto se aplica inmediatamente.</div>
+      </div>
+    </div>
+
+    <div class="sec-kicker c" style="margin-top:3rem;margin-bottom:1rem">Acciones de Net (1 por Turno)</div>
+    <div class="actions-grid">
+      <div class="action-card" style="border-color:rgba(0,229,255,0.3)">
+        <div class="ac-type c">GRATUITA</div>
+        <div class="ac-name">ESCÁNER (PING)</div>
+        <div class="ac-desc">Escanea la red local o enemigos. Revela dispositivos conectados, nodos vulnerables o
+          ciberimplantes enemigos. No consume turno.</div>
+      </div>
+
+      <div class="action-card" style="border-color:rgba(0,229,255,0.3)">
+        <div class="ac-type c">INFILTRACIÓN</div>
+        <div class="ac-name">PROTOCOLO DE INVASIÓN</div>
+        <div class="ac-desc">Intenta romper la seguridad de una red o dispositivo. Si tienes éxito, reduces la
+          dificultad de tus siguientes hackeos en -2.<br><span class="cf-formula">Interface + 1d10 vs DV
+            Contraseña</span></div>
+      </div>
+
+      <div class="action-card" style="border-color:rgba(255,42,69,0.3)">
+        <div class="ac-type r">COMBATE</div>
+        <div class="ac-name">CORTOCIRCUITO</div>
+        <div class="ac-desc">Sobrecarga la cibertecnología del enemigo. Causa daño eléctrico no letal pero efectivo
+          contra drones y borgs.<br><span class="cf-formula">Interface + 1d10 vs DV Defensa</span></div>
+      </div>
+
+      <div class="action-card" style="border-color:rgba(255,42,69,0.3)">
+        <div class="ac-type r">COMBATE</div>
+        <div class="ac-name">FUNDIR SINAPSIS</div>
+        <div class="ac-desc">Ataque directo al sistema nervioso. Causa daño basado en lo dañado que ya esté el objetivo
+          (daño proporcional).<br><span class="cf-formula">Interface + 1d10 vs DV Defensa</span></div>
+      </div>
+
+      <div class="action-card" style="border-color:rgba(255,210,0,0.3)">
+        <div class="ac-type y">CONTROL</div>
+        <div class="ac-name">CONTROLAR DISPOSITIVO</div>
+        <div class="ac-desc">Toma el control de torretas, cámaras o puertas. Puedes usarlas, apagarlas o ponerlas en
+          modo amigo/enemigo.<br><span class="cf-formula">Interface + 1d10 vs DV Nodo</span></div>
+      </div>
+
+      <div class="action-card" style="border-color:rgba(189,0,255,0.3)">
+        <div class="ac-type p">ESPECIAL</div>
+        <div class="ac-name">CIBERPSICOSIS</div>
+        <div class="ac-desc">Hackeo Definitivo (Requiere Legendario). Induce ciberpsicosis temporal en el objetivo,
+          haciendo que ataque a todos.<br><span class="cf-formula">Interface + 1d10 vs DV 25</span></div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:2rem">
+      <strong>MURO NEGRO (THE BLACKWALL):</strong> Intentar cruzar el Muro Negro para acceder a la vieja red es una
+      sentencia de muerte. Requiere tiradas imposibles y atrae a NetWatch inmediatamente. Si lo cruzas, las IAs rebeldes
+      pueden freírte el cerebro en segundos.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="cta">
+    <h2 class="cta-title">¿PREPARADO PARA<br><span style="color:var(--red)">EL TIROTEO</span>?</h2>
+    <p class="cta-sub">Ahora que conoces las reglas, equípate bien. Las armas, blindajes y ciberequipo que elijas
+      determinarán cuánto aguantas en Night City.</p>
+    <div class="cta-btns">
+      <a class="btn btn-c" href="objetos.html">Ver Objetos y Armas</a>
+      <a class="btn btn-y" href="roles.html">Ver Roles</a>
+      <a class="btn btn-r" href="normativa.html">Ver Normativa</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">COSMERIUM <em>ERA III</em><span class="fsub">NIGHT CITY 2077 · ROL · DISCORD</span></div>
+    <div class="footer-links">
+      <a href="home.html">Inicio</a>
+      <a href="mundo.html">El Mundo</a>
+      <a href="roles.html">Roles</a>
+      <a href="sistema.html">Sistema</a>
+      <a href="objetos.html">Objetos</a>
+      <a href="normativa.html">Normativa</a>
+      <a href="https://discord.gg/DWacKAK373">Discord</a>
+    </div>
+    <div class="footer-copy">Sistema: Cyberpunk Red (R. Talsorian Games) · Ambientación: Cyberpunk 2077 (CD Projekt Red)
+      · Servidor de rol narrativo</div>
+  </footer>
+
+  <script>
+    window.onload = function () {
+      setTimeout(() => {
+        document.getElementById('preloader').classList.add('loaded');
+      }, 1000);
+    };
+  </script>
+</body>
+
+</html>

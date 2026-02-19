@@ -1,0 +1,2220 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (localStorage.getItem('cosmerium_auth') !== 'true') {
+      window.location.href = "index.html";
+    }
+  </script>
+  <title>Objetos y Mercado — Cosmerium Era III: Night City 2077</title>
+  <script src="js/live-notifications.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&display=swap');
+
+    :root {
+      --bg: #04060a;
+      --panel: #080c12;
+      --border: #111c28;
+      --red: #ff2a45;
+      --cyan: #00e5ff;
+      --yellow: #ffd200;
+      --purple: #bd00ff;
+      --orange: #ff6b00;
+      --green: #00ff9d;
+      --text: #a8c4d8;
+      --dim: #2e4558;
+      --white: #ecf4fa
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 900;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 157, .004) 2px, rgba(0, 255, 157, .004) 4px)
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 1.1rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(4, 6, 10, .97) 60%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(17, 28, 40, .5)
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      letter-spacing: .08em;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1
+    }
+
+    .nav-logo .nsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .4rem;
+      letter-spacing: .3em;
+      color: var(--dim);
+      margin-top: .1rem
+    }
+
+    .nav-logo em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .nav-links {
+      display: flex;
+      gap: .2rem;
+      list-style: none;
+      align-items: center
+    }
+
+    .nav-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s;
+      padding: .4rem .8rem;
+      white-space: nowrap
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--green)
+    }
+
+    .nav-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .13em;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: .4rem .9rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+      white-space: nowrap
+    }
+
+    .nav-btn:hover {
+      background: var(--yellow);
+      color: #000
+    }
+
+    .page-hero {
+      min-height: 55vh;
+      padding: 9rem 6vw 5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end
+    }
+
+    .ph-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(0, 255, 157, .06) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 80% 80%, rgba(255, 107, 0, .06) 0%, transparent 55%), linear-gradient(135deg, #010308 0%, #020a04 50%, #060a06 100%)
+    }
+
+    .ph-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(0, 255, 157, .018) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 157, .012) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 20% 50%, rgba(0, 0, 0, .4) 0%, transparent 70%)
+    }
+
+    .ph-content {
+      position: relative;
+      z-index: 2
+    }
+
+    .ph-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .38em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem
+    }
+
+    .ph-kicker::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--green)
+    }
+
+    .ph-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 9rem);
+      line-height: .88;
+      color: var(--white);
+      letter-spacing: .02em
+    }
+
+    .ph-title .g {
+      color: var(--green)
+    }
+
+    .ph-title .o {
+      color: var(--orange)
+    }
+
+    .ph-sub {
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 300;
+      letter-spacing: .06em;
+      max-width: 620px;
+      margin-top: .9rem;
+      line-height: 1.7
+    }
+
+    .ph-nav {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap
+    }
+
+    .pnb {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .18em;
+      text-decoration: none;
+      padding: .55rem 1.2rem;
+      text-transform: uppercase;
+      border: 1px solid;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px))
+    }
+
+    .pnb.g {
+      border-color: rgba(0, 255, 157, .4);
+      color: var(--green)
+    }
+
+    .pnb.g:hover {
+      background: rgba(0, 255, 157, .1);
+      border-color: var(--green)
+    }
+
+    .pnb.o {
+      border-color: rgba(255, 107, 0, .4);
+      color: var(--orange)
+    }
+
+    .pnb.o:hover {
+      background: rgba(255, 107, 0, .1);
+      border-color: var(--orange)
+    }
+
+    .ph-stat {
+      position: absolute;
+      bottom: 3rem;
+      right: 6vw;
+      text-align: right;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      line-height: 2
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), var(--dim), var(--border), transparent)
+    }
+
+    section {
+      padding: 5rem 6vw
+    }
+
+    .sec-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .33em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .sec-kicker::before {
+      content: '//';
+      color: var(--dim)
+    }
+
+    .sec-kicker.g {
+      color: var(--green)
+    }
+
+    .sec-kicker.o {
+      color: var(--orange)
+    }
+
+    .sec-kicker.c {
+      color: var(--cyan)
+    }
+
+    .sec-kicker.y {
+      color: var(--yellow)
+    }
+
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: .03em;
+      margin-bottom: .9rem
+    }
+
+    .sec-title .g {
+      color: var(--green)
+    }
+
+    .sec-title .o {
+      color: var(--orange)
+    }
+
+    .sec-title .c {
+      color: var(--cyan)
+    }
+
+    .sec-title .y {
+      color: var(--yellow)
+    }
+
+    .sec-desc {
+      font-size: .95rem;
+      color: var(--text);
+      line-height: 1.78;
+      font-weight: 300;
+      max-width: 700px;
+      margin-bottom: 2rem
+    }
+
+    /* MARKET TIERS */
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 3rem
+    }
+
+    .tier-card {
+      background: var(--bg);
+      padding: 1.2rem 1rem;
+      text-align: center
+    }
+
+    .tier-name {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .45rem;
+      letter-spacing: .18em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: .3rem
+    }
+
+    .tier-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: .2rem
+    }
+
+    .tier-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .1em;
+      color: var(--dim)
+    }
+
+    /* TABLES */
+    .obj-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.2rem;
+      margin-bottom: 2.5rem
+    }
+
+    .obj-table th {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .17em;
+      color: var(--dim);
+      text-align: left;
+      padding: .6rem .8rem;
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase;
+      white-space: nowrap
+    }
+
+    .obj-table td {
+      font-size: .86rem;
+      color: var(--text);
+      padding: .6rem .8rem;
+      border-bottom: 1px solid rgba(17, 28, 40, .4);
+      vertical-align: top
+    }
+
+    .obj-table tr:hover td {
+      background: rgba(255, 255, 255, .012)
+    }
+
+    .obj-table .oname {
+      font-weight: 600;
+      color: var(--white)
+    }
+
+    .obj-table .odamage {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .55rem;
+      color: var(--orange)
+    }
+
+    .obj-table .ocost {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      color: var(--yellow)
+    }
+
+    .obj-table .ocp {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .55rem;
+      color: var(--green)
+    }
+
+    .obj-table .oph {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      color: var(--red)
+    }
+
+    .obj-table .onote {
+      font-size: .78rem;
+      color: var(--dim)
+    }
+
+    .obj-table .ospec {
+      font-size: .78rem;
+      color: var(--cyan);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .45rem
+    }
+
+    .obj-table .open {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      color: var(--red)
+    }
+
+    /* CYBER SECTION */
+    .cyber-section {
+      background: var(--panel)
+    }
+
+    .tag-yes {
+      display: inline-block;
+      padding: .1rem .4rem;
+      border: 1px solid var(--green);
+      color: var(--green);
+      background: rgba(0, 255, 157, .1);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .45rem;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    .tag-no {
+      display: inline-block;
+      padding: .1rem .4rem;
+      border: 1px solid var(--red);
+      color: var(--red);
+      background: rgba(255, 42, 69, .1);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .45rem;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    .cyber-type-header {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .22em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      padding: .5rem 0;
+      border-bottom: 1px solid rgba(0, 229, 255, .15);
+      margin-bottom: .5rem;
+      margin-top: 2rem
+    }
+
+    .cyber-type-header:first-of-type {
+      margin-top: 0
+    }
+
+    /* INFO BOX */
+    .info-box {
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(0, 229, 255, .1);
+      background: rgba(0, 229, 255, .03);
+      font-size: .86rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 300;
+      margin: 1.5rem 0
+    }
+
+    .info-box strong {
+      color: var(--cyan)
+    }
+
+    .warn-box {
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(255, 210, 0, .15);
+      background: rgba(255, 210, 0, .03);
+      font-size: .86rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 300;
+      margin: 1.5rem 0
+    }
+
+    .warn-box strong {
+      color: var(--yellow)
+    }
+
+    /* CTA */
+    .cta {
+      padding: 5rem 6vw;
+      text-align: center;
+      position: relative;
+      border-top: 1px solid var(--border)
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0, 255, 157, .03) 0%, transparent 70%);
+      pointer-events: none
+    }
+
+    .cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .cta-sub {
+      font-size: .97rem;
+      color: var(--text);
+      font-weight: 300;
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1
+    }
+
+    .btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .18em;
+      text-decoration: none;
+      padding: .65rem 1.5rem;
+      text-transform: uppercase;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px))
+    }
+
+    .btn-y {
+      border: 1px solid var(--yellow);
+      color: var(--yellow)
+    }
+
+    .btn-y:hover {
+      background: var(--yellow);
+      color: #000
+    }
+
+    .btn-g {
+      border: 1px solid var(--green);
+      color: var(--green)
+    }
+
+    .btn-g:hover {
+      background: var(--green);
+      color: #000
+    }
+
+    .btn-c {
+      border: 1px solid var(--cyan);
+      color: var(--cyan)
+    }
+
+    .btn-c:hover {
+      background: var(--cyan);
+      color: #000
+    }
+
+    footer {
+      padding: 3rem 6vw;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      text-align: center
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: .12em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .2rem
+    }
+
+    .footer-logo em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .fsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .22em;
+      color: var(--dim)
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center
+    }
+
+    .footer-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s
+    }
+
+    .footer-links a:hover {
+      color: var(--green)
+    }
+
+    .footer-copy {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .15em;
+      color: var(--dim)
+    }
+
+    @media(max-width:900px) {
+      .tier-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:600px) {
+      .tier-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .obj-table {
+        font-size: .78rem
+      }
+    }
+
+    .ph-title::before,
+    .ph-title::after {
+      display: none;
+    }
+
+    .glitch-layer {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glitch-layer::before,
+    .glitch-layer::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+      opacity: .07
+    }
+
+    .glitch-layer::before {
+      color: var(--cyan);
+      transform: translate(-3px, 0);
+      clip-path: polygon(0 20%, 100% 20%, 100% 45%, 0 45%)
+    }
+
+    .glitch-layer::after {
+      color: var(--red);
+      transform: translate(3px, 0);
+      clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
+      animation: chr 6s infinite
+    }
+
+    @keyframes chr {
+
+      0%,
+      88%,
+      100% {
+        opacity: .07
+      }
+
+      90% {
+        opacity: .2;
+        transform: translate(5px, 0)
+      }
+
+      93% {
+        opacity: .05;
+        transform: translate(-2px, 0)
+      }
+
+      96% {
+        opacity: .07
+      }
+    }
+
+    /* Tech UI Colors */
+    .ui-tl {
+      position: absolute;
+      top: 6rem;
+      left: 6vw;
+      z-index: 3;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .14em;
+      color: var(--dim);
+      line-height: 1.9
+    }
+
+    .ui-br {
+      position: absolute;
+      bottom: 2rem;
+      left: 6vw;
+      z-index: 3;
+      text-align: left;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .14em;
+      color: var(--dim)
+    }
+
+    /* Utility Colors */
+    .c {
+      color: var(--cyan)
+    }
+
+    .r {
+      color: var(--red)
+    }
+
+    .y {
+      color: var(--yellow)
+    }
+
+    .p {
+      color: var(--purple)
+    }
+
+    .g {
+      color: var(--green)
+    }
+
+    .o {
+      color: var(--orange)
+    }
+
+    .ui-status {
+      position: absolute;
+      top: 6rem;
+      right: 6vw;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem
+    }
+
+    .usi {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .14em;
+      color: var(--dim);
+      justify-content: flex-end
+    }
+
+    .sdot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      animation: sdp 2.2s ease infinite
+    }
+
+    .sdot.c {
+      background: var(--cyan);
+      box-shadow: 0 0 6px var(--cyan)
+    }
+
+    .sdot.r {
+      background: var(--red);
+      box-shadow: 0 0 6px var(--red);
+      animation-delay: .8s
+    }
+
+    .sdot.y {
+      background: var(--yellow);
+      box-shadow: 0 0 6px var(--yellow);
+      animation-delay: 1.6s
+    }
+
+    @keyframes sdp {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .2
+      }
+    }
+
+    .gh {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      pointer-events: none;
+      opacity: 0;
+      animation: gha 12s infinite
+    }
+
+    .gh:nth-child(1) {
+      background: var(--red);
+      animation-delay: 0s
+    }
+
+    .gh:nth-child(2) {
+      background: var(--cyan);
+      animation-delay: 4s
+    }
+
+    .gh:nth-child(3) {
+      background: var(--purple);
+      animation-delay: 8s
+    }
+
+    @keyframes gha {
+      0% {
+        top: -2%;
+        opacity: 0
+      }
+
+      2% {
+        opacity: .5
+      }
+
+      18% {
+        top: 108%;
+        opacity: .05
+      }
+
+      19% {
+        opacity: 0;
+        top: 108%
+      }
+
+      100% {
+        opacity: 0;
+        top: 108%
+      }
+    }
+
+    /* Hover Effects for Objetos */
+    .obj-table tr {
+      transition: all 0.2s ease;
+    }
+
+    .obj-table tr:hover {
+      background: rgba(0, 255, 157, 0.05);
+    }
+
+    .obj-table tr:hover td {
+      color: var(--white);
+    }
+
+    .obj-table tr:hover .ocost {
+      color: var(--green) !important;
+      text-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+    }
+
+    /* CYBERPUNK PRELOADER */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #fcee0a;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Share Tech Mono', monospace;
+      color: #000;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      width: 300px;
+      text-align: left;
+    }
+
+    .loader-text {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .loader-bar-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      width: 0%;
+      height: 100%;
+      background: #000;
+      animation: loadBar 0.8s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+    }
+
+    @keyframes loadBar {
+      0% {
+        width: 0%;
+      }
+
+      20% {
+        width: 30%;
+      }
+
+      50% {
+        width: 35%;
+      }
+
+      80% {
+        width: 85%;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+
+    .glitch-load {
+      animation: glitchText 0.2s infinite;
+    }
+
+    @keyframes glitchText {
+      0% {
+        transform: translate(0);
+        text-shadow: 2px 0 #ff003c;
+      }
+
+      50% {
+        transform: translate(-2px, 2px);
+        text-shadow: -2px 0 #00e5ff;
+      }
+
+      100% {
+        transform: translate(2px, -2px);
+        text-shadow: 2px 0 #ff003c;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader-content">
+      <div class="loader-text glitch-load">INITIALIZING_COSMERIUM_OS...</div>
+      <div class="loader-bar-container">
+        <div class="loader-bar"></div>
+      </div>
+      <div style="font-size: 0.6rem; margin-top: 1rem; opacity: 0.7;">
+        AUTHENTICATING_USER_PROFILE...<br>
+        SYNCING_NEURAL_LINK_v3.0.2...<br>
+        LOADING_NIGHT_CITY_DATABASE...
+      </div>
+    </div>
+  </div>
+
+  <nav>
+    <a class="nav-logo" href="home.html">COSMERIUM <em>ERA III</em><span class="nsub">NIGHT CITY · 2077</span></a>
+    <ul class="nav-links">
+      <li><a href="home.html">Inicio</a></li>
+      <li><a href="mundo.html">El Mundo</a></li>
+      <li><a href="roles.html">Roles</a></li>
+      <li><a href="sistema.html">Sistema</a></li>
+      <li><a href="objetos.html" class="active">Objetos</a></li>
+      <li><a href="ficha.html">Ficha</a></li>
+      <li><a href="normativa.html">Normativa</a></li>
+    </ul>
+    <a class="nav-btn" href="https://discord.gg/DWacKAK373">&#9654; Discord</a>
+  </nav>
+
+  <section class="page-hero">
+    <div class="ph-bg"></div>
+    <div class="ph-grid"></div>
+    <div class="gh"></div>
+    <div class="gh"></div>
+    <div class="gh"></div>
+    <div class="ui-tl">
+      MARKET_DATA: ENCRYPTED<br>
+      FIXER_CONNECTION: ESTABLISHED<br>
+      CREDIT_CHECK: PASSED
+    </div>
+    <div class="ui-status">
+      <div class="usi">STOCK <div class="sdot y"></div>
+      </div>
+      <div class="usi">TRANS <div class="sdot c"></div>
+      </div>
+      <div class="usi">AUTH <div class="sdot r"></div>
+      </div>
+    </div>
+    <div class="ui-br">
+      LOCATION: NIGHT_MARKET_DIST<br>
+      VENDOR_ID: 80-009-X<br>
+      TAX_STATUS: EVADED
+    </div>
+    <div class="ph-stat">
+      MONEDA &nbsp;&nbsp; <span style="color:var(--yellow)">EURODÓLAR (eb)</span><br>
+      SISTEMA &nbsp;&nbsp; <span style="color:var(--green)">MERCADO NOCTURNO</span><br>
+      FUENTE &nbsp;&nbsp; <span style="color:var(--cyan)">CYBERPUNK RED</span>
+    </div>
+    <div class="ph-content">
+      <div class="ph-kicker">// Equipamiento · Mercado Nocturno</div>
+      <h1 class="ph-title"><span class="glitch-layer" data-text="ARMAS, BLINDAJE">ARMAS, BLINDAJE</span><br>&amp; <span
+          class="g glitch-layer" data-text="CIBEREQUIPO">CIBEREQUIPO</span></h1>
+      <p class="ph-sub">En Night City, lo que llevas encima determina si vuelves a casa. Todos los precios, daños y
+        estadísticas son exactos al libro base de Cyberpunk Red. La moneda es el eurodólar (eb), también llamado "eddy"
+        en la calle.</p>
+      <div class="ph-nav">
+        <a class="pnb g" href="#armas">Armas</a>
+        <a class="pnb o" href="#blindaje">Blindaje</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CATEGORÍAS DE PRECIO -->
+  <section>
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker g">Categorías del mercado nocturno</div>
+      <h2 class="sec-title">NIVELES DE <span class="g">PRECIO</span></h2>
+      <p class="sec-desc">Todo artículo en Night City tiene una categoría de precio. Los precios exactos en eurodólares
+        están indicados junto a cada objeto. La disponibilidad de artículos caros y lujosos depende del DJ y del estado
+        del Mercado Nocturno local.</p>
+    </div>
+    <div class="tier-grid">
+      <div class="tier-card">
+        <div class="tier-name">Barato</div>
+        <div class="tier-price" style="color:var(--dim)">10 eb</div>
+        <div class="tier-label">Sin requisito</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Asequible</div>
+        <div class="tier-price" style="color:var(--text)">20 eb</div>
+        <div class="tier-label">Sin requisito</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Costoso</div>
+        <div class="tier-price" style="color:var(--text)">50 eb</div>
+        <div class="tier-label" style="color:var(--red)">Rep -10+</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Superior</div>
+        <div class="tier-price" style="color:var(--yellow)">100 eb</div>
+        <div class="tier-label" style="color:var(--white)">Rep 0+</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Caro</div>
+        <div class="tier-price" style="color:var(--orange)">500 eb</div>
+        <div class="tier-label" style="color:var(--yellow)">Rep 10+</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Muy caro</div>
+        <div class="tier-price" style="color:var(--orange)">1.000 eb</div>
+        <div class="tier-label" style="color:var(--cyan)">Rep 25+</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Lujoso</div>
+        <div class="tier-price" style="color:var(--red)">5.000 eb</div>
+        <div class="tier-label" style="color:var(--cyan)">Rep 25+</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Muy lujoso</div>
+        <div class="tier-price" style="color:var(--purple)">10.000+ eb</div>
+        <div class="tier-label" style="color:var(--cyan)">Rep 25+</div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>SISTEMA DE REPUTACIÓN:</strong> Tu nivel de Reputación desbloquea el acceso a mejor equipo. Los Fixers y
+      tiendas legales no venden armas de grado militar o ciberequipo avanzado a desconocidos. Si no tienes la Reputación
+      necesaria, el objeto no está disponible para ti, tengas el dinero o no.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ARMAS CUERPO A CUERPO -->
+  <section id="armas">
+    <div class="sec-kicker g">Combate físico</div>
+    <h2 class="sec-title">ARMAS <span class="g">CUERPO A CUERPO</span></h2>
+    <p class="sec-desc">Las armas cuerpo a cuerpo usan la característica DES para atacar. La CdT (Candencia de tiro)
+      indica cuántas veces puedes atacar por acción. Todas las armas cuerpo a cuerpo pueden ocultarse según su
+      categoría. Habilidades: Pelea, Espada, Hacha, etc.</p>
+
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Categoría</th>
+          <th>Ejemplos</th>
+          <th>Daño</th>
+          <th>CdT</th>
+          <th>Ocultable</th>
+          <th>Coste</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname">Arma ligera</td>
+          <td>Cuchillo de combate, tomahawk, navaja</td>
+          <td class="odamage">1d6</td>
+          <td>2</td>
+          <td><span class="tag-yes">SÍ</span></td>
+          <td class="ocost">50 eb (costoso)</td>
+        </tr>
+        <tr>
+          <td class="oname">Arma mediana</td>
+          <td>Bate de béisbol, palanqueta, machete, porra</td>
+          <td class="odamage">2d6</td>
+          <td>2</td>
+          <td><span class="tag-no">NO</span></td>
+          <td class="ocost">50 eb (costoso)</td>
+        </tr>
+        <tr>
+          <td class="oname">Arma pesada</td>
+          <td>Tubería de plomo, espada, bate con clavos</td>
+          <td class="odamage">3d6</td>
+          <td>2</td>
+          <td><span class="tag-no">NO</span></td>
+          <td class="ocost">100 eb (superior)</td>
+        </tr>
+        <tr>
+          <td class="oname">Arma muy pesada</td>
+          <td>Motosierra, almádena, naginata, hélice</td>
+          <td class="odamage">4d6</td>
+          <td>1</td>
+          <td><span class="tag-no">NO</span></td>
+          <td class="ocost">500 eb (caro)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sec-kicker o" style="margin-bottom:1rem;margin-top:1rem">Armas a distancia — estadísticas exactas CPR
+    </div>
+    <p class="sec-desc" style="margin-bottom:1rem">Las armas a distancia usan REF para atacar. El cargador estándar
+      indica el tipo de munición y la cantidad. La munición básica cuesta 10 eb por cada 10 unidades.</p>
+
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Tipo de arma</th>
+          <th>Habilidad</th>
+          <th>Daño</th>
+          <th>Cargador</th>
+          <th>CdT</th>
+          <th>Manos</th>
+          <th>Ocultable</th>
+          <th>Coste</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname">Pistola mediana</td>
+          <td>Armas cortas</td>
+          <td class="odamage">2d6</td>
+          <td>12 (Pistola M)</td>
+          <td>2</td>
+          <td>1</td>
+          <td><span class="tag-yes">SÍ</span></td>
+          <td class="ocost">50 eb (costoso)</td>
+        </tr>
+        <tr>
+          <td class="oname">Pistola pesada</td>
+          <td>Armas cortas</td>
+          <td class="odamage">3d6</td>
+          <td>8 (Pistola P)</td>
+          <td>2</td>
+          <td>1</td>
+          <td><span class="tag-yes">SÍ</span></td>
+          <td class="ocost">100 eb (superior)</td>
+        </tr>
+        <tr>
+          <td class="oname">Pistola muy pesada</td>
+          <td>Armas cortas</td>
+          <td class="odamage">4d6</td>
+          <td>8 (Pistola MP)</td>
+          <td>1</td>
+          <td>1</td>
+          <td><span class="tag-no">NO</span></td>
+          <td class="ocost">100 eb (superior)</td>
+        </tr>
+        <tr>
+          <td class="oname">Subfusil</td>
+          <td>Armas cortas</td>
+          <td class="odamage">2d6</td>
+          <td>30 (Pistola M)</td>
+          <td>1</td>
+          <td>1</td>
+          <td><span class="tag-yes">SÍ</span></td>
+          <td class="ocost">100 eb (superior)</td>
+        </tr>
+        <tr>
+          <td class="oname">Subfusil pesado</td>
+          <td>Armas cortas</td>
+          <td class="odamage">3d6</td>
+          <td>40 (Pistola P)</td>
+          <td>1</td>
+          <td>1</td>
+          <td><span class="tag-no">NO</span></td>
+          <td class="ocost">100 eb (superior)</td>
+        </tr>
+        <tr>
+          <td class="oname">Escopeta</td>
+          <td>Armas largas</td>
+          <td class="odamage">5d6</td>
+          <td>4 (Escopeta)</td>
+          <td>1</td>
+          <td>2</td>
+          <td><span class="tag-no">NO</span></td>
+          <td class="ocost">500 eb (caro)</td>
+        </tr>
+        <tr>
+          <td class="oname">Fusil de asalto</td>
+          <td>Armas largas</td>
+          <td class="odamage">5d6</td>
+          <td>25 (Fusil)</td>
+          <td>1</td>
+          <td>2</td>
+          <td><span class="tag-no">NO</span></td>
+          <td class="ocost">500 eb (caro)</td>
+        </tr>
+        <tr>
+          <td class="oname">Fusil de francotirador</td>
+          <td>Armas largas</td>
+          <td class="odamage">5d6</td>
+          <td>4 (Fusil)</td>
+          <td>1</td>
+          <td>2</td>
+          <td><span class="tag-no">NO</span></td>
+          <td class="ocost">500 eb (caro)</td>
+        </tr>
+        <tr>
+          <td class="oname">Arco / Ballesta</td>
+          <td>Tiro con arco</td>
+          <td class="odamage">4d6</td>
+          <td>N/A (Flecha)</td>
+          <td>1</td>
+          <td>2</td>
+          <td><span class="tag-no">NO</span></td>
+          <td class="ocost">100 eb (superior)</td>
+        </tr>
+        <tr>
+          <td class="oname">Lanzagranadas</td>
+          <td>Armas pesadas</td>
+          <td class="odamage">6d6</td>
+          <td>2 (Granada)</td>
+          <td>1</td>
+          <td>2</td>
+          <td><span class="tag-no">NO</span></td>
+          <td class="ocost">500 eb (caro)</td>
+        </tr>
+        <tr>
+          <td class="oname">Lanzamisiles</td>
+          <td>Armas pesadas</td>
+          <td class="odamage">8d6</td>
+          <td>1 (Misil)</td>
+          <td>1</td>
+          <td>2</td>
+          <td><span class="tag-no">NO</span></td>
+          <td class="ocost">500 eb (caro)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      <strong>ARMAS EXÓTICAS NOTABLES:</strong> Malorian Arms 3516 (pistola MP, 5d6, arma de Johnny Silverhand): 10.000
+      eb · Kendachi Mono-Tres (arma CaC muy pesada, ignora CP inferior a 11): 5.000 eb · Lanzallamas (escopeta exótica,
+      incendiario): 500 eb · Pistola aturdidora (pistola P menos letal): 100 eb · Porra aturdidora (arma mediana menos
+      letal): 100 eb. Las armas exóticas NO son compatibles con accesorios ni munición no básica.
+    </div>
+
+    <div style="margin-top:2rem">
+      <div class="sec-kicker c" style="margin-bottom:1rem">Accesorios para armas (3 ranuras por arma)</div>
+      <table class="obj-table">
+        <thead>
+          <tr>
+            <th>Accesorio</th>
+            <th>Efecto</th>
+            <th>Coste</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="oname">Bayoneta</td>
+            <td>El arma también funciona como arma CaC ligera. No puede ocultarse con ella puesta.</td>
+            <td class="ocost">100 eb</td>
+          </tr>
+          <tr>
+            <td class="oname">Cargador ampliado</td>
+            <td>Aumenta la capacidad del cargador al nivel "Ampliado" de la tabla. No puede ocultarse con él puesto.
+            </td>
+            <td class="ocost">100 eb</td>
+          </tr>
+          <tr>
+            <td class="oname">Visor de francotirador</td>
+            <td>Ve detalles hasta 800m. +1 a ataques a 51m o más en modo disparo único. No se acumula con amplificador
+              de imagen ciber.</td>
+            <td class="ocost">100 eb</td>
+          </tr>
+          <tr>
+            <td class="oname">Cargador de tambor</td>
+            <td>Aumenta la capacidad al nivel "Tambor". No puede ocultarse con él puesto. Una sola ranura pero requiere
+              espacio.</td>
+            <td class="ocost">500 eb</td>
+          </tr>
+          <tr>
+            <td class="oname">Visor nocturno IR</td>
+            <td>Reduce a 0 las penalizaciones por oscuridad, humo o niebla al disparar. Solo distingue carne caliente de
+              metal frío.</td>
+            <td class="ocost">500 eb</td>
+          </tr>
+          <tr>
+            <td class="oname">Lanzagranadas bajo el cañón</td>
+            <td>El arma funciona también como lanzagranadas (1 granada en cargador). Solo en armas largas. Requiere 2
+              ranuras.</td>
+            <td class="ocost">500 eb</td>
+          </tr>
+          <tr>
+            <td class="oname">Escopeta bajo el cañón</td>
+            <td>El arma funciona también como escopeta (2 disparos). Solo en armas largas. Requiere 2 ranuras.</td>
+            <td class="ocost">500 eb</td>
+          </tr>
+          <tr>
+            <td class="oname">Conexión de arma inteligente</td>
+            <td>+1 a ataques a distancia. Requiere conectores interface o empuñadura subcutánea + conexión neuronal.
+              Requiere 2 ranuras.</td>
+            <td class="ocost">500 eb</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BLINDAJE -->
+  <section id="blindaje" style="background:var(--panel)">
+    <div class="sec-kicker o">Protección en la calle</div>
+    <h2 class="sec-title">BLINDAJE Y <span class="o">ARMADURA</span></h2>
+    <p class="sec-desc">El blindaje se compra por separado para cabeza y cuerpo. La CP (Capacidad de Parada) no se
+      acumula — solo cuenta la mayor fuente en cada localización. Toda la armadura en una localización pierde 1 CP
+      simultáneamente al recibir daño. Llevar armadura pesada impone penalizaciones a REF, DES y MOV.</p>
+
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Descripción</th>
+          <th>CP</th>
+          <th>Penalización</th>
+          <th>Coste</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname">Cuero</td>
+          <td>Preferido por nómadas y bikers.</td>
+          <td class="ocp">4</td>
+          <td>Ninguna</td>
+          <td class="ocost">20 eb (asequible)</td>
+        </tr>
+        <tr>
+          <td class="oname">Kevlar®</td>
+          <td>Puede ser ropa, chalecos, trajes de negocios o bikinis.</td>
+          <td class="ocp">7</td>
+          <td>Ninguna</td>
+          <td class="ocost">50 eb (costoso)</td>
+        </tr>
+        <tr>
+          <td class="oname">Blindaje ligero</td>
+          <td>Kevlar® + membranas de plástico en la trama del tejido.</td>
+          <td class="ocp">11</td>
+          <td>Ninguna</td>
+          <td class="ocost">100 eb (superior)</td>
+        </tr>
+        <tr>
+          <td class="oname">Traje Bodyweight</td>
+          <td>Gel de blindaje sinterizado en zonas clave. Espacio para ciberterminal, soporta conectores interface.</td>
+          <td class="ocp">11</td>
+          <td>Ninguna</td>
+          <td class="ocost">1.000 eb (muy caro)</td>
+        </tr>
+        <tr>
+          <td class="oname">Blindaje mediano</td>
+          <td>Revestimiento de plástico sólido + gruesa membrana de Kevlar®.</td>
+          <td class="ocp">12</td>
+          <td class="open">-2 REF, DES y MOV</td>
+          <td class="ocost">100 eb (superior)</td>
+        </tr>
+        <tr>
+          <td class="oname">Blindaje pesado</td>
+          <td>Kevlar® de alta densidad + capas de tejido y membranas de plástico.</td>
+          <td class="ocp">13</td>
+          <td class="open">-2 REF, DES y MOV</td>
+          <td class="ocost">500 eb (caro)</td>
+        </tr>
+        <tr>
+          <td class="oname">Flak</td>
+          <td>Versión siglo XXI del clásico chaleco y pantalones antibalas.</td>
+          <td class="ocp">15</td>
+          <td class="open">-4 REF, DES y MOV</td>
+          <td class="ocost">500 eb (caro)</td>
+        </tr>
+        <tr>
+          <td class="oname">Metalgear®</td>
+          <td>Detendrá casi cualquier cosa. Más fácil de acertar que un bantha cojo.</td>
+          <td class="ocp">18</td>
+          <td class="open">-4 REF, DES y MOV</td>
+          <td class="ocost">5.000 eb (lujoso)</td>
+        </tr>
+        <tr>
+          <td class="oname">Escudo antibalas</td>
+          <td>Policarbonato transparente. Siempre ocupa un brazo.</td>
+          <td class="ocp">10 PD</td>
+          <td>Ocupa un brazo</td>
+          <td class="ocost">100 eb (superior)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warn-box">
+      <strong>REGLA:</strong> La penalización del blindaje se aplica solo una vez, aunque lleves blindaje en cuerpo y
+      cabeza simultáneamente. Se aplica el penalizador más alto de los que lleves. El blindaje subdérmico (ciberequipo
+      externo, CP7 o CP11) no se acumula con el blindaje que llevas puesto — solo cuenta el mayor.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CIBEREQUIPO -->
+  <section class="cyber-section" id="ciberequipo">
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker c">Cibertecnología</div>
+      <h2 class="sec-title">CIBERE<span class="c">QUIPO</span></h2>
+      <p class="sec-desc">El ciberequipo es tecnología implantada en tu cuerpo. Cada implante tiene un coste en
+        eurodólares y una Pérdida de Humanidad (PH) que reduce tu EMP. Hay 8 categorías de ciberequipo, cada una con su
+        lugar de instalación. La cirugía de instalación siempre está incluida en el precio.</p>
+    </div>
+
+    <div class="info-box">
+      <strong>TIPOS DE INSTALACIÓN:</strong> Centro comercial (cualquier tienda de biomodificaciones) · Clínica
+      (tecnomédico especializado, equipamiento automatizado) · Hospital (cirugía mayor, escasos en la Era del Rojo). La
+      PH se indica como valor fijo durante creación de personaje; en juego se tira con los dados entre paréntesis.
+    </div>
+
+    <div class="cyber-type-header">// CIBERMODA — 7 ranuras disponibles — PH: 0 en todos</div>
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Implante</th>
+          <th>Instalación</th>
+          <th>Efecto</th>
+          <th>Coste</th>
+          <th>PH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname">Biomonitor</td>
+          <td>Centro comercial</td>
+          <td>Genera lectura de constantes vitales. Vinculable al agente.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">0</td>
+        </tr>
+        <tr>
+          <td class="oname">Hebras PEM</td>
+          <td>Centro comercial</td>
+          <td>Líneas plateadas bajo la piel como circuitos.</td>
+          <td class="ocost">10 eb</td>
+          <td class="oph">0</td>
+        </tr>
+        <tr>
+          <td class="oname">Lentes cambiantes</td>
+          <td>Centro comercial</td>
+          <td>Lentes implantadas que cambian de color.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">0</td>
+        </tr>
+        <tr>
+          <td class="oname">Quimipiel</td>
+          <td>Centro comercial</td>
+          <td>Cambia el tono de la piel permanentemente. +2 Arreglo personal con tecnopelo.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">0</td>
+        </tr>
+        <tr>
+          <td class="oname">Reloj subcutáneo</td>
+          <td>Centro comercial</td>
+          <td>Reloj LED implantado bajo la piel.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">0</td>
+        </tr>
+        <tr>
+          <td class="oname">Tatuaje luminoso</td>
+          <td>Centro comercial</td>
+          <td>Tatuajes de colores bajo la piel. +2 Vestuario y Estilo con 3+ tatuajes.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">0</td>
+        </tr>
+        <tr>
+          <td class="oname">Tecnopelo</td>
+          <td>Centro comercial</td>
+          <td>Pelo que emite luz de colores. +2 Arreglo personal con quimipiel.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">0</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cyber-type-header">// EQUIPO NEURONAL — Ciberequipo básico: Conexión neuronal (5 ranuras)</div>
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Implante</th>
+          <th>Instalación</th>
+          <th>Efecto</th>
+          <th>Coste</th>
+          <th>PH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname">Conexión neuronal</td>
+          <td>Clínica</td>
+          <td>Necesaria para todo el equipo neuronal y empuñaduras subcutáneas. 5 ranuras de opciones.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Conectores interface</td>
+          <td>Clínica</td>
+          <td>Conectores en muñeca/cabeza para conectarse a máquinas. Requiere conexión neuronal.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Kerenzikov</td>
+          <td>Clínica</td>
+          <td>Cibervelocidad. +2 a la iniciativa permanentemente. Solo 1 pieza de cibervelocidad posible.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">14 (4d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Sandevistan</td>
+          <td>Clínica</td>
+          <td>Cibervelocidad. Activar con 1 acción: +3 iniciativa durante 1 min. Recarga: 1 hora. Solo 1 cibervelocidad.
+          </td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Zócalo para chips</td>
+          <td>Clínica</td>
+          <td>Permite usar chipware. Un zócalo instalado en la nuca. Requiere conexión neuronal.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Chip de habilidad</td>
+          <td>N/A (chip)</td>
+          <td>Habilidad específica a nivel 3 (si ya la tienes a 3+, no sirve). Requiere zócalo para chips.</td>
+          <td class="ocost">500 eb / 1.000 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Editor de dolor</td>
+          <td>Clínica</td>
+          <td>Ignora penalizaciones por estar Gravemente Herido. Requiere zócalo para chips.</td>
+          <td class="ocost">1.000 eb</td>
+          <td class="oph">14 (4d6)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cyber-type-header">// CIBERÓPTICOS — Ciberequipo básico: Ciberojo (3 ranuras por ojo)</div>
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Implante</th>
+          <th>Instalación</th>
+          <th>Efecto</th>
+          <th>Coste</th>
+          <th>PH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname">Ciberojo</td>
+          <td>Clínica</td>
+          <td>Ojo artificial. 3 ranuras de opciones. Incluye mano estándar sin PH extra.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Amplificador de imagen</td>
+          <td>Clínica</td>
+          <td>Ve detalles hasta 800m. +1 a tiros de precisión a 51m+. Requiere ciberojo.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">3 (1d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Luz tenue/IR/UV</td>
+          <td>Centro comercial</td>
+          <td>Ignora penalizaciones por oscuridad, humo y niebla. Requiere 2 ciberojos emparejados, 2 ranuras por ojo.
+          </td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">3 (1d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Mejora de imagen</td>
+          <td>Centro comercial</td>
+          <td>+2 a Percepción, Lectura de labios y Ocultar/Revelar. Requiere 2 ciberojos emparejados.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">3 (1d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Sistema de puntería</td>
+          <td>Clínica</td>
+          <td>+1 a tiradas con tiros de precisión. Requiere un ciberojo.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">3 (1d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Microópticos</td>
+          <td>Clínica</td>
+          <td>Aumento de 400x. Requiere un ciberojo.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">2 (1d6/2 al alza)</td>
+        </tr>
+        <tr>
+          <td class="oname">Virtualidad</td>
+          <td>Centro comercial</td>
+          <td>Proyecta imágenes del ciberespacio sobre la visión real. Requiere 2 ciberojos emparejados.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">2 (1d6/2 al alza)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cyber-type-header">// CIBERAUDIO — Ciberequipo básico: Equipo de ciberaudio (3 ranuras)</div>
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Implante</th>
+          <th>Instalación</th>
+          <th>Efecto</th>
+          <th>Coste</th>
+          <th>PH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname">Equipo de ciberaudio</td>
+          <td>Clínica</td>
+          <td>Sistema de audio base. 3 ranuras de opciones.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Agente interno</td>
+          <td>Centro comercial</td>
+          <td>Agente IA instalado internamente. Solo audio sin ciberojo con subpantalla.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">3 (1d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Analizador de voz</td>
+          <td>Centro comercial</td>
+          <td>+2 a Percepción humana e Interrogatorio.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">3 (1d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Escucha amplificada</td>
+          <td>Centro comercial</td>
+          <td>+2 a Percepción para tiradas relacionadas con audición.</td>
+          <td class="ocost">50 eb</td>
+          <td class="oph">2 (1d6/2 al alza)</td>
+        </tr>
+        <tr>
+          <td class="oname">Comunicador de radio</td>
+          <td>Centro comercial</td>
+          <td>Comunicación por radio. Alcance 1,5 km.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">2 (1d6/2 al alza)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cyber-type-header">// CIBEREQUIPO INTERNO — 7 ranuras disponibles</div>
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Implante</th>
+          <th>Instalación</th>
+          <th>Efecto</th>
+          <th>Coste</th>
+          <th>PH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname">Implante de hueso y músculo</td>
+          <td>Clínica</td>
+          <td>+2 TCO. Cambia PD, umbral de herida y salvación contra muerte. Acumulable hasta TCO 10 máximo.</td>
+          <td class="ocost">1.000 eb</td>
+          <td class="oph">14 (4d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Antitoxinas</td>
+          <td>Hospital</td>
+          <td>+2 a Resistir torturas/drogas.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">2 (1d6/2 al alza)</td>
+        </tr>
+        <tr>
+          <td class="oname">Filtros nasales</td>
+          <td>Clínica</td>
+          <td>Inmune a efectos de gases tóxicos, humo y peligros similares.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">2 (1d6/2 al alza)</td>
+        </tr>
+        <tr>
+          <td class="oname">AudioVox</td>
+          <td>Clínica</td>
+          <td>Sintetizador de voz. +2 a Actuar y Tocar instrumento al cantar.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">3 (1d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Bolsillo subcutáneo</td>
+          <td>Clínica</td>
+          <td>Espacio de 5cm × 10cm bajo la piel con cremallera RealSkinn™.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">3 (1d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Pistolera oculta</td>
+          <td>Clínica</td>
+          <td>Permite guardar dentro del cuerpo un arma que pueda ocultarse.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Suministro de aire independiente</td>
+          <td>Clínica</td>
+          <td>30 minutos de oxígeno. Recarga en 1 hora desde la atmósfera.</td>
+          <td class="ocost">1.000 eb</td>
+          <td class="oph">2 (1d6/2 al alza)</td>
+        </tr>
+        <tr>
+          <td class="oname">Vampiros</td>
+          <td>Hospital</td>
+          <td>Arma CaC ligera de calidad excelente implantada en la boca. Ocultable. Puede añadir veneno o biotoxina.
+          </td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">14 (4d6)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cyber-type-header">// CIBERMIEMBROS — Ciberequipo básico: Ciberbrazo (4 ranuras) / Ciberpierna (3
+      ranuras)</div>
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Implante</th>
+          <th>Instalación</th>
+          <th>Efecto</th>
+          <th>Coste</th>
+          <th>PH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname">Ciberbrazo</td>
+          <td>Hospital</td>
+          <td>Brazo artificial. 4 ranuras de opciones. Incluye mano estándar sin PH ni ranura adicional.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Ciberpierna</td>
+          <td>Hospital</td>
+          <td>Pierna artificial. 3 ranuras de opciones. Incluye pie estándar sin PH.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">3 (1d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Garras de cristal de carbono</td>
+          <td>Clínica</td>
+          <td>Arma CaC mediana. Ocultable. En un brazo de carne o ciberbrazo.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Nudillos de acero</td>
+          <td>Clínica</td>
+          <td>Arma CaC mediana. Ocultable. En brazo de carne o ciberbrazo.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">2 (1d6/2 al alza)</td>
+        </tr>
+        <tr>
+          <td class="oname">Troceador (látigo monofilamento)</td>
+          <td>Clínica</td>
+          <td>Arma CaC mediana. Ocultable. Implantado en el pulgar.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Mano con herramientas</td>
+          <td>Clínica</td>
+          <td>Destornillador, llave inglesa, taladro pequeño. En brazo de carne o ciberbrazo.</td>
+          <td class="ocost">100 eb</td>
+          <td class="oph">2 (1d6/2 al alza)</td>
+        </tr>
+        <tr>
+          <td class="oname">Escudo de ciberbrazo</td>
+          <td>Clínica</td>
+          <td>Escudo antibalas integrado en el ciberbrazo. Ocultable. Se reemplaza cuando su CP llega a 0. Requiere
+            ciberbrazo, 3 ranuras.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Potenciadores de salto</td>
+          <td>Clínica</td>
+          <td>Hidráulica en las piernas. Anula penalización de movimiento al saltar. Requiere 2 ciberpiernas, 2 ranuras
+            cada una.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">3 (1d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Pie con patín</td>
+          <td>Clínica</td>
+          <td>Patines en línea integrados. Ocultables. +6m al MOV al correr. Requiere 2 ciberpiernas emparejadas.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">3 (1d6)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cyber-type-header">// CIBEREQUIPO EXTERNO — 7 ranuras disponibles</div>
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Implante</th>
+          <th>Instalación</th>
+          <th>Efecto</th>
+          <th>Coste</th>
+          <th>PH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname">Blindaje subdérmico (tejido dérmico)</td>
+          <td>Hospital</td>
+          <td>CP7 en cuerpo y cabeza. No se acumula con blindaje externo. Recupera 1 CP por día de descanso.</td>
+          <td class="ocost">500 eb</td>
+          <td class="oph">7 (2d6)</td>
+        </tr>
+        <tr>
+          <td class="oname">Blindaje subdérmico mejorado</td>
+          <td>Hospital</td>
+          <td>CP11 en cuerpo y cabeza. No se acumula con blindaje externo. Recupera 1 CP por día de descanso.</td>
+          <td class="ocost">1.000 eb</td>
+          <td class="oph">14 (4d6)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warn-box">
+      <strong>BORGWARE (implantes masivos):</strong> El Armazón Lineal Sigma (TCO 12, requiere TCO 6 + 1 implante
+      hueso/músculo) cuesta 1.000 eb con PH 14 (4d6). El Armazón Lineal Beta (TCO 14, requiere TCO 8 + 2 implantes)
+      cuesta 5.000 eb con PH 14 (4d6). Los Hombros Artificiales (montar 2 ciberbrazos extra) cuestan 1.000 eb. Estos
+      implantes son raros en la Era del Rojo.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- NET GEAR -->
+  <section id="netgear" style="background:var(--panel)">
+    <div class="sec-kicker c">Hardware & Software</div>
+    <h2 class="sec-title">NET<span class="c">DECK</span></h2>
+    <p class="sec-desc">Para hackear necesitas tres cosas: un Ciberdeck (el módem mental), unas Gafas de Realidad
+      Virtual (para ver la Interface) y Programas (tus armas y herramientas). Un deck tiene ranuras para programas y
+      hardware adicional.</p>
+
+    <div class="sec-kicker c" style="margin-bottom:1rem">Ciberdecks (Incluyen Gafas RV)</div>
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>Ranuras</th>
+          <th>Coste</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname">Erika Standard</td>
+          <td>7 ranuras. El modelo básico de la calle. Fiable y modular.</td>
+          <td class="ocost">500 eb</td>
+        </tr>
+        <tr>
+          <td class="oname">Raven Microcyb</td>
+          <td>9 ranuras. Estándar militar. Resistente a golpes físicos.</td>
+          <td class="ocost">1.000 eb</td>
+        </tr>
+        <tr>
+          <td class="oname">Kirama Entry</td>
+          <td>5 ranuras. Barato, pero se calienta si le metes mucha caña.</td>
+          <td class="ocost">100 eb</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sec-kicker c" style="margin-bottom:1rem;margin-top:2rem">Programas (Ataque y Defensa)</div>
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Programa</th>
+          <th>Clase</th>
+          <th>Efecto</th>
+          <th>ATK (Defensa)</th>
+          <th>Coste</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname" style="color:var(--red)">Espada (Sword)</td>
+          <td>Atq. Antipersona</td>
+          <td>Hace 3d6 daño directo al cerebro del Netrunner enemigo.</td>
+          <td class="ocp">vs DEF programa</td>
+          <td class="ocost">50 eb</td>
+        </tr>
+        <tr>
+          <td class="oname" style="color:var(--red)">Veneno (Poison)</td>
+          <td>Atq. Antipersona</td>
+          <td>Hace 1d6 daño y aplica efecto Veneno (daño por turno).</td>
+          <td class="ocp">vs DEF programa</td>
+          <td class="ocost">50 eb</td>
+        </tr>
+        <tr>
+          <td class="oname" style="color:var(--orange)">Banhammer</td>
+          <td>Atq. Antiprograma</td>
+          <td>Hace 4d6 de daño al REZ de un programa/ICE enemigo.</td>
+          <td class="ocp">vs DEF programa</td>
+          <td class="ocost">50 eb</td>
+        </tr>
+        <tr>
+          <td class="oname" style="color:var(--cyan)">Escudo (Shield)</td>
+          <td>Defensa</td>
+          <td>Previene que el primer ataque exitoso te haga daño. Se consume al usar.</td>
+          <td class="ocp">Automático</td>
+          <td class="ocost">20 eb</td>
+        </tr>
+        <tr>
+          <td class="oname" style="color:var(--cyan)">Armadura (Armor)</td>
+          <td>Defensa</td>
+          <td>Reduce todo el daño cerebral recibido en 4. Dura hasta que te desconectes.</td>
+          <td class="ocp">Automático</td>
+          <td class="ocost">50 eb</td>
+        </tr>
+        <tr>
+          <td class="oname" style="color:var(--yellow)">Rastreador (Pathfinder)</td>
+          <td>Utilidad</td>
+          <td>Revela toda la arquitectura de red (todas las plantas) y sus peligros.</td>
+          <td class="ocp">vs DV Contraseña</td>
+          <td class="ocost">50 eb</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box" style="margin-top:2rem">
+      <strong>HARDWARE DECK:</strong> Puedes instalar mejoras físicas en las ranuras del deck. <strong>Cables
+        Aislantes</strong> (Inmune a efectos de electrocución ambiental), <strong>Batería Extra</strong> (Permite 1 hora
+      extra de operación), <strong>Barrera KRASH</strong> (Otorga 1 escudo gratuito por run). Todos cuestan 100 eb.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- DROGAS -->
+  <section id="drogas" style="background:var(--bg)">
+    <div class="sec-kicker r">Química Recreativa & Medicinal</div>
+    <h2 class="sec-title">DROGAS Y <span class="r">FÁRMACOS</span></h2>
+    <p class="sec-desc">Night City se mueve gracias a la química. Desde antibióticos para sobrevivir al agua del grifo
+      hasta estimulantes de combate que te queman el cerebro. Cuidado: todas las drogas de la calle tienen efectos
+      secundarios y riesgo de adicción.</p>
+
+    <div class="sec-kicker c" style="margin-bottom:1rem">Fármacos Terapéuticos</div>
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Efecto</th>
+          <th>Coste</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname">Antibióticos</td>
+          <td>Acelera la curación natural y previene infecciones en heridas sucias.</td>
+          <td class="ocost">50 eb</td>
+        </tr>
+        <tr>
+          <td class="oname">Rapidetox</td>
+          <td>Purga toxinas, drogas y venenos del sistema. +2 a resistir sus efectos.</td>
+          <td class="ocost">50 eb</td>
+        </tr>
+        <tr>
+          <td class="oname">Speedheal</td>
+          <td>Acelera el proceso de curación. Recuperas Puntos de Golpe adicionales por día de descanso.</td>
+          <td class="ocost">100 eb</td>
+        </tr>
+        <tr>
+          <td class="oname">Estimulantes</td>
+          <td>Elimina penalizadores por fatiga o falta de sueño durante 1d6 horas.</td>
+          <td class="ocost">50 eb</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sec-kicker r" style="margin-bottom:1rem;margin-top:2rem">Drogas de la Calle (Ilegales)</div>
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Droga</th>
+          <th>Efecto Principal</th>
+          <th>Duración</th>
+          <th>Coste / Dosis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="oname" style="color:var(--purple)">Black Lace (Encaje Negro)</td>
+          <td>Ignoras penalizadores por Herida Grave. TCO +2. Aumenta agresividad.</td>
+          <td>24 horas</td>
+          <td class="ocost">50 eb</td>
+        </tr>
+        <tr>
+          <td class="oname" style="color:var(--cyan)">Blue Glass (Vidrio Azul)</td>
+          <td>Alucinógeno suave. Percibes el mundo en colores fractales. Euforia.</td>
+          <td>4 horas</td>
+          <td class="ocost">20 eb</td>
+        </tr>
+        <tr>
+          <td class="oname" style="color:var(--yellow)">Smash</td>
+          <td>Euforia, desinhibición, energía fiestera. Droga social barata.</td>
+          <td>2 horas</td>
+          <td class="ocost">10 eb</td>
+        </tr>
+        <tr>
+          <td class="oname" style="color:var(--white)">Sintococa</td>
+          <td>Estimulante potente. +1 a REF. Paranoia creciente.</td>
+          <td>4 horas</td>
+          <td class="ocost">20 eb</td>
+        </tr>
+        <tr>
+          <td class="oname" style="color:var(--green)">Impulso (Boost)</td>
+          <td>Aumenta la capacidad cognitiva. +2 a INT. Sangrado nasal frecuente.</td>
+          <td>24 horas</td>
+          <td class="ocost">50 eb</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warn-box" style="margin-top:2rem">
+      <strong style="color:var(--red)">REGLA DE ADICCIÓN:</strong> Cuando se pasan los efectos de una droga de la calle,
+      debes hacer una tirada de <strong>Resistir Tortura/Drogas (DV 15)</strong>. Si fallas, desarrollas adicción y
+      sufres el "Bajón" (penalizadores a estadísticas) hasta que tomes otra dosis o te sometas a terapia de
+      desintoxicación.
+    </div>
+
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- MERCADOS NOCTURNOS -->
+  <section id="nightmarket" style="background:var(--panel)">
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker y">Economía sumergida</div>
+      <h2 class="sec-title">MERCADOS <span class="y">NOCTURNOS</span></h2>
+      <p class="sec-desc">Las mejores armas y el ciberequipo más avanzado no se venden en las máquinas expendedoras.
+        Para conseguir equipo de grado militar o ilegal, necesitas encontrar un Mercado Nocturno. Estos bazares pop-up
+        aparecen en zonas abandonadas, muelles o sótanos durante una sola noche.</p>
+    </div>
+
+    <div class="info-box">
+      <strong>ENCONTRAR UN MERCADO:</strong> Requiere una tirada de <strong>Bajos Fondos</strong> o la aptitud de
+      <strong>Recursos callejeros</strong> (Fixer) con <strong>DV 15</strong>. Una vez dentro, puedes encontrar objetos
+      de precio "Muy Caro" (1.000 eb) o superior, sándevistans militares y armas exóticas. La selección cambia cada vez
+      (tira 1d10 para determinar disponibilidad: 1-3 Nada interesante, 4-7 Selección estándar, 8-9 Cosas raras, 10
+      ¡Bingo!).
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="cta">
+    <h2 class="cta-title">¿BIEN <span style="color:var(--green)">EQUIPADO</span>?</h2>
+    <p class="cta-sub">Ahora que sabes lo que puedes llevar, aprende las reglas del servidor. La normativa es lo que
+      separa a los edgerunners profesionales de los que duran dos sesiones.</p>
+    <div class="cta-btns">
+      <a class="btn btn-c" href="sistema.html">Ver Sistema</a>
+      <a class="btn btn-y" href="roles.html">Ver Roles</a>
+      <a class="btn btn-g" href="normativa.html">Ver Normativa</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">COSMERIUM <em>ERA III</em><span class="fsub">NIGHT CITY 2077 · ROL · DISCORD</span></div>
+    <div class="footer-links">
+      <a href="home.html">Inicio</a>
+      <a href="mundo.html">El Mundo</a>
+      <a href="roles.html">Roles</a>
+      <a href="sistema.html">Sistema</a>
+      <a href="objetos.html">Objetos</a>
+      <a href="normativa.html">Normativa</a>
+      <a href="https://discord.gg/DWacKAK373">Discord</a>
+    </div>
+    <div class="footer-copy">Sistema: Cyberpunk Red (R. Talsorian Games) · Ambientación: Cyberpunk 2077 (CD Projekt Red)
+      · Servidor de rol narrativo</div>
+  </footer>
+
+  <script>
+    window.onload = function () {
+      setTimeout(() => {
+        document.getElementById('preloader').classList.add('loaded');
+      }, 1000);
+    };
+  </script>
+</body>
+
+</html>

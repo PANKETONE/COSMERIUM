@@ -1,0 +1,2610 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (localStorage.getItem('cosmerium_auth') !== 'true') {
+      window.location.href = "index.html";
+    }
+  </script>
+  <title>Cosmerium Era III: Night City 2077 — Servidor de Rol</title>
+  <script src="js/live-notifications.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&display=swap');
+
+    :root {
+      --bg: #04060a;
+      --panel: #080c12;
+      --border: #111c28;
+      --red: #ff2a45;
+      --cyan: #00e5ff;
+      --yellow: #ffd200;
+      --purple: #bd00ff;
+      --orange: #ff6b00;
+      --text: #a8c4d8;
+      --dim: #2e4558;
+      --white: #ecf4fa;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 900;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 229, 255, .005) 2px, rgba(0, 229, 255, .005) 4px)
+    }
+
+    /* ══ NAV ══ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 1.1rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(4, 6, 10, .97) 60%, transparent);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(17, 28, 40, .5)
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      letter-spacing: .08em;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1
+    }
+
+    .nav-logo .nsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .4rem;
+      letter-spacing: .3em;
+      color: var(--dim);
+      margin-top: .1rem
+    }
+
+    .nav-logo em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .18em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan)
+    }
+
+    .nav-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .14em;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: .42rem .95rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))
+    }
+
+    .nav-btn:hover {
+      background: var(--yellow);
+      color: #000
+    }
+
+    /* ══ HERO ══ */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 6vw 5rem
+    }
+
+    .hero-sky {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 100% 60% at 50% 100%, rgba(255, 42, 69, .13) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 50% at 15% 85%, rgba(189, 0, 255, .09) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 85% 80%, rgba(255, 107, 0, .07) 0%, transparent 50%),
+        linear-gradient(to bottom, #010308 0%, #030612 35%, #060a16 70%, #090d18 100%)
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      animation: bdrift 15s ease-in-out infinite alternate
+    }
+
+    .b1 {
+      width: 600px;
+      height: 400px;
+      background: rgba(255, 42, 69, .055);
+      bottom: -100px;
+      left: -100px
+    }
+
+    .b2 {
+      width: 400px;
+      height: 500px;
+      background: rgba(189, 0, 255, .045);
+      bottom: -50px;
+      right: 10%;
+      animation-delay: -5s
+    }
+
+    .b3 {
+      width: 300px;
+      height: 300px;
+      background: rgba(0, 229, 255, .035);
+      top: 30%;
+      right: 20%;
+      animation-delay: -10s
+    }
+
+    @keyframes bdrift {
+      from {
+        transform: translate(0, 0)
+      }
+
+      to {
+        transform: translate(30px, -20px)
+      }
+    }
+
+    .city-wrap {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0
+    }
+
+    .city-svg {
+      width: 100%;
+      display: block
+    }
+
+    .hero-grid {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background-image: linear-gradient(rgba(255, 42, 69, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 42, 69, .035) 1px, transparent 1px);
+      background-size: 80px 40px;
+      transform: perspective(400px) rotateX(60deg);
+      transform-origin: bottom center;
+      mask-image: linear-gradient(to top, rgba(0, 0, 0, .3) 0%, transparent 100%)
+    }
+
+    .gh {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      pointer-events: none;
+      opacity: 0;
+      animation: gha 12s infinite
+    }
+
+    .gh:nth-child(1) {
+      background: var(--red);
+      animation-delay: 0s
+    }
+
+    .gh:nth-child(2) {
+      background: var(--cyan);
+      animation-delay: 4s
+    }
+
+    .gh:nth-child(3) {
+      background: var(--purple);
+      animation-delay: 8s
+    }
+
+    @keyframes gha {
+      0% {
+        top: -2%;
+        opacity: 0
+      }
+
+      2% {
+        opacity: .5
+      }
+
+      18% {
+        top: 108%;
+        opacity: .05
+      }
+
+      19% {
+        opacity: 0;
+        top: 108%
+      }
+
+      100% {
+        opacity: 0;
+        top: 108%
+      }
+    }
+
+    .ui-tl {
+      position: absolute;
+      top: 6rem;
+      left: 6vw;
+      z-index: 3;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .14em;
+      color: var(--dim);
+      line-height: 1.9
+    }
+
+    .ui-br {
+      position: absolute;
+      bottom: 2rem;
+      right: 6vw;
+      z-index: 3;
+      text-align: right;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .14em;
+      color: var(--dim)
+    }
+
+    .ui-status {
+      position: absolute;
+      top: 6rem;
+      right: 6vw;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem
+    }
+
+    .usi {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .14em;
+      color: var(--dim);
+      justify-content: flex-end
+    }
+
+    .sdot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      animation: sdp 2.2s ease infinite
+    }
+
+    .sdot.c {
+      background: var(--cyan);
+      box-shadow: 0 0 6px var(--cyan)
+    }
+
+    .sdot.r {
+      background: var(--red);
+      box-shadow: 0 0 6px var(--red);
+      animation-delay: .8s
+    }
+
+    .sdot.y {
+      background: var(--yellow);
+      box-shadow: 0 0 6px var(--yellow);
+      animation-delay: 1.6s
+    }
+
+    @keyframes sdp {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .2
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4
+    }
+
+    .hero-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .38em;
+      color: var(--yellow);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .8rem
+    }
+
+    .hero-kicker::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--yellow)
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.5rem, 13vw, 12rem);
+      line-height: .88;
+      color: var(--white);
+      letter-spacing: .025em;
+      position: relative
+    }
+
+    .hero-title .ln2 {
+      color: var(--red);
+      display: block
+    }
+
+    .hero-title .yr {
+      color: var(--yellow);
+      font-size: .38em;
+      letter-spacing: .15em;
+      display: block;
+      margin-top: .15em
+    }
+
+    .hero-title::before,
+    .hero-title::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+      opacity: .07
+    }
+
+    .hero-title::before {
+      color: var(--cyan);
+      transform: translate(-3px, 0);
+      clip-path: polygon(0 20%, 100% 20%, 100% 45%, 0 45%)
+    }
+
+    .hero-title::after {
+      color: var(--red);
+      transform: translate(3px, 0);
+      clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
+      animation: chr 6s infinite
+    }
+
+    @keyframes chr {
+
+      0%,
+      88%,
+      100% {
+        opacity: .07
+      }
+
+      90% {
+        opacity: .2;
+        transform: translate(5px, 0)
+      }
+
+      93% {
+        opacity: .05;
+        transform: translate(-2px, 0)
+      }
+
+      96% {
+        opacity: .07
+      }
+    }
+
+    .hero-tagline {
+      font-size: 1.05rem;
+      font-weight: 300;
+      letter-spacing: .06em;
+      color: var(--text);
+      margin-top: 1.2rem;
+      max-width: 580px;
+      line-height: 1.7
+    }
+
+    .hero-tagline strong {
+      color: var(--white);
+      font-weight: 600
+    }
+
+    .hero-tagline em {
+      color: var(--cyan);
+      font-style: normal
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap
+    }
+
+    .btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .66rem;
+      letter-spacing: .17em;
+      text-decoration: none;
+      padding: .82rem 1.7rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      transition: all .2s;
+      text-transform: uppercase;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))
+    }
+
+    .btn-y {
+      background: var(--yellow);
+      color: #000;
+      font-weight: 700
+    }
+
+    .btn-y:hover {
+      box-shadow: 0 0 30px rgba(255, 210, 0, .4);
+      filter: brightness(1.1)
+    }
+
+    .btn-o {
+      border: 1px solid rgba(0, 229, 255, .4);
+      color: var(--cyan);
+      background: rgba(0, 229, 255, .04)
+    }
+
+    .btn-o:hover {
+      border-color: var(--cyan);
+      background: rgba(0, 229, 255, .1);
+      box-shadow: 0 0 20px rgba(0, 229, 255, .15)
+    }
+
+    /* ══ DIVIDER ══ */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), var(--dim), var(--border), transparent)
+    }
+
+    /* ══ STATBAR ══ */
+    .statbar {
+      background: #020406;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.8rem 6vw;
+      display: flex;
+      justify-content: space-around;
+      gap: 2rem;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden
+    }
+
+    .statbar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(90deg, transparent, transparent 120px, rgba(255, 42, 69, .012) 120px, rgba(255, 42, 69, .012) 121px)
+    }
+
+    .sblock {
+      text-align: center;
+      position: relative
+    }
+
+    .sblock::after {
+      content: '';
+      position: absolute;
+      right: -1rem;
+      top: 20%;
+      bottom: 20%;
+      width: 1px;
+      background: var(--border)
+    }
+
+    .sblock:last-child::after {
+      display: none
+    }
+
+    .sn {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--yellow);
+      display: block
+    }
+
+    .sl {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .5rem;
+      letter-spacing: .24em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-top: .2rem
+    }
+
+    /* ══ SECTION ATOMS ══ */
+    section {
+      padding: 5rem 6vw
+    }
+
+    .sec-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .33em;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .sec-kicker::before {
+      content: '//';
+      color: var(--dim)
+    }
+
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: .03em;
+      margin-bottom: .9rem
+    }
+
+    .sec-title .r {
+      color: var(--red)
+    }
+
+    .sec-title .c {
+      color: var(--cyan)
+    }
+
+    .sec-title .y {
+      color: var(--yellow)
+    }
+
+    .sec-desc {
+      font-size: .95rem;
+      color: var(--text);
+      line-height: 1.78;
+      font-weight: 300;
+      max-width: 640px;
+      margin-bottom: 2.5rem
+    }
+
+    /* ══ BADGE — Sistema / Lore ══ */
+    .badge-row {
+      display: flex;
+      gap: .7rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap
+    }
+
+    .badge {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .18em;
+      padding: .3rem .8rem;
+      text-transform: uppercase;
+      border: 1px solid;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem
+    }
+
+    .badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      display: inline-block
+    }
+
+    .badge-r {
+      border-color: var(--red);
+      color: var(--red)
+    }
+
+    .badge-r::before {
+      background: var(--red);
+      box-shadow: 0 0 5px var(--red)
+    }
+
+    .badge-y {
+      border-color: var(--yellow);
+      color: var(--yellow)
+    }
+
+    .badge-y::before {
+      background: var(--yellow);
+      box-shadow: 0 0 5px var(--yellow)
+    }
+
+    /* ══ LORE ══ */
+    .lore {
+      background: var(--panel);
+      position: relative;
+      overflow: hidden
+    }
+
+    .lore::after {
+      content: '2077';
+      position: absolute;
+      right: -3rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16rem;
+      color: rgba(255, 210, 0, .016);
+      pointer-events: none;
+      white-space: nowrap
+    }
+
+    .lore-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 5rem;
+      align-items: start
+    }
+
+    .lore-text p {
+      font-size: .92rem;
+      line-height: 1.88;
+      color: var(--text);
+      margin-bottom: 1.1rem;
+      font-weight: 300
+    }
+
+    .lore-text p strong {
+      color: var(--white);
+      font-weight: 600
+    }
+
+    .lore-text p em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .lore-text .c {
+      color: var(--cyan)
+    }
+
+    .lcards {
+      display: flex;
+      flex-direction: column;
+      gap: .85rem
+    }
+
+    .lcard {
+      border: 1px solid var(--border);
+      padding: 1.1rem 1.3rem;
+      position: relative;
+      transition: border-color .2s, box-shadow .2s;
+      cursor: default;
+      overflow: hidden
+    }
+
+    .lcard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--yellow);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform .25s
+    }
+
+    .lcard:hover {
+      border-color: rgba(255, 210, 0, .3);
+      box-shadow: 0 0 24px rgba(255, 210, 0, .05), inset 0 0 20px rgba(255, 210, 0, .02)
+    }
+
+    .lcard:hover::before {
+      transform: scaleY(1)
+    }
+
+    .lcard-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .5rem;
+      letter-spacing: .2em;
+      color: var(--yellow);
+      margin-bottom: .35rem;
+      text-transform: uppercase
+    }
+
+    .lcard-text {
+      font-size: .86rem;
+      color: var(--text);
+      line-height: 1.62;
+      font-weight: 300
+    }
+
+    /* ══ DISTRITOS ══ */
+    .districts {
+      background: var(--bg)
+    }
+
+    .dist-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border)
+    }
+
+    .dist {
+      background: var(--panel);
+      padding: 1.8rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .2s;
+      cursor: default
+    }
+
+    .dist-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      position: absolute;
+      right: .8rem;
+      top: .5rem;
+      line-height: 1;
+      opacity: .05;
+      transition: opacity .3s;
+      color: var(--white)
+    }
+
+    .dist:hover {
+      background: #0c1218
+    }
+
+    .dist:hover .dist-num {
+      opacity: .09
+    }
+
+    .dist-bar {
+      height: 2px;
+      width: 40px;
+      margin-bottom: 1rem
+    }
+
+    .dist:nth-child(1) .dist-bar {
+      background: var(--red)
+    }
+
+    .dist:nth-child(2) .dist-bar {
+      background: var(--purple)
+    }
+
+    .dist:nth-child(3) .dist-bar {
+      background: var(--cyan)
+    }
+
+    .dist:nth-child(4) .dist-bar {
+      background: var(--yellow)
+    }
+
+    .dist:nth-child(5) .dist-bar {
+      background: var(--orange)
+    }
+
+    .dist:nth-child(6) .dist-bar {
+      background: var(--red)
+    }
+
+    .dist:nth-child(7) .dist-bar {
+      background: #00ff9d
+    }
+
+    .dist:last-child {
+      grid-column: 1 / -1
+    }
+
+    .dist-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--white);
+      letter-spacing: .05em;
+      margin-bottom: .25rem
+    }
+
+    .dist-zone {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .18em;
+      color: var(--dim);
+      margin-bottom: .55rem
+    }
+
+    .dist-threat {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .15em;
+      margin-bottom: .6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem
+    }
+
+    .threat-safe {
+      color: #2ecc71
+    }
+
+    .threat-min {
+      color: #a8ff00
+    }
+
+    .threat-par {
+      color: var(--yellow)
+    }
+
+    .threat-ext {
+      color: var(--orange)
+    }
+
+    .threat-cat {
+      color: var(--red)
+    }
+
+    .dist-desc {
+      font-size: .81rem;
+      color: var(--text);
+      line-height: 1.62;
+      font-weight: 300
+    }
+
+    /* ══ ESTILOS DE VIDA ══ */
+    .lifestyles {
+      background: var(--panel)
+    }
+
+    .ls-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-bottom: 3rem
+    }
+
+    .ls-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem
+    }
+
+    .ls-card {
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      transition: all .25s;
+      cursor: default
+    }
+
+    .ls-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .5)
+    }
+
+    .ls-card:nth-child(1):hover {
+      border-color: rgba(255, 210, 0, .4);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .5), 0 0 30px rgba(255, 210, 0, .07)
+    }
+
+    .ls-card:nth-child(2):hover {
+      border-color: rgba(0, 229, 255, .4);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .5), 0 0 30px rgba(0, 229, 255, .07)
+    }
+
+    .ls-card:nth-child(3):hover {
+      border-color: rgba(255, 42, 69, .4);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .5), 0 0 30px rgba(255, 42, 69, .07)
+    }
+
+    .ls-stripe {
+      height: 3px
+    }
+
+    .ls-card:nth-child(1) .ls-stripe {
+      background: linear-gradient(to right, var(--yellow), var(--orange))
+    }
+
+    .ls-card:nth-child(2) .ls-stripe {
+      background: linear-gradient(to right, var(--cyan), var(--purple))
+    }
+
+    .ls-card:nth-child(3) .ls-stripe {
+      background: linear-gradient(to right, var(--red), var(--purple))
+    }
+
+    .ls-body {
+      padding: 1.8rem 1.6rem
+    }
+
+    .ls-ico {
+      font-size: 2.2rem;
+      margin-bottom: .8rem;
+      display: block
+    }
+
+    .ls-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .5rem;
+      letter-spacing: .2em;
+      color: var(--dim);
+      margin-bottom: .4rem;
+      text-transform: uppercase
+    }
+
+    .ls-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: .05em;
+      margin-bottom: .7rem
+    }
+
+    .ls-card:nth-child(1) .ls-name {
+      color: var(--yellow)
+    }
+
+    .ls-card:nth-child(2) .ls-name {
+      color: var(--cyan)
+    }
+
+    .ls-card:nth-child(3) .ls-name {
+      color: var(--red)
+    }
+
+    .ls-desc {
+      font-size: .88rem;
+      color: var(--text);
+      line-height: 1.7;
+      font-weight: 300
+    }
+
+    .ls-desc strong {
+      color: var(--white);
+      font-weight: 600
+    }
+
+    .ls-stats {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border)
+    }
+
+    .ls-stat {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .5rem;
+      letter-spacing: .12em;
+      color: var(--dim);
+      display: flex;
+      gap: .5rem;
+      align-items: center
+    }
+
+    .ls-stat span {
+      color: var(--text)
+    }
+
+    /* ══ ROLES ══ */
+    .roles {
+      background: var(--bg)
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem
+    }
+
+    .rcard {
+      border: 1px solid var(--border);
+      padding: 1.4rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all .25s;
+      cursor: default
+    }
+
+    .rcard::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 210, 0, .04) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity .25s
+    }
+
+    .rcard:hover {
+      border-color: rgba(255, 210, 0, .35);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .5), 0 0 20px rgba(255, 210, 0, .06)
+    }
+
+    .rcard:hover::after {
+      opacity: 1
+    }
+
+    .rico {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      margin-bottom: .6rem;
+      display: block;
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .rname {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: .06em;
+      color: var(--white);
+      margin-bottom: .25rem
+    }
+
+    .rdesc {
+      font-size: .65rem;
+      color: var(--dim);
+      font-weight: 300;
+      line-height: 1.5;
+      font-family: 'Share Tech Mono', monospace
+    }
+
+    .roles-note {
+      margin-top: 1.5rem;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--yellow);
+      padding: 1rem 1.2rem;
+      background: rgba(255, 210, 0, .02)
+    }
+
+    .roles-note-text {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .12em;
+      color: var(--dim)
+    }
+
+    .roles-note-text strong {
+      color: var(--yellow)
+    }
+
+    /* ══ SISTEMA ══ */
+    .sistema {
+      background: var(--panel)
+    }
+
+    .sistema-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+      align-items: start
+    }
+
+    .sys-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem
+    }
+
+    .sys {
+      border: 1px solid var(--border);
+      background: var(--bg);
+      overflow: hidden;
+      transition: border-color .2s
+    }
+
+    .sys:hover {
+      border-color: rgba(255, 210, 0, .2)
+    }
+
+    .sys-stripe {
+      height: 2px
+    }
+
+    .sys:nth-child(1) .sys-stripe {
+      background: linear-gradient(to right, var(--red), var(--purple))
+    }
+
+    .sys:nth-child(2) .sys-stripe {
+      background: linear-gradient(to right, var(--cyan), var(--purple))
+    }
+
+    .sys:nth-child(3) .sys-stripe {
+      background: linear-gradient(to right, var(--yellow), var(--orange))
+    }
+
+    .sys:nth-child(4) .sys-stripe {
+      background: linear-gradient(to right, var(--purple), var(--cyan))
+    }
+
+    .sys-body {
+      padding: 1.7rem
+    }
+
+    .sys-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .5rem;
+      letter-spacing: .2em;
+      color: var(--dim);
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem
+    }
+
+    .sys-tag span {
+      width: 4px;
+      height: 4px;
+      background: var(--yellow);
+      display: inline-block
+    }
+
+    .sys-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: .6rem
+    }
+
+    .sys-desc {
+      font-size: .84rem;
+      color: var(--text);
+      line-height: 1.72;
+      font-weight: 300
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+      margin-top: .9rem
+    }
+
+    .chip {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .47rem;
+      letter-spacing: .1em;
+      border: 1px solid var(--border);
+      color: var(--dim);
+      padding: .12rem .45rem
+    }
+
+    /* ══ TERMINAL ══ */
+    .tech {
+      background: var(--bg)
+    }
+
+    .tech-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4rem;
+      align-items: center
+    }
+
+    .terminal {
+      background: #020408;
+      border: 1px solid var(--border);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .65rem;
+      overflow: hidden
+    }
+
+    .term-bar {
+      background: #0a0f16;
+      padding: .5rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .tdot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%
+    }
+
+    .tdot.r {
+      background: #ff453a
+    }
+
+    .tdot.y {
+      background: #ffd60a
+    }
+
+    .tdot.g {
+      background: #32d74b
+    }
+
+    .tname {
+      font-size: .46rem;
+      color: var(--dim);
+      letter-spacing: .14em;
+      margin-left: .4rem
+    }
+
+    .tbody {
+      padding: 1.1rem 1.3rem;
+      line-height: 2.1
+    }
+
+    .tl {
+      display: flex;
+      gap: .5rem
+    }
+
+    .tp {
+      color: var(--yellow)
+    }
+
+    .tc {
+      color: var(--cyan)
+    }
+
+    .to {
+      color: var(--dim)
+    }
+
+    .tg {
+      color: #32d74b
+    }
+
+    .tw {
+      color: var(--white)
+    }
+
+    .ty {
+      color: var(--yellow)
+    }
+
+    .tr2 {
+      color: var(--red)
+    }
+
+    .tb {
+      height: .6rem
+    }
+
+    .tcursor {
+      display: inline-block;
+      width: 6px;
+      height: .85em;
+      background: var(--cyan);
+      vertical-align: text-bottom;
+      animation: cur 1s step-end infinite
+    }
+
+    @keyframes cur {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    /* ══ NORMAS ══ */
+    .normas {
+      background: var(--panel)
+    }
+
+    .normas-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem
+    }
+
+    .rule-list {
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+      margin-top: .5rem
+    }
+
+    .ri {
+      display: flex;
+      gap: .9rem;
+      align-items: flex-start;
+      padding: .85rem 1rem;
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--red);
+      background: rgba(255, 42, 69, .02);
+      transition: background .2s
+    }
+
+    .ri:hover {
+      background: rgba(255, 42, 69, .045)
+    }
+
+    .ri.c {
+      border-left-color: var(--cyan);
+      background: rgba(0, 229, 255, .02)
+    }
+
+    .ri.c:hover {
+      background: rgba(0, 229, 255, .04)
+    }
+
+    .ri.y {
+      border-left-color: var(--yellow);
+      background: rgba(255, 210, 0, .02)
+    }
+
+    .ri.y:hover {
+      background: rgba(255, 210, 0, .04)
+    }
+
+    .ri.g {
+      border-left-color: #00ff9d;
+      background: rgba(0, 255, 157, .02)
+    }
+
+    .ri.g:hover {
+      background: rgba(0, 255, 157, .04)
+    }
+
+    .rnum {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      color: var(--red);
+      min-width: 2rem;
+      margin-top: .1rem
+    }
+
+    .rnum.c {
+      color: var(--cyan)
+    }
+
+    .rnum.y {
+      color: var(--yellow)
+    }
+
+    .rnum.g {
+      color: #00ff9d
+    }
+
+    .rtxt {
+      font-size: .87rem;
+      color: var(--text);
+      line-height: 1.52;
+      font-weight: 300
+    }
+
+    .rtxt strong {
+      color: var(--white);
+      font-weight: 600
+    }
+
+    .accept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .3rem .8rem;
+      margin-top: .6rem
+    }
+
+    .accept-item {
+      font-size: .76rem;
+      color: var(--text);
+      font-weight: 300;
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+      padding: .2rem 0
+    }
+
+    .accept-n {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      color: var(--red);
+      min-width: 1.5rem;
+      flex-shrink: 0
+    }
+
+    .note {
+      border: 1px solid;
+      padding: 1.2rem 1.4rem;
+      margin-top: 1.5rem;
+      position: relative
+    }
+
+    .note::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 8px;
+      height: 8px;
+      border-top: 2px solid;
+      border-left: 2px solid;
+      border-color: inherit
+    }
+
+    .note.nc {
+      border-color: rgba(0, 229, 255, .3)
+    }
+
+    .note.ny {
+      border-color: rgba(255, 210, 0, .3)
+    }
+
+    .note-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .5rem;
+      letter-spacing: .2em;
+      margin-bottom: .5rem;
+      text-transform: uppercase
+    }
+
+    .nc .note-title {
+      color: var(--cyan)
+    }
+
+    .ny .note-title {
+      color: var(--yellow)
+    }
+
+    .note-text {
+      font-size: .84rem;
+      color: var(--text);
+      line-height: 1.65;
+      font-weight: 300
+    }
+
+    /* ══ CTA ══ */
+    .cta {
+      background: var(--bg);
+      text-align: center;
+      padding: 6rem 6vw;
+      position: relative;
+      overflow: hidden
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 90% at 50% 110%, rgba(255, 210, 0, .09) 0%, transparent 65%), radial-gradient(ellipse 50% 50% at 50% 100%, rgba(255, 42, 69, .08) 0%, transparent 60%);
+      pointer-events: none
+    }
+
+    .cbr {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      opacity: .18
+    }
+
+    .cbr.tl {
+      top: 3rem;
+      left: 6vw;
+      border-top: 1px solid var(--yellow);
+      border-left: 1px solid var(--yellow)
+    }
+
+    .cbr.tr {
+      top: 3rem;
+      right: 6vw;
+      border-top: 1px solid var(--yellow);
+      border-right: 1px solid var(--yellow)
+    }
+
+    .cbr.bl {
+      bottom: 3rem;
+      left: 6vw;
+      border-bottom: 1px solid var(--yellow);
+      border-left: 1px solid var(--yellow)
+    }
+
+    .cbr.br {
+      bottom: 3rem;
+      right: 6vw;
+      border-bottom: 1px solid var(--yellow);
+      border-right: 1px solid var(--yellow)
+    }
+
+    .cta-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .38em;
+      color: var(--yellow);
+      margin-bottom: 1rem;
+      position: relative
+    }
+
+    .cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 7rem);
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: .8rem;
+      position: relative
+    }
+
+    .cta-title em {
+      color: var(--red);
+      font-style: normal
+    }
+
+    .cta-sub {
+      font-size: .93rem;
+      color: var(--text);
+      letter-spacing: .05em;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+      line-height: 1.72;
+      position: relative
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative
+    }
+
+    /* ══ SYSTEM NOTICE ══ */
+    .sys-notice {
+      background: rgba(255, 210, 0, .03);
+      border: 1px solid var(--border);
+      padding: 1.2rem 1.4rem;
+      margin-top: 1.5rem;
+      position: relative;
+      overflow: hidden
+    }
+
+    .sys-notice::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--yellow)
+    }
+
+    .sys-notice-icon {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .5rem;
+      letter-spacing: .2em;
+      color: var(--yellow);
+      margin-bottom: .5rem;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .sys-notice-icon::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--yellow);
+      box-shadow: 0 0 8px var(--yellow);
+      border-radius: 50%;
+      animation: sdp 2.2s ease infinite
+    }
+
+    .sys-notice-text {
+      font-size: .82rem;
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 300
+    }
+
+    /* ══ FOOTER ══ */
+    footer {
+      background: var(--panel);
+      border-top: 1px solid var(--border);
+      padding: 1.8rem 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      letter-spacing: .08em;
+      line-height: 1.2
+    }
+
+    .footer-logo em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .footer-logo .fsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .4rem;
+      letter-spacing: .24em;
+      color: var(--dim);
+      display: block;
+      margin-top: .1rem
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem
+    }
+
+    .footer-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .5rem;
+      letter-spacing: .17em;
+      color: var(--dim);
+      text-decoration: none;
+      transition: color .2s;
+      text-transform: uppercase
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan)
+    }
+
+    .footer-copy {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      color: var(--dim);
+      letter-spacing: .14em
+    }
+
+    /* ══ RESPONSIVE ══ */
+    @media(max-width:1000px) {
+
+      .lore-grid,
+      .tech-inner,
+      .normas-inner,
+      .ls-intro,
+      .sistema-header {
+        grid-template-columns: 1fr;
+        gap: 2.5rem
+      }
+
+      .ls-grid,
+      .dist-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .roles-grid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .sys-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:650px) {
+
+      .roles-grid,
+      .ls-grid,
+      .dist-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .accept-grid {
+        grid-template-columns: 1fr
+      }
+
+      nav {
+        padding: 1rem 4vw
+      }
+
+      .nav-links {
+        display: none
+      }
+    }
+
+    /* CYBERPUNK PRELOADER */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #fcee0a;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Share Tech Mono', monospace;
+      color: #000;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      width: 300px;
+      text-align: left;
+    }
+
+    .loader-text {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .loader-bar-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      width: 0%;
+      height: 100%;
+      background: #000;
+      animation: loadBar 0.8s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+    }
+
+    @keyframes loadBar {
+      0% {
+        width: 0%;
+      }
+
+      20% {
+        width: 30%;
+      }
+
+      50% {
+        width: 35%;
+      }
+
+      80% {
+        width: 85%;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+
+    .glitch-load {
+      animation: glitchText 0.2s infinite;
+    }
+
+    @keyframes glitchText {
+      0% {
+        transform: translate(0);
+        text-shadow: 2px 0 #ff003c;
+      }
+
+      50% {
+        transform: translate(-2px, 2px);
+        text-shadow: -2px 0 #00e5ff;
+      }
+
+      100% {
+        transform: translate(2px, -2px);
+        text-shadow: 2px 0 #ff003c;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader-content">
+      <div class="loader-text glitch-load">INITIALIZING_COSMERIUM_OS...</div>
+      <div class="loader-bar-container">
+        <div class="loader-bar"></div>
+      </div>
+      <div style="font-size: 0.6rem; margin-top: 1rem; opacity: 0.7;">
+        AUTHENTICATING_USER_PROFILE...<br>
+        SYNCING_NEURAL_LINK_v3.0.2...<br>
+        LOADING_NIGHT_CITY_DATABASE...
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="home.html">COSMERIUM <em>ERA III</em><span class="nsub">NIGHT CITY · 2077</span></a>
+    <ul class="nav-links">
+      <li><a href="home.html">Inicio</a></li>
+      <li><a href="mundo.html">El Mundo</a></li>
+      <li><a href="roles.html">Roles</a></li>
+      <li><a href="sistema.html">Sistema</a></li>
+      <li><a href="objetos.html">Objetos</a></li>
+      <li><a href="ficha.html">Ficha</a></li>
+      <li><a href="normativa.html">Normativa</a></li>
+    </ul>
+    <a class="nav-btn" href="https://discord.gg/DWacKAK373">&#9654; Discord</a>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="hero-sky"></div>
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="hero-grid"></div>
+
+    <div class="city-wrap">
+      <svg class="city-svg" viewBox="0 0 1440 480" xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMax meet">
+        <defs>
+          <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0d1520" />
+            <stop offset="100%" stop-color="#060c14" />
+          </linearGradient>
+        </defs>
+        <g fill="#060b12" opacity=".65">
+          <rect x="0" y="300" width="80" height="180" />
+          <rect x="70" y="260" width="50" height="220" />
+          <rect x="110" y="180" width="35" height="300" />
+          <rect x="185" y="130" width="28" height="350" />
+          <rect x="250" y="200" width="40" height="280" />
+          <rect x="280" y="100" width="22" height="380" />
+          <rect x="357" y="160" width="58" height="320" />
+          <rect x="420" y="70" width="20" height="410" />
+          <rect x="475" y="160" width="60" height="320" />
+          <rect x="547" y="120" width="25" height="360" />
+          <rect x="597" y="80" width="32" height="400" />
+          <rect x="631" y="240" width="55" height="240" />
+          <rect x="704" y="50" width="18" height="430" />
+          <rect x="712" y="200" width="52" height="280" />
+          <rect x="774" y="110" width="65" height="370" />
+          <rect x="851" y="150" width="42" height="330" />
+          <rect x="883" y="60" width="22" height="420" />
+          <rect x="935" y="160" width="37" height="320" />
+          <rect x="982" y="90" width="25" height="390" />
+          <rect x="1059" y="60" width="22" height="420" />
+          <rect x="1111" y="120" width="38" height="360" />
+          <rect x="1174" y="190" width="60" height="290" />
+          <rect x="1246" y="140" width="42" height="340" />
+          <rect x="1296" y="70" width="20" height="410" />
+          <rect x="1351" y="160" width="32" height="320" />
+          <rect x="1373" y="90" width="67" height="390" />
+        </g>
+        <g fill="url(#bg2)">
+          <rect x="130" y="220" width="30" height="260" />
+          <rect x="210" y="160" width="45" height="320" />
+          <rect x="290" y="130" width="20" height="350" />
+          <rect x="430" y="90" width="22" height="390" />
+          <rect x="600" y="110" width="28" height="370" />
+          <rect x="680" y="60" width="35" height="420" />
+          <rect x="760" y="150" width="40" height="330" />
+          <rect x="850" y="100" width="30" height="380" />
+          <rect x="1030" y="80" width="25" height="400" />
+          <rect x="1120" y="140" width="38" height="340" />
+          <rect x="1300" y="60" width="22" height="420" />
+        </g>
+        <g fill="#ffd200" opacity=".2">
+          <rect x="187" y="140" width="3" height="3" />
+          <rect x="187" y="154" width="3" height="3" />
+          <rect x="284" y="108" width="4" height="4" />
+          <rect x="422" y="76" width="3" height="3" />
+          <rect x="422" y="104" width="3" height="3" />
+          <rect x="601" y="86" width="3" height="3" />
+          <rect x="706" y="58" width="3" height="3" />
+          <rect x="706" y="86" width="3" height="3" />
+          <rect x="885" y="66" width="4" height="4" />
+          <rect x="885" y="94" width="4" height="4" />
+          <rect x="1063" y="68" width="3" height="3" />
+          <rect x="1302" y="68" width="3" height="3" />
+          <rect x="1302" y="90" width="3" height="3" />
+        </g>
+        <g opacity=".16">
+          <rect x="435" y="92" width="2" height="70" fill="#00e5ff" />
+          <rect x="682" y="62" width="2" height="90" fill="#ffd200" />
+          <rect x="1302" y="68" width="2" height="100" fill="#ff2a45" />
+        </g>
+        <line x1="0" y1="480" x2="1440" y2="480" stroke="#ff2a45" stroke-width="1" opacity=".35" />
+        <line x1="0" y1="478" x2="1440" y2="478" stroke="#ff2a45" stroke-width=".4" opacity=".12" />
+      </svg>
+    </div>
+
+    <div class="gh"></div>
+    <div class="gh"></div>
+    <div class="gh"></div>
+
+    <div class="ui-tl">
+      SYS // NCPD_NET v77.4.1 // ENLACE_ACTIVO<br>
+      COSMERIUM ERA III · ROL EN ESPAÑOL<br>
+      SISTEMA: CYBERPUNK RED · LORE: CP2077
+    </div>
+    <div class="ui-status">
+      <div class="usi">SERVIDOR ONLINE <span class="sdot c"></span></div>
+      <div class="usi">ROLEPLAY ACTIVO <span class="sdot r"></span></div>
+      <div class="usi">CONAN EXILES <span class="sdot y"></span></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-kicker">Cosmerium Era III · Servidor de rol · Cyberpunk</div>
+      <h1 class="hero-title" data-text="NIGHT CITY">
+        NIGHT CITY
+        <span class="ln2">AÑO 2077</span>
+        <span class="yr">ESTADO LIBRE DE CALIFORNIA DEL NORTE</span>
+      </h1>
+      <p class="hero-tagline">
+        El <em>futuro llegó</em> — y fue una <strong>decepción brillante</strong>.<br>
+        Las corporaciones controlan todo. El cromo reemplaza la carne.<br>
+        Night City devora a sus habitantes. <em>¿Leyenda o basura?</em>
+      </p>
+      <div class="badge-row" style="margin-top:1.5rem;margin-bottom:0">
+        <span class="badge badge-r">Sistema · Cyberpunk Red</span>
+        <span class="badge badge-y">Lore · Cyberpunk 2077</span>
+      </div>
+      <div class="hero-cta">
+        <a href="https://discord.gg/DWacKAK373" class="btn btn-y">▶ Unirse al Discord</a>
+        <a href="#lore" class="btn btn-o">Explorar la ciudad</a>
+      </div>
+    </div>
+
+    <div class="ui-br">LAT 36°42'N · LONG 121°39'W · NIGHT CITY · 2077 // POP: 5.4M</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- STATS -->
+  <div class="statbar">
+    <div class="sblock"><span class="sn">2077</span><span class="sl">Año en juego</span></div>
+    <div class="sblock"><span class="sn">10</span><span class="sl">Roles jugables</span></div>
+    <div class="sblock"><span class="sn">3</span><span class="sl">Estilos de vida</span></div>
+    <div class="sblock"><span class="sn">7</span><span class="sl">Distritos</span></div>
+    <div class="sblock"><span class="sn">42</span><span class="sl">Heridas críticas</span></div>
+    <div class="sblock"><span class="sn">24/7</span><span class="sl">Servidor activo</span></div>
+  </div>
+
+  <!-- ══ LORE ══ -->
+  <section class="lore" id="lore">
+    <div class="lore-grid">
+      <div class="lore-text">
+        <div class="sec-kicker">Ambientación oficial</div>
+        <h2 class="sec-title">NIGHT CITY<br><span class="y">AÑO 2077</span></h2>
+        <div class="badge-row">
+          <span class="badge badge-y">Lore · Cyberpunk 2077</span>
+        </div>
+        <p>La joya corrupta de California. Una megalópolis-estado independiente donde <strong>las corporaciones cotizan
+            en bolsa vidas humanas</strong> y las megaestructuras de cristal proyectan sombras sobre millones de almas
+          que no tienen nada que perder. Da igual si lleváis viviendo aquí desde la administración Kress o si es vuestra
+          primera vez — Night City siempre encuentra la forma de sorprenderos.</p>
+        <p>La ciudad nació del sueño del visionario <em>Richard Night</em>, respaldado por corporaciones que
+          convirtieron la Bahía de Coronado en la metrópoli del mañana. Night fue asesinado en su propia casa por
+          atacantes sin identificar, pero su creación pervivió — incluso sobrevivió a la explosión nuclear de 2023 que
+          arrasó su mismísimo corazón.</p>
+        <p>En <em>2077</em>, <strong>Arasaka y Militech</strong> libran su guerra fría por el control del Net. El <span
+            class="c">DataKrash del 94</span> fragmentó el ciberespacio para siempre; los Blackwall contienen horrores
+          digitales inimaginables mientras los Netrunners aprenden a surfear sus ruinas como arqueólogos del futuro.</p>
+        <p>Aquí no hay héroes. Hay <strong>supervivientes con estilo</strong>.</p>
+      </div>
+      <div class="lcards">
+        <div class="lcard">
+          <div class="lcard-tag">// Las Megacorporaciones</div>
+          <div class="lcard-text">Arasaka, Militech, Biotechnica, Petrochem. En el Centro Corporativo del Distrito Cero
+            se regulan a sí mismas, sin interferencia del exterior. Sus guerras privadas se libran con mercenarios
+            desechables — quizás tú entre ellos.</div>
+        </div>
+        <div class="lcard">
+          <div class="lcard-tag">// El Cromo y la Humanidad</div>
+          <div class="lcard-text">Cada implante te aleja un poco más de lo humano. El Índice de Empatía mide cuánto te
+            queda. Demasiado cromo y la Cyberpsicosis te reclamará — y la MAX-TAC sabrá encontrarte.</div>
+        </div>
+        <div class="lcard">
+          <div class="lcard-tag">// Street Cred</div>
+          <div class="lcard-text">En Night City eres lo que otros piensan de ti. La reputación abre puertas que el
+            dinero no puede. Construye tu leyenda en las calles de Watson, Heywood o Japantown — o muere siendo nadie.
+          </div>
+        </div>
+        <div class="lcard">
+          <div class="lcard-tag">// Style Over Substance</div>
+          <div class="lcard-text">Tu look es tu identidad. Ropa, cromas, actitud. En 2077 la estética no es superficial
+            — es una declaración de supervivencia en un mundo que te quiere invisible y reemplazable.</div>
+        </div>
+        <div class="lcard">
+          <div class="lcard-tag">// El Momento Más Tenso</div>
+          <div class="lcard-text">Pre-Heist. Pre-Johnny. La ciudad en su punto de máxima presión. Las decisiones que
+            tomes ahora, en estas calles, escribirán la historia de Night City para siempre.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ DISTRITOS ══ -->
+  <section class="districts" id="ciudad">
+    <div class="sec-kicker">Mapa de Night City</div>
+    <h2 class="sec-title">LOS <span class="r">DISTRITOS</span></h2>
+    <p class="sec-desc">Night City está dividida en zonas de control con sus propias facciones, economía y nivel de
+      peligro según la Policía de Night City. Aprende a moverte — o aprende a morir.</p>
+    <div class="dist-grid">
+      <div class="dist">
+        <div class="dist-num">00</div>
+        <div class="dist-bar"></div>
+        <div class="dist-name">Distrito Cero</div>
+        <div class="dist-zone">// CENTRO CORPORATIVO</div>
+        <div class="dist-threat threat-safe">● NIVEL: SEGURO</div>
+        <div class="dist-desc">Gigantescos rascacielos y un ballet de carne y acero iluminado por neón. El Centro
+          Corporativo es donde las corporaciones se regulan a sí mismas, sin interferencia exterior. Los hoteles más
+          lujosos, los restaurantes más exclusivos y los clubes más privados de la ciudad.</div>
+      </div>
+      <div class="dist">
+        <div class="dist-num">01</div>
+        <div class="dist-bar"></div>
+        <div class="dist-name">Watson</div>
+        <div class="dist-zone">// ZONA INDUSTRIAL</div>
+        <div class="dist-threat threat-ext">● NIVEL: EXTREMO</div>
+        <div class="dist-desc">El arca de Night City tras la catástrofe nuclear de 2023. Kabuki, maraña de callejones
+          superpoblados, es el hervidero de artistas y cazadores de gangas. El Distrito Industrial Norte (DIN) y Little
+          China completan un mosaico cultural único. Los Maelstrom dominan las sombras.</div>
+      </div>
+      <div class="dist">
+        <div class="dist-num">02</div>
+        <div class="dist-bar"></div>
+        <div class="dist-name">Westbrook</div>
+        <div class="dist-zone">// ENTRETENIMIENTO</div>
+        <div class="dist-threat threat-min">● NIVEL: MÍNIMO</div>
+        <div class="dist-desc">Surgido durante la 4.ª Guerra Corporativa, Westbrook alberga Charter Hill para los que
+          están al alza y North Oak para los que ya llegaron a la cima. De noche, Japantown explota de kyabakuras,
+          hoteles del amor y el club Clouds. Las Garras de Tygre controlan el entretenimiento.</div>
+      </div>
+      <div class="dist">
+        <div class="dist-num">03</div>
+        <div class="dist-bar"></div>
+        <div class="dist-name">Heywood</div>
+        <div class="dist-zone">// RESIDENCIAL</div>
+        <div class="dist-threat threat-par">● NIVEL: PARCIALMENTE PELIGROSO</div>
+        <div class="dist-desc">Con encanto sutil e inconfundible. Boutiques, mercados al aire libre y puestos de tacos
+          en Vista del Rey. Alberga el ayuntamiento y el Reconciliation Park. En las zonas sur y este, los Valentinos
+          controlan el territorio con tráfico de drogas y robo de vehículos.</div>
+      </div>
+      <div class="dist">
+        <div class="dist-num">04</div>
+        <div class="dist-bar"></div>
+        <div class="dist-name">Santo Domingo</div>
+        <div class="dist-zone">// ZONA INDUSTRIAL</div>
+        <div class="dist-threat threat-par">● NIVEL: VIGILADO</div>
+        <div class="dist-desc">Arroyo, con esqueletos de fábricas quebradas, contrasta con Rancho Coronado, ciudad
+          dormitorio de vallas blancas y céspedes perfectos donde el suelo sigue perteneciendo a las corporaciones. La
+          Banda de la Calle 6, integrada por veteranos, actúa como fuerza de justicieros.</div>
+      </div>
+      <div class="dist">
+        <div class="dist-num">05</div>
+        <div class="dist-bar"></div>
+        <div class="dist-name">Pacífica</div>
+        <div class="dist-zone">// ZONA ABANDONADA</div>
+        <div class="dist-threat threat-cat">● NIVEL: CATASTRÓFICO</div>
+        <div class="dist-desc">La zona que las corporaciones dejaron pudrir. Sin autoridad de la ciudad, cae bajo el
+          control de los Hijos del Vudú. Los chatarreros atacan con frecuencia — muchos que entran abandonan Pacífica
+          sin órganos vitales o sin sus valiosos implantes de cyberware.</div>
+      </div>
+      <div class="dist">
+        <div class="dist-num">06</div>
+        <div class="dist-bar"></div>
+        <div class="dist-name">Las Afueras</div>
+        <div class="dist-zone">// BADLANDS · ZONA LIBRE</div>
+        <div class="dist-threat threat-cat">● NIVEL: PELIGRO EXTREMO</div>
+        <div class="dist-desc">Más allá de los muros. Las granjas de Biotechnica producen proteínas sintéticas a escala
+          industrial. Rocky Ridge, ciudad fantasma, sirve de refugio nómada. La NCPD no tiene jurisdicción aquí — solo
+          rige la ley del más rápido y el mejor armado.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ ESTILOS DE VIDA ══ -->
+  <section class="lifestyles" id="vida">
+    <div class="ls-intro">
+      <div>
+        <div class="sec-kicker">Orígenes del personaje</div>
+        <h2 class="sec-title">3 ESTILOS<br>DE <span class="y">VIDA</span></h2>
+        <div class="badge-row">
+          <span class="badge badge-y">Lore · Cyberpunk 2077</span>
+        </div>
+      </div>
+      <div>
+        <p class="sec-desc" style="margin-bottom:0">Como en el juego, tu historia comienza antes de llegar a Night City.
+          Tu estilo de vida determina tu punto de partida, tus contactos, tu mentalidad y cómo la ciudad te percibe
+          desde el primer día. No es solo un origen — es quién eres.</p>
+      </div>
+    </div>
+
+    <div class="ls-grid">
+      <div class="ls-card">
+        <div class="ls-stripe"></div>
+        <div class="ls-body">
+          <span class="ls-ico">👔</span>
+          <div class="ls-tag">// Estilo de vida 01</div>
+          <div class="ls-name">CORPO</div>
+          <div class="ls-desc">Viviste dentro del sistema. Trajes, credichips y reuniones en el Centro Corporativo.
+            Conoces los mecanismos del poder desde dentro — los favores que se cobran, los contratos que se rompen, las
+            personas que desaparecen. <strong>Todo tiene un precio en una corporación. Incluido tú.</strong> Ahora estás
+            aquí, en las calles, con ese conocimiento como única ventaja.</div>
+          <div class="ls-stats">
+            <div class="ls-stat">CONTACTOS <span>Red corporativa</span></div>
+            <div class="ls-stat">VENTAJA <span>Información y acceso</span></div>
+            <div class="ls-stat">RIESGO <span>Eres un activo... o una amenaza</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ls-card">
+        <div class="ls-stripe"></div>
+        <div class="ls-body">
+          <span class="ls-ico">🚐</span>
+          <div class="ls-tag">// Estilo de vida 02</div>
+          <div class="ls-name">NÓMADA</div>
+          <div class="ls-desc">La carretera fue tu hogar. Tu clan, tu familia. En las Afueras aprendiste que la lealtad
+            lo es todo y que las corporaciones son el enemigo real. <strong>Los Aldecaldos, los Wraiths — el clan define
+              tu código.</strong> Llegaste a Night City por una razón. La ciudad no entiende tu mundo, pero tú entiendes
+            el suyo mejor de lo que creen.</div>
+          <div class="ls-stats">
+            <div class="ls-stat">CONTACTOS <span>Clanes y rutas de contrabando</span></div>
+            <div class="ls-stat">VENTAJA <span>Mecánica, supervivencia, movilidad</span></div>
+            <div class="ls-stat">RIESGO <span>La ciudad no confía en los de fuera</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ls-card">
+        <div class="ls-stripe"></div>
+        <div class="ls-body">
+          <span class="ls-ico">🏚️</span>
+          <div class="ls-tag">// Estilo de vida 03</div>
+          <div class="ls-name">STREET KID</div>
+          <div class="ls-desc">Naciste en Night City. Creciste en sus calles, en sus megaedificios, en sus callejones.
+            Conoces cada esquina de Watson, cada camello de Heywood, cada Fixer que opera desde las sombras. <strong>No
+              tienes red de seguridad — nunca la tuviste.</strong> Pero conoces esta ciudad mejor que nadie, y eso, en
+            Night City, vale más que cualquier credichip.</div>
+          <div class="ls-stats">
+            <div class="ls-stat">CONTACTOS <span>Red de calle y barrio</span></div>
+            <div class="ls-stat">VENTAJA <span>Conocimiento de la ciudad</span></div>
+            <div class="ls-stat">RIESGO <span>Sin red de seguridad. Ninguna.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ ROLES ══ -->
+  <section class="roles" id="roles">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-bottom:2.5rem">
+      <div>
+        <div class="sec-kicker">Sistema · Cyberpunk Red</div>
+        <h2 class="sec-title">10 ROLES<br><span class="y">JUGABLES</span></h2>
+        <div class="badge-row">
+          <span class="badge badge-r">Sistema · Cyberpunk Red</span>
+        </div>
+      </div>
+      <div>
+        <p class="sec-desc" style="margin-bottom:0">En Cyberpunk Red tu rol es tu identidad mecánica. Cada uno posee una
+          habilidad especial única que ningún otro puede replicar — el Combate Netrunning, el Carisma del Rockerboy, la
+          Medicina de campo del Médico de Trauma. Elige quién eres en esta ciudad.</p>
+      </div>
+    </div>
+
+    <div class="roles-grid">
+      <div class="rcard">
+        <img class="rico" src="CPR_ROLE_ICONS/edgerunner.png" alt="Edgerunner">
+        <div class="rname">Edgerunner</div>
+        <div class="rdesc">Mercenario de élite. El mejor en combate. Habilidad: Sentido de Combate.</div>
+      </div>
+      <div class="rcard">
+        <img class="rico" src="CPR_ROLE_ICONS/rockero.png" alt="Rockero">
+        <div class="rname">Rockero</div>
+        <div class="rdesc">Músico. Activista. Voz de la revolución. Habilidad: Carisma Inspirador.</div>
+      </div>
+      <div class="rcard">
+        <img class="rico" src="CPR_ROLE_ICONS/netrunner.png" alt="Netrunner">
+        <div class="rname">Netrunner</div>
+        <div class="rdesc">Hacker. Fantasma digital. Habilidad: Combate Netrunning.</div>
+      </div>
+      <div class="rcard">
+        <img class="rico" src="CPR_ROLE_ICONS/técnico.png" alt="Técnico">
+        <div class="rname">Técnico</div>
+        <div class="rdesc">Inventor. Constructor. Habilidad: Maker — todo tiene arreglo.</div>
+      </div>
+      <div class="rcard">
+        <img class="rico" src="CPR_ROLE_ICONS/teconomédico.png" alt="Tecnomédico">
+        <div class="rname">Tecnomédico</div>
+        <div class="rdesc">Cirujano de calle. Habilidad: Medicina de Trauma.</div>
+      </div>
+      <div class="rcard">
+        <img class="rico" src="CPR_ROLE_ICONS/nomada.png" alt="Nómada">
+        <div class="rname">Nómada</div>
+        <div class="rdesc">Clan. Familia. Carretera. Habilidad: Mochila del Clan.</div>
+      </div>
+      <div class="rcard">
+        <img class="rico" src="CPR_ROLE_ICONS/periodista.png" alt="Periodista">
+        <div class="rname">Periodista</div>
+        <div class="rdesc">Periodista. La verdad como arma. Habilidad: Credibilidad.</div>
+      </div>
+      <div class="rcard">
+        <img class="rico" src="CPR_ROLE_ICONS/ejecutivo.png" alt="Ejecutivo">
+        <div class="rname">Ejecutivo</div>
+        <div class="rdesc">Tiburón corporativo. Habilidad: Recursos Corporativos.</div>
+      </div>
+      <div class="rcard">
+        <img class="rico" src="CPR_ROLE_ICONS/Fixer.png" alt="Fixer">
+        <div class="rname">Fixer</div>
+        <div class="rdesc">Contactos. Información. Habilidad: Contacto de Fixer.</div>
+      </div>
+      <div class="rcard">
+        <img class="rico" src="CPR_ROLE_ICONS/exagente.png" alt="Exagente">
+        <div class="rname">Ex-Agente</div>
+        <div class="rdesc">La ley en una ciudad sin ella. Habilidad: Escudo Badgeado.</div>
+      </div>
+    </div>
+    <div class="roles-note">
+      <div class="roles-note-text">
+        <strong>// SISTEMA CYBERPUNK RED</strong> — Cada rol posee una Habilidad Especial de Rol única e intransferible.
+        El sistema de dados utiliza D10 como base. Las reglas oficiales de Cyberpunk Red determinan combate,
+        habilidades, cyberware e Índice de Empatía.
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ SISTEMA ══ -->
+  <section class="sistema" id="sistema">
+    <div class="sistema-header">
+      <div>
+        <div class="sec-kicker">Mecánicas de juego</div>
+        <h2 class="sec-title">SISTEMA<br><span class="r">CYBERPUNK RED</span></h2>
+        <div class="badge-row">
+          <span class="badge badge-r">Sistema · Cyberpunk Red</span>
+          <span class="badge badge-y">Lore · Cyberpunk 2077</span>
+        </div>
+      </div>
+      <div>
+        <p class="sec-desc" style="margin-bottom:0">Las reglas oficiales de Cyberpunk Red implementadas directamente en
+          el servidor vía RPR Redux y scripts Tot!. La ambientación es la Night City del 2077 — el mundo de V, de las
+          corporaciones en guerra y del Net fragmentado. Dos capas que se complementan para la mejor experiencia
+          posible.</p>
+      </div>
+    </div>
+
+    <div class="sys-grid">
+      <div class="sys">
+        <div class="sys-stripe"></div>
+        <div class="sys-body">
+          <div class="sys-tag"><span></span>Combate · CPR</div>
+          <div class="sys-title">Heridas Críticas</div>
+          <div class="sys-desc">Dos o más 6s en tus dados de daño — RPR Redux activa el script automáticamente. Cuatro
+            tablas oficiales de Cyberpunk Red. 42 heridas con efectos mecánicos reales y permanentes que se aplican como
+            buffs al instante.</div>
+          <div class="chips">
+            <span class="chip">1d10 · Distancia</span><span class="chip">1d10 · CAC</span>
+            <span class="chip">2d6 · Cabeza</span><span class="chip">2d6 · Cuerpo</span><span class="chip">42
+              heridas</span>
+          </div>
+        </div>
+      </div>
+      <div class="sys">
+        <div class="sys-stripe"></div>
+        <div class="sys-body">
+          <div class="sys-tag"><span></span>Progresión · CPR</div>
+          <div class="sys-title">Cyberware e Índice de Empatía</div>
+          <div class="sys-desc">Cada implante instalado en el Ripperdoc consume IE — el recurso que mide tu humanidad
+            restante. Regla oficial de Cyberpunk Red. Demasiado cromo activa la Cyberpsicosis, y la MAX-TAC del universo
+            2077 sabrá encontrarte.</div>
+          <div class="chips">
+            <span class="chip">Índice de Empatía</span><span class="chip">Ripperdocs</span>
+            <span class="chip">Cyberpsicosis</span><span class="chip">MAX-TAC</span>
+          </div>
+        </div>
+      </div>
+      <div class="sys">
+        <div class="sys-stripe"></div>
+        <div class="sys-body">
+          <div class="sys-tag"><span></span>Economía · CPR</div>
+          <div class="sys-title">Eurodólares y Mercado Negro</div>
+          <div class="sys-desc">Sistema económico basado en Eurodólares (eddies). Consigue trabajos de los Fixers en el
+            estilo 2077, vende en el mercado negro de Night City, paga tus deudas con las corporaciones o róbales todo
+            lo que tengan.</div>
+          <div class="chips">
+            <span class="chip">Eddies</span><span class="chip">Fixers</span>
+            <span class="chip">Mercado negro</span><span class="chip">Contratos</span>
+          </div>
+        </div>
+      </div>
+      <div class="sys">
+        <div class="sys-stripe"></div>
+        <div class="sys-body">
+          <div class="sys-tag"><span></span>Social · 2077</div>
+          <div class="sys-title">Facciones y Street Cred</div>
+          <div class="sys-desc">Las facciones del universo 2077: Maelstrom, Valentinos, Hijos del Vudú, Garras de Tygre,
+            Aldecaldos, Banda de la Calle 6, Arasaka, Militech. Cada una recuerda lo que haces. El Street Cred determina
+            quién te da trabajo — y quién pone precio a tu cabeza.</div>
+          <div class="chips">
+            <span class="chip">Street Cred</span><span class="chip">8 Facciones</span>
+            <span class="chip">Corporaciones</span><span class="chip">Reputación</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ TERMINAL ══ -->
+  <section class="tech">
+    <div class="tech-inner">
+      <div>
+        <div class="sec-kicker">Stack técnico</div>
+        <h2 class="sec-title">CONSTRUIDO CON <span class="y">PRECISIÓN</span></h2>
+        <p class="sec-desc">Cada sistema programado específicamente para este servidor, combinando mods de Conan Exiles
+          con scripts Tot! a medida para implementar las reglas reales de Cyberpunk Red.</p>
+        <div class="rule-list">
+          <div class="ri y"><span class="rnum y">01</span>
+            <div class="rtxt"><strong>RPR Redux</strong> — Sistema de combate con dados reales, heridas críticas
+              automáticas y tiradas de muerte según las reglas oficiales de Cyberpunk Red.</div>
+          </div>
+          <div class="ri y"><span class="rnum y">02</span>
+            <div class="rtxt"><strong>Tot! Admin</strong> — Scripts de nodos para diálogos, quests, eventos dinámicos y
+              sistemas de rol completamente automatizados.</div>
+          </div>
+          <div class="ri y"><span class="rnum y">03</span>
+            <div class="rtxt"><strong>Pippi Framework</strong> — Gestión de kits, warps, permisos y economía de
+              servidor.</div>
+          </div>
+          <div class="ri y"><span class="rnum y">04</span>
+            <div class="rtxt"><strong>Mods temáticos</strong> — Assets de Cyberpunk para armaduras, armas, edificios,
+              cyberware visual y props de Night City 2077.</div>
+          </div>
+        </div>
+      </div>
+      <div class="terminal">
+        <div class="term-bar">
+          <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+          <span class="tname">NCPD_NET // COSMERIUM_III · NIGHT CITY · 2077</span>
+        </div>
+        <div class="tbody">
+          <div class="tl"><span class="tp">$</span><span class="tc">connect cosmerium_era_iii</span></div>
+          <div class="tl"><span class="tg">// UPLINK ESTABLECIDO · NIGHT CITY · 2077</span></div>
+          <div class="tb"></div>
+          <div class="tl"><span class="tp">$</span><span class="tc">load reglas_cyberpunk_red</span></div>
+          <div class="tl"><span class="to">RPR Redux ............... <span class="tg">ACTIVO</span></span></div>
+          <div class="tl"><span class="to">Heridas críticas ........ <span class="tg">42 cargadas</span></span></div>
+          <div class="tl"><span class="to">Tablas CPR oficiales .... <span class="tg">VERIFICADAS</span></span></div>
+          <div class="tl"><span class="to">Índice de Empatía ....... <span class="tg">ACTIVO</span></span></div>
+          <div class="tb"></div>
+          <div class="tl"><span class="tp">$</span><span class="tc">load lore_2077</span></div>
+          <div class="tl"><span class="to">Distritos Night City .... <span class="tg">7 cargados</span></span></div>
+          <div class="tl"><span class="to">Estilos de vida ......... <span class="tg">3 activos</span></span></div>
+          <div class="tl"><span class="to">Roles disponibles ....... <span class="tg">10 activos</span></span></div>
+          <div class="tb"></div>
+          <div class="tl"><span class="tp">$</span><span class="tc">status facciones</span></div>
+          <div class="tl"><span class="to">Arasaka ................. <span class="tr2">VIGILANCIA ACTIVA</span></span>
+          </div>
+          <div class="tl"><span class="to">Valentinos .............. <span class="ty">NEUTRAL</span></span></div>
+          <div class="tl"><span class="to">Maelstrom ............... <span class="tr2">HOSTIL</span></span></div>
+          <div class="tl"><span class="to">Hijos del Vudú .......... <span class="tw">DESCONOCIDO</span></span></div>
+          <div class="tl"><span class="to">Aldecaldos .............. <span class="tg">CONTACTO ABIERTO</span></span>
+          </div>
+          <div class="tb"></div>
+          <div class="tl"><span class="tp">$</span><span class="tc">_<span class="tcursor"></span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ NORMAS ══ -->
+  <section class="normas" id="normas">
+    <div class="normas-inner">
+      <div>
+        <div class="sec-kicker">Acceso al Discord</div>
+        <h2 class="sec-title">CÓMO <span class="c">ENTRAR</span></h2>
+        <p class="sec-desc">Tres pasos para acceder a Cosmerium Era III. Sin burocracia — solo ganas de rolear en Night
+          City.</p>
+        <div class="rule-list">
+          <div class="ri c"><span class="rnum c">①</span>
+            <div class="rtxt"><strong>Reacciona con el emoji</strong> en el canal de bienvenida del Discord para
+              desbloquear el acceso completo al servidor.</div>
+          </div>
+          <div class="ri c"><span class="rnum c">②</span>
+            <div class="rtxt"><strong>Revisa el canal #guía-de-inicio</strong> — contiene todos los pasos siguientes
+              para no perderte nada antes de conectarte.</div>
+          </div>
+          <div class="ri c"><span class="rnum c">③</span>
+            <div class="rtxt"><strong>Prepárate para una aventura única.</strong> Night City del 2077 te espera.
+              Edgerunner.</div>
+          </div>
+        </div>
+        <div class="note ny" style="margin-top:1.8rem">
+          <div class="note-title">// Al acceder al servidor aceptas</div>
+          <div class="accept-grid">
+            <div class="accept-item"><span class="accept-n">01</span>Respeto mutuo</div>
+            <div class="accept-item"><span class="accept-n">02</span>Preservar buen ambiente</div>
+            <div class="accept-item"><span class="accept-n">03</span>Pasión por la iniciativa</div>
+            <div class="accept-item"><span class="accept-n">04</span>Lenguaje apropiado</div>
+            <div class="accept-item"><span class="accept-n">05</span>Respetar privacidad y seguridad</div>
+            <div class="accept-item"><span class="accept-n">06</span>Sin nombres ofensivos</div>
+            <div class="accept-item"><span class="accept-n">07</span>Contenido apropiado</div>
+            <div class="accept-item"><span class="accept-n">08</span>Prohibido el SPAM</div>
+            <div class="accept-item"><span class="accept-n">09</span>Cero discriminación</div>
+            <div class="accept-item"><span class="accept-n">10</span>Disfrute personal y colectivo</div>
+          </div>
+        </div>
+
+        <!-- ══ SYSTEM NOTICE ══ -->
+        <div class="sys-notice">
+          <div class="sys-notice-icon">// AVISO DEL SISTEMA</div>
+          <div class="sys-notice-text">Este servidor tiene plazas limitadas al tratarse de una experiencia privada
+            y así mantener la calidad del roleplay. Si la lista de espera está activa, te notificaremos en cuanto haya
+            un hueco disponible.</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-kicker">Guía de inicio</div>
+        <h2 class="sec-title">PRIMEROS <span class="r">PASOS</span></h2>
+        <p class="sec-desc">Sigue este checklist en orden. En menos tiempo del que tarda un Ripperdoc en instalarte un
+          implante, estarás dentro de Night City.</p>
+        <div class="rule-list">
+          <div class="ri"><span class="rnum">01</span>
+            <div class="rtxt">Obtén <strong>Conan Exiles</strong> en Steam o Epic Games Store.</div>
+          </div>
+          <div class="ri"><span class="rnum">02</span>
+            <div class="rtxt">Descarga los mods del canal <strong>📑 modlist</strong> del Discord.</div>
+          </div>
+          <div class="ri"><span class="rnum">03</span>
+            <div class="rtxt">Revisa la normativa completa en el canal <strong>📄 normativas</strong>.</div>
+          </div>
+          <div class="ri"><span class="rnum">04</span>
+            <div class="rtxt">Crea tu Ficha de Personaje y adjúntala en un <strong>ticket del Discord</strong>.</div>
+          </div>
+          <div class="ri"><span class="rnum">05</span>
+            <div class="rtxt">Cambia tu <strong>apodo del Discord</strong> por el nombre de tu personaje.</div>
+          </div>
+          <div class="ri"><span class="rnum">06</span>
+            <div class="rtxt">Conéctate mediante la lista de servidores o la IP en <strong>🌍 estado-servidor</strong>.
+            </div>
+          </div>
+          <div class="ri"><span class="rnum">07</span>
+            <div class="rtxt">Añade el <strong>nombre de tu personaje</strong> en la pantalla de creación de Conan.
+            </div>
+          </div>
+          <div class="ri"><span class="rnum">08</span>
+            <div class="rtxt">Crea tu personaje con <strong>Shift+B</strong> — nunca uses el editor Vanilla.</div>
+          </div>
+          <div class="ri"><span class="rnum">09</span>
+            <div class="rtxt">Rellena tu <strong>ficha de personaje en juego</strong> mediante <strong>Shift+R</strong>.
+            </div>
+          </div>
+          <div class="ri g" style="background:rgba(0,255,157,.03)">
+            <span class="rnum g">✓</span>
+            <div class="rtxt" style="color:var(--white)"><strong>¡Ya estás dentro!</strong> Bienvenido a Night City,
+              edgerunner. El 2077 te pertenece.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ CTA ══ -->
+  <section class="cta">
+    <div class="cbr tl"></div>
+    <div class="cbr tr"></div>
+    <div class="cbr bl"></div>
+    <div class="cbr br"></div>
+    <div class="cta-kicker">// Próximo paso · Cosmerium Era III · Night City 2077</div>
+    <h2 class="cta-title">¿LISTO PARA<br><em>NIGHT CITY?</em></h2>
+    <p class="cta-sub">El cromo no se instala solo. Elige tu estilo de vida, tu rol, y construye tu leyenda en la ciudad
+      más peligrosa del mundo — en el año más tenso de la historia.</p>
+    <div class="cta-btns">
+      <a href="https://discord.gg/DWacKAK373" class="btn btn-y">▶ Unirse al Discord</a>
+      <a href="#lore" class="btn btn-o">Ver la ciudad</a>
+    </div>
+  </section>
+
+
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-logo">
+      COSMERIUM <em>ERA III</em>
+      <span class="fsub">NIGHT CITY 2077 · SISTEMA: CYBERPUNK RED · CONAN EXILES</span>
+    </div>
+    <div class="footer-links">
+      <a href="mundo.html">El Mundo</a>
+      <a href="roles.html">Roles</a>
+      <a href="sistema.html">Sistema</a>
+      <a href="objetos.html">Objetos</a>
+      <a href="normativa.html">Normativa</a>
+      <a href="https://discord.gg/DWacKAK373">Discord</a>
+    </div>
+    <div class="footer-copy">CYBERPUNK RED · NIGHT CITY 2077 · COSMERIUM ERA III</div>
+  </footer>
+
+  <script>
+    window.onload = function () {
+      setTimeout(() => {
+        document.getElementById('preloader').classList.add('loaded');
+      }, 1000);
+    };
+  </script>
+</body>
+
+</html>

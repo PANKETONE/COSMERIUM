@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (localStorage.getItem('cosmerium_auth') !== 'true') {
+      window.location.href = "index.html";
+    }
+  </script>
+  <title>Roles &amp; Orígenes — Cosmerium Era III: Night City 2077</title>
+  <script src="js/live-notifications.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&display=swap');
+
+    :root {
+      --bg: #04060a;
+      --panel: #080c12;
+      --border: #111c28;
+      --red: #ff2a45;
+      --cyan: #00e5ff;
+      --yellow: #ffd200;
+      --purple: #bd00ff;
+      --orange: #ff6b00;
+      --green: #00ff9d;
+      --text: #a8c4d8;
+      --dim: #2e4558;
+      --white: #ecf4fa
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 900;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 229, 255, .005) 2px, rgba(0, 229, 255, .005) 4px)
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 1.1rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(4, 6, 10, .97) 60%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(17, 28, 40, .5)
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      letter-spacing: .08em;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1
+    }
+
+    .nav-logo .nsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .4rem;
+      letter-spacing: .3em;
+      color: var(--dim);
+      margin-top: .1rem
+    }
+
+    .nav-logo em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .nav-links {
+      display: flex;
+      gap: .2rem;
+      list-style: none;
+      align-items: center
+    }
+
+    .nav-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s;
+      padding: .4rem .8rem;
+      white-space: nowrap
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--cyan)
+    }
+
+    .nav-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .13em;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: .4rem .9rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+      white-space: nowrap
+    }
+
+    .nav-btn:hover {
+      background: var(--yellow);
+      color: #000
+    }
+
+    .page-hero {
+      min-height: 55vh;
+      padding: 9rem 6vw 5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end
+    }
+
+    .ph-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(0, 229, 255, .07) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 80% 80%, rgba(189, 0, 255, .08) 0%, transparent 55%), linear-gradient(135deg, #010308 0%, #030612 50%, #060a16 100%)
+    }
+
+    .ph-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(0, 229, 255, .02) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 229, 255, .015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 20% 50%, rgba(0, 0, 0, .4) 0%, transparent 70%)
+    }
+
+    .ph-content {
+      position: relative;
+      z-index: 2
+    }
+
+    .ph-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .38em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem
+    }
+
+    .ph-kicker::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--cyan)
+    }
+
+    .ph-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 9rem);
+      line-height: .88;
+      color: var(--white);
+      letter-spacing: .02em;
+      position: relative;
+    }
+
+    .glitch-layer {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glitch-layer::before,
+    .glitch-layer::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+      opacity: .07
+    }
+
+    .glitch-layer::before {
+      color: var(--cyan);
+      transform: translate(-3px, 0);
+      clip-path: polygon(0 20%, 100% 20%, 100% 45%, 0 45%)
+    }
+
+    .glitch-layer::after {
+      color: var(--red);
+      transform: translate(3px, 0);
+      clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
+      animation: chr 6s infinite
+    }
+
+    @keyframes chr {
+
+      0%,
+      88%,
+      100% {
+        opacity: .07
+      }
+
+      90% {
+        opacity: .2;
+        transform: translate(5px, 0)
+      }
+
+      93% {
+        opacity: .05;
+        transform: translate(-2px, 0)
+      }
+
+      96% {
+        opacity: .07
+      }
+    }
+
+
+    .ph-nav {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap
+    }
+
+    .pnb {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .18em;
+      text-decoration: none;
+      padding: .55rem 1.2rem;
+      text-transform: uppercase;
+      border: 1px solid;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px))
+    }
+
+    .pnb.c {
+      border-color: rgba(0, 229, 255, .4);
+      color: var(--cyan)
+    }
+
+    .pnb.c:hover {
+      background: rgba(0, 229, 255, .1);
+      border-color: var(--cyan)
+    }
+
+    .pnb.p {
+      border-color: rgba(189, 0, 255, .4);
+      color: var(--purple)
+    }
+
+    .pnb.p:hover {
+      background: rgba(189, 0, 255, .1);
+      border-color: var(--purple)
+    }
+
+    .ph-corner {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      opacity: .2
+    }
+
+    .ph-corner.tl {
+      top: 7rem;
+      left: 6vw;
+      border-top: 1px solid var(--cyan);
+      border-left: 1px solid var(--cyan)
+    }
+
+    .ph-stat {
+      position: absolute;
+      bottom: 3rem;
+      right: 6vw;
+      text-align: right;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      line-height: 2
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), var(--dim), var(--border), transparent)
+    }
+
+    section {
+      padding: 5rem 6vw
+    }
+
+    .sec-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .33em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      color: var(--cyan)
+    }
+
+    .sec-kicker::before {
+      content: '//';
+      color: var(--dim)
+    }
+
+    .sec-kicker.p {
+      color: var(--purple)
+    }
+
+    .sec-kicker.r {
+      color: var(--red)
+    }
+
+    .sec-kicker.y {
+      color: var(--yellow)
+    }
+
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: .03em;
+      margin-bottom: .9rem
+    }
+
+    .sec-title .r {
+      color: var(--red)
+    }
+
+    .sec-title .c {
+      color: var(--cyan)
+    }
+
+    .sec-title .y {
+      color: var(--yellow)
+    }
+
+    .sec-title .p {
+      color: var(--purple)
+    }
+
+    .sec-desc {
+      font-size: .95rem;
+      color: var(--text);
+      line-height: 1.78;
+      font-weight: 300;
+      max-width: 700px;
+      margin-bottom: 2.5rem
+    }
+
+    .roles-section {
+      background: var(--panel)
+    }
+
+    .roles-intro {
+      max-width: 800px;
+      margin-bottom: 3rem
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border)
+    }
+
+    .role-card {
+      background: var(--bg);
+      padding: 2.2rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .25s;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem
+    }
+
+    .role-card:hover {
+      background: #0b1018
+    }
+
+    .role-num {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .44rem;
+      letter-spacing: .2em;
+      color: var(--dim)
+    }
+
+    .role-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      letter-spacing: .04em;
+      line-height: 1
+    }
+
+    .role-stripe {
+      height: 2px;
+      width: 50px;
+      transition: width .35s
+    }
+
+    .role-card:hover .role-stripe {
+      width: 100%
+    }
+
+    .role-apt {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .45rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .18rem .55rem;
+      border: 1px solid;
+      display: inline-block;
+      width: fit-content
+    }
+
+    .role-desc {
+      font-size: .88rem;
+      color: var(--text);
+      line-height: 1.7;
+      font-weight: 300
+    }
+
+    .role-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem;
+      margin-top: .3rem
+    }
+
+    .role-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .44rem;
+      letter-spacing: .1em;
+      border: 1px solid var(--border);
+      color: var(--dim);
+      padding: .1rem .4rem;
+      transition: all .2s
+    }
+
+    .role-card:hover .role-tag {
+      border-color: rgba(255, 255, 255, .1);
+      color: rgba(168, 196, 216, .7)
+    }
+
+    .role-wm {
+      position: absolute;
+      right: -.5rem;
+      bottom: -1.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 8rem;
+      line-height: 1;
+      opacity: .025;
+      pointer-events: none;
+      color: var(--white);
+      transition: opacity .3s
+    }
+
+    .role-card:hover .role-wm {
+      opacity: .055
+    }
+
+    .rc-c {
+      color: var(--cyan)
+    }
+
+    .rc-r {
+      color: var(--red)
+    }
+
+    .rc-y {
+      color: var(--yellow)
+    }
+
+    .rc-p {
+      color: var(--purple)
+    }
+
+    .rc-g {
+      color: var(--green)
+    }
+
+    .rc-o {
+      color: var(--orange)
+    }
+
+    .rs-c {
+      background: var(--cyan)
+    }
+
+    .rs-r {
+      background: var(--red)
+    }
+
+    .rs-y {
+      background: var(--yellow)
+    }
+
+    .rs-p {
+      background: var(--purple)
+    }
+
+    .rs-g {
+      background: var(--green)
+    }
+
+    .rs-o {
+      background: var(--orange)
+    }
+
+    .ra-c {
+      border-color: var(--cyan);
+      color: var(--cyan)
+    }
+
+    .ra-r {
+      border-color: var(--red);
+      color: var(--red)
+    }
+
+    .ra-y {
+      border-color: var(--yellow);
+      color: var(--yellow)
+    }
+
+    .ra-p {
+      border-color: var(--purple);
+      color: var(--purple)
+    }
+
+    .ra-g {
+      border-color: var(--green);
+      color: var(--green)
+    }
+
+    .ra-o {
+      border-color: var(--orange);
+      color: var(--orange)
+    }
+
+    .role-card.wide {
+      grid-column: 1/-1
+    }
+
+    /* ORIGINS — Corpo, Nómada, Street Kid */
+
+    .origins-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: .5rem
+    }
+
+    .origin-card {
+      border: 1px solid var(--border);
+      padding: 2.2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: all .3s;
+      cursor: default
+    }
+
+    .origin-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .3s
+    }
+
+    .origin-card:hover {
+      transform: translateY(-3px)
+    }
+
+    .origin-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .44rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .origin-tag::before {
+      content: '';
+      width: 20px;
+      height: 1px
+    }
+
+    .origin-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      letter-spacing: .04em;
+      line-height: 1;
+      margin-bottom: .3rem
+    }
+
+    .origin-badge {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .43rem;
+      letter-spacing: .12em;
+      padding: .15rem .5rem;
+      border: 1px solid;
+      display: inline-block;
+      margin-bottom: .9rem
+    }
+
+    .origin-desc {
+      font-size: .88rem;
+      color: var(--text);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 1rem
+    }
+
+    .origin-traits {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem
+    }
+
+    .origin-trait {
+      display: flex;
+      gap: .6rem;
+      align-items: flex-start;
+      font-size: .84rem;
+      line-height: 1.5
+    }
+
+    .origin-trait::before {
+      content: '▸';
+      font-size: .55rem;
+      margin-top: .2rem;
+      flex-shrink: 0
+    }
+
+    .origin-bar {
+      height: 2px;
+      width: 100%;
+      margin-bottom: 1.2rem
+    }
+
+    /* Corpo */
+    .oc-corpo {
+      border-color: rgba(255, 210, 0, .18)
+    }
+
+    .oc-corpo:hover {
+      border-color: rgba(255, 210, 0, .5);
+      background: rgba(255, 210, 0, .02)
+    }
+
+    .oc-corpo .origin-tag {
+      color: var(--yellow)
+    }
+
+    .oc-corpo .origin-tag::before {
+      background: var(--yellow)
+    }
+
+    .oc-corpo .origin-name {
+      color: var(--yellow)
+    }
+
+    .oc-corpo .origin-badge {
+      border-color: var(--yellow);
+      color: var(--yellow)
+    }
+
+    .oc-corpo .origin-bar {
+      background: linear-gradient(to right, var(--yellow), transparent)
+    }
+
+    .oc-corpo .origin-trait::before {
+      color: var(--yellow)
+    }
+
+    /* Nómada */
+    .oc-nomada {
+      border-color: rgba(255, 107, 0, .18)
+    }
+
+    .oc-nomada:hover {
+      border-color: rgba(255, 107, 0, .5);
+      background: rgba(255, 107, 0, .02)
+    }
+
+    .oc-nomada .origin-tag {
+      color: var(--orange)
+    }
+
+    .oc-nomada .origin-tag::before {
+      background: var(--orange)
+    }
+
+    .oc-nomada .origin-name {
+      color: var(--orange)
+    }
+
+    .oc-nomada .origin-badge {
+      border-color: var(--orange);
+      color: var(--orange)
+    }
+
+    .oc-nomada .origin-bar {
+      background: linear-gradient(to right, var(--orange), transparent)
+    }
+
+    .oc-nomada .origin-trait::before {
+      color: var(--orange)
+    }
+
+    /* Street Kid */
+    .oc-street {
+      border-color: rgba(255, 42, 69, .18)
+    }
+
+    .oc-street:hover {
+      border-color: rgba(255, 42, 69, .5);
+      background: rgba(255, 42, 69, .02)
+    }
+
+    .oc-street .origin-tag {
+      color: var(--red)
+    }
+
+    .oc-street .origin-tag::before {
+      background: var(--red)
+    }
+
+    .oc-street .origin-name {
+      color: var(--red)
+    }
+
+    .oc-street .origin-badge {
+      border-color: var(--red);
+      color: var(--red)
+    }
+
+    .oc-street .origin-bar {
+      background: linear-gradient(to right, var(--red), transparent)
+    }
+
+    .oc-street .origin-trait::before {
+      color: var(--red)
+    }
+
+    /* HOUSING */
+    .housing-section {
+      background: var(--panel)
+    }
+
+    .housing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem
+    }
+
+    .housing-table th {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .5rem;
+      letter-spacing: .2em;
+      color: var(--dim);
+      text-align: left;
+      padding: .7rem 1rem;
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase
+    }
+
+    .housing-table td {
+      font-size: .88rem;
+      color: var(--text);
+      padding: .7rem 1rem;
+      border-bottom: 1px solid rgba(17, 28, 40, .5);
+      vertical-align: top
+    }
+
+    .housing-table tr:hover td {
+      background: rgba(255, 255, 255, .015)
+    }
+
+    .housing-table .hn {
+      font-weight: 600;
+      color: var(--white)
+    }
+
+    .housing-table .hc {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      color: var(--yellow)
+    }
+
+    .housing-table .hcp {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      color: var(--green)
+    }
+
+    .housing-table .hcorp {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      color: var(--cyan);
+      font-style: italic
+    }
+
+    .housing-table .hdanger {
+      color: var(--red);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .1em
+    }
+
+    .housing-table .hok {
+      color: var(--green);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .1em
+    }
+
+    .housing-table .hmed {
+      color: var(--yellow);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .1em
+    }
+
+    .housing-table .hna {
+      color: var(--dim);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+    }
+
+    /* LIFESTYLE COSTS */
+    .ls-cost-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 1.5rem
+    }
+
+    .ls-cost-card {
+      background: var(--bg);
+      padding: 1.5rem;
+      text-align: center
+    }
+
+    .ls-cost-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .45rem;
+      letter-spacing: .18em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: .4rem
+    }
+
+    .ls-cost-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: .3rem
+    }
+
+    .ls-cost-price {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .08em;
+      margin-bottom: .6rem
+    }
+
+    .ls-cost-desc {
+      font-size: .82rem;
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 300
+    }
+
+    .cta {
+      padding: 5rem 6vw;
+      text-align: center;
+      position: relative;
+      border-top: 1px solid var(--border)
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0, 229, 255, .04) 0%, transparent 70%);
+      pointer-events: none
+    }
+
+    .cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .cta-sub {
+      font-size: .97rem;
+      color: var(--text);
+      font-weight: 300;
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1
+    }
+
+    .btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .18em;
+      text-decoration: none;
+      padding: .65rem 1.5rem;
+      text-transform: uppercase;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px))
+    }
+
+    .btn-y {
+      border: 1px solid var(--yellow);
+      color: var(--yellow)
+    }
+
+    .btn-y:hover {
+      background: var(--yellow);
+      color: #000
+    }
+
+    .btn-c {
+      border: 1px solid var(--cyan);
+      color: var(--cyan)
+    }
+
+    .btn-c:hover {
+      background: var(--cyan);
+      color: #000
+    }
+
+    .btn-p {
+      border: 1px solid var(--purple);
+      color: var(--purple)
+    }
+
+    .btn-p:hover {
+      background: var(--purple);
+      color: #000
+    }
+
+    footer {
+      padding: 3rem 6vw;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      text-align: center
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: .12em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .2rem
+    }
+
+    .footer-logo em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .fsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .22em;
+      color: var(--dim)
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center
+    }
+
+    .footer-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan)
+    }
+
+    .footer-copy {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .15em;
+      color: var(--dim)
+    }
+
+    .info-box {
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(0, 229, 255, .1);
+      background: rgba(0, 229, 255, .03);
+      font-size: .86rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 300;
+      margin-top: 2rem
+    }
+
+    .info-box strong {
+      color: var(--cyan)
+    }
+
+    .warn-box {
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(255, 210, 0, .15);
+      background: rgba(255, 210, 0, .03);
+      font-size: .86rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 300;
+      margin-top: 1.5rem
+    }
+
+    .warn-box strong {
+      color: var(--yellow)
+    }
+
+    @media(max-width:1000px) {
+      .origins-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:700px) {
+
+      .roles-grid,
+      .origins-grid,
+      .ls-cost-grid {
+        grid-template-columns: 1fr
+      }
+
+      .role-card.wide {
+        grid-column: 1
+      }
+
+      .housing-table {
+        font-size: .8rem
+      }
+    }
+
+    /* Tech UI Colors */
+    .ui-tl {
+      position: absolute;
+      top: 6rem;
+      left: 6vw;
+      z-index: 3;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .14em;
+      color: var(--dim);
+      line-height: 1.9
+    }
+
+    .ui-br {
+      position: absolute;
+      bottom: 2rem;
+      left: 6vw;
+      z-index: 3;
+      text-align: left;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .14em;
+      color: var(--dim)
+    }
+
+    /* Utility Colors */
+    .c {
+      color: var(--cyan)
+    }
+
+    .r {
+      color: var(--red)
+    }
+
+    .y {
+      color: var(--yellow)
+    }
+
+    .p {
+      color: var(--purple)
+    }
+
+    .g {
+      color: var(--green)
+    }
+
+    .o {
+      color: var(--orange)
+    }
+
+    .ui-status {
+      position: absolute;
+      top: 6rem;
+      right: 6vw;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem
+    }
+
+    .usi {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .48rem;
+      letter-spacing: .14em;
+      color: var(--dim);
+      justify-content: flex-end
+    }
+
+    .sdot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      animation: sdp 2.2s ease infinite
+    }
+
+    .sdot.c {
+      background: var(--cyan);
+      box-shadow: 0 0 6px var(--cyan)
+    }
+
+    .sdot.r {
+      background: var(--red);
+      box-shadow: 0 0 6px var(--red);
+      animation-delay: .8s
+    }
+
+    .sdot.y {
+      background: var(--yellow);
+      box-shadow: 0 0 6px var(--yellow);
+      animation-delay: 1.6s
+    }
+
+    @keyframes sdp {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .2
+      }
+    }
+
+    .gh {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      pointer-events: none;
+      opacity: 0;
+      animation: gha 12s infinite
+    }
+
+    .gh:nth-child(1) {
+      background: var(--red);
+      animation-delay: 0s
+    }
+
+    .gh:nth-child(2) {
+      background: var(--cyan);
+      animation-delay: 4s
+    }
+
+    .gh:nth-child(3) {
+      background: var(--purple);
+      animation-delay: 8s
+    }
+
+    @keyframes gha {
+      0% {
+        top: -2%;
+        opacity: 0
+      }
+
+      2% {
+        opacity: .5
+      }
+
+      18% {
+        top: 108%;
+        opacity: .05
+      }
+
+      19% {
+        opacity: 0;
+        top: 108%
+      }
+
+      100% {
+        opacity: 0;
+        top: 108%
+      }
+    }
+
+    /* Hover Effects */
+    .role-card {
+      transition: all 0.3s ease;
+    }
+
+    .role-card:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+      background: rgba(0, 229, 255, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .role-card:hover .role-icon {
+      background: var(--cyan);
+      color: #000;
+      box-shadow: 0 0 10px var(--cyan);
+    }
+
+    /* CYBERPUNK PRELOADER */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #fcee0a;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Share Tech Mono', monospace;
+      color: #000;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      width: 300px;
+      text-align: left;
+    }
+
+    .loader-text {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .loader-bar-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      width: 0%;
+      height: 100%;
+      background: #000;
+      animation: loadBar 0.8s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+    }
+
+    @keyframes loadBar {
+      0% {
+        width: 0%;
+      }
+
+      20% {
+        width: 30%;
+      }
+
+      50% {
+        width: 35%;
+      }
+
+      80% {
+        width: 85%;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+
+    .glitch-load {
+      animation: glitchText 0.2s infinite;
+    }
+
+    @keyframes glitchText {
+      0% {
+        transform: translate(0);
+        text-shadow: 2px 0 #ff003c;
+      }
+
+      50% {
+        transform: translate(-2px, 2px);
+        text-shadow: -2px 0 #00e5ff;
+      }
+
+      100% {
+        transform: translate(2px, -2px);
+        text-shadow: 2px 0 #ff003c;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader-content">
+      <div class="loader-text glitch-load">INITIALIZING_COSMERIUM_OS...</div>
+      <div class="loader-bar-container">
+        <div class="loader-bar"></div>
+      </div>
+      <div style="font-size: 0.6rem; margin-top: 1rem; opacity: 0.7;">
+        AUTHENTICATING_USER_PROFILE...<br>
+        SYNCING_NEURAL_LINK_v3.0.2...<br>
+        LOADING_NIGHT_CITY_DATABASE...
+      </div>
+    </div>
+  </div>
+
+  <nav>
+    <a class="nav-logo" href="home.html">COSMERIUM <em>ERA III</em><span class="nsub">NIGHT CITY · 2077</span></a>
+    <ul class="nav-links">
+      <li><a href="home.html">Inicio</a></li>
+      <li><a href="mundo.html">El Mundo</a></li>
+      <li><a href="roles.html" class="active">Roles</a></li>
+      <li><a href="sistema.html">Sistema</a></li>
+      <li><a href="objetos.html">Objetos</a></li>
+      <li><a href="ficha.html">Ficha</a></li>
+      <li><a href="normativa.html">Normativa</a></li>
+    </ul>
+    <a class="nav-btn" href="https://discord.gg/DWacKAK373">&#9654; Discord</a>
+  </nav>
+
+  <section class="page-hero">
+    <div class="ph-bg"></div>
+    <div class="ph-grid"></div>
+    <div class="gh"></div>
+    <div class="gh"></div>
+    <div class="gh"></div>
+    <div class="ui-tl">
+      SYSTEM.READY // 2077<br>
+      ROLES_DB: ACCESSED<br>
+      USER: EDGERUNNER
+    </div>
+    <div class="ui-status">
+      <div class="usi">NET <div class="sdot c"></div>
+      </div>
+      <div class="usi">MEM <div class="sdot r"></div>
+      </div>
+      <div class="usi">DISK <div class="sdot y"></div>
+      </div>
+    </div>
+    <div class="ui-br">
+      COORD: 34.0522° N, 118.2437° W<br>
+      SECTOR: WATSON-09<br>
+      GRID_LOCK: ACTIVE
+    </div>
+
+    <div class="ph-stat">
+      ROLES DISPONIBLES &nbsp;&nbsp; <span style="color:var(--cyan)">10</span><br>
+      ORÍGENES &nbsp;&nbsp; <span style="color:var(--yellow)">03</span><br>
+      APTITUDES DE ROL &nbsp;&nbsp; <span style="color:var(--purple)">10</span>
+    </div>
+    <div class="ph-content">
+      <div class="ph-kicker">// Identidades · Night City 2077</div>
+      <h1 class="ph-title"><span class="glitch-layer" data-text="ROLES &">ROLES &amp;</span><br><span
+          class="c glitch-layer" data-text="ORÍGENES">ORÍGENES</span></h1>
+      <p class="ph-sub">En Night City todo el mundo tiene un rol: la ocupación por la que te conocen en la calle. No es
+        solo lo que haces — es quién eres. Tu origen marca cómo llegaste aquí. Elige con cuidado. Aquí hay
+        consecuencias.</p>
+      <div class="ph-nav">
+        <a class="pnb c" href="#roles">Ver roles</a>
+        <a class="pnb p" href="#origenes">Orígenes</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ROLES -->
+  <section class="roles-section" id="roles">
+    <div class="roles-intro">
+      <div class="sec-kicker">Identidades de calle</div>
+      <h2 class="sec-title">LOS DIEZ <span class="c">ROLES</span></h2>
+      <p class="sec-desc">En el mundo de Cyberpunk Red hay diez roles: cada uno te da acceso a una aptitud exclusiva que
+        ningún otro puede replicar. Tu rol no es tu clase — es tu filosofía de supervivencia. La aptitud de rol comienza
+        en nivel 4 y puede crecer con la experiencia.</p>
+    </div>
+
+    <div class="roles-grid">
+
+      <!-- 01 MERCENARIO (SOLO) -->
+      <div class="role-card">
+        <div class="role-num">ROL // 01</div>
+        <div class="role-name rc-r">EDGERUNER</div>
+        <div class="role-stripe rs-r"></div>
+        <div class="role-apt ra-r">APTITUD: CONCIENCIA DE COMBATE</div>
+        <p class="role-desc">Renaciste con un arma en la mano. Ya sea como guardaespaldas, sicario por cuenta propia o
+          cibersoldado corporativo, eres una de las máquinas de combate de élite de la Era del Rojo. Puedes dividir tus
+          puntos de Conciencia de combate entre distintas habilidades de combate al inicio de cada enfrentamiento. La
+          mayoría venís de la Cuarta Guerra Corporativa. Tu cuerpo es tu herramienta — y llevas mucho cromo encima.</p>
+        <div class="role-tags">
+          <span class="role-tag">Combate</span>
+          <span class="role-tag">Ciberequipo pesado</span>
+          <span class="role-tag">Edgerunner</span>
+          <span class="role-tag">Supervivencia</span>
+        </div>
+        <div class="role-wm">SOLO</div>
+      </div>
+
+      <!-- 02 NETRUNNER -->
+      <div class="role-card">
+        <div class="role-num">ROL // 02</div>
+        <div class="role-name rc-c">NETRUNNER</div>
+        <div class="role-stripe rs-c"></div>
+        <div class="role-apt ra-c">APTITUD: INTERFACE</div>
+        <p class="role-desc">Eres un pirata informática capaz de freír cerebros en el ciberespacio posRED. La aptitud
+          Interface te permite realizar «netruns»: interactuar con módems mentales electrónicos (ciberterminales) para
+          controlar ordenadores, electrónica y programas. En la Era del Rojo debes mover tu carne hasta el sistema — ya
+          no puedes conectarte desde el otro lado del planeta como Bartmoss.</p>
+        <div class="role-tags">
+          <span class="role-tag">Hacking</span>
+          <span class="role-tag">RED</span>
+          <span class="role-tag">Programas ICE</span>
+          <span class="role-tag">Infiltración digital</span>
+        </div>
+        <div class="role-wm">NET</div>
+      </div>
+
+      <!-- 03 TÉCNICO -->
+      <div class="role-card">
+        <div class="role-num">ROL // 03</div>
+        <div class="role-name rc-o">TÉCNICO</div>
+        <div class="role-stripe rs-o"></div>
+        <div class="role-apt ra-o">APTITUD: MANIPULACIÓN</div>
+        <p class="role-desc">Si algo está cerca más de cinco minutos, ya lo has desmontado y convertido en otra cosa. La
+          aptitud Manipulación te permite arreglar, mejorar, modificar, fabricar e inventar nuevos productos. Cada punto
+          en Manipulación desbloquea dos especialidades: reparar, mejorar, fabricar o inventar. En un mundo roto, eres
+          el corazón que late y mantiene la tecnología fluyendo.</p>
+        <div class="role-tags">
+          <span class="role-tag">Tecnología</span>
+          <span class="role-tag">Fabricación</span>
+          <span class="role-tag">Reparación</span>
+          <span class="role-tag">Mercado negro</span>
+        </div>
+        <div class="role-wm">TECH</div>
+      </div>
+
+      <!-- 04 TECNOMÉDICO -->
+      <div class="role-card">
+        <div class="role-num">ROL // 04</div>
+        <div class="role-name rc-g">TECNOMÉDICO</div>
+        <div class="role-stripe rs-g"></div>
+        <div class="role-apt ra-g">APTITUD: MEDICINA</div>
+        <p class="role-desc">Eres un artista y el cuerpo humano es tu lienzo. Con Medicina puedes mantener viva a gente
+          que debería estar muerta, usando conocimiento, herramientas y entrenamiento. En la Era del Rojo eres tanto
+          médico como mecánico, cuidando personas que son más máquina que humanas. Cada punto en Medicina desbloquea una
+          especialidad: cirugía, farmacéutica o criosistemas.</p>
+        <div class="role-tags">
+          <span class="role-tag">Medicina</span>
+          <span class="role-tag">Cirugía</span>
+          <span class="role-tag">Trauma Team</span>
+          <span class="role-tag">Ciberinstalación</span>
+        </div>
+        <div class="role-wm">MED</div>
+      </div>
+
+      <!-- 05 FIXER -->
+      <div class="role-card">
+        <div class="role-num">ROL // 05</div>
+        <div class="role-name rc-y">FIXER</div>
+        <div class="role-stripe rs-y"></div>
+        <div class="role-apt ra-y">APTITUD: RECURSOS CALLEJEROS</div>
+        <p class="role-desc">Eres el punto de conexión entre el talento, el dinero y la demanda. Los fixers son
+          brokers de información, contrabandistas y negociadores. La aptitud Recursos callejeros te permite establecer
+          contactos, obtener información privilegiada y localizar objetos ilegales o escasos. Si algo tiene que cruzar
+          Night City, pasa por un fixer. La mitad de lo que vende llega en caravanas de nómadas.</p>
+        <div class="role-tags">
+          <span class="role-tag">Contactos</span>
+          <span class="role-tag">Contrabando</span>
+          <span class="role-tag">Información</span>
+          <span class="role-tag">Mercado nocturno</span>
+        </div>
+        <div class="role-wm">FIX</div>
+      </div>
+
+      <!-- 06 NÓMADA -->
+      <div class="role-card">
+        <div class="role-num">ROL // 06</div>
+        <div class="role-name rc-o">NÓMADA</div>
+        <div class="role-stripe rs-o"></div>
+        <div class="role-apt ra-o">APTITUD: MOTOR</div>
+        <p class="role-desc">Vuestra tribu es vuestra ciudad sobre ruedas. La aptitud Motor te permite añadir vehículos
+          a la reserva familiar o mejorar los existentes. Los nómadas son los mejores transportando personas y
+          mercancías por las autopistas salvajes. Tenéis vehículos blindados y armados, y hasta el niño más pequeño sabe
+          usar un rifle. Como vaqueros modernos, cabalgáis por el duro camino.</p>
+        <div class="role-tags">
+          <span class="role-tag">Vehículos</span>
+          <span class="role-tag">Clan familiar</span>
+          <span class="role-tag">Autopistas</span>
+          <span class="role-tag">Supervivencia</span>
+        </div>
+        <div class="role-wm">ROAD</div>
+      </div>
+
+      <!-- 07 PERIODISTA -->
+      <div class="role-card">
+        <div class="role-num">ROL // 07</div>
+        <div class="role-name rc-c">PERIODISTA</div>
+        <div class="role-stripe rs-c"></div>
+        <div class="role-apt ra-c">APTITUD: CREDIBILIDAD</div>
+        <p class="role-desc">Ahí fuera están distorsionando la verdad. Y tú vas a detenerlos. La aptitud Credibilidad
+          determina tu audiencia y el alcance de tus contactos informativos. A mayor credibilidad, mayores fuentes e
+          información pasiva. Eres una celebridad en toda la ciudad, vista cada noche en la reserva de datos. En la Era
+          del Rojo, los medios independientes son los que hacen caer imperios.</p>
+        <div class="role-tags">
+          <span class="role-tag">Información</span>
+          <span class="role-tag">Influencia</span>
+          <span class="role-tag">Screamsheets</span>
+          <span class="role-tag">Denuncia</span>
+        </div>
+        <div class="role-wm">MEDIA</div>
+      </div>
+
+      <!-- 08 POLICÍA -->
+      <div class="role-card">
+        <div class="role-num">ROL // 08</div>
+        <div class="role-name rc-p">EX-AGENTE</div>
+        <div class="role-stripe rs-p"></div>
+        <div class="role-apt ra-p">APTITUD: APOYO</div>
+        <p class="role-desc">Llámanos como quieras: hombres de la ley, maderos, cerdos. La ciudad es un caos y cada día
+          vemos lo peor. La aptitud Apoyo te permite pedir ayuda de oficiales compañeros según tu rango y las
+          condiciones de la llamada. El apoyo llega armado y blindado según el rango. Alguien tiene que mantener las
+          calles seguras para que los civiles puedan caminar sin una bala perdida.</p>
+        <div class="role-tags">
+          <span class="role-tag">NCPD</span>
+          <span class="role-tag">Psicoescuadrón</span>
+          <span class="role-tag">Autoridad</span>
+          <span class="role-tag">Refuerzos</span>
+        </div>
+        <div class="role-wm">LAW</div>
+      </div>
+
+      <!-- 09 ROCKERO -->
+      <div class="role-card">
+        <div class="role-num">ROL // 09</div>
+        <div class="role-name rc-p">ROCKERO</div>
+        <div class="role-stripe rs-p"></div>
+        <div class="role-apt ra-p">APTITUD: IMPACTO CARISMÁTICO</div>
+        <p class="role-desc">Eres la conciencia social de la Era del Rojo. El Impacto carismático te permite influenciar
+          a otros con tu personalidad — sin necesidad de ser músico. Puede ser poesía, arte, danza o presencia física. A
+          mayor habilidad, puedes afectar a grupos más grandes y conseguir lealtad más profunda. Leyendas como Johnny
+          Silverhand han liderado ejércitos con este poder.</p>
+        <div class="role-tags">
+          <span class="role-tag">Música</span>
+          <span class="role-tag">Influencia</span>
+          <span class="role-tag">Rebeldía</span>
+          <span class="role-tag">Johnny Silverhand</span>
+        </div>
+        <div class="role-wm">ROCK</div>
+      </div>
+
+      <!-- 10 EJECUTIVO -->
+      <div class="role-card">
+        <div class="role-num">ROL // 10</div>
+        <div class="role-name rc-y">EJECUTIVO</div>
+        <div class="role-stripe rs-y"></div>
+        <div class="role-apt ra-y">APTITUD: RECURSOS CORPORATIVOS</div>
+        <p class="role-desc">Eres el lobo con traje. Las corporaciones gobiernan Night City y tú eres parte de esa
+          maquinaria. La aptitud Recursos corporativos te permite solicitar equipo, apoyo e información de tu
+          corporación según tu rango. A cambio, tu vida entera pertenece a la empresa. Los ejecutivos comienzan en
+          apartamentos corporativos pagados — sin alquiler, solo tu alma.</p>
+        <div class="role-tags">
+          <span class="role-tag">Corporación</span>
+          <span class="role-tag">Recursos</span>
+          <span class="role-tag">Política interna</span>
+          <span class="role-tag">Privilegio</span>
+        </div>
+        <div class="role-wm">EXEC</div>
+      </div>
+
+    </div>
+
+    <div class="info-box" style="margin-top:2rem">
+      <strong>REGLA:</strong> La aptitud de rol es exclusiva de tu rol — nadie más puede obtenerla. Comienza en nivel 4
+      al crear el personaje. Aumentarla con experiencia desbloquea nuevas capacidades según el rol. El rol no restringe
+      tus habilidades generales — un mercenario puede aprender a hackear, pero nunca tendrá Interface.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ORÍGENES CP2077 -->
+  <section class="origins-section" id="origenes">
+    <div style="max-width:800px;margin-bottom:3rem">
+      <div class="sec-kicker p">Historia de vida</div>
+      <h2 class="sec-title">TU <span class="p">ORIGEN</span></h2>
+      <p class="sec-desc">En Cyberpunk 2077 hay tres orígenes que definen de dónde vienes: Corpo, Nómada o Street Kid.
+        Tu origen no determina tu rol — puedes ser un netrunner corpo o un mercenario de las calles. Define tu historia,
+        tus conexiones iniciales y cómo ves Night City.</p>
+    </div>
+
+    <div class="origins-grid">
+
+      <!-- CORPO -->
+      <div class="origin-card oc-corpo">
+        <div class="origin-tag">// Origen 01</div>
+        <div class="origin-name">CORPO</div>
+        <div class="origin-bar"></div>
+        <div class="origin-badge">SECTOR CORPORATIVO · ZONA EJECUTIVA</div>
+        <p class="origin-desc">Creciste dentro del sistema corporativo. Sabes cómo funciona el mundo desde arriba: las
+          reuniones de alto nivel, los contratos de sangre, la política interna despiadada. Eres frío, calculador, y
+          conoces las reglas del juego porque las viviste desde dentro. Algunas corporaciones activas en Night City
+          incluyen Arasaka, Militech, Biotechnica y Kang Tao.</p>
+        <div class="origin-traits">
+          <div class="origin-trait">Acceso a información corporativa clasificada</div>
+          <div class="origin-trait">Contactos dentro de estructuras de poder</div>
+          <div class="origin-trait">Entrenamiento en etiqueta y negociación</div>
+          <div class="origin-trait">Sabes quién dispara a quién — y por qué</div>
+        </div>
+      </div>
+
+      <!-- NÓMADA -->
+      <div class="origin-card oc-nomada">
+        <div class="origin-tag">// Origen 02</div>
+        <div class="origin-name">NÓMADA</div>
+        <div class="origin-bar"></div>
+        <div class="origin-badge">BADLANDS · CARRETERAS LIBRES</div>
+        <p class="origin-desc">Creciste en las Badlands, fuera de Night City, con tu clan. Las caravanas, las autopistas
+          salvajes y la libertad del camino abierto son tu hogar. En la Era del Rojo, los clanes nómadas más conocidos
+          son los Aldecaldos, los Wraiths y los Bakkers. Sabes sobrevivir donde otros mueren, y tu familia siempre tiene
+          prioridad sobre todo lo demás.</p>
+        <div class="origin-traits">
+          <div class="origin-trait">Experto en conducción y mecánica de campo</div>
+          <div class="origin-trait">Contactos en clanes nómadas (Aldecaldos, etc.)</div>
+          <div class="origin-trait">Conocimiento de rutas y territorios salvajes</div>
+          <div class="origin-trait">Lealtad al clan por encima de todo</div>
+        </div>
+      </div>
+
+      <!-- STREET KID -->
+      <div class="origin-card oc-street">
+        <div class="origin-tag">// Origen 03</div>
+        <div class="origin-name">STREET KID</div>
+        <div class="origin-bar"></div>
+        <div class="origin-badge">WATSON · HEYWOOD · SANTO DOMINGO</div>
+        <p class="origin-desc">Creciste en las calles de Night City. Desde pequeño aprendiste que la supervivencia
+          depende de tus reflejos, tus contactos y tu reputación callejera. Conoces los distritos, las pandillas, los
+          tratos y los callejones. Maelstrom, Valentinos, Tyger Claws, 6th Street — sabes cómo moverse entre ellos sin
+          que te rajen. Night City es tu barrio.</p>
+        <div class="origin-traits">
+          <div class="origin-trait">Contactos con pandillas y criminales locales</div>
+          <div class="origin-trait">Conocimiento profundo de distritos y callejones</div>
+          <div class="origin-trait">Reputación callejera establecida</div>
+          <div class="origin-trait">Instinto de supervivencia afinado desde niño</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="warn-box">
+      <strong>NOTA PARA JUGADORES:</strong> El origen es narrativo — define tu historia y primeros contactos, no tus
+      estadísticas de partida. Habla con el DJ para integrar tu origen con el lore del servidor. Cada origen abre arcos
+      argumentales distintos dentro de Cosmerium Era III.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ESTILOS DE VIDA (regla oficial CPR) -->
+  <section id="estilos" style="background:var(--panel)">
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker y">Economía de la calle</div>
+      <h2 class="sec-title">ESTILOS DE <span class="y">VIDA</span></h2>
+      <p class="sec-desc">Al inicio de cada mes (una vez por semana) debes pagar tu estilo de vida. Si no pagas en los
+        primeros 7 días del mes, deberás realizar una salvación contra muerte cada día hasta regularizar la situación.
+        Tu estilo de vida determina qué comes, dónde te diviertes y cómo vives el día a día en Night City.</p>
+    </div>
+
+    <div class="ls-cost-grid">
+      <div class="ls-cost-card">
+        <div class="ls-cost-label">Nivel 01</div>
+        <div class="ls-cost-name" style="color:var(--red)">PIENSO</div>
+        <div class="ls-cost-price" style="color:var(--red)">100 eb / mes</div>
+        <div class="ls-cost-desc">Comida de perro con sabor a hamburguesa. Una película o danza cerebral al mes.
+          <br><br><strong>Reputación Inicial:</strong> -10 (Paria)<br><strong>Efecto:</strong> Sin bonos. La comida sabe
+          a cartón y te sientes miserable. -1 a Carisma con
+          NPCs de clase media/alta.
+        </div>
+      </div>
+      <div class="ls-cost-card">
+        <div class="ls-cost-label">Nivel 02</div>
+        <div class="ls-cost-name" style="color:var(--orange)">PRECOCINADOS GENÉRICOS</div>
+        <div class="ls-cost-price" style="color:var(--orange)">300 eb / mes</div>
+        <div class="ls-cost-desc">Comida que sabe mucho mejor que el pienso. Salidas de fin de semana.
+          <br><br><strong>Reputación Inicial:</strong> 0 (Nadie)<br><strong>Efecto:</strong> Neutro. Sin penalizadores
+          sociales. Recuperación normal.
+        </div>
+      </div>
+      <div class="ls-cost-card">
+        <div class="ls-cost-label">Nivel 03</div>
+        <div class="ls-cost-name" style="color:var(--yellow)">PRECOCINADOS DE CALIDAD</div>
+        <div class="ls-cost-price" style="color:var(--yellow)">600 eb / mes</div>
+        <div class="ls-cost-desc">Calidad de restaurante. Frecuentas bares y restaurantes excelentes.
+          <br><br><strong>Reputación Inicial:</strong> 5 (Ciudadano)<br><strong>Bonos:</strong> +1 a Curación Natural
+          diaria. +1 a tiradas de Social/Persuasión con clase
+          media.
+        </div>
+      </div>
+      <div class="ls-cost-card">
+        <div class="ls-cost-label">Nivel 04</div>
+        <div class="ls-cost-name" style="color:var(--cyan)">ALIMENTOS FRESCOS</div>
+        <div class="ls-cost-price" style="color:var(--cyan)">1.500 eb / mes</div>
+        <div class="ls-cost-desc">Comida de verdad. Bar para ejecutivos. Hotel puntual sin mirar el presupuesto.
+          <br><br><strong>Reputación Inicial:</strong> 15 (Respetable)<br><strong>Bonos:</strong> +2 a Curación Natural
+          diaria. +1 a TODAS las tiradas de Empatía.
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-box" style="margin-top:2rem">
+      <strong style="color:var(--red)">ADVERTENCIA DE IMPAGO:</strong> El impago del estilo de vida impone un
+      penalizador de <strong>-2 a todas las tiradas</strong> por debilidad. Si la deuda
+      persiste más de un mes, el penalizador aumenta a -4.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ALOJAMIENTO -->
+  <section class="housing-section">
+    <div style="max-width:800px;margin-bottom:2rem">
+      <div class="sec-kicker r">Propiedades de Night City</div>
+      <h2 class="sec-title">ALOJA<span class="r">MIENTO</span></h2>
+      <p class="sec-desc">Dormir cómodo es un privilegio en Night City. Hazte con un hogar, nunca se sabe qué puede
+        pasarte de dormir en la calle. Además, dormir incómodo (calle, vehículo sin acondicionamiento, o hacinado) deja
+        fatigado que no veas.</p>
+    </div>
+
+    <table class="housing-table">
+      <thead>
+        <tr>
+          <th>Propiedad</th>
+          <th>Alquiler / mes</th>
+          <th>Compra</th>
+          <th>Zona</th>
+          <th>Seguridad</th>
+          <th>Rep. Mínima</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="hn">Vivir en la calle</td>
+          <td class="hna">N/A</td>
+          <td class="hna">N/A</td>
+          <td>Cualquier zona</td>
+          <td class="hdanger">NULA</td>
+          <td class="hna">N/A</td>
+        </tr>
+        <tr>
+          <td class="hn">Vehículo (dormir dentro)</td>
+          <td class="hna">N/A</td>
+          <td class="hna">Coste del vehículo</td>
+          <td>Afueras / Zona combate</td>
+          <td class="hdanger">MUY BAJA</td>
+          <td class="hna">N/A</td>
+        </tr>
+        <tr>
+          <td class="hn">Hotel de cubículos</td>
+          <td class="hc">500 eb</td>
+          <td class="hna">N/A</td>
+          <td>Corporativo / Moderado / Combate</td>
+          <td class="hmed">BAJA</td>
+          <td class="hdanger">-10</td>
+        </tr>
+        <tr>
+          <td class="hn">Contenedor de carga</td>
+          <td class="hc">1.000 eb</td>
+          <td class="hcp">15.000 eb</td>
+          <td>Suburbios / Zona combate</td>
+          <td class="hmed">MEDIA-BAJA</td>
+          <td class="hdanger">-20 (Cualquiera)</td>
+        </tr>
+        <tr>
+          <td class="hn">Estudio</td>
+          <td class="hc">1.500 eb</td>
+          <td class="hcp">25.000 eb</td>
+          <td>Corporativo / Moderado / Combate</td>
+          <td class="hmed">MEDIA</td>
+          <td class="hna">0</td>
+        </tr>
+        <tr>
+          <td class="hn">Apartamento de 2 dormitorios</td>
+          <td class="hc">2.500 eb</td>
+          <td class="hcp">35.000 eb</td>
+          <td>Corporativo / Moderado / Combate</td>
+          <td class="hok">BUENA</td>
+          <td class="hmed">10</td>
+        </tr>
+        <tr>
+          <td class="hn">Apartamento corporativo</td>
+          <td class="hcorp">Proporcionado por corp.</td>
+          <td class="hna">No disponible</td>
+          <td>Solo zona corporativa</td>
+          <td class="hok">BUENA + vigilancia 24h</td>
+          <td class="hmed">15 (o Rango)</td>
+        </tr>
+        <tr>
+          <td class="hn">Apartamento de lujo</td>
+          <td class="hc">7.500 eb</td>
+          <td class="hcp">85.000 eb</td>
+          <td>Corporativo / Moderado</td>
+          <td class="hok">MUY BUENA</td>
+          <td class="hok">50 (Famoso)</td>
+        </tr>
+        <tr>
+          <td class="hn">Ático de lujo</td>
+          <td class="hc">15.000 eb</td>
+          <td class="hcp">150.000 eb</td>
+          <td>Solo zona corporativa</td>
+          <td class="hok">EXCELENTE</td>
+          <td class="hok">50 (Élite)</td>
+        </tr>
+        <tr>
+          <td class="hn">Casa corporativa</td>
+          <td class="hcorp">Proporcionado por corp.</td>
+          <td class="hcp">200.000 eb</td>
+          <td>Zona ejecutiva (Ciudad castores)</td>
+          <td class="hok">MÁXIMA · Lazarus Corp.</td>
+          <td class="hmed">15 (o Rango)</td>
+        </tr>
+        <tr>
+          <td class="hn">Mansión corporativa</td>
+          <td class="hcorp">Proporcionado por corp.</td>
+          <td class="hcp">500.000 eb</td>
+          <td>Zona ejecutiva (Ciudad castores)</td>
+          <td class="hok">MÁXIMA · Lazarus Corp.</td>
+          <td class="hmed">15 (o Rango)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      <strong>EJECUTIVOS:</strong> Tienen descuentos en apartamentos corporativos. El estilo de vida de precocinados de
+      calidad (600 eb/mes) está pagado el primer mes. <strong>NÓMADAS:</strong> Tienen opción de alojamiento adicional
+      en sus vehículos gracias a la aptitud Motor. <strong>TODOS LOS DEMÁS:</strong> El primer mes de contenedor de
+      carga y estilo de vida es gratis. A partir del día 1 del mes siguiente: 1.100 eb o desahucio.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="cta">
+    <h2 class="cta-title">¿LISTO PARA<br>ENTRAR EN <span style="color:var(--cyan)">NIGHT CITY</span>?</h2>
+    <p class="cta-sub">Elige tu origen, define tu rol, y prepárate para sobrevivir en la ciudad más peligrosa del mundo.
+      La ERA del Rojo no espera a nadie.</p>
+    <div class="cta-btns">
+      <a class="btn btn-c" href="sistema.html">Ver Sistema</a>
+      <a class="btn btn-y" href="objetos.html">Ver Objetos</a>
+      <a class="btn btn-p" href="normativa.html">Ver Normativa</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">COSMERIUM <em>ERA III</em><span class="fsub">NIGHT CITY 2077 · ROL · DISCORD</span></div>
+    <div class="footer-links">
+      <a href="home.html">Inicio</a>
+      <a href="mundo.html">El Mundo</a>
+      <a href="roles.html">Roles</a>
+      <a href="sistema.html">Sistema</a>
+      <a href="objetos.html">Objetos</a>
+      <a href="normativa.html">Normativa</a>
+      <a href="https://discord.gg/DWacKAK373">Discord</a>
+    </div>
+    <div class="footer-copy">Sistema: Cyberpunk Red (R. Talsorian Games) · Ambientación: Cyberpunk 2077 (CD Projekt Red)
+      · Servidor de rol narrativo</div>
+  </footer>
+
+  <script>
+    window.onload = function () {
+      setTimeout(() => {
+        document.getElementById('preloader').classList.add('loaded');
+      }, 1000);
+    };
+  </script>
+</body>
+
+</html>

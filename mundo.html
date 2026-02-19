@@ -1,0 +1,2342 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (localStorage.getItem('cosmerium_auth') !== 'true') {
+      window.location.href = "index.html";
+    }
+  </script>
+  <title>El Mundo — Cosmerium Era III: Night City 2077</title>
+  <script src="js/live-notifications.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&display=swap');
+
+    :root {
+      --bg: #04060a;
+      --panel: #080c12;
+      --border: #111c28;
+      --red: #ff2a45;
+      --cyan: #00e5ff;
+      --yellow: #ffd200;
+      --purple: #bd00ff;
+      --orange: #ff6b00;
+      --green: #00ff9d;
+      --text: #a8c4d8;
+      --dim: #2e4558;
+      --white: #ecf4fa
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 900;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 229, 255, .005) 2px, rgba(0, 229, 255, .005) 4px)
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 1.1rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(4, 6, 10, .97) 60%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(17, 28, 40, .5)
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      letter-spacing: .08em;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1
+    }
+
+    .nav-logo .nsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .4rem;
+      letter-spacing: .3em;
+      color: var(--dim);
+      margin-top: .1rem
+    }
+
+    .nav-logo em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .nav-links {
+      display: flex;
+      gap: .2rem;
+      list-style: none;
+      align-items: center
+    }
+
+    .nav-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s;
+      padding: .4rem .8rem;
+      white-space: nowrap
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--cyan)
+    }
+
+    .nav-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .13em;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: .4rem .9rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+      white-space: nowrap
+    }
+
+    .nav-btn:hover {
+      background: var(--yellow);
+      color: #000
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      min-height: 55vh;
+      padding: 9rem 6vw 5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end
+    }
+
+    .ph-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 70% at 80% 50%, rgba(189, 0, 255, .07) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 20% 80%, rgba(255, 42, 69, .08) 0%, transparent 55%), linear-gradient(135deg, #010308 0%, #030612 50%, #060a16 100%)
+    }
+
+    .ph-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 42, 69, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 42, 69, .015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 80% 50%, rgba(0, 0, 0, .4) 0%, transparent 70%)
+    }
+
+    .ph-content {
+      position: relative;
+      z-index: 2
+    }
+
+    .ph-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .38em;
+      color: var(--purple);
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem
+    }
+
+    .ph-kicker::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--purple)
+    }
+
+    .ph-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 9rem);
+      line-height: .88;
+      color: var(--white);
+      letter-spacing: .02em
+    }
+
+    .ph-title .r {
+      color: var(--red)
+    }
+
+    .ph-title .p {
+      color: var(--purple)
+    }
+
+    .ph-sub {
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 300;
+      letter-spacing: .06em;
+      max-width: 560px;
+      margin-top: .9rem;
+      line-height: 1.7
+    }
+
+    .ph-nav {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap
+    }
+
+    .pnb {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .18em;
+      text-decoration: none;
+      padding: .55rem 1.2rem;
+      text-transform: uppercase;
+      border: 1px solid;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px))
+    }
+
+    .pnb.r {
+      border-color: rgba(255, 42, 69, .4);
+      color: var(--red)
+    }
+
+    .pnb.r:hover {
+      background: rgba(255, 42, 69, .1);
+      border-color: var(--red)
+    }
+
+    .pnb.c {
+      border-color: rgba(0, 229, 255, .4);
+      color: var(--cyan)
+    }
+
+    .pnb.c:hover {
+      background: rgba(0, 229, 255, .1);
+      border-color: var(--cyan)
+    }
+
+    .pnb.y {
+      border-color: rgba(255, 210, 0, .4);
+      color: var(--yellow)
+    }
+
+    .pnb.y:hover {
+      background: rgba(255, 210, 0, .1);
+      border-color: var(--yellow)
+    }
+
+    .ph-corner {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      opacity: .2
+    }
+
+    .ph-corner.tr {
+      top: 7rem;
+      right: 6vw;
+      border-top: 1px solid var(--purple);
+      border-right: 1px solid var(--purple)
+    }
+
+    .ph-stat {
+      position: absolute;
+      bottom: 3rem;
+      right: 6vw;
+      text-align: right;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      line-height: 2
+    }
+
+    /* DIVIDER */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), var(--dim), var(--border), transparent)
+    }
+
+    /* SECTION ATOMS */
+    section {
+      padding: 5rem 6vw
+    }
+
+    .sec-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .33em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      color: var(--red)
+    }
+
+    .sec-kicker::before {
+      content: '//';
+      color: var(--dim)
+    }
+
+    .sec-kicker.p {
+      color: var(--purple)
+    }
+
+    .sec-kicker.c {
+      color: var(--cyan)
+    }
+
+    .sec-kicker.y {
+      color: var(--yellow)
+    }
+
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: .03em;
+      margin-bottom: .9rem
+    }
+
+    .sec-title .r {
+      color: var(--red)
+    }
+
+    .sec-title .c {
+      color: var(--cyan)
+    }
+
+    .sec-title .y {
+      color: var(--yellow)
+    }
+
+    .sec-title .p {
+      color: var(--purple)
+    }
+
+    .sec-desc {
+      font-size: .95rem;
+      color: var(--text);
+      line-height: 1.78;
+      font-weight: 300;
+      max-width: 700px;
+      margin-bottom: 2.5rem
+    }
+
+    /* CORPS SECTION */
+    .corps {
+      background: var(--panel)
+    }
+
+    .corp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border)
+    }
+
+    .corp {
+      background: var(--bg);
+      padding: 2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .25s;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem
+    }
+
+    .corp:hover {
+      background: #0b1018
+    }
+
+    .corp-tier {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .47rem;
+      letter-spacing: .2em;
+      color: var(--dim);
+      text-transform: uppercase
+    }
+
+    .corp-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: .04em;
+      line-height: 1
+    }
+
+    .corp-full {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .44rem;
+      letter-spacing: .14em;
+      color: var(--dim);
+      text-transform: uppercase
+    }
+
+    .corp-stripe {
+      height: 2px;
+      width: 50px;
+      transition: width .35s
+    }
+
+    .corp:hover .corp-stripe {
+      width: 100%
+    }
+
+    .corp-desc {
+      font-size: .85rem;
+      color: var(--text);
+      line-height: 1.68;
+      font-weight: 300
+    }
+
+    .corp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem
+    }
+
+    .corp-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .45rem;
+      letter-spacing: .1em;
+      border: 1px solid var(--border);
+      color: var(--dim);
+      padding: .1rem .4rem;
+      transition: all .2s
+    }
+
+    .corp:hover .corp-tag {
+      border-color: rgba(255, 255, 255, .1);
+      color: rgba(168, 196, 216, .7)
+    }
+
+    .corp-status {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .47rem;
+      letter-spacing: .14em;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: auto;
+      padding-top: .5rem
+    }
+
+    .sdot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      animation: sdp 2.5s ease infinite;
+      flex-shrink: 0
+    }
+
+    @keyframes sdp {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .2
+      }
+    }
+
+    .sd-r {
+      background: var(--red);
+      box-shadow: 0 0 5px var(--red)
+    }
+
+    .sd-y {
+      background: var(--yellow);
+      box-shadow: 0 0 5px var(--yellow);
+      animation-delay: .8s
+    }
+
+    .sd-g {
+      background: var(--green);
+      box-shadow: 0 0 5px var(--green);
+      animation-delay: 1.6s
+    }
+
+    .sd-p {
+      background: var(--purple);
+      box-shadow: 0 0 5px var(--purple);
+      animation-delay: .4s
+    }
+
+    .sd-c {
+      background: var(--cyan);
+      box-shadow: 0 0 5px var(--cyan);
+      animation-delay: 1.2s
+    }
+
+    .corp-wm {
+      position: absolute;
+      right: -.5rem;
+      bottom: -1rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 7rem;
+      line-height: 1;
+      opacity: .025;
+      pointer-events: none;
+      color: var(--white);
+      transition: opacity .3s;
+      letter-spacing: .02em
+    }
+
+    .corp:hover .corp-wm {
+      opacity: .055
+    }
+
+    /* MICRO-CORPS */
+    .micro-corps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem
+    }
+
+    .mcorp {
+      border: 1px solid var(--border);
+      padding: 1.2rem 1.3rem;
+      position: relative;
+      overflow: hidden;
+      transition: all .2s;
+      cursor: default
+    }
+
+    .mcorp::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--dim);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s
+    }
+
+    .mcorp:hover {
+      border-color: rgba(255, 42, 69, .25);
+      background: rgba(255, 42, 69, .02)
+    }
+
+    .mcorp:hover::before {
+      transform: scaleX(1);
+      background: var(--red)
+    }
+
+    .mcorp-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.25rem;
+      color: var(--white);
+      letter-spacing: .04em;
+      margin-bottom: .2rem
+    }
+
+    .mcorp-sector {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .44rem;
+      letter-spacing: .13em;
+      color: var(--dim);
+      margin-bottom: .5rem;
+      text-transform: uppercase
+    }
+
+    .mcorp-desc {
+      font-size: .79rem;
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 300
+    }
+
+    /* BANDS */
+    .bands {
+      background: var(--panel)
+    }
+
+    .bands-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-bottom: 3rem
+    }
+
+    .band-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border)
+    }
+
+    .band {
+      background: var(--bg);
+      padding: 2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .2s;
+      cursor: default
+    }
+
+    .band:hover {
+      background: #0a1016
+    }
+
+    .band-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: .4rem
+    }
+
+    .band-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: .04em;
+      line-height: 1;
+      color: var(--white)
+    }
+
+    .band-threat {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .43rem;
+      letter-spacing: .14em;
+      padding: .14rem .48rem;
+      border: 1px solid;
+      display: inline-block;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: .4rem
+    }
+
+    .tc2 {
+      color: var(--red);
+      border-color: rgba(255, 42, 69, .4);
+      background: rgba(255, 42, 69, .05)
+    }
+
+    .te {
+      color: var(--orange);
+      border-color: rgba(255, 107, 0, .4);
+      background: rgba(255, 107, 0, .05)
+    }
+
+    .th {
+      color: var(--yellow);
+      border-color: rgba(255, 210, 0, .4);
+      background: rgba(255, 210, 0, .05)
+    }
+
+    .tm {
+      color: var(--cyan);
+      border-color: rgba(0, 229, 255, .4);
+      background: rgba(0, 229, 255, .05)
+    }
+
+    .tn {
+      color: var(--green);
+      border-color: rgba(0, 255, 157, .4);
+      background: rgba(0, 255, 157, .05)
+    }
+
+    .band-zone {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .45rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: .5rem
+    }
+
+    .band-bar {
+      height: 2px;
+      width: 36px;
+      margin-bottom: .8rem
+    }
+
+    .band-desc {
+      font-size: .85rem;
+      color: var(--text);
+      line-height: 1.68;
+      font-weight: 300;
+      margin-bottom: .6rem
+    }
+
+    .band-traits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem
+    }
+
+    .bt {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .43rem;
+      letter-spacing: .1em;
+      border: 1px solid var(--border);
+      color: var(--dim);
+      padding: .1rem .4rem
+    }
+
+    .band-wm {
+      position: absolute;
+      right: -.5rem;
+      bottom: -2rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 9rem;
+      line-height: 1;
+      opacity: .02;
+      pointer-events: none;
+      color: var(--white);
+      transition: opacity .25s;
+      letter-spacing: .02em
+    }
+
+    .band:hover .band-wm {
+      opacity: .05
+    }
+
+    /* DISTRICTS */
+    .districts {
+      background: var(--bg)
+    }
+
+    .dist-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-bottom: 3rem
+    }
+
+    .dist-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border)
+    }
+
+    .dist {
+      background: var(--panel);
+      display: grid;
+      grid-template-columns: 180px 1fr 1fr;
+      gap: 0;
+      position: relative;
+      overflow: hidden;
+      transition: background .2s;
+      cursor: default
+    }
+
+    .dist:hover {
+      background: #0c1218
+    }
+
+    .dist-left {
+      padding: 2rem 1.8rem;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden
+    }
+
+    .dist-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      line-height: 1;
+      opacity: .06;
+      color: var(--white);
+      position: absolute;
+      bottom: .5rem;
+      left: 1.5rem;
+      transition: opacity .25s
+    }
+
+    .dist:hover .dist-num {
+      opacity: .12
+    }
+
+    .dist-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.55rem;
+      color: var(--white);
+      letter-spacing: .04em;
+      line-height: 1;
+      position: relative;
+      z-index: 1
+    }
+
+    .dist-zone {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .43rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-top: .2rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .dist-bar {
+      height: 2px;
+      width: 32px;
+      margin-top: .8rem;
+      transition: width .35s;
+      position: relative;
+      z-index: 1
+    }
+
+    .dist:hover .dist-bar {
+      width: 80%
+    }
+
+    .dist-center {
+      padding: 2rem 1.8rem;
+      border-right: 1px solid var(--border)
+    }
+
+    .dist-right {
+      padding: 2rem 1.8rem
+    }
+
+    .dist-sub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .46rem;
+      letter-spacing: .16em;
+      color: var(--dim);
+      margin-bottom: .5rem;
+      text-transform: uppercase
+    }
+
+    .dist-desc {
+      font-size: .85rem;
+      color: var(--text);
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: .5rem
+    }
+
+    .dist-desc strong {
+      color: var(--white);
+      font-weight: 600
+    }
+
+    .dtrow {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: .7rem
+    }
+
+    .dtlbl {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .43rem;
+      letter-spacing: .13em;
+      color: var(--dim);
+      text-transform: uppercase
+    }
+
+    .dtv {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .45rem;
+      letter-spacing: .13em;
+      padding: .1rem .45rem;
+      border: 1px solid;
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem
+    }
+
+    .dtv::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      display: inline-block
+    }
+
+    .dtv.safe {
+      color: #2ecc71;
+      border-color: rgba(46, 204, 113, .3);
+      background: rgba(46, 204, 113, .05)
+    }
+
+    .dtv.safe::before {
+      background: #2ecc71
+    }
+
+    .dtv.min {
+      color: #a8ff00;
+      border-color: rgba(168, 255, 0, .3);
+      background: rgba(168, 255, 0, .05)
+    }
+
+    .dtv.min::before {
+      background: #a8ff00
+    }
+
+    .dtv.par {
+      color: var(--yellow);
+      border-color: rgba(255, 210, 0, .3);
+      background: rgba(255, 210, 0, .05)
+    }
+
+    .dtv.par::before {
+      background: var(--yellow);
+      animation: sdp 2s infinite
+    }
+
+    .dtv.ext {
+      color: var(--orange);
+      border-color: rgba(255, 107, 0, .3);
+      background: rgba(255, 107, 0, .05)
+    }
+
+    .dtv.ext::before {
+      background: var(--orange);
+      animation: sdp 1.5s infinite
+    }
+
+    .dtv.cat {
+      color: var(--red);
+      border-color: rgba(255, 42, 69, .3);
+      background: rgba(255, 42, 69, .05)
+    }
+
+    .dtv.cat::before {
+      background: var(--red);
+      animation: sdp 1s infinite
+    }
+
+    .dfacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem;
+      margin-top: .6rem
+    }
+
+    .dfact {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .43rem;
+      letter-spacing: .1em;
+      border: 1px solid var(--border);
+      color: var(--dim);
+      padding: .1rem .4rem;
+      transition: all .15s
+    }
+
+    .dist:hover .dfact {
+      border-color: rgba(255, 42, 69, .18);
+      color: rgba(168, 196, 216, .6)
+    }
+
+    /* CTA */
+    .cta {
+      background: var(--panel);
+      text-align: center;
+      padding: 5rem 6vw;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid var(--border)
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% 110%, rgba(189, 0, 255, .07) 0%, transparent 60%);
+      pointer-events: none
+    }
+
+    .cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: .7rem;
+      position: relative
+    }
+
+    .cta-sub {
+      font-size: .9rem;
+      color: var(--text);
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      letter-spacing: .04em;
+      position: relative
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative
+    }
+
+    .btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .64rem;
+      letter-spacing: .16em;
+      text-decoration: none;
+      padding: .78rem 1.6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      transition: all .2s;
+      text-transform: uppercase;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))
+    }
+
+    .btn-y {
+      background: var(--yellow);
+      color: #000;
+      font-weight: 700
+    }
+
+    .btn-y:hover {
+      box-shadow: 0 0 30px rgba(255, 210, 0, .35);
+      filter: brightness(1.1)
+    }
+
+    .btn-o {
+      border: 1px solid rgba(0, 229, 255, .4);
+      color: var(--cyan);
+      background: rgba(0, 229, 255, .04)
+    }
+
+    .btn-o:hover {
+      border-color: var(--cyan);
+      background: rgba(0, 229, 255, .1)
+    }
+
+    .btn-p {
+      border: 1px solid rgba(189, 0, 255, .4);
+      color: var(--purple);
+      background: rgba(189, 0, 255, .04)
+    }
+
+    .btn-p:hover {
+      border-color: var(--purple);
+      background: rgba(189, 0, 255, .1)
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 1.8rem 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      letter-spacing: .08em;
+      line-height: 1.2
+    }
+
+    .footer-logo em {
+      color: var(--yellow);
+      font-style: normal
+    }
+
+    .footer-logo .fsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .4rem;
+      letter-spacing: .24em;
+      color: var(--dim);
+      display: block;
+      margin-top: .1rem
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.8rem;
+      flex-wrap: wrap
+    }
+
+    .footer-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .5rem;
+      letter-spacing: .16em;
+      color: var(--dim);
+      text-decoration: none;
+      transition: color .2s;
+      text-transform: uppercase
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan)
+    }
+
+    .footer-copy {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .44rem;
+      color: var(--dim);
+      letter-spacing: .13em
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:1100px) {
+      .corp-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .micro-corps-grid {
+        grid-template-columns: 1fr 1fr 1fr
+      }
+
+      .dist {
+        grid-template-columns: 160px 1fr
+      }
+
+      .dist-right {
+        display: none
+      }
+    }
+
+    @media(max-width:780px) {
+      nav {
+        padding: 1rem 4vw
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .corp-grid,
+      .band-grid {
+        grid-template-columns: 1fr
+      }
+
+      .bands-head,
+      .dist-head {
+        grid-template-columns: 1fr;
+        gap: 1.5rem
+      }
+
+      .micro-corps-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .dist {
+        display: block
+      }
+
+      .dist-left {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem
+      }
+
+      .dist-center {
+        padding: 1.5rem
+      }
+    }
+
+    .ph-title::before,
+    .ph-title::after {
+      display: none;
+    }
+
+    .glitch-layer {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glitch-layer::before,
+    .glitch-layer::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+      opacity: .07
+    }
+
+    .glitch-layer::before {
+      color: var(--cyan);
+      transform: translate(-3px, 0);
+      clip-path: polygon(0 20%, 100% 20%, 100% 45%, 0 45%)
+    }
+
+    .glitch-layer::after {
+      color: var(--red);
+      transform: translate(3px, 0);
+      clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
+      animation: chr 6s infinite
+    }
+
+    @keyframes chr {
+
+      0%,
+      88%,
+      100% {
+        opacity: .07
+      }
+
+      90% {
+        opacity: .2;
+        transform: translate(5px, 0)
+      }
+
+      93% {
+        opacity: .05;
+        transform: translate(-2px, 0)
+      }
+
+      96% {
+        opacity: .07
+      }
+    }
+
+    /* Utility Colors */
+    .c {
+      color: var(--cyan)
+    }
+
+    .r {
+      color: var(--red)
+    }
+
+    .y {
+      color: var(--yellow)
+    }
+
+    .p {
+      color: var(--purple)
+    }
+
+    .g {
+      color: var(--green)
+    }
+
+    .o {
+      color: var(--orange)
+    }
+
+    /* TIMELINE ANIMATION */
+    .timeline {
+      position: relative;
+      background: #05080e;
+      overflow: hidden;
+    }
+
+    /* TIMELINE ANIMATION */
+    .timeline {
+      position: relative;
+      background: #05080e;
+      overflow: hidden;
+      padding-top: 2rem;
+    }
+
+    /* SYSTEM DIVIDER */
+    .sys-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 4rem 0 2rem;
+      opacity: .5;
+    }
+
+    .sys-line {
+      flex: 1;
+      height: 1px;
+      background: var(--dim);
+    }
+
+    .sys-text {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--dim);
+      font-size: .6rem;
+      letter-spacing: .2em;
+    }
+
+    .scan-line {
+      width: 100%;
+      height: 2px;
+      background: rgba(0, 229, 255, .3);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      opacity: 0;
+      pointer-events: none;
+      box-shadow: 0 0 10px rgba(0, 229, 255, .5);
+      animation: scanline 8s linear infinite;
+    }
+
+    @keyframes scanline {
+      0% {
+        top: -10%;
+        opacity: 0;
+      }
+
+      10% {
+        opacity: .8;
+      }
+
+      90% {
+        opacity: .8;
+      }
+
+      100% {
+        top: 110%;
+        opacity: 0;
+      }
+    }
+
+    /* TV FRAME & GLASS */
+    .tv-frame {
+      border: 4px solid #1a1f29;
+      border-radius: 20px;
+      padding: 10px;
+      background: #0b0f16;
+      box-shadow:
+        0 0 0 2px #2a3344,
+        0 0 50px rgba(0, 229, 255, .1);
+      position: relative;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+
+    .tv-screen {
+      background: #05080e;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      padding: 3rem 2rem;
+      border: 1px solid rgba(0, 229, 255, .1);
+    }
+
+    .tv-glass {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .02) 0%, transparent 60%),
+        linear-gradient(120deg, rgba(255, 255, 255, .03) 0%, transparent 40%, rgba(255, 255, 255, .02) 45%, transparent 100%);
+      pointer-events: none;
+      z-index: 5;
+      box-shadow: inset 0 0 80px rgba(0, 0, 0, .6);
+      border-radius: 12px;
+    }
+
+    .tv-overlay {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--red);
+      font-size: .6rem;
+      letter-spacing: .15em;
+      background: rgba(4, 6, 10, .8);
+      padding: .2rem .6rem;
+      border: 1px solid var(--red);
+      z-index: 6;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .rec-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    /* CYBERPUNK PRELOADER */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #fcee0a;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Share Tech Mono', monospace;
+      color: #000;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      width: 300px;
+      text-align: left;
+    }
+
+    .loader-text {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .loader-bar-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      width: 0%;
+      height: 100%;
+      background: #000;
+      animation: loadBar 0.8s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+    }
+
+    @keyframes loadBar {
+      0% {
+        width: 0%;
+      }
+
+      20% {
+        width: 30%;
+      }
+
+      50% {
+        width: 35%;
+      }
+
+      80% {
+        width: 85%;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+
+    .glitch-load {
+      animation: glitchText 0.2s infinite;
+    }
+
+    @keyframes glitchText {
+      0% {
+        transform: translate(0);
+        text-shadow: 2px 0 #ff003c;
+      }
+
+      50% {
+        transform: translate(-2px, 2px);
+        text-shadow: -2px 0 #00e5ff;
+      }
+
+      100% {
+        transform: translate(2px, -2px);
+        text-shadow: 2px 0 #ff003c;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader-content">
+      <div class="loader-text glitch-load">INITIALIZING_COSMERIUM_OS...</div>
+      <div class="loader-bar-container">
+        <div class="loader-bar"></div>
+      </div>
+      <div style="font-size: 0.6rem; margin-top: 1rem; opacity: 0.7;">
+        AUTHENTICATING_USER_PROFILE...<br>
+        SYNCING_NEURAL_LINK_v3.0.2...<br>
+        LOADING_NIGHT_CITY_DATABASE...
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="home.html">COSMERIUM <em>ERA III</em><span class="nsub">NIGHT CITY · 2077</span></a>
+    <ul class="nav-links">
+      <li><a href="home.html">Inicio</a></li>
+      <li><a href="mundo.html" class="active">El Mundo</a></li>
+      <li><a href="roles.html">Roles</a></li>
+      <li><a href="sistema.html">Sistema</a></li>
+      <li><a href="objetos.html">Objetos</a></li>
+      <li><a href="ficha.html">Ficha</a></li>
+      <li><a href="normativa.html">Normativa</a></li>
+    </ul>
+    <a class="nav-btn" href="https://discord.gg/DWacKAK373">&#9654; Discord</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="ph-bg"></div>
+    <div class="ph-grid"></div>
+
+    <div class="ph-stat">MEGACORPS ACTIVAS &middot; 6<br>BANDAS REGISTRADAS &middot; 8<br>DISTRITOS &middot; 7 ZONAS
+    </div>
+    <div class="ph-content">
+      <div class="ph-kicker">Base de datos &middot; Night City &middot; 2077</div>
+      <h1 class="ph-title"><span class="glitch-layer" data-text="EL MUNDO">EL <span
+            class="r">MUNDO</span></span><br><span class="glitch-layer" data-text="DE NIGHT CITY">DE <span
+            class="p">NIGHT CITY</span></span></h1>
+      <p class="ph-sub">Corporaciones que dictan ley. Bandas que controlan las calles. Distritos que definen quién eres
+        según dónde pisas. Todo lo que necesitas saber para sobrevivir en el 2077.</p>
+      <div class="ph-nav">
+        <a href="#corporaciones" class="pnb r">Corporaciones</a>
+        <a href="#bandas" class="pnb c">Bandas</a>
+        <a href="#distritos" class="pnb y">Distritos</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══ CORPORACIONES ══ -->
+  <section class="corps" id="corporaciones">
+    <div class="sec-kicker p">Poder corporativo &middot; Night City 2077</div>
+    <h2 class="sec-title">MEGACORPORACIONES</h2>
+    <p class="sec-desc">Son más poderosas que cualquier gobierno. Night City existe porque ellas lo permiten. Sus sedes
+      coronan el Distrito Cero y sus decisiones determinan quién vive, quién muere y quién desaparece sin dejar rastro
+      alguno.</p>
+
+    <div class="corp-grid">
+
+      <div class="corp">
+        <div class="corp-wm">ARS</div>
+        <div class="corp-tier">// Megacorp &middot; Tier I &middot; Tokio, Japón</div>
+        <div class="corp-name" style="color:var(--red)">ARASAKA</div>
+        <div class="corp-full">Arasaka Corporation</div>
+        <div class="corp-stripe" style="background:linear-gradient(to right,var(--red),rgba(255,42,69,.2))"></div>
+        <div class="corp-desc">El coloso japonés del armamento corporativo y la seguridad privada. El clan Arasaka lleva
+          décadas tejiendo una red de control que abarca bancos, ejércitos privados y tecnología de punta. En Night City
+          su presencia es total: desde las torres del Centro Corporativo hasta los sistemas de seguridad de Westbrook.
+          Arasaka Bank controla gran parte de las transacciones de eurodólares en la costa oeste. Arasaka Security
+          provee protección premium. Y en las sombras, Arasaka Intelligence opera con métodos que los gobiernos
+          preferirían ignorar.</div>
+        <div class="corp-tags"><span class="corp-tag">Armamento</span><span class="corp-tag">Seguridad
+            privada</span><span class="corp-tag">Banca corporativa</span><span class="corp-tag">Inteligencia</span><span
+            class="corp-tag">Tecnología militar</span></div>
+        <div class="corp-status"><span class="sdot sd-r"></span><span
+            style="color:var(--red);font-family:'Share Tech Mono',monospace;font-size:.46rem;letter-spacing:.13em">VIGILANCIA
+            MÁXIMA — NO SUBESTIMAR</span></div>
+      </div>
+
+      <div class="corp">
+        <div class="corp-wm">MTL</div>
+        <div class="corp-tier">// Megacorp &middot; Tier I &middot; Washington D.C., NUSA</div>
+        <div class="corp-name" style="color:var(--cyan)">MILITECH</div>
+        <div class="corp-full">Militech International Armaments</div>
+        <div class="corp-stripe" style="background:linear-gradient(to right,var(--cyan),rgba(0,229,255,.2))"></div>
+        <div class="corp-desc">El principal contratista de defensa de los Estados Corporativos Americanos. Militech armó
+          a medio mundo durante la 4a Guerra Corporativa y salió reforzada. Rival histórica de Arasaka, la tensión entre
+          ambas es el motor de la política de Night City en el 2077. Produce desde pistolas de calle hasta sistemas de
+          armamento orbital. Su jefa ejecutiva Rosalind Myers es también figura política de primer orden en los NUSA.
+        </div>
+        <div class="corp-tags"><span class="corp-tag">Armamento pesado</span><span class="corp-tag">Vehículos
+            militares</span><span class="corp-tag">Contratismo NUSA</span><span class="corp-tag">Infantería
+            privada</span></div>
+        <div class="corp-status"><span class="sdot sd-y"></span><span
+            style="color:var(--yellow);font-family:'Share Tech Mono',monospace;font-size:.46rem;letter-spacing:.13em">EN
+            OPERACIONES — TENSIÓN ACTIVA CON ARASAKA</span></div>
+      </div>
+
+      <div class="corp">
+        <div class="corp-wm">BTC</div>
+        <div class="corp-tier">// Megacorp &middot; Tier II &middot; Roma, Italia</div>
+        <div class="corp-name" style="color:var(--green)">BIOTECHNICA</div>
+        <div class="corp-full">Biotechnica International</div>
+        <div class="corp-stripe" style="background:linear-gradient(to right,var(--green),rgba(0,255,157,.2))"></div>
+        <div class="corp-desc">Líder en ingeniería genética, biotecnología y producción alimentaria sintética. En un
+          mundo donde los suelos naturales están agotados, Biotechnica controla algo más valioso que el petróleo: la
+          comida y los cuerpos. Sus inmensas granjas en las afueras de Night City producen los derivados proteicos que
+          alimentan a millones. Su división médica investiga modificaciones genéticas que rozarían lo ilegal en
+          cualquier jurisdicción con leyes reales.</div>
+        <div class="corp-tags"><span class="corp-tag">Biotecnología</span><span class="corp-tag">Ingeniería
+            genética</span><span class="corp-tag">Producción alimentaria</span><span
+            class="corp-tag">Farmacología</span></div>
+        <div class="corp-status"><span class="sdot sd-g"></span><span
+            style="color:var(--green);font-family:'Share Tech Mono',monospace;font-size:.46rem;letter-spacing:.13em">OPERATIVA
+            — CONTRATOS ABIERTOS</span></div>
+      </div>
+
+      <div class="corp">
+        <div class="corp-wm">PCT</div>
+        <div class="corp-tier">// Megacorp &middot; Tier II &middot; Houston, Texas</div>
+        <div class="corp-name" style="color:var(--yellow)">PETROCHEM</div>
+        <div class="corp-full">Petrochem Corporation</div>
+        <div class="corp-stripe" style="background:linear-gradient(to right,var(--yellow),rgba(255,210,0,.2))"></div>
+        <div class="corp-desc">Inventores del CHOOH2, el combustible sintético derivado de trigo modificado
+          genéticamente que mueve prácticamente todo lo que rueda, vuela o flota en Night City. Esa patente les
+          convirtió en un poder global de primera línea. Sus estaciones de servicio están por toda la ciudad. Sus
+          lobbies son presencia constante en el ayuntamiento. Su monopolio energético es prácticamente inatacable.</div>
+        <div class="corp-tags"><span class="corp-tag">CHOOH2</span><span class="corp-tag">Combustibles
+            sintéticos</span><span class="corp-tag">Química industrial</span><span class="corp-tag">Energía</span></div>
+        <div class="corp-status"><span class="sdot sd-y"></span><span
+            style="color:var(--yellow);font-family:'Share Tech Mono',monospace;font-size:.46rem;letter-spacing:.13em">ESTABLE
+            — MONOPOLIO ENERGÉTICO ACTIVO</span></div>
+      </div>
+
+      <div class="corp">
+        <div class="corp-wm">TT</div>
+        <div class="corp-tier">// Corp de servicios &middot; Tier II &middot; Denver, Colorado</div>
+        <div class="corp-name" style="color:var(--orange)">TRAUMA TEAM</div>
+        <div class="corp-full">Trauma Team International</div>
+        <div class="corp-stripe" style="background:linear-gradient(to right,var(--orange),rgba(255,107,0,.2))"></div>
+        <div class="corp-desc">Los servicios de emergencia premium de Night City. Con suscripción, cuando caes en
+          combate llega un AV blindado de Médicos de Trauma en minutos. Sin suscripción, esperas a que la NCPD llene los
+          formularios. Sus equipos están armados y no negocian con quien interfiera en una extracción. La prueba más
+          clara de que en 2077 tu supervivencia es cuestión de dinero.</div>
+        <div class="corp-tags"><span class="corp-tag">Emergencias médicas</span><span class="corp-tag">Extracción en
+            combate</span><span class="corp-tag">Seguros premium</span></div>
+        <div class="corp-status"><span class="sdot sd-c"></span><span
+            style="color:var(--cyan);font-family:'Share Tech Mono',monospace;font-size:.46rem;letter-spacing:.13em">OPERATIVA
+            — RESPUESTA &lt;4 MIN (SUSCRIPTORES)</span></div>
+      </div>
+
+      <div class="corp">
+        <div class="corp-wm">NW</div>
+        <div class="corp-tier">// Agencia gov-corp &middot; Tier I &middot; Bruselas, UE</div>
+        <div class="corp-name" style="color:var(--purple)">NETWATCH</div>
+        <div class="corp-full">Network Watch Agency</div>
+        <div class="corp-stripe" style="background:linear-gradient(to right,var(--purple),rgba(189,0,255,.2))"></div>
+        <div class="corp-desc">La agencia de vigilancia y control del Net a nivel global. Tras el DataKrash del 94,
+          Netwatch mantiene los Blackwall, las barreras digitales que separan el Net fragmentado de los horrores del
+          ciberespacio antiguo. Sus agentes cazan Netrunners que cruzan líneas prohibidas e investigan amenazas
+          digitales de origen incierto. En Night City su presencia es discreta pero sus herramientas son absolutas.
+        </div>
+        <div class="corp-tags"><span class="corp-tag">Vigilancia del Net</span><span
+            class="corp-tag">Blackwall</span><span class="corp-tag">Caza de Netrunners</span><span class="corp-tag">IAs
+            prohibidas</span></div>
+        <div class="corp-status"><span class="sdot sd-p"></span><span
+            style="color:var(--purple);font-family:'Share Tech Mono',monospace;font-size:.46rem;letter-spacing:.13em">ACTIVA
+            — RASTREA EL NET EN TIEMPO REAL</span></div>
+      </div>
+
+    </div>
+
+    <!-- Otras corps -->
+    <h3
+      style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);letter-spacing:.04em;margin-top:3rem;margin-bottom:1.2rem">
+      OTRAS CORPORACIONES <span style="color:var(--dim)">ACTIVAS EN NIGHT CITY</span></h3>
+    <div class="micro-corps-grid">
+      <div class="mcorp">
+        <div class="mcorp-name">KANG TAO</div>
+        <div class="mcorp-sector">// Armamento inteligente &middot; China</div>
+        <div class="mcorp-desc">Fabricante de Smart Guns con vinculación neural. Sus sistemas de guiado rivalizan con
+          Militech en el mercado asiático y florecen en el mercado negro de Watson.</div>
+      </div>
+      <div class="mcorp">
+        <div class="mcorp-name">ZETATECH</div>
+        <div class="mcorp-sector">// Cyberware &middot; Software</div>
+        <div class="mcorp-desc">Cyberware de gama media y software de integración neural. Sus implantes son los más
+          comunes en los Ripperdocs del mercado negro.</div>
+      </div>
+      <div class="mcorp">
+        <div class="mcorp-name">KIROSHI</div>
+        <div class="mcorp-sector">// Óptica &middot; Cyberware</div>
+        <div class="mcorp-desc">Fabricante líder de ojos cibernéticos (Kiroshi Optics). Prácticamente omnipresente en
+          cualquier persona con modificaciones visuales en Night City.</div>
+      </div>
+      <div class="mcorp">
+        <div class="mcorp-name">NIGHT CORP</div>
+        <div class="mcorp-sector">// Infraestructura &middot; Ciudad</div>
+        <div class="mcorp-desc">Gestiona servicios básicos de Night City: agua, energía, datos. Si algo falla en la
+          ciudad, Night Corp firmó los contratos de mantenimiento.</div>
+      </div>
+      <div class="mcorp">
+        <div class="mcorp-name">DELAMAIN</div>
+        <div class="mcorp-sector">// Transporte &middot; IA</div>
+        <div class="mcorp-desc">Servicio de taxis autónomos conducidos por IA. Vehículos blindados y sin preguntas
+          incómodas para quien quiera llegar a su destino con discreción.</div>
+      </div>
+      <div class="mcorp">
+        <div class="mcorp-name">RAVEN MICROCYB.</div>
+        <div class="mcorp-sector">// Cyberware militar</div>
+        <div class="mcorp-desc">Exoesqueletos militares y sistemas de combate integrados. Contratos con Militech y venta
+          paralela en el mercado negro para los bien conectados.</div>
+      </div>
+      <div class="mcorp">
+        <div class="mcorp-name">ORBITAL AIR</div>
+        <div class="mcorp-sector">// Transporte orbital</div>
+        <div class="mcorp-desc">La única aerolínea con rutas suborbitales globales. Controla el transporte de ejecutivos
+          y mercancías de alto valor entre continentes.</div>
+      </div>
+      <div class="mcorp">
+        <div class="mcorp-name">MEDIA CORP</div>
+        <div class="mcorp-sector">// Medios &middot; Entretenimiento</div>
+        <div class="mcorp-desc">Conglomerado que controla canales holo, neurodanzas y plataformas de información. La
+          verdad que ven las masas — filtrada, editada y vendida.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ BANDAS ══ -->
+  <section class="bands" id="bandas">
+    <div class="bands-head">
+      <div>
+        <div class="sec-kicker c">Control de las calles &middot; 2077</div>
+        <h2 class="sec-title">BANDAS &amp;<br><span class="c">FACCIONES</span></h2>
+      </div>
+      <div>
+        <p class="sec-desc" style="margin-bottom:0">Las bandas de Night City no son simples criminales — son gobiernos
+          de facto en los territorios que controlan. Tienen códigos, ideología y estructuras de poder propias. En el
+          2077, ignorar quién controla cada calle puede costarte la vida.</p>
+      </div>
+    </div>
+
+    <div class="band-grid">
+
+      <div class="band">
+        <div class="band-wm">MAELSTROM</div>
+        <div class="band-head">
+          <div>
+            <div class="band-name" style="color:var(--red)">MAELSTROM</div>
+            <div class="band-zone">Watson &middot; Kabuki &middot; Distrito Industrial Norte</div>
+          </div>
+          <span class="band-threat tc2">PELIGRO EXTREMO</span>
+        </div>
+        <div class="band-bar" style="background:var(--red)"></div>
+        <div class="band-desc">Fanáticos del cyberware llevados al límite. Los Maelstrom se modifican hasta rozar la
+          cyberpsicosis colectiva — y la mayoría ha cruzado esa línea. Lo que queda apenas recuerda haber sido humano
+          alguna vez. Controlan el tráfico de cyberware robado, armas ilegales y partes de cuerpos en Watson. No
+          negocian. No se rinden.</div>
+        <div class="band-traits"><span class="bt">Cyberware extremo</span><span class="bt">Tráfico de
+            implantes</span><span class="bt">Watson / DIN</span><span class="bt">Violencia indiscriminada</span></div>
+      </div>
+
+      <div class="band">
+        <div class="band-wm">VAL</div>
+        <div class="band-head">
+          <div>
+            <div class="band-name" style="color:var(--yellow)">VALENTINOS</div>
+            <div class="band-zone">Heywood &middot; Vista del Rey &middot; El Coyote Cojo</div>
+          </div>
+          <span class="band-threat th">PELIGRO ALTO</span>
+        </div>
+        <div class="band-bar" style="background:var(--yellow)"></div>
+        <div class="band-desc">La banda más numerosa de Night City. Los Valentinos representan el orgullo de la
+          comunidad latina de Heywood — su identidad, su cultura, su devoción a Santa Muerte. Son violentos, pero
+          también tienen un código de honor. Atacar a un civil bajo su protección atrae represalias desproporcionadas.
+          Controlan tráfico de drogas, robos de vehículos y extorsión en Heywood.</div>
+        <div class="band-traits"><span class="bt">Cultura latina</span><span class="bt">Santa Muerte</span><span
+            class="bt">Código de honor</span><span class="bt">Tráfico de drogas</span><span class="bt">Heywood</span>
+        </div>
+      </div>
+
+      <div class="band">
+        <div class="band-wm">VDU</div>
+        <div class="band-head">
+          <div>
+            <div class="band-name" style="color:var(--purple)">HIJOS DEL VUDÚ</div>
+            <div class="band-zone">Pacífica &middot; Gran Mall &middot; Costa del Mar</div>
+          </div>
+          <span class="band-threat tc2">PELIGRO CATASTRÓFICO</span>
+        </div>
+        <div class="band-bar" style="background:var(--purple)"></div>
+        <div class="band-desc">Controladores absolutos de Pacífica. Combinan misticismo vudú con Netrunning de
+          vanguardia — sus miembros más peligrosos operan desde el umbral del Blackwall, comerciando con información que
+          ninguna otra banda podría obtener. Son el único gobierno real de Pacífica. Los chatarreros bajo su paraguas
+          cazan implantes y órganos.</div>
+        <div class="band-traits"><span class="bt">Netrunning avanzado</span><span class="bt">Blackwall</span><span
+            class="bt">Control de Pacífica</span><span class="bt">Chatarreros</span></div>
+      </div>
+
+      <div class="band">
+        <div class="band-wm">TG</div>
+        <div class="band-head">
+          <div>
+            <div class="band-name" style="color:var(--cyan)">GARRAS DE TYGRE</div>
+            <div class="band-zone">Westbrook &middot; Japantown &middot; Charter Hill</div>
+          </div>
+          <span class="band-threat tm">PELIGRO MEDIO</span>
+        </div>
+        <div class="band-bar" style="background:var(--cyan)"></div>
+        <div class="band-desc">La banda que controla el entretenimiento nocturno de Japantown. Con vínculos al crimen
+          organizado japonés, operan prostitución, juego, clubs nocturnos y neurodanzas ilegales en Westbrook. Mantienen
+          acuerdos tácitos con corporaciones japonesas que hacen de Westbrook una zona de tensión controlada.</div>
+        <div class="band-traits"><span class="bt">Crimen organizado japonés</span><span
+            class="bt">Neurodanzas</span><span class="bt">Juego</span><span class="bt">Japantown</span></div>
+      </div>
+
+      <div class="band">
+        <div class="band-wm">ALD</div>
+        <div class="band-head">
+          <div>
+            <div class="band-name" style="color:var(--green)">ALDECALDOS</div>
+            <div class="band-zone">Badlands &middot; Afueras &middot; Rutas de contrabando</div>
+          </div>
+          <span class="band-threat tn">CONTACTO POSIBLE</span>
+        </div>
+        <div class="band-bar" style="background:var(--green)"></div>
+        <div class="band-desc">El clan nómada más organizado de las afueras. No son una banda criminal al uso — son una
+          familia que vive por el código nómada: lealtad al clan, libertad en la carretera, desconfianza absoluta a las
+          corporaciones. Operan contrabando, mecánica avanzada y transporte discreto. Para quien los respeta, son
+          aliados invaluables.</div>
+        <div class="band-traits"><span class="bt">Código nómada</span><span class="bt">Contrabando</span><span
+            class="bt">Mecánica avanzada</span><span class="bt">Badlands</span><span class="bt">Aliado potencial</span>
+        </div>
+      </div>
+
+      <div class="band">
+        <div class="band-wm">6TH</div>
+        <div class="band-head">
+          <div>
+            <div class="band-name" style="color:var(--orange)">BANDA DE LA CALLE 6</div>
+            <div class="band-zone">Santo Domingo &middot; Arroyo &middot; Rancho Coronado</div>
+          </div>
+          <span class="band-threat th">PELIGRO ALTO</span>
+        </div>
+        <div class="band-bar" style="background:var(--orange)"></div>
+        <div class="band-desc">Fundada por veteranos militares para proteger vecindarios que la NCPD ignoraba. Esa idea
+          original se corrompió rápidamente en extorsión sistémica y control territorial violento. Se consideran
+          patriotas americanos. Eso les da una ideología que mezcla nostalgia militarista con brutalidad de barrio.
+        </div>
+        <div class="band-traits"><span class="bt">Veteranos militares</span><span class="bt">Ideología
+            patriótica</span><span class="bt">Extorsión</span><span class="bt">Santo Domingo</span></div>
+      </div>
+
+      <div class="band">
+        <div class="band-wm">ANM</div>
+        <div class="band-head">
+          <div>
+            <div class="band-name" style="color:var(--orange)">ANIMALES</div>
+            <div class="band-zone">Pacífica &middot; Santo Domingo &middot; Zonas industriales</div>
+          </div>
+          <span class="band-threat te">PELIGRO ALTO</span>
+        </div>
+        <div class="band-bar" style="background:var(--orange)"></div>
+        <div class="band-desc">Rechazan el cyberware. Su filosofía es el cuerpo humano llevado al extremo mediante
+          sustancias de mejora orgánica, entrenamiento brutal y drogas de combate. Son los rivales físicos más
+          peligrosos de Night City en combate cuerpo a cuerpo. Operan clubes de lucha ilegales y tráfico de sustancias.
+        </div>
+        <div class="band-traits"><span class="bt">Anti-cyberware</span><span class="bt">Mejora orgánica</span><span
+            class="bt">Clubes de combate</span><span class="bt">Fuerza bruta</span></div>
+      </div>
+
+      <div class="band">
+        <div class="band-wm">MOX</div>
+        <div class="band-head">
+          <div>
+            <div class="band-name" style="color:var(--purple)">THE MOXES</div>
+            <div class="band-zone">Watson &middot; Lizzie's Bar &middot; Little China</div>
+          </div>
+          <span class="band-threat tn">NEUTRAL</span>
+        </div>
+        <div class="band-bar" style="background:var(--purple)"></div>
+        <div class="band-desc">Nacidos en Lizzie's Bar para proteger a trabajadores del sexo y personas vulnerables de
+          Watson. Son la única banda de Night City con un código explícito de no agresión a civiles. No buscan
+          territorio ni poder económico. Si te dan su palabra, la cumplen — y son letales con quien cruce sus líneas.
+        </div>
+        <div class="band-traits"><span class="bt">Protección de civiles</span><span class="bt">Watson</span><span
+            class="bt">Lizzie's Bar</span><span class="bt">Código de honor</span><span class="bt">Aliado
+            potencial</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ DISTRITOS ══ -->
+  <section class="districts" id="distritos">
+    <div class="dist-head">
+      <div>
+        <div class="sec-kicker y">Geografía de Night City</div>
+        <h2 class="sec-title">DISTRITOS<br><span class="y">&amp; ZONAS</span></h2>
+      </div>
+      <div>
+        <p class="sec-desc" style="margin-bottom:0">Night City se divide en zonas de control con sus propias reglas no
+          escritas, facciones dominantes y nivel de amenaza según la NCPD. Lo que el folleto del Alcalde Rhyne llama
+          "zonas de interés", los edgerunners lo llaman "dónde mueres si no te preparas".</p>
+      </div>
+    </div>
+
+    <div class="dist-list">
+
+      <div class="dist">
+        <div class="dist-left">
+          <div>
+            <div class="dist-name">DISTRITO CERO</div>
+            <div class="dist-zone">// Centro Corporativo</div>
+          </div>
+          <div class="dist-bar" style="background:var(--yellow)"></div>
+          <div class="dist-num">00</div>
+        </div>
+        <div class="dist-center">
+          <div class="dist-sub">Nivel de amenaza NCPD</div>
+          <div class="dtrow"><span class="dtlbl">Estado:</span><span class="dtv safe">SEGURO</span></div>
+          <div class="dist-desc">Gigantescos rascacielos y un ballet de carne y acero iluminado por neón. El
+            <strong>Centro Corporativo</strong> es donde las corporaciones se regulan a sí mismas sin interferencia
+            exterior. Arasaka y Militech tienen sus sedes aquí. En la zona centro: hoteles de lujo, restaurantes
+            exclusivos y el 7th Hell — punto de encuentro del ambiente rebelde-chic corporativo.
+          </div>
+        </div>
+        <div class="dist-right">
+          <div class="dist-sub">Facciones activas</div>
+          <div class="dfacts"><span class="dfact">Arasaka Security</span><span class="dfact">Militech</span><span
+              class="dfact">Netwatch</span><span class="dfact">NCPD Elite</span></div>
+          <div class="dist-sub" style="margin-top:1rem">Subzonas</div>
+          <div class="dfacts"><span class="dfact">Centro Corporativo</span><span class="dfact">Zona Centro</span><span
+              class="dfact">7th Hell</span></div>
+        </div>
+      </div>
+
+      <div class="dist">
+        <div class="dist-left">
+          <div>
+            <div class="dist-name">WATSON</div>
+            <div class="dist-zone">// Zona Industrial</div>
+          </div>
+          <div class="dist-bar" style="background:var(--red)"></div>
+          <div class="dist-num">01</div>
+        </div>
+        <div class="dist-center">
+          <div class="dist-sub">Nivel de amenaza NCPD</div>
+          <div class="dtrow"><span class="dtlbl">Estado:</span><span class="dtv ext">EXTREMO</span></div>
+          <div class="dist-desc">El arca de Night City tras la catástrofe nuclear de 2023. <strong>Kabuki</strong> —
+            maraña de callejones superpoblados — es el hervidero de artistas y cazadores de gangas más activo de la
+            ciudad. Los Maelstrom dominan en las sombras. El <strong>DIN</strong> acoge a recién llegados con talento
+            técnico. <strong>Little China</strong> es el crisol cultural y gastronómico que hace de Watson el distrito
+            más vivo y más peligroso.</div>
+        </div>
+        <div class="dist-right">
+          <div class="dist-sub">Facciones activas</div>
+          <div class="dfacts"><span class="dfact">Maelstrom</span><span class="dfact">The Moxes</span><span
+              class="dfact">NCPD (escasa)</span></div>
+          <div class="dist-sub" style="margin-top:1rem">Subzonas</div>
+          <div class="dfacts"><span class="dfact">Kabuki</span><span class="dfact">DIN</span><span class="dfact">Little
+              China</span><span class="dfact">Lizzie's Bar</span></div>
+        </div>
+      </div>
+
+      <div class="dist">
+        <div class="dist-left">
+          <div>
+            <div class="dist-name">WESTBROOK</div>
+            <div class="dist-zone">// Entretenimiento</div>
+          </div>
+          <div class="dist-bar" style="background:var(--cyan)"></div>
+          <div class="dist-num">02</div>
+        </div>
+        <div class="dist-center">
+          <div class="dist-sub">Nivel de amenaza NCPD</div>
+          <div class="dtrow"><span class="dtlbl">Estado:</span><span class="dtv min">MÍNIMO</span></div>
+          <div class="dist-desc">Surgido durante la 4a Guerra Corporativa. <strong>Charter Hill</strong> para ejecutivos
+            en ascenso, <strong>North Oak</strong> para los que ya llegaron a la cima. De noche,
+            <strong>Japantown</strong> explota con kyabakuras, hoteles del amor y el legendario club Clouds. Las Garras
+            de Tygre controlan el entretenimiento con una relación tácita de no agresión con corporaciones niponas.
+          </div>
+        </div>
+        <div class="dist-right">
+          <div class="dist-sub">Facciones activas</div>
+          <div class="dfacts"><span class="dfact">Garras de Tygre</span><span class="dfact">Arasaka (offshore)</span>
+          </div>
+          <div class="dist-sub" style="margin-top:1rem">Subzonas</div>
+          <div class="dfacts"><span class="dfact">Japantown</span><span class="dfact">Charter Hill</span><span
+              class="dfact">North Oak</span><span class="dfact">Clouds</span></div>
+        </div>
+      </div>
+
+      <div class="dist">
+        <div class="dist-left">
+          <div>
+            <div class="dist-name">HEYWOOD</div>
+            <div class="dist-zone">// Residencial</div>
+          </div>
+          <div class="dist-bar" style="background:var(--yellow)"></div>
+          <div class="dist-num">03</div>
+        </div>
+        <div class="dist-center">
+          <div class="dist-sub">Nivel de amenaza NCPD</div>
+          <div class="dtrow"><span class="dtlbl">Estado:</span><span class="dtv par">PARCIALMENTE PELIGROSO</span></div>
+          <div class="dist-desc">Encanto sutil e inconfundible. Boutiques, mercados al aire libre y puestos de tacos en
+            <strong>Vista del Rey</strong>. Alberga el ayuntamiento y el Reconciliation Park. Los
+            <strong>Valentinos</strong> controlan el sur y el este con una mezcla de orgullo cultural, devoción a Santa
+            Muerte y violencia sistémica.
+          </div>
+        </div>
+        <div class="dist-right">
+          <div class="dist-sub">Facciones activas</div>
+          <div class="dfacts"><span class="dfact">Valentinos</span><span class="dfact">NCPD</span><span
+              class="dfact">6th Street (límite)</span></div>
+          <div class="dist-sub" style="margin-top:1rem">Subzonas</div>
+          <div class="dfacts"><span class="dfact">Vista del Rey</span><span class="dfact">The Glen</span><span
+              class="dfact">Reconciliation Park</span></div>
+        </div>
+      </div>
+
+      <div class="dist">
+        <div class="dist-left">
+          <div>
+            <div class="dist-name">SANTO DOMINGO</div>
+            <div class="dist-zone">// Industrial / Dormitorio</div>
+          </div>
+          <div class="dist-bar" style="background:var(--orange)"></div>
+          <div class="dist-num">04</div>
+        </div>
+        <div class="dist-center">
+          <div class="dist-sub">Nivel de amenaza NCPD</div>
+          <div class="dtrow"><span class="dtlbl">Estado:</span><span class="dtv par">VIGILADO</span></div>
+          <div class="dist-desc"><strong>Arroyo</strong>, núcleo industrial con esqueletos de fábricas quebradas,
+            contrasta con <strong>Rancho Coronado</strong>, ciudad dormitorio de vallas blancas donde el suelo pertenece
+            a las corporaciones que lo construyeron. La <strong>Banda de la Calle 6</strong> — veteranos con ideología
+            patriótica — patrullan como protección que derivó en extorsión.</div>
+        </div>
+        <div class="dist-right">
+          <div class="dist-sub">Facciones activas</div>
+          <div class="dfacts"><span class="dfact">Banda de la Calle 6</span><span class="dfact">Animales</span><span
+              class="dfact">NCPD</span></div>
+          <div class="dist-sub" style="margin-top:1rem">Subzonas</div>
+          <div class="dfacts"><span class="dfact">Arroyo</span><span class="dfact">Rancho Coronado</span><span
+              class="dfact">Capitán Caliente</span></div>
+        </div>
+      </div>
+
+      <div class="dist">
+        <div class="dist-left">
+          <div>
+            <div class="dist-name">PACÍFICA</div>
+            <div class="dist-zone">// Zona Abandonada</div>
+          </div>
+          <div class="dist-bar" style="background:var(--purple)"></div>
+          <div class="dist-num">05</div>
+        </div>
+        <div class="dist-center">
+          <div class="dist-sub">Nivel de amenaza NCPD</div>
+          <div class="dtrow"><span class="dtlbl">Estado:</span><span class="dtv cat">CATASTRÓFICO</span></div>
+          <div class="dist-desc">La zona que las corporaciones dejaron pudrir. Sin ninguna autoridad de la ciudad, cae
+            bajo el control absoluto de los <strong>Hijos del Vudú</strong>. Los chatarreros cazan implantes y órganos
+            con rutina perturbadora. El <strong>Gran Mall</strong> en ruinas alberga una comunidad que existe
+            completamente al margen del mundo.</div>
+        </div>
+        <div class="dist-right">
+          <div class="dist-sub">Facciones activas</div>
+          <div class="dfacts"><span class="dfact">Hijos del Vudú</span><span class="dfact">Animales</span><span
+              class="dfact">Sin NCPD</span></div>
+          <div class="dist-sub" style="margin-top:1rem">Subzonas</div>
+          <div class="dfacts"><span class="dfact">Gran Mall</span><span class="dfact">Costa del Mar</span><span
+              class="dfact">Batty's Hotel</span></div>
+        </div>
+      </div>
+
+      <div class="dist">
+        <div class="dist-left">
+          <div>
+            <div class="dist-name">BADLANDS</div>
+            <div class="dist-zone">// Afueras &middot; Zona Libre</div>
+          </div>
+          <div class="dist-bar" style="background:var(--green)"></div>
+          <div class="dist-num">06</div>
+        </div>
+        <div class="dist-center">
+          <div class="dist-sub">Nivel de amenaza NCPD</div>
+          <div class="dtrow"><span class="dtlbl">Estado:</span><span class="dtv cat">FUERA DE JURISDICCIÓN</span></div>
+          <div class="dist-desc">El desierto más allá de los muros. Las granjas de <strong>Biotechnica</strong> dominan
+            el horizonte. <strong>Rocky Ridge</strong>, ciudad fantasma de un proyecto corporativo fallido, sirve de
+            refugio nómada. La NCPD no tiene jurisdicción aquí. Los <strong>Aldecaldos</strong> hacen sus rutas. Los
+            <strong>Wraiths</strong> emboscan caravanas. La ley del más rápido y mejor armado.
+          </div>
+        </div>
+        <div class="dist-right">
+          <div class="dist-sub">Facciones activas</div>
+          <div class="dfacts"><span class="dfact">Aldecaldos</span><span class="dfact">Wraiths</span><span
+              class="dfact">Biotechnica</span><span class="dfact">Sin NCPD</span></div>
+          <div class="dist-sub" style="margin-top:1rem">Subzonas</div>
+          <div class="dfacts"><span class="dfact">Rocky Ridge</span><span class="dfact">Granjas Biotechnica</span><span
+              class="dfact">Central solar</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ LEY Y ORDEN ══ -->
+  <section class="law" id="ley" style="background:var(--panel)">
+    <div class="sec-kicker c">Autoridad & Sanidad</div>
+    <h2 class="sec-title">LEY Y <span class="c">ORDEN</span></h2>
+    <p class="sec-desc">En Night City, la justicia es un servicio de suscripción y la seguridad se paga por minuto. La
+      policía está desbordada y privatizada, y los servicios médicos de emergencia solo salvan a clientes solventes.</p>
+
+    <div class="dist-head" style="margin-bottom:2rem;gap:2rem">
+
+      <!-- NCPD -->
+      <div class="dist-left" style="border:1px solid var(--border);padding:2rem;background:var(--bg)">
+        <div class="sec-kicker c" style="margin-bottom:0.5rem">NIGHT CITY POLICE DEPT</div>
+        <h3 class="sec-title" style="font-size:2.5rem;color:var(--white)">NCPD</h3>
+        <p class="dist-desc">
+          La <strong>Policía de Night City</strong> es una fuerza corporativizada y con fondos insuficientes. Los
+          patrulleros estándar (Beat Cops) rara vez entran en las Zonas de Combate y suelen aceptar sobornos para mirar
+          a otro lado.
+        </p>
+        <div class="divider" style="margin:1rem 0;opacity:0.3"></div>
+        <div class="sec-kicker c" style="margin-bottom:0.5rem;color:var(--red)">MAX-TAC (PSYCHO SQUAD)</div>
+        <p class="dist-desc">
+          La División de Máxima Fuerza Táctica. Solo se despliegan cuando hay ciberpsicosis o amenazas de nivel militar.
+          No negocian, no arrestan, solo neutralizan. Son los depredadores alfa de la ciudad.
+        </p>
+        <div class="dfacts" style="margin-top:1rem">
+          <span class="dfact" style="color:var(--cyan);border-color:var(--cyan)">Respuesta: 10-20 min</span>
+          <span class="dfact">Corrupción: Alta</span>
+          <span class="dfact" style="color:var(--red);border-color:var(--red)">MAX-TAC: Letal</span>
+        </div>
+      </div>
+
+      <!-- TRAUMA TEAM -->
+      <div class="dist-right" style="border:1px solid var(--border);padding:2rem;background:var(--bg)">
+        <div class="sec-kicker o" style="margin-bottom:0.5rem">SERVICIO MÉDICO ARMADO</div>
+        <h3 class="sec-title" style="font-size:2.5rem;color:var(--white)">TRAUMA <span class="o">TEAM</span></h3>
+        <p class="dist-desc">
+          Paramédicos de combate con soporte aéreo AV-4. Si tienes tarjeta, vendrán. Si no, te dejarán desangrarte en la
+          acera.
+        </p>
+
+        <div style="margin-top:1.5rem">
+          <div class="dtrow"
+            style="justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:0.5rem;margin-bottom:0.5rem">
+            <span class="dtlbl" style="font-size:0.6rem;color:var(--text)">COBERTURA PLATA</span>
+            <span class="dtv" style="border:none;color:var(--white)">500 eb/mes</span>
+          </div>
+          <p class="dist-desc" style="font-size:0.75rem;margin-bottom:1rem">La ambulancia llega en 10 minutos. El
+            cliente paga el combustible y la munición gastada (aprox. 100 eb/minuto). Llevan al hospital corporativo más
+            cercano.</p>
+
+          <div class="dtrow"
+            style="justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:0.5rem;margin-bottom:0.5rem">
+            <span class="dtlbl" style="font-size:0.6rem;color:var(--yellow)">COBERTURA EJECUTIVA</span>
+            <span class="dtv" style="border:none;color:var(--yellow)">1.000 eb/mes</span>
+          </div>
+          <p class="dist-desc" style="font-size:0.75rem;margin-bottom:1rem">Respuesta en 7 minutos o menos. Combustible
+            y munición incluidos. Traslado a Hospital Corporativo de primer nivel.</p>
+
+          <div class="dtrow"
+            style="justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:0.5rem;margin-bottom:0.5rem">
+            <span class="dtlbl" style="font-size:0.6rem;color:var(--cyan)">COBERTURA PLATINO</span>
+            <span class="dtv" style="border:none;color:var(--cyan)">3.000+ eb/mes</span>
+          </div>
+          <p class="dist-desc" style="font-size:0.75rem"><strong>PRIORIDAD ABSOLUTA.</strong> Respuesta en 3 minutos
+            (AV-4 pesado). El equipo de extracción neutralizará cualquier amenaza hostil en la zona antes de preguntar.
+            Cobertura médica completa y reconstrucción biológica.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sys-divider">
+      <div class="sys-line"></div>
+      <div class="sys-text">ARCHIVE_ACCESS // ENCRYPTED</div>
+      <div class="sys-line"></div>
+    </div>
+
+    <!-- CRONOLOGÍA -->
+    <section class="timeline" id="cronologia">
+      <div class="tv-frame">
+        <div class="tv-screen">
+          <div class="scan-line"></div>
+          <div class="tv-glass"></div>
+          <div class="tv-overlay">
+            <div class="rec-dot"></div> LIVE // N54 NEWS ARCHIVE
+          </div>
+          <div style="max-width:800px;margin-bottom:2rem">
+            <div class="sec-kicker y">Historia prohibida</div>
+            <h2 class="sec-title">CRONO<span class="y">LOGÍA</span></h2>
+            <p class="sec-desc">Para entender quién eres hoy, debes saber sobre qué cenizas caminas. Night City ha sido
+              destruida y reconstruida más veces de las que sus habitantes recuerdan.</p>
+          </div>
+
+          <div class="time-track" style="border-left:1px solid var(--border);padding-left:2rem;margin-left:1rem">
+
+            <div class="time-event" style="margin-bottom:2rem;position:relative">
+              <div class="time-dot"
+                style="position:absolute;left:-2.35rem;top:0.3rem;width:10px;height:10px;background:var(--red);border-radius:50%">
+              </div>
+              <div class="time-year" style="font-family:'Bebas Neue';font-size:1.5rem;color:var(--red)">2023</div>
+              <div class="time-title"
+                style="font-family:'Share Tech Mono';color:var(--white);text-transform:uppercase;margin-bottom:0.2rem">
+                EL
+                HOLOCAUSTO DE NIGHT CITY</div>
+              <p class="time-desc" style="font-size:0.85rem;color:var(--text);line-height:1.6">
+                Durante la 4ª Guerra Corporativa, un equipo de asalto de Militech (inc. Johnny Silverhand) detona una
+                cabeza
+                nuclear táctica en la Torre Arasaka. El centro de la ciudad es vaporizado. El cielo se tiñe de rojo
+                sangre
+              </p>
+            </div>
+
+            <div class="time-event" style="margin-bottom:2rem;position:relative">
+              <div class="time-dot"
+                style="position:absolute;left:-2.35rem;top:0.3rem;width:10px;height:10px;background:var(--orange);border-radius:50%">
+              </div>
+              <div class="time-year" style="font-family:'Bebas Neue';font-size:1.5rem;color:var(--orange)">2035 - 2045
+              </div>
+              <div class="time-title"
+                style="font-family:'Share Tech Mono';color:var(--white);text-transform:uppercase;margin-bottom:0.2rem">
+                EL
+                TIEMPO DEL ROJO</div>
+              <p class="time-desc" style="font-size:0.85rem;color:var(--text);line-height:1.6">
+                La reconstrucción. Con el comercio global colapsado y la RED muerta por el virus DataKrash de Rache
+                Bartmoss, Night City sobrevive aislada. Nacen las Redes Locales. Los Nómadas controlan las rutas de
+                suministro. Es una época de escasez y supervivencia brutal.
+              </p>
+            </div>
+
+            <div class="time-event" style="margin-bottom:2rem;position:relative">
+              <div class="time-dot"
+                style="position:absolute;left:-2.35rem;top:0.3rem;width:10px;height:10px;background:var(--yellow);border-radius:50%">
+              </div>
+              <div class="time-year" style="font-family:'Bebas Neue';font-size:1.5rem;color:var(--yellow)">2060 - 2070
+              </div>
+              <div class="time-title"
+                style="font-family:'Share Tech Mono';color:var(--white);text-transform:uppercase;margin-bottom:0.2rem">
+                LA
+                GUERRA DE UNIFICACIÓN</div>
+              <p class="time-desc" style="font-size:0.85rem;color:var(--text);line-height:1.6">
+                Los Nuevos Estados Unidos (NUSA) intentan reanexionar los estados libres. Night City pide ayuda a
+                Arasaka
+                para mantener su independencia. La guerra termina con el Tratado de Unificación, reafirmando a Night
+                City
+                como ciudad-estado independiente bajo la "protección" de Arasaka.
+              </p>
+            </div>
+
+            <div class="time-event" style="margin-bottom:2rem;position:relative">
+              <div class="time-dot"
+                style="position:absolute;left:-2.35rem;top:0.3rem;width:10px;height:10px;background:var(--cyan);border-radius:50%">
+              </div>
+              <div class="time-year" style="font-family:'Bebas Neue';font-size:1.5rem;color:var(--cyan)">2077</div>
+              <div class="time-title"
+                style="font-family:'Share Tech Mono';color:var(--white);text-transform:uppercase;margin-bottom:0.2rem">
+                ERA
+                ACTUAL</div>
+              <p class="time-desc" style="font-size:0.85rem;color:var(--text);line-height:1.6">
+                La ciudad brilla de neón, pero está podrida por dentro. La tecnología ha avanzado (Ciberdecks modernos,
+                Sándevistan de grado militar), pero la brecha entre ricos y pobres es abismal. Arasaka domina la ciudad.
+                Saburo Arasaka tiene 158 años. La calma antes de la siguiente tormenta.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="cta-title">YA CONOCES EL MAPA DE <span style="color:var(--red)">PODER.</span><br>DECIDE QUIÉN ERES EN
+        ÉL.</div>
+      <p class="cta-sub">Corporaciones que te usan como herramienta. Bandas que necesitan aliados. Distritos que moldean
+        tu supervivencia. Ahora elige tu rol.</p>
+      <div class="cta-btns">
+        <a href="roles.html" class="btn btn-y">&#9654; Ver Roles</a>
+        <a href="sistema.html" class="btn btn-o">Sistema CPR</a>
+        <a href="https://discord.gg/DWacKAK373" class="btn btn-p">&#9654; Discord</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-logo">COSMERIUM <em>ERA III</em><span class="fsub">NIGHT CITY 2077 &middot; SISTEMA: CYBERPUNK
+          RED &middot; CONAN EXILES</span></div>
+      <div class="footer-links">
+        <a href="home.html">Inicio</a>
+        <a href="mundo.html">El Mundo</a>
+        <a href="roles.html">Roles</a>
+        <a href="sistema.html">Sistema</a>
+        <a href="objetos.html">Objetos</a>
+        <a href="normativa.html">Normativa</a>
+        <a href="https://discord.gg/DWacKAK373">Discord</a>
+      </div>
+      <div class="footer-copy">CYBERPUNK RED &middot; NIGHT CITY 2077 &middot; COSMERIUM ERA III</div>
+    </footer>
+
+    <script>
+      window.onload = function () {
+        setTimeout(() => {
+          document.getElementById('preloader').classList.add('loaded');
+        }, 1000);
+      };
+    </script>
+</body>
+
+</html>
