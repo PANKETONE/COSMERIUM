@@ -1725,51 +1725,7 @@
     }
 
     /* ══ RESPONSIVE ══ */
-    @media(max-width:1000px) {
 
-      .lore-grid,
-      .tech-inner,
-      .normas-inner,
-      .ls-intro,
-      .sistema-header {
-        grid-template-columns: 1fr;
-        gap: 2.5rem
-      }
-
-      .ls-grid,
-      .dist-grid {
-        grid-template-columns: 1fr 1fr
-      }
-
-      .roles-grid {
-        grid-template-columns: repeat(3, 1fr)
-      }
-
-      .sys-grid {
-        grid-template-columns: 1fr
-      }
-    }
-
-    @media(max-width:650px) {
-
-      .roles-grid,
-      .ls-grid,
-      .dist-grid {
-        grid-template-columns: 1fr 1fr
-      }
-
-      .accept-grid {
-        grid-template-columns: 1fr
-      }
-
-      nav {
-        padding: 1rem 4vw
-      }
-
-      .nav-links {
-        display: none
-      }
-    }
 
     /* CYBERPUNK PRELOADER */
     #preloader {
@@ -1861,6 +1817,161 @@
         text-shadow: 2px 0 #ff003c;
       }
     }
+
+    /* ══ RESPONSIVENESS (DESKTOP-FIRST) ══ */
+    @media (max-width: 1200px) {
+      .hero-title {
+        font-size: 8rem;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .roles-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+
+      .dist-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+
+      .ls-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 6vw;
+      }
+
+      .nav-links {
+        display: flex !important;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: rgba(4, 6, 10, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: 0.4s cubic-bezier(0.1, 0, 0.1, 1);
+        z-index: 199;
+        backdrop-filter: blur(10px);
+        border-left: 1px solid var(--yellow);
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-btn {
+        display: none;
+      }
+
+      /* Hide the Discord button on mobile nav to save space */
+
+      .hamburger {
+        display: flex !important;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        z-index: 201;
+      }
+
+      .hamburger span {
+        width: 30px;
+        height: 2px;
+        background: var(--yellow);
+        transition: 0.3s;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -7px);
+      }
+
+      .hero {
+        padding-bottom: 3rem;
+      }
+
+      .hero-title {
+        font-size: 4.5rem;
+      }
+
+      .hero-tagline {
+        font-size: 0.9rem;
+      }
+
+      .statbar {
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .sn {
+        font-size: 2rem;
+      }
+
+      .sec-title {
+        font-size: 2.5rem !important;
+      }
+
+      .roles-grid,
+      .dist-grid,
+      .ls-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .lore-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lcard {
+        padding: 1.5rem;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 3.5rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        justify-content: center;
+      }
+
+      .ui-tl,
+      .ui-status,
+      .ui-br {
+        display: none;
+      }
+
+      /* Clean up decor for small screens */
+    }
   </style>
 </head>
 
@@ -1883,7 +1994,7 @@
   <!-- NAV -->
   <nav>
     <a class="nav-logo" href="home.html">COSMERIUM <em>ERA III</em><span class="nsub">NIGHT CITY · 2077</span></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a href="home.html">Inicio</a></li>
       <li><a href="mundo.html">El Mundo</a></li>
       <li><a href="roles.html">Roles</a></li>
@@ -1891,7 +2002,13 @@
       <li><a href="objetos.html">Objetos</a></li>
       <li><a href="ficha.html">Ficha</a></li>
       <li><a href="normativa.html">Normativa</a></li>
+      <li class="mobile-only"><a href="https://discord.gg/DWacKAK373" style="color:var(--yellow)">Discord</a></li>
     </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <a class="nav-btn" href="https://discord.gg/DWacKAK373">&#9654; Discord</a>
   </nav>
 
@@ -2600,6 +2717,23 @@
 
   <script>
     window.onload = function () {
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navLinks');
+
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+          link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+          });
+        });
+      }
+
       setTimeout(() => {
         document.getElementById('preloader').classList.add('loaded');
       }, 1000);

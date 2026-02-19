@@ -446,6 +446,118 @@
                 border-color: transparent
             }
         }
+
+        /* ══ RESPONSIVENESS (DESKTOP-FIRST) ══ */
+        @media (max-width: 1024px) {
+            .main-header h1 {
+                font-size: 4rem;
+            }
+
+            .t-top-left,
+            .t-top-right,
+            .t-bot-left {
+                opacity: 0.5;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hud {
+                padding: 1rem;
+                margin: 0.5rem;
+                border-width: 1px;
+            }
+
+            .terminal-box {
+                display: none;
+                /* Hide decorative logs on small mobiles to prioritize UI */
+            }
+
+            .main-header h1 {
+                font-size: 3rem;
+                white-space: normal;
+                word-break: break-all;
+            }
+
+            .countdown-wrap {
+                gap: 0.8rem;
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .time-item b {
+                font-size: 2.5rem;
+            }
+
+            .time-item span {
+                font-size: 0.5rem;
+            }
+
+            .mq-1 {
+                top: 5%;
+            }
+
+            .mq-2 {
+                bottom: 5%;
+            }
+
+            .audio-player {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .track-info {
+                text-align: center;
+            }
+
+            input {
+                font-size: 1.1rem;
+                padding: 0.8rem;
+            }
+
+            button {
+                font-size: 1.5rem;
+                padding: 1rem;
+            }
+
+            .boot-text {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .countdown-wrap {
+                box-shadow: 5px 5px 0 var(--black);
+            }
+
+            .time-item b {
+                font-size: 2rem;
+            }
+
+            .big-msg {
+                font-size: 15vw;
+            }
+
+            .marquee-wrap {
+                width: 150%;
+                font-size: 0.6rem;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .marquee-wrap {
+                display: none;
+            }
+
+            .main-ui {
+                top: 55%;
+            }
+        }
     </style>
 </head>
 
