@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (localStorage.getItem('cosmerium_auth') !== 'true') {
+      window.location.href = "index.html";
+    }
+  </script>
+  <title>NIGHT MARKET // Catálogo — Cosmerium Era III</title>
+  <script src="js/live-notifications.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&display=swap');
+
+    :root {
+      --bg: #04060a;
+      --panel: #070b10;
+      --border: #0f1a24;
+      --border2: #162130;
+      --red: #ff2a45;
+      --cyan: #00e5ff;
+      --yellow: #ffd200;
+      --purple: #bd00ff;
+      --orange: #ff6b00;
+      --green: #00ff9d;
+      --text: #a8c4d8;
+      --dim: #2e4558;
+      --white: #ecf4fa;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 900;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 229, 255, .004) 2px, rgba(0, 229, 255, .004) 4px);
+    }
+
+    /* ═══ NAV ═══ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 1.1rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(4, 6, 10, .97) 60%, transparent);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(17, 28, 40, .5);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      letter-spacing: .08em;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav-logo .nsub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .4rem;
+      letter-spacing: .3em;
+      color: var(--dim);
+    }
+
+    .nav-logo em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .18em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--cyan);
+    }
+
+    .nav-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .56rem;
+      letter-spacing: .14em;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: .42rem .95rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+
+    .nav-btn:hover {
+      background: var(--yellow);
+      color: #000;
+    }
+
+    .hamburger {
+      display: none;
+    }
+
+    /* ═══ RESPONSIVENESS NAV ═══ */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 6vw;
+      }
+
+      .nav-links {
+        display: flex !important;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: rgba(4, 6, 10, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: 0.4s cubic-bezier(0.1, 0, 0.1, 1);
+        z-index: 199;
+        backdrop-filter: blur(10px);
+        border-left: 1px solid var(--yellow);
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-btn {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex !important;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        z-index: 201;
+      }
+
+      .hamburger span {
+        width: 30px;
+        height: 2px;
+        background: var(--yellow);
+        transition: 0.3s;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -7px);
+      }
+    }
+
+    /* ═══ HERO ═══ */
+    .page-hero {
+      padding-top: 90px;
+      padding-bottom: 3rem;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 42, 69, .07) 0%, transparent 60%),
+        linear-gradient(to bottom, #040812 0%, #04060a 100%);
+      border-bottom: 1px solid var(--border2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: 'NIGHT MARKET';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(80px, 18vw, 200px);
+      color: rgba(255, 42, 69, .03);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .3em;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: .8rem;
+    }
+
+    .hero-title em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--dim);
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+
+    .hero-stats {
+      display: inline-flex;
+      gap: 2rem;
+      border: 1px solid var(--border2);
+      padding: .6rem 1.5rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+    }
+
+    .hero-stats span {
+      color: var(--cyan);
+    }
+
+    /* ═══ LAYOUT ═══ */
+    .shop-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 0;
+      min-height: calc(100vh - 200px);
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 2rem 2vw;
+    }
+
+    /* ═══ SIDEBAR ═══ */
+    .sidebar {
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding-right: 1rem;
+      border-right: 1px solid var(--border2);
+      scrollbar-width: thin;
+      scrollbar-color: var(--border2) transparent;
+    }
+
+    .sidebar-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .2em;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .cat-btn {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: .6rem .8rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      color: var(--dim);
+      text-transform: uppercase;
+      border-left: 2px solid transparent;
+      transition: all .2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cat-btn:hover {
+      color: var(--white);
+      border-left-color: var(--cyan);
+      background: rgba(0, 229, 255, .04);
+    }
+
+    .cat-btn.active {
+      color: var(--yellow);
+      border-left-color: var(--yellow);
+      background: rgba(255, 210, 0, .06);
+    }
+
+    .cat-count {
+      background: rgba(255, 255, 255, .07);
+      padding: .1rem .4rem;
+      font-size: .5rem;
+      border-radius: 2px;
+    }
+
+    .cat-btn.active .cat-count {
+      background: rgba(255, 210, 0, .2);
+      color: var(--yellow);
+    }
+
+    .search-wrap {
+      margin-bottom: 1.5rem;
+    }
+
+    .search-input {
+      width: 100%;
+      background: rgba(0, 0, 0, .6);
+      border: 1px solid var(--border2);
+      border-top: 2px solid var(--cyan);
+      color: var(--white);
+      padding: .7rem 1rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .1em;
+      outline: none;
+      transition: all .2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px rgba(0, 229, 255, .15);
+    }
+
+    .search-input::placeholder {
+      color: var(--dim);
+    }
+
+    /* ═══ MAIN CONTENT ═══ */
+    .catalog-area {
+      padding-left: 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding-bottom: .8rem;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: .08em;
+      color: var(--white);
+    }
+
+    .section-title em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+
+    .section-count {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+    }
+
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ═══ ITEM CARD ═══ */
+    .item-card {
+      background: var(--panel);
+      border: 1px solid var(--border2);
+      border-top: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+      transition: all .2s;
+      cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+
+    .item-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255, 210, 0, .2), transparent);
+    }
+
+    .item-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 229, 255, .08);
+    }
+
+    .item-card.rarity-poor {
+      border-top-color: #5a6b7a;
+    }
+
+    .item-card.rarity-standard {
+      border-top-color: var(--text);
+    }
+
+    .item-card.rarity-excellent {
+      border-top-color: var(--yellow);
+    }
+
+    .item-card.rarity-legendary {
+      border-top-color: var(--purple);
+    }
+
+    .card-header {
+      padding: .8rem 1rem .6rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: .5rem;
+    }
+
+    .card-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: .06em;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .card-cat-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding: .15rem .4rem;
+      border: 1px solid var(--border2);
+      flex-shrink: 0;
+    }
+
+    .card-body {
+      padding: .7rem 1rem;
+    }
+
+    .card-desc {
+      font-size: .8rem;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: .7rem;
+      min-height: 2.5rem;
+    }
+
+    .card-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem;
+      margin-bottom: .7rem;
+    }
+
+    .stat-chip {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      letter-spacing: .08em;
+      padding: .2rem .5rem;
+      border: 1px solid var(--border2);
+      color: var(--cyan);
+    }
+
+    .stat-chip.dmg {
+      color: var(--red);
+      border-color: rgba(255, 42, 69, .3);
+      background: rgba(255, 42, 69, .07);
+    }
+
+    .stat-chip.armor {
+      color: var(--green);
+      border-color: rgba(0, 255, 157, .3);
+      background: rgba(0, 255, 157, .07);
+    }
+
+    .stat-chip.bonus {
+      color: var(--yellow);
+      border-color: rgba(255, 210, 0, .3);
+      background: rgba(255, 210, 0, .07);
+    }
+
+    .stat-chip.loc {
+      color: var(--purple);
+      border-color: rgba(189, 0, 255, .3);
+      background: rgba(189, 0, 255, .07);
+    }
+
+    .stat-chip.neutral {
+      color: var(--text);
+      border-color: var(--border2);
+    }
+
+    .card-footer {
+      padding: .6rem 1rem .8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: .05em;
+      color: var(--yellow);
+    }
+
+    .card-price .currency {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .1em;
+      color: var(--dim);
+      margin-left: .2rem;
+    }
+
+    .add-btn {
+      background: none;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      padding: .35rem .8rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+    }
+
+    .add-btn:hover {
+      background: var(--cyan);
+      color: #000;
+    }
+
+    .add-btn.added {
+      background: var(--green);
+      border-color: var(--green);
+      color: #000;
+    }
+
+    /* ═══ CART ═══ */
+    .cart-panel {
+      position: fixed;
+      right: -420px;
+      top: 0;
+      bottom: 0;
+      width: 400px;
+      background: rgba(4, 6, 10, .98);
+      border-left: 1px solid var(--border2);
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      transition: right .35s cubic-bezier(0.23, 1, 0.32, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    .cart-panel.open {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: .08em;
+      color: var(--white);
+    }
+
+    .cart-title em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+
+    .cart-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--dim);
+      font-size: 1.2rem;
+      padding: .3rem;
+      transition: color .2s;
+    }
+
+    .cart-close:hover {
+      color: var(--red);
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border2) transparent;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: .5rem;
+      align-items: center;
+      padding: .7rem 0;
+      border-bottom: 1px solid var(--border);
+      animation: slideIn .2s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .ci-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .95rem;
+      letter-spacing: .05em;
+      color: var(--white);
+    }
+
+    .ci-price {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .7rem;
+      color: var(--yellow);
+      white-space: nowrap;
+    }
+
+    .ci-remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--dim);
+      font-size: .9rem;
+      padding: .2rem .4rem;
+      transition: color .2s;
+    }
+
+    .ci-remove:hover {
+      color: var(--red);
+    }
+
+    .ci-qty-ctrl {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-right: 0.5rem;
+    }
+
+    .ci-qty-btn {
+      background: rgba(255, 210, 0, 0.1);
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-family: monospace;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+
+    .ci-qty-btn:hover {
+      background: var(--yellow);
+      color: #000;
+    }
+
+    .ci-qty-input {
+      width: 30px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border2);
+      color: var(--white);
+      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.1rem;
+    }
+
+    .ci-qty-input::-webkit-outer-spin-button,
+    .ci-qty-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .cart-footer {
+      padding: 1.2rem 1.5rem;
+      border-top: 1px solid var(--border2);
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .5rem;
+      font-size: .85rem;
+    }
+
+    .cart-total-row.final {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: .05em;
+      padding-top: .8rem;
+      border-top: 1px solid var(--border2);
+      color: var(--white);
+    }
+
+    .cart-total-row.final span {
+      color: var(--yellow);
+    }
+
+    .cart-cta {
+      width: 100%;
+      margin-top: 1rem;
+      background: var(--yellow);
+      border: none;
+      color: #000;
+      padding: .9rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: .08em;
+      cursor: pointer;
+      transition: all .2s;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+
+    .cart-cta:hover {
+      background: var(--white);
+      transform: scale(1.02);
+    }
+
+    .cart-clear {
+      width: 100%;
+      margin-top: .5rem;
+      background: none;
+      border: 1px solid var(--red);
+      color: var(--red);
+      padding: .6rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .1em;
+      cursor: pointer;
+      transition: all .2s;
+      text-transform: uppercase;
+    }
+
+    .cart-clear:hover {
+      background: rgba(255, 42, 69, .15);
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 3rem 1rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+
+    /* ═══ CART FAB ═══ */
+    .cart-fab-wrapper {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 55px;
+      height: 55px;
+      z-index: 400;
+      cursor: pointer;
+    }
+
+    .cart-fab {
+      width: 100%;
+      height: 100%;
+      background: var(--yellow);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+      transition: all .2s;
+      box-shadow: 0 0 20px rgba(255, 210, 0, .4);
+    }
+
+    .cart-fab-wrapper:hover .cart-fab {
+      background: var(--white);
+      transform: scale(1.1);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--red);
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .55rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    /* ═══ SECTIONS ═══ */
+    .catalog-section {
+      margin-bottom: 3rem;
+    }
+
+    .catalog-section.hidden {
+      display: none;
+    }
+
+    /* ═══ RARITY LEGEND ═══ */
+    .rarity-legend {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      padding: .8rem 1rem;
+      background: var(--panel);
+      border: 1px solid var(--border2);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      letter-spacing: .1em;
+    }
+
+    .rl-item {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .rl-dot {
+      width: 8px;
+      height: 8px;
+    }
+
+    /* ═══ NO RESULTS ═══ */
+    .no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      color: var(--dim);
+      text-transform: uppercase;
+      grid-column: 1/-1;
+    }
+
+    /* ═══ TOAST ═══ */
+    .toast {
+      position: fixed;
+      bottom: 6rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(4, 6, 10, .95);
+      border: 1px solid var(--cyan);
+      padding: .6rem 1.2rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      color: var(--cyan);
+      z-index: 9999;
+      opacity: 0;
+      transition: all .3s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ═══ OVERLAY ═══ */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .5);
+      z-index: 499;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+    }
+
+    .cart-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .shop-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border2);
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .cat-btns-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .3rem;
+      }
+
+      .cat-btn {
+        width: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .items-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cart-panel {
+        width: 100%;
+        right: -100%;
+      }
+    }
+
+    /* ═══ FOOTER ═══ */
+    footer {
+      margin-top: 4rem;
+      padding: 2.5rem 6vw;
+      border-top: 1px solid var(--border2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: .1em;
+      color: var(--white);
+    }
+
+    .footer-logo em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+
+    .fsub {
+      display: block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .45rem;
+      letter-spacing: .25em;
+      color: var(--dim);
+      margin-top: .3rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan);
+    }
+
+    .footer-copy {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .42rem;
+      letter-spacing: .2em;
+      color: var(--border2);
+      text-transform: uppercase;
+    }
+
+    /* CYBERPUNK PRELOADER */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #fcee0a;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Share Tech Mono', monospace;
+      color: #000;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      width: 300px;
+      text-align: left;
+    }
+
+    .loader-text {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .loader-bar-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      width: 0%;
+      height: 100%;
+      background: #000;
+      animation: loadBar 0.8s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+    }
+
+    @keyframes loadBar {
+      0% {
+        width: 0%;
+      }
+
+      20% {
+        width: 30%;
+      }
+
+      50% {
+        width: 35%;
+      }
+
+      80% {
+        width: 85%;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+
+    .glitch-load {
+      animation: glitchText 0.2s infinite;
+    }
+
+    @keyframes glitchText {
+      0% {
+        transform: translate(0);
+        text-shadow: 2px 0 #ff003c;
+      }
+
+      50% {
+        transform: translate(-2px, 2px);
+        text-shadow: -2px 0 #00e5ff;
+      }
+
+      100% {
+        transform: translate(2px, -2px);
+        text-shadow: 2px 0 #ff003c;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader-content">
+      <div class="loader-text glitch-load">INITIALIZING_NIGHT_MARKET...</div>
+      <div class="loader-bar-container">
+        <div class="loader-bar"></div>
+      </div>
+      <div style="font-size: 0.6rem; margin-top: 1rem; opacity: 0.7;">
+        AUTHENTICATING_USER_PROFILE...<br>
+        SYNCING_NEURAL_LINK_v3.0.2...<br>
+        LOADING_CATALOG_DATABASE...
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ NAV ══ -->
+  <nav>
+    <a class="nav-logo" href="home.html">COSMERIUM <em>ERA III</em><span class="nsub">NIGHT CITY · 2077</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="home.html">Inicio</a></li>
+      <li><a href="mundo.html">El Mundo</a></li>
+      <li><a href="roles.html">Roles</a></li>
+      <li><a href="sistema.html">Sistema</a></li>
+      <li><a href="objetos.html">Objetos</a></li>
+      <li><a href="tienda.html" class="active">Tienda</a></li>
+      <li><a href="ficha.html" style="color:var(--red);text-shadow:0 0 5px var(--red);">Ficha</a></li>
+      <li><a href="normativa.html">Normativa</a></li>
+      <li class="mobile-only"><a href="https://discord.gg/DWacKAK373" style="color:var(--yellow)">Discord</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <a href="https://discord.gg/DWacKAK373" class="nav-btn">▶ Discord</a>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <header class="page-hero">
+    <div class="hero-kicker">// NIGHT MARKET · 2077 · Todos los ítems del Libro Básico</div>
+    <h1 class="hero-title">NIGHT MARKET <em>CATALOG</em></h1>
+    <p class="hero-sub">Armas, armaduras, cyberware, vehículos, equipo y más. Consulta estadísticas, precios oficiales
+      CPR y añade al carrito para calcular tu presupuesto.</p>
+    <div class="hero-stats">
+      Ítems disponibles: <span id="totalCount">—</span> &nbsp;|&nbsp;
+      Categorías: <span>14</span> &nbsp;|&nbsp;
+      Moneda: <span>€B (Eurodólares)</span>
+    </div>
+  </header>
+
+  <!-- ══ RARITY LEGEND ══ -->
+  <div style="max-width:1600px;margin:1rem auto 0;padding:0 2vw;">
+    <div class="rarity-legend">
+      <span style="color:var(--dim);margin-right:.5rem;">CALIDAD:</span>
+      <div class="rl-item">
+        <div class="rl-dot" style="background:#5a6b7a;"></div><span style="color:#5a6b7a;">POBRE (−2 DMG / precio
+          ×0.5)</span>
+      </div>
+      <div class="rl-item">
+        <div class="rl-dot" style="background:var(--text);"></div><span>ESTÁNDAR (precio base)</span>
+      </div>
+      <div class="rl-item">
+        <div class="rl-dot" style="background:var(--yellow);"></div><span style="color:var(--yellow);">EXCELENTE (+1 DMG
+          / precio ×2)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SHOP ══ -->
+  <div class="shop-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-title">// Buscar ítem</div>
+      <div class="search-wrap">
+        <input type="text" class="search-input" id="searchInput" placeholder="Buscar ítem...">
+      </div>
+      <div class="sidebar-title">// Filtros</div>
+      <div class="search-wrap" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom: 1.5rem;">
+        <select class="search-input" id="sortSelect" style="padding:0.4rem; font-size:0.6rem; cursor:pointer;">
+          <option value="default">ORDENAR POR...</option>
+          <option value="price-asc">PRECIO: Menor a Mayor</option>
+          <option value="price-desc">PRECIO: Mayor a Menor</option>
+          <option value="name-asc">NOMBRE: A-Z</option>
+          <option value="name-desc">NOMBRE: Z-A</option>
+        </select>
+        <select class="search-input" id="raritySelect" style="padding:0.4rem; font-size:0.6rem; cursor:pointer;">
+          <option value="all">CALIDAD: Todas</option>
+          <option value="poor">CALIDAD: Pobre</option>
+          <option value="standard">CALIDAD: Estándar</option>
+          <option value="excellent">CALIDAD: Excelente</option>
+        </select>
+        <select class="search-input" id="subcatSelect"
+          style="padding:0.4rem; font-size:0.6rem; cursor:pointer; display:none;">
+          <!-- Generado dinámicamente -->
+        </select>
+      </div>
+      <div class="sidebar-title">// Categorías</div>
+      <button class="cat-btn active" data-cat="all">Todos los ítems <span class="cat-count"
+          id="cnt-all">—</span></button>
+      <button class="cat-btn" data-cat="armas">Armas <span class="cat-count" id="cnt-armas">—</span></button>
+      <button class="cat-btn" data-cat="armaduras">Armaduras <span class="cat-count"
+          id="cnt-armaduras">—</span></button>
+      <button class="cat-btn" data-cat="cyberware">Cyberware <span class="cat-count"
+          id="cnt-cyberware">—</span></button>
+      <button class="cat-btn" data-cat="vehiculos">Vehículos <span class="cat-count"
+          id="cnt-vehiculos">—</span></button>
+      <button class="cat-btn" data-cat="ropa">Ropa <span class="cat-count" id="cnt-ropa">—</span></button>
+      <button class="cat-btn" data-cat="equipamiento">Equipamiento <span class="cat-count"
+          id="cnt-equipamiento">—</span></button>
+      <button class="cat-btn" data-cat="municion">Munición <span class="cat-count" id="cnt-municion">—</span></button>
+      <button class="cat-btn" data-cat="drogas">Drogas <span class="cat-count" id="cnt-drogas">—</span></button>
+      <button class="cat-btn" data-cat="programas">Programas NET <span class="cat-count"
+          id="cnt-programas">—</span></button>
+      <button class="cat-btn" data-cat="mejoras">Mejoras <span class="cat-count" id="cnt-mejoras">—</span></button>
+    </aside>
+
+    <!-- Catalog -->
+    <main class="catalog-area" id="catalogArea">
+      <!-- Generated by JS -->
+    </main>
+  </div>
+
+  <!-- ══ CART OVERLAY ══ -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <!-- ══ CART PANEL ══ -->
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <div class="cart-title">CARRITO <em>// PRESUPUESTO</em></div>
+      <button class="cart-close" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">// CARRITO VACÍO<br>Añade ítems para calcular costes</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row"><span style="color:var(--dim)">Subtotal:</span><span id="subtotal">0 €B</span></div>
+      <div class="cart-total-row" style="font-size:.8rem;color:var(--dim);"><span>Implantes Ripperdoc
+          (+20%):</span><span id="ripperFee">0 €B</span></div>
+      <div class="cart-total-row final"><span>TOTAL</span><span id="cartTotal">0 €B</span></div>
+      <button class="cart-cta" onclick="exportCart()">▶ EXPORTAR LISTA</button>
+      <button class="cart-clear" onclick="clearCart()">✕ VACIAR CARRITO</button>
+    </div>
+  </div>
+
+  <!-- ══ CART FAB ══ -->
+  <div class="cart-fab-wrapper" onclick="toggleCart()" title="Carrito">
+    <div class="cart-fab">🛒</div>
+    <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+  </div>
+
+  <!-- ══ TOAST ══ -->
+  <div class="toast" id="toast"></div>
+
+  <footer>
+    <div class="footer-logo">COSMERIUM <em>ERA III</em><span class="fsub">NIGHT CITY 2077 · SISTEMA: CYBERPUNK RED ·
+        CONAN EXILES</span></div>
+    <div class="footer-links">
+      <a href="mundo.html">El Mundo</a>
+      <a href="roles.html">Roles</a>
+      <a href="sistema.html">Sistema</a>
+      <a href="tienda.html">Tienda</a>
+      <a href="normativa.html">Normativa</a>
+      <a href="https://discord.gg/DWacKAK373">Discord</a>
+    </div>
+    <div class="footer-copy">CYBERPUNK RED · NIGHT CITY 2077 · COSMERIUM ERA III</div>
+  </footer>
+
+  <script src="items.js"></script>
+  <script>
+    // items.js cargado externamente — edita ese archivo para añadir/modificar ítems
+
+    // Comprobación de seguridad por si items.js no carga
+    if (typeof CATALOG === 'undefined') {
+      console.error('⚠️ items.js no cargado. Asegúrate de que items.js está en la misma carpeta que tienda.html');
+    }
+
+    // ════════ BLOQUE ELIMINADO — los datos están en items.js ════════
+    // Para añadir ítems: edita items.js y añade entradas al array CATALOG
+    // Formato: { name, cat, sub, rarity, price, stats:[{l,t},...], desc }
+    // Categorías: armas | armaduras | cyberware | vehiculos | ropa | equipamiento | municion | drogas | programas | mejoras
+
+    // Catálogo cargado desde items.js
+
+    // ═══════════════════════════════════════════════════════════
+    // CART STATE
+    // ═══════════════════════════════════════════════════════════
+    let cart = [];
+    let activeCategory = 'all';
+    let searchQuery = '';
+    let sortOption = 'default';
+    let rarityFilter = 'all';
+    let subcatFilter = 'all';
+
+    // ═══════════════════════════════════════════════════════════
+    // RENDERING
+    // ═══════════════════════════════════════════════════════════
+    function formatPrice(n) {
+      return n === 0 ? 'GRATIS' : n.toLocaleString('es-ES');
+    }
+
+    function renderCard(item) {
+      const cartItem = cart.find(c => c.name === item.name);
+      const inCart = !!cartItem;
+      const statsHtml = item.stats.map(s => `<span class="stat-chip ${s.t}">${s.l}</span>`).join('');
+      const rarityClass = item.rarity === 'excellent' ? 'rarity-excellent' : item.rarity === 'poor' ? 'rarity-poor' : 'rarity-standard';
+      const subTag = item.sub ? `<span class="card-cat-tag">${item.sub}</span>` : '';
+      return `
+    <div class="item-card ${rarityClass}" data-name="${item.name.toLowerCase()}" data-cat="${item.cat}">
+      <div class="card-header">
+        <div class="card-name">${item.name}</div>
+        ${subTag}
+      </div>
+      <div class="card-body">
+        <div class="card-desc">${item.desc}</div>
+        <div class="card-stats">${statsHtml}</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">
+          ${formatPrice(item.price)}<span class="currency">${item.price === 0 ? '' : '€B'}</span>
+        </div>
+        <button class="add-btn ${inCart ? 'added' : ''}" onclick="toggleCart_item('${item.name.replace(/'/g, "\\'")}')">
+          ${inCart ? '+ AÑADIR OTRO (' + cartItem.qty + ')' : '+ AÑADIR'}
+        </button>
+      </div>
+    </div>
+  `;
+    }
+
+    function renderCatalog() {
+      const area = document.getElementById('catalogArea');
+      let filtered = CATALOG.filter(item => {
+        const catMatch = activeCategory === 'all' || item.cat === activeCategory;
+        const subcatMatch = subcatFilter === 'all' || item.sub === subcatFilter;
+        const searchMatch = !searchQuery || item.name.toLowerCase().includes(searchQuery) || item.desc.toLowerCase().includes(searchQuery) || (item.sub && item.sub.toLowerCase().includes(searchQuery));
+        const rarityMatch = rarityFilter === 'all' || item.rarity === rarityFilter;
+        return catMatch && subcatMatch && searchMatch && rarityMatch;
+      });
+
+      if (sortOption === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+      else if (sortOption === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+      else if (sortOption === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
+      else if (sortOption === 'name-desc') filtered.sort((a, b) => b.name.localeCompare(a.name));
+
+      if (filtered.length === 0) {
+        area.innerHTML = '<div class="no-results">// SIN RESULTADOS // Modifica los filtros de búsqueda</div>';
+        return;
+      }
+
+      // Group by category if all
+      if (activeCategory === 'all' && !searchQuery) {
+        const CATEGORIES = {
+          armas: 'ARMAS',
+          armaduras: 'ARMADURAS',
+          cyberware: 'CYBERWARE',
+          vehiculos: 'VEHÍCULOS',
+          ropa: 'ROPA',
+          equipamiento: 'EQUIPAMIENTO',
+          municion: 'MUNICIÓN',
+          drogas: 'DROGAS & FARMACIA',
+          programas: 'PROGRAMAS NET',
+          mejoras: 'MEJORAS'
+        };
+        let html = '';
+        for (const [cat, label] of Object.entries(CATEGORIES)) {
+          const items = filtered.filter(i => i.cat === cat);
+          if (items.length === 0) continue;
+          html += `
+        <div class="catalog-section" id="sec-${cat}">
+          <div class="section-header">
+            <div class="section-title">${label}</div>
+            <div class="section-count">${items.length} ítems</div>
+          </div>
+          <div class="items-grid">${items.map(renderCard).join('')}</div>
+        </div>`;
+        }
+        area.innerHTML = html;
+      } else {
+        const catLabels = { armas: 'ARMAS', armaduras: 'ARMADURAS', cyberware: 'CYBERWARE', vehiculos: 'VEHÍCULOS', ropa: 'ROPA', equipamiento: 'EQUIPAMIENTO', municion: 'MUNICIÓN', drogas: 'DROGAS & FARMACIA', programas: 'PROGRAMAS NET', mejoras: 'MEJORAS', all: 'TODOS' };
+        const label = searchQuery ? `RESULTADOS: "${searchQuery.toUpperCase()}"` : (catLabels[activeCategory] || activeCategory.toUpperCase());
+        area.innerHTML = `
+      <div class="catalog-section">
+        <div class="section-header">
+          <div class="section-title">${label}</div>
+          <div class="section-count">${filtered.length} ítems</div>
+        </div>
+        <div class="items-grid">${filtered.map(renderCard).join('')}</div>
+      </div>`;
+      }
+    }
+
+    function updateCounts() {
+      const cats = { all: CATALOG.length, armas: 0, armaduras: 0, cyberware: 0, vehiculos: 0, ropa: 0, equipamiento: 0, municion: 0, drogas: 0, programas: 0, mejoras: 0 };
+      CATALOG.forEach(i => { if (cats[i.cat] !== undefined) cats[i.cat]++; });
+      for (const [k, v] of Object.entries(cats)) {
+        const el = document.getElementById(`cnt-${k}`);
+        if (el) el.textContent = v;
+      }
+      document.getElementById('totalCount').textContent = CATALOG.length;
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // CART LOGIC
+    // ═══════════════════════════════════════════════════════════
+    function toggleCart_item(name) {
+      const item = CATALOG.find(i => i.name === name);
+      if (!item) return;
+      const existing = cart.find(c => c.name === name);
+      if (existing) {
+        existing.qty++;
+        showToast(`+1 ${name} añadido`);
+      } else {
+        cart.push({ ...item, qty: 1 });
+        showToast(`✓ ${name} añadido`);
+      }
+      renderCart();
+      renderCatalog();
+    }
+
+    function updateCartQty(name, delta) {
+      const idx = cart.findIndex(c => c.name === name);
+      if (idx >= 0) {
+        cart[idx].qty += delta;
+        if (cart[idx].qty <= 0) {
+          cart.splice(idx, 1);
+          showToast(`✕ ${name} eliminado`);
+        }
+      }
+      renderCart();
+      renderCatalog();
+    }
+
+    function setCartQty(name, val) {
+      const idx = cart.findIndex(c => c.name === name);
+      if (idx >= 0) {
+        let q = parseInt(val);
+        if (isNaN(q) || q <= 0) {
+          cart.splice(idx, 1);
+          showToast(`✕ ${name} eliminado`);
+        } else {
+          cart[idx].qty = q;
+        }
+      }
+      renderCart();
+      renderCatalog();
+    }
+
+    function deleteCart_item(name) {
+      const idx = cart.findIndex(c => c.name === name);
+      if (idx >= 0) {
+        cart.splice(idx, 1);
+        showToast(`✕ ${name} eliminado`);
+      }
+      renderCart();
+      renderCatalog();
+    }
+
+    function renderCart() {
+      const el = document.getElementById('cartItems');
+      const badge = document.getElementById('cartBadge');
+      const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+      badge.textContent = totalQty;
+      badge.style.display = totalQty > 0 ? 'flex' : 'none';
+
+      if (cart.length === 0) {
+        el.innerHTML = '<div class="cart-empty">// CARRITO VACÍO<br>Añade ítems para calcular costes</div>';
+      } else {
+        el.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div style="flex-grow:1">
+          <div class="ci-name">${item.name}</div>
+          <div style="font-size:.55rem;color:var(--dim);font-family:'Share Tech Mono',monospace;letter-spacing:.08em;">${item.sub || item.cat.toUpperCase()}</div>
+        </div>
+        <div class="ci-qty-ctrl">
+          <button class="ci-qty-btn" onclick="updateCartQty('${item.name.replace(/'/g, "\\'")}', -1)">-</button>
+          <input type="number" class="ci-qty-input" value="${item.qty}" min="1" onchange="setCartQty('${item.name.replace(/'/g, "\\'")}', this.value)">
+          <button class="ci-qty-btn" onclick="updateCartQty('${item.name.replace(/'/g, "\\'")}', 1)">+</button>
+        </div>
+        <div class="ci-price" style="min-width:60px;text-align:right">${formatPrice(item.price * item.qty)} €B</div>
+        <button class="ci-remove" onclick="deleteCart_item('${item.name.replace(/'/g, "\\'")}')">✕</button>
+      </div>`).join('');
+      }
+
+      const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const hasCyber = cart.some(i => i.cat === 'cyberware');
+      const ripperFee = hasCyber ? Math.round(cart.filter(i => i.cat === 'cyberware').reduce((s, i) => s + (i.price * i.qty), 0) * 0.2) : 0;
+      const total = subtotal + ripperFee;
+
+      document.getElementById('subtotal').textContent = formatPrice(subtotal) + ' €B';
+      document.getElementById('ripperFee').textContent = hasCyber ? formatPrice(ripperFee) + ' €B' : '— €B';
+      document.getElementById('cartTotal').textContent = formatPrice(total) + ' €B';
+    }
+
+    function toggleCart() {
+      const panel = document.getElementById('cartPanel');
+      const overlay = document.getElementById('cartOverlay');
+      panel.classList.toggle('open');
+      overlay.classList.toggle('active');
+    }
+
+    function clearCart() {
+      cart = [];
+      renderCart();
+      renderCatalog();
+      showToast('✕ Carrito vaciado');
+    }
+
+    function exportCart() {
+      if (cart.length === 0) { showToast('// Carrito vacío'); return; }
+      const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const ripperFee = Math.round(cart.filter(i => i.cat === 'cyberware').reduce((s, i) => s + (i.price * i.qty), 0) * 0.2);
+      const total = subtotal + ripperFee;
+      let text = '=== COSMERIUM ERA III // NIGHT MARKET LIST ===\n\n';
+      cart.forEach(i => { text += `${(i.qty + 'x ' + i.name).padEnd(45)} ${formatPrice(i.price * i.qty)} €B\n`; });
+      text += '\n---\n';
+      text += `SUBTOTAL: ${formatPrice(subtotal)} €B\n`;
+      if (ripperFee > 0) text += `RIPPERDOC (+20% cyberware): ${formatPrice(ripperFee)} €B\n`;
+      text += `TOTAL: ${formatPrice(total)} €B\n`;
+      text += '\n// COSMERIUM ERA III · CYBERPUNK RED · NIGHT CITY 2077';
+      const blob = new Blob([text], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'nightmarket_lista.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('✓ Lista exportada');
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // FILTERS
+    // ═══════════════════════════════════════════════════════════
+    document.getElementById('sortSelect').addEventListener('change', (e) => {
+      sortOption = e.target.value;
+      renderCatalog();
+    });
+
+    document.getElementById('raritySelect').addEventListener('change', (e) => {
+      rarityFilter = e.target.value;
+      renderCatalog();
+    });
+
+    document.getElementById('subcatSelect').addEventListener('change', (e) => {
+      subcatFilter = e.target.value;
+      renderCatalog();
+    });
+
+    function updateSubcatDropdown(cat) {
+      const select = document.getElementById('subcatSelect');
+      if (cat === 'all') {
+        select.style.display = 'none';
+        subcatFilter = 'all';
+        return;
+      }
+
+      const itemsInCat = CATALOG.filter(i => i.cat === cat);
+      const subcats = [...new Set(itemsInCat.map(i => i.sub).filter(Boolean))].sort();
+
+      if (subcats.length === 0) {
+        select.style.display = 'none';
+        subcatFilter = 'all';
+        return;
+      }
+
+      select.style.display = 'block';
+      let html = '<option value="all">SUBCATEGORÍA: Todas</option>';
+      subcats.forEach(sub => {
+        html += `<option value="${sub}">${sub.toUpperCase()}</option>`;
+      });
+      select.innerHTML = html;
+      subcatFilter = 'all'; // Reset filter when changing main category
+      select.value = 'all'; // Force the visual selector back to 'all'
+    }
+
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.cat;
+        searchQuery = '';
+        document.getElementById('searchInput').value = '';
+        updateSubcatDropdown(activeCategory);
+        renderCatalog();
+      });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      if (searchQuery) {
+        activeCategory = 'all';
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      }
+      renderCatalog();
+    });
+
+    document.getElementById('cartOverlay').addEventListener('click', toggleCart);
+
+    // ═══════════════════════════════════════════════════════════
+    // TOAST
+    // ═══════════════════════════════════════════════════════════
+    let toastTimeout;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => t.classList.remove('show'), 2000);
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // INIT
+    // ═══════════════════════════════════════════════════════════
+    updateCounts();
+    renderCatalog();
+    renderCart();
+
+    window.onload = function () {
+      setTimeout(() => {
+        const pl = document.getElementById('preloader');
+        if (pl) pl.classList.add('loaded');
+      }, 500);
+    };
+  </script>
+</body>
+
+</html>

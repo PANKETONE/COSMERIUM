@@ -1,0 +1,2793 @@
+DiceConfig|3139|55|50|2|3|0|t|0|27|0|0|0|100|-100|100|0|100|f|f|3
+DiceRules|0|1|10|0|10|f|t
+Gear|f|f|f|f|f|f|0
+SkillDef|t|181|Inteligencia|El grado de brillantez general. Normalmente se trata de algo más que de inte ligencia pura y dura, incluye también la astucia, la conciencia, la percepción y la capacidad de aprendizaje|f|8||0|t|0
+SkillDef|t|182|Voluntad|Tu determinación y capacidad para afrontar el peligro y/o el estrés. Esta característica también representa el valor y la capacidad de sobrevivir a las privaciones a largo plazo. Es importante para determinar el daño que puedes soportar.|f|8||0|t|0
+SkillDef|t|4|Frialdad|Tu capacidad para impresionar e influir en la gente a través del carácter y el carisma, y lo bien que te llevas con los demás o cómo interactúas en situaciones sociales.|f|8||0|t|0
+SkillDef|t|2877|Empatía|Tu capacidad para relacionarte con los demás, atenderles y tenerles en cuenta. Especialmente importante, ya que compensa los efectos de la ciberpsicosis, una peligrosa enferme dad mental común en el futuro sombrío.|f|8||0|t|0
+SkillDef|t|2497|Técnica|Tu capacidad para manipular herramientas o instrumentos. No es lo mismo que Reflejos, ya que cubre la aptitud de utilizar herramientas.|f|8||0|t|0
+SkillDef|t|2|Reflejos|El tiempo de respuesta y coordinación que utilizas para apuntar, lanzar, hacer malabares, etc. Un mago de escenario, por ejemplo, tendría Reflejos altos. Lo más importante es que esta es la característica que afecta a tu capacidad de acertar con las armas a distancia.|f|8||0|t|0
+SkillDef|t|2876|Suerte|Cómo te perciben los dioses del azar. Con una Suerte lo suficientemente alta, puedes inclinar la balanza hacia tu lado. En términos de mecánica de juego, puedes aplicar puntos de esta característica para compensar las tiradas de dados a tu favor.|f|8||0|t|0
+SkillDef|t|1|Tipo Corporal|Mide la resistencia y la salud.|f|8||0|t|0
+SkillDef|t|180|Destreza|Tu competencia física general en lo que respecta al equilibrio, los saltos, el combate y otras actividades atléticas. Un gimnasta debe tener la Destreza alta. Lo más importante es que esta es la característica que afecta a la capacidad para golpear cosas con armas cuerpo a cuerpo y puede ayudar a esquivar ataques.|f|8||0|t|0
+SkillDef|t|2875|Movimiento|La velocidad de movimiento para correr, saltar, nadar, etc.|f|8||0|t|0
+SkillDef|t|3107|Aptitud de Rol||f|0||4|t|0
+SkillDef|f|2878|Criminología|Habilidad para encontrar pistas mediante la bús queda de huellas dactilares, la realización de pruebas de balística, el examen de pruebas y la búsqueda en los registros y archivos policiales.|f|6|181*1.0|0|t|0
+SkillDef|f|2879|Ciencia|Habilidad para saber diseñar experimentos, escribir artículos científicos, probar hipótesis y discutir con otros académicos en un campo específico de la ciencia.|f|6|181*1.0|0|t|0
+SkillDef|f|2880|Deducción|Habilidad para interpretar diversas pistas y llegar a una conclusión poco obvia o a un diagnóstico médico|f|6|181*1.0|0|t|0
+SkillDef|f|2881|Manejo de animales|Habilidad en el manejo, adiestramiento y cuidado de animales.|f|6|181*1.0|0|t|0
+SkillDef|f|2882|Negocios|Habilidad relacionada con el conocimiento de prác ticas empresariales básicas, leyes de la oferta y la demanda, gestión de empleados, adquisiciones, ventas y mercadotecnia.|f|6|181*1.0|0|t|0
+SkillDef|f|2883|Armas cortas|Habilidad para disparar con precisión armas de fuego de mano, como pistolas.|f|6|2*1.0|0|t|0
+SkillDef|f|2884|Armas largas|Habilidad para disparar con precisión armas de fuego largas o de hombro, incluyendo fusiles y escopetas.|f|6|2*1.0|0|t|0
+SkillDef|f|2885|Armas pesadas|Habilidad para disparar con precisión armas de fuego extremadamente grandes, incluyendo lan zagranadas y lanzamisiles.|f|12|2*1.0|-6|t|0
+SkillDef|f|2886|Disparo automático|Habilidad para mantener el modo de disparo automático de un arma sobre el blanco pese al retroceso.|f|12|2*1.0|-6|t|0
+SkillDef|f|2887|Concentración|Habilidad de concentración y control de la mente, que incluye la capacidad de memoria, de recono cimiento, de ignorar las distracciones y del domi nio fisiológico|t|6|182*1.0|0|t|0
+SkillDef|f|2888|Ocultar/Revelar objeto|Habilidad para ocultar objetos y encontrarlos cuando han sido ocultados. Se utiliza para disimu lar armas bajo la ropa y también para detectarlas.|f|6|181*1.0|0|t|0
+SkillDef|f|2889|Percepción|Habilidad para detectar cosas ocultas como pistas, trampas y personas que están usando la habilidad Sigilo, pero no objetos ocultos con la habilidad Ocultar/Revelar objeto.|t|6|181*1.0|0|t|0
+SkillDef|f|2890|Rastrear|Habilidad para seguir un rastro mediante la observa ción de huellas y otros indicios.|f|6|181*1.0|0|t|0
+SkillDef|f|2891|Conducir vehículo terrestre|Habilidad para conducir y maniobrar vehículos terrestres.|f|6|2*1.0|0|t|0
+SkillDef|f|2892|Atletismo|Habilidad para saltar, escalar, lanzar objetos, nadar, levantar peso, etc.|t|6|180*1.0|0|t|0
+SkillDef|f|2893|Baile|Habilidad para bailar a nivel profesional.|f|6|180*1.0|0|t|0
+SkillDef|f|2894|Resistencia|Habilidad para resistir condiciones ambientales duras y otras privaciones.|f|6|182*1.0|0|t|0
+SkillDef|f|2895|Resistir torturas/drogas|Habilidad para resistir efectos dolorosos, como inte rrogatorios, torturas y drogas.|f|6|182*1.0|0|t|0
+SkillDef|f|2896|Sigilo|Habilidad para moverse silenciosamente, escon derse, realizar acciones con discreción o evitar ser detectado de alguna manera. Los demás persona jes pueden intentar encontrarte con la habilidad Percepción.|t|6|180*1.0|0|t|0
+SkillDef|f|2897|Actuar|Habilidad para representar un papel, disfrazarse de otra persona, ya sea real o ficticia, y fingir emo ciones y estados de ánimo.|f|6|4*1.0|0|t|0
+SkillDef|f|2898|Tocar instrumento|Habilidad para tocar profesionalmente un instru mento musical. Puedes elegir qué instrumento cuando aumentas esta habilidad. Las opciones posibles son: canto, guitarra, batería, violín, piano, etc.|f|6|2497*1.0|0|t|0
+SkillDef|f|2899|Arma cuerpo a cuerpo|Habilidad para luchar con armas cuerpo a cuerpo.|f|6|180*1.0|0|t|0
+SkillDef|f|2900|Artes marciales|Habilidad para luchar con una modalidad de Artes marciales.|f|12|180*1.0|-6|t|0
+SkillDef|f|2901|Evasión|Habilidad para apartarte de alguien que te ataca cuerpo a cuerpo. Un personaje con REF 8 o más también puede usar esta habilidad para esquivar ataques a distancia.|t|6|180*1.0|0|t|0
+SkillDef|f|2902|Pelea|Habilidad en el combate y el forcejeo con la fuerza bruta.|t|6|180*1.0|0|t|0
+SkillDef|f|2903|Percepción humana|Habilidad para leer las expresiones faciales y el len guaje corporal de una persona con el fin de dis cernir su estado emocional y detectar mentiras o engaños.|t|6|2877*1.0|0|t|0
+SkillDef|f|2904|Abrir cerraduras |Habilidad para burlar cerraduras no electrónicas.|f|6|2497*1.0|0|t|0
+SkillDef|f|2905|Cibertecnología|Habilidad para identificar, comprender y reparar elementos cibernéticos.|f|6|2497*1.0|0|t|0
+SkillDef|f|2906|Electrónica/Seguridad|Habilidad para identificar, comprender, reparar, contrarrestar e instalar dispositivos electrónicos complejos, incluyendo: ordenadores, cibertermi nales, electrónica personal, sistemas de seguridad electrónica, micrófonos, rastreadores, placas de presión, cables trampa láser, etc.|f|12|2497*1.0|-6|t|0
+SkillDef|f|2907|Enfermería|Habilidad que permite aplicar tratamientos médicos a un herido para atender todas las heridas críticas que no requieran cirugía y evitar que muera (la cirugía solo está disponible para los tecnomédicos a través de su aptitud de rol Medicina).|f|12|2497*1.0|-6|t|0
+SkillDef|f|2908|Mecánica de armas |Habilidad para reparar y mantener armas de todo tipo.|f|6|2497*1.0|0|t|0
+SkillDef|f|2909|Mecánica de vehículos|Habilidad para reparar y mantener vehículos.|f|6|2497*1.0|0|t|0
+SkillDef|f|2910|Primeros auxilios|Habilidad para aplicar cuidados médicos a un herido con el fin de tratar las lesiones críticas más comunes y evitar que muera.|t|6|2497*1.0|0|t|0
+SkillDef|f|3080|Supervivencia|Habilidad para saber cómo sobrevivir confortable mente en la naturaleza.|f|6|181*1.0|0|t|0
+SkillDef|f|3081|Tiro con arco|Habilidad para disparar con precisión armas de pro yectiles que lanzan flechas o virotes.|f|6|2*1.0|0|t|0
+SkillDef|f|3082|Lectura de labios|Habilidad de leer los labios de alguien para saber lo que está diciendo.|f|6|181*1.0|0|t|0
+SkillDef|f|3083|Pilotar vehículo aéreo|Habilidad para pilotar y maniobrar vehículos aéreos.|f|12|2*1.0|-6|t|0
+SkillDef|f|3084|Contorsionismo|Habilidad de manipular el cuerpo para librarse de grilletes u otras ataduras y para introducirse en lugares o espacios de otro modo inaccesibles.|f|6|180*1.0|0|t|0
+SkillDef|f|3085|Comerciar|Habilidad para llegar a un buen acuerdo con un comerciante o cliente.|f|6|4*1.0|0|t|0
+SkillDef|f|3086|Conversación|Habilidad para extraer información de las personas, sin alertarlas, con una conversación cuidadosa.|f|6|2877*1.0|0|t|0
+SkillDef|f|3087|Interrogatorio|Habilidad para extraer información de las personas por la fuerza.|f|6|4*1.0|0|t|0
+SkillDef|f|3088|Persuasión|Habilidad para convencer, persuadir o influenciar a otras personas.|f|6|4*1.0|0|t|0
+SkillDef|f|3089|Sobornar|Habilidad para saber cuándo sobornar a alguien, cómo abordarlo y cuánto ofrecer.|f|6|4*1.0|0|t|0
+SkillDef|f|3090|Robar bolsillos|Habilidad para sustraer sigilosamente objetos sujetos a otra persona y robar pequeños artículos sin que se note.|f|6|2497*1.0|0|t|0
+SkillDef|f|3108|Gestión|Los fixers saben cómo conseguir artículos del mercado negro y son expertos en navegar por las complejas costumbres sociales de la calle, donde se mezclan cientos de culturas y niveles económicos. Mantienen vastas redes de contactos y clientes a los que pueden llegar para obtener bienes, favores o información, y también pueden buscar recursos codiciados y conseguir tratos favorables.|f|0|3107*1.0|0|f|0
+SkillDef|f|3109|Colaboración|Como un verdadero directivo de una corporación, el ejecutivo construye un equipo cuyos miembros le ayudan a alcanzar sus objetivos, ya sean legales o no, mientras la moral lo permita. Los miembros del equipo tienen una descripción aparente del trabajo (como secretario o conductor), pero también tienen un papel encubierto (como netrunner, guardaes paldas o asesino).|f|0|3107*1.0|0|f|0
+SkillDef|f|3110|Conciencia de Combate|Con esta aptitud, un mercenario puede recurrir a su entrenamiento para tener una mayor conciencia de la situación en el campo de batalla.|f|0|3107*1.0|0|f|0
+SkillDef|f|3111|Interface|Esta aptitud es lo que le per mite realizar «netruns»: interactuar con los módems mentales electrónicos (llamados ciberterminales) y controlar los ordenadores, la electrónica y la programación asociados. La aptitud Interface también te da acceso a un amplio conjunto de habilidades relacionadas con la piratería informática y el control de sistemas.|f|0|3107*1.0|0|f|0
+SkillDef|f|3112|Motor|Cada vez que un nómada aumenta su valor de Motor, tiene la opción de añadir otro vehículo de serie (con las especifica ciones mínimas) de su valor de Motor o inferior a la reserva de vehículos familiares que tiene permiso para usar, o puede realizar una mejora en uno de sus vehículos actuales.|f|0|3107*1.0|0|f|0
+SkillDef|f|3113|Ceredibilidad|El periodista no solo debe convencer a una audiencia de la verdad de lo que publica, sino que también tendrá un mayor número de seguidores cuanto más creí ble sea. Podrá acceder a mayores niveles de fuentes e información; siempre estará al tanto, con su fino oído, para captar los rumores y la información de forma pasiva.|f|0|3107*1.0|0|f|0
+SkillDef|f|3114|Apoyo|Con esta aptitud, los policías pueden pedir la ayuda de un grupo de oficiales compañeros, basado en el rango del policía y las condiciones en las que lleva a cabo la llamada y así sacar información o conocimientos sobre la situación de la calle o algún caso o algo específico.|f|0|3107*1.0|0|f|0
+SkillDef|f|3115|Impacto Carismático|Con esta aptitud puede influenciar a otros con su personalidad. No es necesario que sea músico; puede influir en otros a través de la poesía, el arte, la danza o, simplemente, de su presencia física. Podría ser un rockero o el líder de una secta. A medida que crece en habilidad, puede afectar a grupos cada vez más grandes y solicitar una lealtad cada vez mayor a sus seguidores.|f|0|3107*1.0|0|f|0
+SkillDef|f|3116|Manipulación|Usando esta aptitud de rol, el técnico puede arreglar, mejorar, modificar, fabricar e inven tar nuevos productos. Cada vez que un técnico aumenta su valor de Manipulación en un punto, obtiene un valor en dos especialidades de Manipulación diferentes a su elección, incluyendo reparar, mejorar, fabricar e inventar.|f|0|3107*1.0|0|f|0
+SkillDef|f|3117|Medicina|Con esta aptitud, el tecnomédico puede mantener viva a la gente que debería estar muerta usando sus conocimientos, herramientas y entrenamiento. Son tanto médicos como mecánicos, cuidando de personas que a menudo son más máquinas que humanos.|f|0|3107*1.0|0|f|0
+PerkDef|2006|f|----------Asmin----------||0|
+PerkDef|2005|f|Admin||0|
+PerkAction|2005|16|0|0|Asmin||0.0
+PerkDef|2926|t|----------Tu Origen----------||0|TuORIGEN
+PerkDef|2930|t|Corpo||0|TuORIGEN
+PerkAction|2930|14|0|0|TuORIGEN||0.0
+PerkAction|2930|8|0|2462|||0.0
+PerkAction|2930|13|0|0|EstiloVida||0.0
+PerkDef|2929|t|Street Kid||0|TuORIGEN
+PerkAction|2929|14|0|0|TuORIGEN||0.0
+PerkAction|2929|8|0|2462|||0.0
+PerkAction|2929|13|0|0|EstiloVida||0.0
+PerkDef|2931|t|Nómada||0|TuORIGEN
+PerkAction|2931|14|0|0|TuORIGEN||0.0
+PerkAction|2931|8|0|2462|||0.0
+PerkAction|2931|13|0|0|EstiloVida||0.0
+PerkDef|3047|f|----------Estilo de Vida----------||0|EstiloVida
+PerkDef|3046|f|Pienso||0|EstiloVida
+PerkAction|3046|14|0|0|EstiloVida||0.0
+PerkAction|3046|13|0|0|Raza||0.0
+PerkAction|3046|7|-10|3048|||0.0
+PerkAction|3046|8|0|3053|||0.0
+PerkAction|3046|4|-1|2882|||0.0
+PerkDef|3049|f|Precocinados Genéricos||0|EstiloVida
+PerkAction|3049|14|0|0|EstiloVida||0.0
+PerkAction|3049|13|0|0|Raza||0.0
+PerkAction|3049|8|0|3061|||0.0
+PerkDef|3050|f|Precocinados de Calidad||0|EstiloVida
+PerkAction|3050|14|0|0|EstiloVida||0.0
+PerkAction|3050|13|0|0|Raza||0.0
+PerkAction|3050|7|5|3048|||0.0
+PerkAction|3050|8|0|3062|||0.0
+PerkAction|3050|7|-1|3064|||0.0
+PerkAction|3050|4|1|2882|||0.0
+PerkDef|3051|f|Alimentos Frescos||0|EstiloVida
+PerkAction|3051|14|0|0|EstiloVida||0.0
+PerkAction|3051|13|0|0|Raza||0.0
+PerkAction|3051|7|15|3048|||0.0
+PerkAction|3051|8|0|3063|||0.0
+PerkAction|3051|7|-2|3064|||0.0
+PerkAction|3051|4|1|2903|||0.0
+PerkDef|205|f|----------Etnias----------||0|Raza
+PerkDef|2746|f|Norteamérica||0|Raza
+PerkAction|2746|14|0|0|Raza||0.0
+PerkAction|2746|13|0|0|Class||0.0
+PerkAction|2746|15|0|0|Inglés||0.0
+PerkAction|2746|16|0|0|Jugador||0.0
+PerkDef|2866|f|Centroamérica/Sudamérica||0|Raza
+PerkAction|2866|14|0|0|Raza||0.0
+PerkAction|2866|13|0|0|Class||0.0
+PerkAction|2866|15|0|0|Inglés||0.0
+PerkAction|2866|16|0|0|Jugador||0.0
+PerkDef|2867|f|Europa occidental||0|Raza
+PerkAction|2867|14|0|0|Raza||0.0
+PerkAction|2867|13|0|0|Class||0.0
+PerkAction|2867|15|0|0|Inglés||0.0
+PerkAction|2867|16|0|0|Jugador||0.0
+PerkDef|2868|f|Europa oriental||0|Raza
+PerkAction|2868|14|0|0|Raza||0.0
+PerkAction|2868|13|0|0|Class||0.0
+PerkAction|2868|15|0|0|Inglés||0.0
+PerkAction|2868|16|0|0|Jugador||0.0
+PerkDef|2869|f|Oriente Medio/Norte de África||0|Raza
+PerkAction|2869|14|0|0|Raza||0.0
+PerkAction|2869|13|0|0|Class||0.0
+PerkAction|2869|15|0|0|Inglés||0.0
+PerkAction|2869|16|0|0|Jugador||0.0
+PerkDef|2870|f|África subsahariana||0|Raza
+PerkAction|2870|14|0|0|Raza||0.0
+PerkAction|2870|13|0|0|Class||0.0
+PerkAction|2870|15|0|0|Inglés||0.0
+PerkAction|2870|16|0|0|Jugador||0.0
+PerkDef|2871|f|Asia del Sur||0|Raza
+PerkAction|2871|14|0|0|Raza||0.0
+PerkAction|2871|13|0|0|Class||0.0
+PerkAction|2871|15|0|0|Inglés||0.0
+PerkAction|2871|16|0|0|Jugador||0.0
+PerkDef|2872|f|Sudeste asiático||0|Raza
+PerkAction|2872|14|0|0|Raza||0.0
+PerkAction|2872|13|0|0|Class||0.0
+PerkAction|2872|15|0|0|Inglés||0.0
+PerkAction|2872|16|0|0|Jugador||0.0
+PerkDef|2873|f|Asia oriental||0|Raza
+PerkAction|2873|14|0|0|Raza||0.0
+PerkAction|2873|13|0|0|Class||0.0
+PerkAction|2873|15|0|0|Inglés||0.0
+PerkAction|2873|16|0|0|Jugador||0.0
+PerkDef|2874|f|Oceanía/Islas del Pacífico||0|Raza
+PerkAction|2874|14|0|0|Raza||0.0
+PerkAction|2874|13|0|0|Class||0.0
+PerkAction|2874|15|0|0|Inglés||0.0
+PerkAction|2874|16|0|0|Jugador||0.0
+PerkDef|206|f|----------Roles----------||0|Class
+PerkDef|393|f|Fixer||0|Class
+PerkAction|393|14|0|0|Class||0.0
+PerkAction|393|13|0|0|Trasfondo||0.0
+PerkAction|393|16|0|0|Fixer||0.0
+PerkAction|393|0|0|3108|||0.0
+PerkDef|394|f|Ejecutivo||0|Class
+PerkAction|394|14|0|0|Class||0.0
+PerkAction|394|13|0|0|Trasfondo||0.0
+PerkAction|394|16|0|0|Ejecutivo||0.0
+PerkAction|394|0|0|3109|||0.0
+PerkDef|68|f|Edgerunner||0|Class
+PerkAction|68|14|0|0|Class||0.0
+PerkAction|68|13|0|0|Trasfondo||0.0
+PerkAction|68|16|0|0|Edgerunner||0.0
+PerkAction|68|0|0|3110|||0.0
+PerkDef|235|f|Netrunner||0|Class
+PerkAction|235|14|0|0|Class||0.0
+PerkAction|235|13|0|0|Trasfondo||0.0
+PerkAction|235|16|0|0|Netrunner||0.0
+PerkAction|235|0|0|3111|||0.0
+PerkDef|392|f|Nómada||0|Class
+PerkAction|392|14|0|0|Class||0.0
+PerkAction|392|13|0|0|Trasfondo||0.0
+PerkAction|392|16|0|0|Nómada||0.0
+PerkAction|392|0|0|3112|||0.0
+PerkDef|784|f|Periodista||0|Class
+PerkAction|784|14|0|0|Class||0.0
+PerkAction|784|13|0|0|Trasfondo||0.0
+PerkAction|784|16|0|0|Periodista||0.0
+PerkAction|784|0|0|3113|||0.0
+PerkDef|2606|f|Ex-Agente||0|Class
+PerkAction|2606|14|0|0|Class||0.0
+PerkAction|2606|13|0|0|Trasfondo||0.0
+PerkAction|2606|16|0|0|ExAgente||0.0
+PerkAction|2606|0|0|3114|||0.0
+PerkDef|2912|f|Rockero||0|Class
+PerkAction|2912|14|0|0|Class||0.0
+PerkAction|2912|13|0|0|Trasfondo||0.0
+PerkAction|2912|16|0|0|Rockero||0.0
+PerkAction|2912|0|0|3115|||0.0
+PerkDef|2913|f|Técnico||0|Class
+PerkAction|2913|14|0|0|Class||0.0
+PerkAction|2913|13|0|0|Trasfondo||0.0
+PerkAction|2913|16|0|0|Técnico||0.0
+PerkAction|2913|0|0|3116|||0.0
+PerkDef|2914|f|Tecnomédico||0|Class
+PerkAction|2914|14|0|0|Class||0.0
+PerkAction|2914|13|0|0|Trasfondo||0.0
+PerkAction|2914|16|0|0|Tecnomédico||0.0
+PerkAction|2914|0|0|3117|||0.0
+PerkDef|357|f|----------Idioma Extra----------||0|Trasfondo
+PerkDef|358|f|Chino||0|Trasfondo
+PerkAction|358|14|0|0|Trasfondo||0.0
+PerkAction|358|13|0|0|Competencia II||0.0
+PerkAction|358|15|0|0|Chino||0.0
+PerkDef|2846|f|Español||0|Trasfondo
+PerkAction|2846|14|0|0|Trasfondo||0.0
+PerkAction|2846|13|0|0|Competencia II||0.0
+PerkAction|2846|15|0|0|Español||0.0
+PerkDef|3003|f|Italiano||0|Trasfondo
+PerkAction|3003|14|0|0|Trasfondo||0.0
+PerkAction|3003|13|0|0|Competencia II||0.0
+PerkAction|3003|15|0|0|Italiano||0.0
+PerkDef|2847|f|Alemán||0|Trasfondo
+PerkAction|2847|14|0|0|Trasfondo||0.0
+PerkAction|2847|13|0|0|Competencia II||0.0
+PerkAction|2847|15|0|0|Alemán||0.0
+PerkDef|2848|f|Japonés||0|Trasfondo
+PerkAction|2848|14|0|0|Trasfondo||0.0
+PerkAction|2848|13|0|0|Competencia II||0.0
+PerkAction|2848|15|0|0|Japonés||0.0
+PerkDef|2849|f|Francés||0|Trasfondo
+PerkAction|2849|14|0|0|Trasfondo||0.0
+PerkAction|2849|13|0|0|Competencia II||0.0
+PerkAction|2849|15|0|0|Francés||0.0
+PerkDef|2850|f|Ruso||0|Trasfondo
+PerkAction|2850|14|0|0|Trasfondo||0.0
+PerkAction|2850|13|0|0|Competencia II||0.0
+PerkAction|2850|15|0|0|Ruso||0.0
+PerkDef|2851|f|Portugés||0|Trasfondo
+PerkAction|2851|14|0|0|Trasfondo||0.0
+PerkAction|2851|13|0|0|Competencia II||0.0
+PerkAction|2851|15|0|0|Portugés||0.0
+PerkDef|2852|f|Nepalí||0|Trasfondo
+PerkAction|2852|14|0|0|Trasfondo||0.0
+PerkAction|2852|13|0|0|Competencia II||0.0
+PerkAction|2852|15|0|0|Nepalí||0.0
+PerkDef|2853|f|Rumano||0|Trasfondo
+PerkAction|2853|14|0|0|Trasfondo||0.0
+PerkAction|2853|13|0|0|Competencia II||0.0
+PerkAction|2853|15|0|0|Rumano||0.0
+PerkDef|2854|f|Árabe||0|Trasfondo
+PerkAction|2854|14|0|0|Trasfondo||0.0
+PerkAction|2854|13|0|0|Competencia II||0.0
+PerkAction|2854|15|0|0|Árabe||0.0
+PerkDef|2855|f|Coreano||0|Trasfondo
+PerkAction|2855|14|0|0|Trasfondo||0.0
+PerkAction|2855|13|0|0|Competencia II||0.0
+PerkAction|2855|15|0|0|Coreano||0.0
+PerkDef|2856|f|Brasileño||0|Trasfondo
+PerkAction|2856|14|0|0|Trasfondo||0.0
+PerkAction|2856|13|0|0|Competencia II||0.0
+PerkAction|2856|15|0|0|Brasileño||0.0
+PerkDef|2857|f|Noruego||0|Trasfondo
+PerkAction|2857|14|0|0|Trasfondo||0.0
+PerkAction|2857|13|0|0|Competencia II||0.0
+PerkAction|2857|15|0|0|Noruego||0.0
+PerkDef|2858|f|Yoruba||0|Trasfondo
+PerkAction|2858|14|0|0|Trasfondo||0.0
+PerkAction|2858|13|0|0|Competencia II||0.0
+PerkAction|2858|15|0|0|Yoruba||0.0
+PerkDef|2915|f|FINALIZAR||0|Competencia II
+Rune|3096|99299616|0|0|t|Arma||f|t|f|t
+RuneAction|3096|1996|0|4|0
+RuneAction|3096|2935|0|4|0
+RuneAction|3096|2941|0|4|0
+RuneAction|3096|2942|0|4|0
+RuneAction|3096|2945|0|4|0
+RuneAction|3096|2946|0|4|0
+RuneAction|3096|2947|0|4|0
+RuneAction|3096|2948|0|4|0
+RuneAction|3096|2956|0|4|0
+RuneAction|3096|2958|0|4|0
+RuneAction|3096|2959|0|4|0
+RuneAction|3096|2960|0|4|0
+Rune|3097|99299617|0|0|t|Arma||f|f|f|t
+RuneAction|3097|3135|0|4|0
+RuneAction|3097|3125|0|4|0
+RuneAction|3097|2938|5|3|0
+RuneAction|3097|2937|6|3|0
+RuneAction|3097|3001|25|3|0
+Rune|3098|99299618|0|0|t|Arma||f|f|f|t
+RuneAction|3098|2977|0|4|0
+RuneAction|3098|2978|0|4|0
+RuneAction|3098|2979|0|4|0
+RuneAction|3098|2980|0|4|0
+Rune|3099|99299619|0|0|t|Arma||f|f|f|t
+RuneAction|3099|2977|0|4|0
+RuneAction|3099|2978|0|4|0
+RuneAction|3099|2979|0|4|0
+RuneAction|3099|2980|0|4|0
+Rune|3100|99299620|0|0|t|Arma||t|f|f|t
+RuneAction|3100|3138|0|4|0
+RuneAction|3100|3139|2|3|0
+Rune|3101|99299621|0|0|t|Arma||t|f|f|t
+RuneAction|3101|2977|0|4|0
+RuneAction|3101|2978|0|4|0
+RuneAction|3101|2979|0|4|0
+RuneAction|3101|2980|0|4|0
+Rune|3102|99299622|0|0|t|Arma||t|f|f|t
+RuneAction|3102|2977|0|4|0
+RuneAction|3102|2978|0|4|0
+RuneAction|3102|2979|0|4|0
+RuneAction|3102|2980|0|4|0
+Rune|3103|99299623|0|0|t|Arma||t|t|f|t
+RuneAction|3103|3129|0|4|0
+RuneAction|3103|2938|4|3|0
+RuneAction|3103|2937|6|3|0
+Rune|3104|99299624|0|0|t|Arma||t|t|f|t
+Rune|3105|99299625|0|0|t|Arma||t|t|f|t
+Rune|3106|99299626|0|0|t|Arma||t|f|f|t
+RuneAction|3106|2977|0|4|0
+RuneAction|3106|2978|0|4|0
+RuneAction|3106|2979|0|4|0
+RuneAction|3106|2980|0|4|0
+Rune|3107|99299627|0|0|t|Arma||t|f|f|t
+RuneAction|3107|2977|0|4|0
+RuneAction|3107|2978|0|4|0
+RuneAction|3107|2979|0|4|0
+RuneAction|3107|2980|0|4|0
+Rune|3108|99299628|0|0|t|Arma||t|f|f|t
+RuneAction|3108|2977|0|4|0
+RuneAction|3108|2978|0|4|0
+RuneAction|3108|2979|0|4|0
+RuneAction|3108|2980|0|4|0
+Rune|3109|99299629|0|0|t|Arma||t|f|f|t
+RuneAction|3109|2977|0|4|0
+RuneAction|3109|2978|0|4|0
+RuneAction|3109|2979|0|4|0
+RuneAction|3109|2980|0|4|0
+Rune|3110|99299630|0|0|t|Arma||t|f|f|t
+RuneAction|3110|2977|0|4|0
+RuneAction|3110|2978|0|4|0
+RuneAction|3110|2979|0|4|0
+RuneAction|3110|2980|0|4|0
+Rune|3111|99299631|0|0|t|Arma||t|f|f|t
+RuneAction|3111|2977|0|4|0
+RuneAction|3111|2978|0|4|0
+RuneAction|3111|2979|0|4|0
+RuneAction|3111|2980|0|4|0
+Rune|3112|99299632|0|0|t|Arma||t|t|f|t
+Rune|3113|99299633|0|0|t|Arma||t|t|f|t
+Rune|3114|99299634|0|0|t|Arma||t|t|f|t
+Rune|3115|99299635|0|0|t|Arma||f|f|f|t
+RuneAction|3115|2977|0|4|0
+RuneAction|3115|2978|0|4|0
+RuneAction|3115|2979|0|4|0
+RuneAction|3115|2980|0|4|0
+Rune|3116|99299636|0|0|t|Arma||f|f|f|t
+RuneAction|3116|2977|0|4|0
+RuneAction|3116|2978|0|4|0
+RuneAction|3116|2979|0|4|0
+RuneAction|3116|2980|0|4|0
+Rune|3117|99299637|0|0|t|Arma||f|f|f|t
+RuneAction|3117|2977|0|4|0
+RuneAction|3117|2978|0|4|0
+RuneAction|3117|2979|0|4|0
+RuneAction|3117|2980|0|4|0
+Rune|3118|99299638|0|0|t|Arma||f|t|f|t
+RuneAction|3118|1996|0|4|0
+RuneAction|3118|2935|0|4|0
+RuneAction|3118|2941|0|4|0
+RuneAction|3118|2942|0|4|0
+RuneAction|3118|2945|0|4|0
+RuneAction|3118|2946|0|4|0
+RuneAction|3118|2947|0|4|0
+RuneAction|3118|2948|0|4|0
+RuneAction|3118|2956|0|4|0
+RuneAction|3118|2958|0|4|0
+RuneAction|3118|2959|0|4|0
+RuneAction|3118|2960|0|4|0
+Rune|3119|99299639|0|0|t|Arma||t|t|f|t
+Rune|3120|99299640|0|0|t|Arma||t|t|f|t
+RuneAction|3120|3136|0|4|0
+RuneAction|3120|3132|0|4|0
+RuneAction|3120|2938|6|3|0
+RuneAction|3120|2937|6|3|0
+Rune|3121|99299641|0|0|t|Arma||t|t|f|t
+Rune|3122|99299642|0|0|t|Arma||t|t|f|t
+Rune|3123|99299643|0|0|t|Arma||f|t|f|t
+RuneAction|3123|3134|0|4|0
+RuneAction|3123|3127|0|4|0
+RuneAction|3123|2938|3|3|0
+RuneAction|3123|2937|6|3|0
+RuneAction|3123|3104|8|3|0
+Rune|3124|99299644|0|0|t|Arma||f|t|f|t
+RuneAction|3124|1996|0|4|0
+RuneAction|3124|2935|0|4|0
+RuneAction|3124|2941|0|4|0
+RuneAction|3124|2942|0|4|0
+RuneAction|3124|2945|0|4|0
+RuneAction|3124|2946|0|4|0
+RuneAction|3124|2947|0|4|0
+RuneAction|3124|2948|0|4|0
+RuneAction|3124|2956|0|4|0
+RuneAction|3124|2958|0|4|0
+RuneAction|3124|2959|0|4|0
+RuneAction|3124|2960|0|4|0
+Rune|3125|99299645|0|0|t|Arma||f|t|f|t
+RuneAction|3125|1996|0|4|0
+RuneAction|3125|2935|0|4|0
+RuneAction|3125|2941|0|4|0
+RuneAction|3125|2942|0|4|0
+RuneAction|3125|2945|0|4|0
+RuneAction|3125|2946|0|4|0
+RuneAction|3125|2947|0|4|0
+RuneAction|3125|2948|0|4|0
+RuneAction|3125|2956|0|4|0
+RuneAction|3125|2958|0|4|0
+RuneAction|3125|2959|0|4|0
+RuneAction|3125|2960|0|4|0
+Rune|3126|99299646|0|0|t|Arma||f|t|f|t
+RuneAction|3126|3134|0|4|0
+RuneAction|3126|3126|0|4|0
+RuneAction|3126|2938|3|3|0
+RuneAction|3126|2937|0|3|0
+RuneAction|3126|3104|40|3|0
+Rune|3127|99299647|0|0|t|Arma||f|t|f|t
+RuneAction|3127|1996|0|4|0
+RuneAction|3127|2935|0|4|0
+RuneAction|3127|2941|0|4|0
+RuneAction|3127|2942|0|4|0
+RuneAction|3127|2945|0|4|0
+RuneAction|3127|2946|0|4|0
+RuneAction|3127|2947|0|4|0
+RuneAction|3127|2948|0|4|0
+RuneAction|3127|2956|0|4|0
+RuneAction|3127|2958|0|4|0
+RuneAction|3127|2959|0|4|0
+RuneAction|3127|2960|0|4|0
+Rune|3128|99299648|0|0|t|Arma||f|t|f|t
+RuneAction|3128|1996|0|4|0
+RuneAction|3128|2935|0|4|0
+RuneAction|3128|2941|0|4|0
+RuneAction|3128|2942|0|4|0
+RuneAction|3128|2945|0|4|0
+RuneAction|3128|2946|0|4|0
+RuneAction|3128|2947|0|4|0
+RuneAction|3128|2948|0|4|0
+RuneAction|3128|2956|0|4|0
+RuneAction|3128|2958|0|4|0
+RuneAction|3128|2959|0|4|0
+RuneAction|3128|2960|0|4|0
+Rune|3129|99299649|0|0|t|Arma||f|f|f|t
+RuneAction|3129|2977|0|4|0
+RuneAction|3129|2978|0|4|0
+RuneAction|3129|2979|0|4|0
+RuneAction|3129|2980|0|4|0
+Rune|3130|99299650|0|0|t|Arma||f|f|f|t
+RuneAction|3130|2977|0|4|0
+RuneAction|3130|2978|0|4|0
+RuneAction|3130|2979|0|4|0
+RuneAction|3130|2980|0|4|0
+Rune|3131|99299651|0|0|t|Arma||f|f|f|t
+RuneAction|3131|2977|0|4|0
+RuneAction|3131|2978|0|4|0
+RuneAction|3131|2979|0|4|0
+RuneAction|3131|2980|0|4|0
+Rune|3132|99299652|0|0|t|Arma||t|f|f|t
+RuneAction|3132|2977|0|4|0
+RuneAction|3132|2978|0|4|0
+RuneAction|3132|2979|0|4|0
+RuneAction|3132|2980|0|4|0
+Rune|3133|99299653|0|0|t|Arma||t|f|f|t
+RuneAction|3133|2977|0|4|0
+RuneAction|3133|2978|0|4|0
+RuneAction|3133|2979|0|4|0
+RuneAction|3133|2980|0|4|0
+Rune|3134|99299654|0|0|t|Arma||t|f|f|t
+RuneAction|3134|2977|0|4|0
+RuneAction|3134|2978|0|4|0
+RuneAction|3134|2979|0|4|0
+RuneAction|3134|2980|0|4|0
+Rune|3135|99299655|0|0|t|Arma||f|f|f|t
+RuneAction|3135|2977|0|4|0
+RuneAction|3135|2978|0|4|0
+RuneAction|3135|2979|0|4|0
+RuneAction|3135|2980|0|4|0
+Rune|3136|99299656|0|0|t|Arma||f|f|f|t
+RuneAction|3136|2977|0|4|0
+RuneAction|3136|2978|0|4|0
+RuneAction|3136|2979|0|4|0
+RuneAction|3136|2980|0|4|0
+Rune|3137|99299657|0|0|t|Arma||f|f|f|t
+RuneAction|3137|2977|0|4|0
+RuneAction|3137|2978|0|4|0
+RuneAction|3137|2979|0|4|0
+RuneAction|3137|2980|0|4|0
+Rune|3138|99299658|0|0|t|Arma||f|f|f|t
+RuneAction|3138|2977|0|4|0
+RuneAction|3138|2978|0|4|0
+RuneAction|3138|2979|0|4|0
+RuneAction|3138|2980|0|4|0
+Rune|3139|99299659|0|0|t|Arma||f|t|f|t
+RuneAction|3139|3101|0|4|0
+RuneAction|3139|2743|0|4|0
+RuneAction|3139|2938|2|3|0
+RuneAction|3139|2937|6|3|0
+RuneAction|3139|2741|12|3|0
+Rune|3140|99299660|0|0|t|Arma||f|t|f|t
+RuneAction|3140|3101|0|4|0
+RuneAction|3140|2938|2|3|0
+RuneAction|3140|2937|6|3|0
+RuneAction|3140|2883|1|0|0
+Rune|3141|99299661|0|0|t|Arma||f|t|f|t
+RuneAction|3141|3101|0|4|0
+RuneAction|3141|2938|2|3|0
+RuneAction|3141|2937|6|3|0
+RuneAction|3141|2883|-2|0|0
+Rune|3142|99299662|0|0|t|Arma||f|f|f|t
+RuneAction|3142|2977|0|4|0
+RuneAction|3142|2978|0|4|0
+RuneAction|3142|2979|0|4|0
+RuneAction|3142|2980|0|4|0
+Rune|3143|99299663|0|0|t|Arma||t|f|f|t
+RuneAction|3143|2977|0|4|0
+RuneAction|3143|2978|0|4|0
+RuneAction|3143|2979|0|4|0
+RuneAction|3143|2980|0|4|0
+Rune|3144|99299664|0|0|t|Arma||t|f|f|t
+RuneAction|3144|2977|0|4|0
+RuneAction|3144|2978|0|4|0
+RuneAction|3144|2979|0|4|0
+RuneAction|3144|2980|0|4|0
+Rune|3145|99299665|0|0|t|Arma||t|f|f|t
+RuneAction|3145|2977|0|4|0
+RuneAction|3145|2978|0|4|0
+RuneAction|3145|2979|0|4|0
+RuneAction|3145|2980|0|4|0
+Rune|3146|99299666|0|0|t|Arma||t|t|f|t
+RuneAction|3146|3137|0|4|0
+RuneAction|3146|3133|0|4|0
+RuneAction|3146|2938|8|3|0
+RuneAction|3146|2937|6|3|0
+RuneAction|3146|3106|1|3|0
+Rune|3147|99299667|0|0|t|Arma||t|t|f|t
+Rune|3148|99299668|0|0|t|Arma||t|t|f|t
+Rune|3149|99299669|0|0|t|Arma||t|t|f|t
+RuneAction|3149|3121|0|4|0
+RuneAction|3149|3123|0|4|0
+RuneAction|3149|3008|0|4|0
+RuneAction|3149|2938|5|3|0
+RuneAction|3149|2937|6|3|0
+RuneAction|3149|2999|4|3|0
+Rune|3150|99299670|0|0|t|Arma||t|t|f|t
+RuneAction|3150|3023|0|4|0
+RuneAction|3150|3024|0|4|0
+RuneAction|3150|3025|0|4|0
+RuneAction|3150|3026|0|4|0
+RuneAction|3150|3027|0|4|0
+RuneAction|3150|3028|0|4|0
+RuneAction|3150|3029|0|4|0
+RuneAction|3150|3030|0|4|0
+RuneAction|3150|3031|0|4|0
+RuneAction|3150|3032|0|4|0
+RuneAction|3150|3033|0|4|0
+RuneAction|3150|3034|0|4|0
+Rune|3151|99299671|0|0|t|Arma||t|t|f|t
+RuneAction|3151|3023|0|4|0
+RuneAction|3151|3024|0|4|0
+RuneAction|3151|3025|0|4|0
+RuneAction|3151|3026|0|4|0
+RuneAction|3151|3027|0|4|0
+RuneAction|3151|3028|0|4|0
+RuneAction|3151|3029|0|4|0
+RuneAction|3151|3030|0|4|0
+RuneAction|3151|3031|0|4|0
+RuneAction|3151|3032|0|4|0
+RuneAction|3151|3033|0|4|0
+RuneAction|3151|3034|0|4|0
+Rune|3152|99299672|0|0|t|Arma||f|f|f|t
+RuneAction|3152|2977|0|4|0
+RuneAction|3152|2978|0|4|0
+RuneAction|3152|2979|0|4|0
+RuneAction|3152|2980|0|4|0
+Rune|3153|99299673|0|0|t|Arma||t|f|f|t
+RuneAction|3153|2977|0|4|0
+RuneAction|3153|2978|0|4|0
+RuneAction|3153|2979|0|4|0
+RuneAction|3153|2980|0|4|0
+Rune|3154|99299674|0|0|t|Arma||t|f|f|t
+RuneAction|3154|2977|0|4|0
+RuneAction|3154|2978|0|4|0
+RuneAction|3154|2979|0|4|0
+RuneAction|3154|2980|0|4|0
+Rune|3155|99299675|0|0|t|Arma||t|f|f|t
+RuneAction|3155|2977|0|4|0
+RuneAction|3155|2978|0|4|0
+RuneAction|3155|2979|0|4|0
+RuneAction|3155|2980|0|4|0
+Rune|3156|99299676|0|0|t|Arma||f|t|f|t
+RuneAction|3156|2743|0|4|0
+RuneAction|3156|3124|0|4|0
+RuneAction|3156|2938|2|3|0
+RuneAction|3156|2937|6|3|0
+RuneAction|3156|2741|30|3|0
+Rune|3157|99299677|0|0|t|Arma||f|t|f|t
+RuneAction|3157|1996|0|4|0
+RuneAction|3157|2935|0|4|0
+RuneAction|3157|2941|0|4|0
+RuneAction|3157|2942|0|4|0
+RuneAction|3157|2945|0|4|0
+RuneAction|3157|2946|0|4|0
+RuneAction|3157|2947|0|4|0
+RuneAction|3157|2948|0|4|0
+RuneAction|3157|2956|0|4|0
+RuneAction|3157|2958|0|4|0
+RuneAction|3157|2959|0|4|0
+RuneAction|3157|2960|0|4|0
+Rune|3158|99299678|0|0|t|Arma||f|t|f|t
+RuneAction|3158|1996|0|4|0
+RuneAction|3158|2935|0|4|0
+RuneAction|3158|2941|0|4|0
+RuneAction|3158|2942|0|4|0
+RuneAction|3158|2945|0|4|0
+RuneAction|3158|2946|0|4|0
+RuneAction|3158|2947|0|4|0
+RuneAction|3158|2948|0|4|0
+RuneAction|3158|2956|0|4|0
+RuneAction|3158|2958|0|4|0
+RuneAction|3158|2959|0|4|0
+RuneAction|3158|2960|0|4|0
+Rune|3159|99299679|0|0|t|Arma||t|t|f|t
+RuneAction|3159|3135|0|4|0
+RuneAction|3159|3128|0|4|0
+RuneAction|3159|2938|5|3|0
+RuneAction|3159|2937|6|3|0
+RuneAction|3159|3001|4|3|0
+Rune|3160|99299680|0|0|t|Arma||t|t|f|t
+Rune|3161|99299681|0|0|t|Arma||t|t|f|t
+Rune|3162|99299682|0|0|t|Arma||t|f|f|t
+RuneAction|3162|2977|0|4|0
+RuneAction|3162|2978|0|4|0
+RuneAction|3162|2979|0|4|0
+RuneAction|3162|2980|0|4|0
+Rune|3163|99299683|0|0|t|Arma||t|f|f|t
+RuneAction|3163|2977|0|4|0
+RuneAction|3163|2978|0|4|0
+RuneAction|3163|2979|0|4|0
+RuneAction|3163|2980|0|4|0
+Rune|3164|99299684|0|0|t|Arma||t|f|f|t
+RuneAction|3164|2977|0|4|0
+RuneAction|3164|2978|0|4|0
+RuneAction|3164|2979|0|4|0
+RuneAction|3164|2980|0|4|0
+Rune|3165|99299685|0|0|t|Arma||f|t|f|t
+RuneAction|3165|1996|0|4|0
+RuneAction|3165|2935|0|4|0
+RuneAction|3165|2941|0|4|0
+RuneAction|3165|2942|0|4|0
+RuneAction|3165|2945|0|4|0
+RuneAction|3165|2946|0|4|0
+RuneAction|3165|2947|0|4|0
+RuneAction|3165|2948|0|4|0
+RuneAction|3165|2956|0|4|0
+RuneAction|3165|2958|0|4|0
+RuneAction|3165|2959|0|4|0
+RuneAction|3165|2960|0|4|0
+Rune|3166|99299686|0|0|t|Arma||t|f|f|t
+RuneAction|3166|2977|0|4|0
+RuneAction|3166|2978|0|4|0
+RuneAction|3166|2979|0|4|0
+RuneAction|3166|2980|0|4|0
+Rune|3167|99299687|0|0|t|Arma||t|f|f|t
+RuneAction|3167|2977|0|4|0
+RuneAction|3167|2978|0|4|0
+RuneAction|3167|2979|0|4|0
+RuneAction|3167|2980|0|4|0
+Rune|3168|99299688|0|0|t|Arma||t|f|f|t
+RuneAction|3168|2977|0|4|0
+RuneAction|3168|2978|0|4|0
+RuneAction|3168|2979|0|4|0
+RuneAction|3168|2980|0|4|0
+Rune|3169|99299689|0|0|t|Arma||f|f|f|t
+RuneAction|3169|2977|0|4|0
+RuneAction|3169|2978|0|4|0
+RuneAction|3169|2979|0|4|0
+RuneAction|3169|2980|0|4|0
+Rune|3170|99299690|0|0|t|Arma||f|f|f|t
+RuneAction|3170|2977|0|4|0
+RuneAction|3170|2978|0|4|0
+RuneAction|3170|2979|0|4|0
+RuneAction|3170|2980|0|4|0
+Rune|3171|99299691|0|0|t|Arma||f|f|f|t
+RuneAction|3171|2977|0|4|0
+RuneAction|3171|2978|0|4|0
+RuneAction|3171|2979|0|4|0
+RuneAction|3171|2980|0|4|0
+Rune|3172|99299692|0|0|t|Arma||f|f|f|t
+RuneAction|3172|2977|0|4|0
+RuneAction|3172|2978|0|4|0
+RuneAction|3172|2979|0|4|0
+RuneAction|3172|2980|0|4|0
+Rune|3174|99299694|0|0|t|Arma||f|t|f|t
+RuneAction|3174|3103|0|4|0
+RuneAction|3174|3120|0|4|0
+RuneAction|3174|2938|4|3|0
+RuneAction|3174|2937|6|3|0
+RuneAction|3174|3105|8|3|0
+Rune|3175|99299695|0|0|t|Arma||f|t|f|t
+RuneAction|3175|1996|0|4|0
+RuneAction|3175|2935|0|4|0
+RuneAction|3175|2941|0|4|0
+RuneAction|3175|2942|0|4|0
+RuneAction|3175|2945|0|4|0
+RuneAction|3175|2946|0|4|0
+RuneAction|3175|2947|0|4|0
+RuneAction|3175|2948|0|4|0
+RuneAction|3175|2956|0|4|0
+RuneAction|3175|2958|0|4|0
+RuneAction|3175|2959|0|4|0
+RuneAction|3175|2960|0|4|0
+Rune|3176|99299696|0|0|t|Arma||f|t|f|t
+RuneAction|3176|1996|0|4|0
+RuneAction|3176|2935|0|4|0
+RuneAction|3176|2941|0|4|0
+RuneAction|3176|2942|0|4|0
+RuneAction|3176|2945|0|4|0
+RuneAction|3176|2946|0|4|0
+RuneAction|3176|2947|0|4|0
+RuneAction|3176|2948|0|4|0
+RuneAction|3176|2956|0|4|0
+RuneAction|3176|2958|0|4|0
+RuneAction|3176|2959|0|4|0
+RuneAction|3176|2960|0|4|0
+Rune|3246|99299765|0|0|t|Arma||f|t|f|t
+RuneAction|3246|1996|0|4|0
+RuneAction|3246|2935|0|4|0
+RuneAction|3246|2941|0|4|0
+RuneAction|3246|2942|0|4|0
+RuneAction|3246|2945|0|4|0
+RuneAction|3246|2946|0|4|0
+RuneAction|3246|2947|0|4|0
+RuneAction|3246|2948|0|4|0
+RuneAction|3246|2956|0|4|0
+RuneAction|3246|2958|0|4|0
+RuneAction|3246|2959|0|4|0
+RuneAction|3246|2960|0|4|0
+Rune|3247|99299766|0|0|t|Arma||f|t|f|t
+RuneAction|3247|1996|0|4|0
+RuneAction|3247|2935|0|4|0
+RuneAction|3247|2941|0|4|0
+RuneAction|3247|2942|0|4|0
+RuneAction|3247|2945|0|4|0
+RuneAction|3247|2946|0|4|0
+RuneAction|3247|2947|0|4|0
+RuneAction|3247|2948|0|4|0
+RuneAction|3247|2956|0|4|0
+RuneAction|3247|2958|0|4|0
+RuneAction|3247|2959|0|4|0
+RuneAction|3247|2960|0|4|0
+Rune|3248|99299767|0|0|t|Arma||f|t|f|t
+RuneAction|3248|1996|0|4|0
+RuneAction|3248|2935|0|4|0
+RuneAction|3248|2941|0|4|0
+RuneAction|3248|2942|0|4|0
+RuneAction|3248|2945|0|4|0
+RuneAction|3248|2946|0|4|0
+RuneAction|3248|2947|0|4|0
+RuneAction|3248|2948|0|4|0
+RuneAction|3248|2956|0|4|0
+RuneAction|3248|2958|0|4|0
+RuneAction|3248|2959|0|4|0
+RuneAction|3248|2960|0|4|0
+Rune|3249|99299768|0|0|t|Arma||f|t|f|t
+RuneAction|3249|1996|0|4|0
+RuneAction|3249|2935|0|4|0
+RuneAction|3249|2941|0|4|0
+RuneAction|3249|2942|0|4|0
+RuneAction|3249|2945|0|4|0
+RuneAction|3249|2946|0|4|0
+RuneAction|3249|2947|0|4|0
+RuneAction|3249|2948|0|4|0
+RuneAction|3249|2956|0|4|0
+RuneAction|3249|2958|0|4|0
+RuneAction|3249|2959|0|4|0
+RuneAction|3249|2960|0|4|0
+Rune|3250|99299769|0|0|t|Arma||f|t|f|t
+RuneAction|3250|1996|0|4|0
+RuneAction|3250|2935|0|4|0
+RuneAction|3250|2941|0|4|0
+RuneAction|3250|2942|0|4|0
+RuneAction|3250|2945|0|4|0
+RuneAction|3250|2946|0|4|0
+RuneAction|3250|2947|0|4|0
+RuneAction|3250|2948|0|4|0
+RuneAction|3250|2956|0|4|0
+RuneAction|3250|2958|0|4|0
+RuneAction|3250|2959|0|4|0
+RuneAction|3250|2960|0|4|0
+Rune|3251|99299770|0|0|t|Arma||f|t|f|t
+RuneAction|3251|1996|0|4|0
+RuneAction|3251|2935|0|4|0
+RuneAction|3251|2941|0|4|0
+RuneAction|3251|2942|0|4|0
+RuneAction|3251|2945|0|4|0
+RuneAction|3251|2946|0|4|0
+RuneAction|3251|2947|0|4|0
+RuneAction|3251|2948|0|4|0
+RuneAction|3251|2956|0|4|0
+RuneAction|3251|2958|0|4|0
+RuneAction|3251|2959|0|4|0
+RuneAction|3251|2960|0|4|0
+Rune|3262|99299781|0|0|t|Arma||t|t|f|t
+Rune|3263|99299782|0|0|t|Arma||t|t|f|t
+Rune|3668|99300186|0|0|t|Arma||f|f|f|t
+RuneAction|3668|2977|0|4|0
+RuneAction|3668|2978|0|4|0
+RuneAction|3668|2979|0|4|0
+RuneAction|3668|2980|0|4|0
+Rune|3669|99300187|0|0|t|Arma||f|f|f|t
+RuneAction|3669|2977|0|4|0
+RuneAction|3669|2978|0|4|0
+RuneAction|3669|2979|0|4|0
+RuneAction|3669|2980|0|4|0
+Rune|3670|99300188|0|0|t|Arma||f|f|f|t
+RuneAction|3670|2977|0|4|0
+RuneAction|3670|2978|0|4|0
+RuneAction|3670|2979|0|4|0
+RuneAction|3670|2980|0|4|0
+Rune|3671|99300189|0|0|t|Arma||f|f|f|t
+RuneAction|3671|2977|0|4|0
+RuneAction|3671|2978|0|4|0
+RuneAction|3671|2979|0|4|0
+RuneAction|3671|2980|0|4|0
+Rune|3672|99300190|0|0|t|Arma||f|f|f|t
+RuneAction|3672|2977|0|4|0
+RuneAction|3672|2978|0|4|0
+RuneAction|3672|2979|0|4|0
+RuneAction|3672|2980|0|4|0
+Rune|3673|99300191|0|0|t|Arma||f|f|f|t
+RuneAction|3673|2977|0|4|0
+RuneAction|3673|2978|0|4|0
+RuneAction|3673|2979|0|4|0
+RuneAction|3673|2980|0|4|0
+Rune|3674|99300192|0|0|t|Arma||f|f|f|t
+RuneAction|3674|2977|0|4|0
+RuneAction|3674|2978|0|4|0
+RuneAction|3674|2979|0|4|0
+RuneAction|3674|2980|0|4|0
+Rune|3675|99300193|0|0|t|Arma||f|f|f|t
+RuneAction|3675|2977|0|4|0
+RuneAction|3675|2978|0|4|0
+RuneAction|3675|2979|0|4|0
+RuneAction|3675|2980|0|4|0
+Rune|3676|99300194|0|0|t|Arma||f|f|f|t
+RuneAction|3676|2977|0|4|0
+RuneAction|3676|2978|0|4|0
+RuneAction|3676|2979|0|4|0
+RuneAction|3676|2980|0|4|0
+Rune|3677|99300195|0|0|t|Arma||f|f|f|t
+RuneAction|3677|2977|0|4|0
+RuneAction|3677|2978|0|4|0
+RuneAction|3677|2979|0|4|0
+RuneAction|3677|2980|0|4|0
+Rune|3678|99300196|0|0|t|Arma||f|f|f|t
+RuneAction|3678|2977|0|4|0
+RuneAction|3678|2978|0|4|0
+RuneAction|3678|2979|0|4|0
+RuneAction|3678|2980|0|4|0
+Rune|3679|99300197|0|0|t|Arma||f|f|f|t
+RuneAction|3679|2977|0|4|0
+RuneAction|3679|2978|0|4|0
+RuneAction|3679|2979|0|4|0
+RuneAction|3679|2980|0|4|0
+Rune|3680|99300198|0|0|t|Arma||f|f|f|t
+RuneAction|3680|2977|0|4|0
+RuneAction|3680|2978|0|4|0
+RuneAction|3680|2979|0|4|0
+RuneAction|3680|2980|0|4|0
+Rune|3681|99300199|0|0|t|Arma||f|f|f|t
+RuneAction|3681|2977|0|4|0
+RuneAction|3681|2978|0|4|0
+RuneAction|3681|2979|0|4|0
+RuneAction|3681|2980|0|4|0
+Rune|3682|99300200|0|0|t|Arma||f|f|f|t
+RuneAction|3682|2977|0|4|0
+RuneAction|3682|2978|0|4|0
+RuneAction|3682|2979|0|4|0
+RuneAction|3682|2980|0|4|0
+Rune|3683|99300201|0|0|t|Arma||f|f|f|t
+RuneAction|3683|2977|0|4|0
+RuneAction|3683|2978|0|4|0
+RuneAction|3683|2979|0|4|0
+RuneAction|3683|2980|0|4|0
+Rune|3684|99300202|0|0|t|Arma||f|f|f|t
+RuneAction|3684|2977|0|4|0
+RuneAction|3684|2978|0|4|0
+RuneAction|3684|2979|0|4|0
+RuneAction|3684|2980|0|4|0
+Rune|3685|99300203|0|0|t|Arma||f|f|f|t
+RuneAction|3685|2977|0|4|0
+RuneAction|3685|2978|0|4|0
+RuneAction|3685|2979|0|4|0
+RuneAction|3685|2980|0|4|0
+Rune|3686|99300204|0|0|t|Arma||f|f|f|t
+RuneAction|3686|2977|0|4|0
+RuneAction|3686|2978|0|4|0
+RuneAction|3686|2979|0|4|0
+RuneAction|3686|2980|0|4|0
+Rune|3687|99300205|0|0|t|Arma||f|f|f|t
+RuneAction|3687|2977|0|4|0
+RuneAction|3687|2978|0|4|0
+RuneAction|3687|2979|0|4|0
+RuneAction|3687|2980|0|4|0
+Rune|3688|99300206|0|0|t|Arma||f|f|f|t
+RuneAction|3688|2977|0|4|0
+RuneAction|3688|2978|0|4|0
+RuneAction|3688|2979|0|4|0
+RuneAction|3688|2980|0|4|0
+Rune|3689|99300207|0|0|t|Arma||f|t|f|t
+RuneAction|3689|1996|0|4|0
+RuneAction|3689|2935|0|4|0
+RuneAction|3689|2941|0|4|0
+RuneAction|3689|2942|0|4|0
+RuneAction|3689|2945|0|4|0
+RuneAction|3689|2946|0|4|0
+RuneAction|3689|2947|0|4|0
+RuneAction|3689|2948|0|4|0
+RuneAction|3689|2956|0|4|0
+RuneAction|3689|2958|0|4|0
+RuneAction|3689|2959|0|4|0
+RuneAction|3689|2960|0|4|0
+Rune|3690|99300208|0|0|t|Arma||f|t|f|t
+RuneAction|3690|1996|0|4|0
+RuneAction|3690|2935|0|4|0
+RuneAction|3690|2941|0|4|0
+RuneAction|3690|2942|0|4|0
+RuneAction|3690|2945|0|4|0
+RuneAction|3690|2946|0|4|0
+RuneAction|3690|2947|0|4|0
+RuneAction|3690|2948|0|4|0
+RuneAction|3690|2956|0|4|0
+RuneAction|3690|2958|0|4|0
+RuneAction|3690|2959|0|4|0
+RuneAction|3690|2960|0|4|0
+Rune|3691|99300209|0|0|t|Arma||f|t|f|t
+RuneAction|3691|1996|0|4|0
+RuneAction|3691|2935|0|4|0
+RuneAction|3691|2941|0|4|0
+RuneAction|3691|2942|0|4|0
+RuneAction|3691|2945|0|4|0
+RuneAction|3691|2946|0|4|0
+RuneAction|3691|2947|0|4|0
+RuneAction|3691|2948|0|4|0
+RuneAction|3691|2956|0|4|0
+RuneAction|3691|2958|0|4|0
+RuneAction|3691|2959|0|4|0
+RuneAction|3691|2960|0|4|0
+Rune|3692|99300210|0|0|t|Arma||f|t|f|t
+RuneAction|3692|1996|0|4|0
+RuneAction|3692|2935|0|4|0
+RuneAction|3692|2941|0|4|0
+RuneAction|3692|2942|0|4|0
+RuneAction|3692|2945|0|4|0
+RuneAction|3692|2946|0|4|0
+RuneAction|3692|2947|0|4|0
+RuneAction|3692|2948|0|4|0
+RuneAction|3692|2956|0|4|0
+RuneAction|3692|2958|0|4|0
+RuneAction|3692|2959|0|4|0
+RuneAction|3692|2960|0|4|0
+Rune|3693|99300211|0|0|t|Arma||f|t|f|t
+RuneAction|3693|1996|0|4|0
+RuneAction|3693|2935|0|4|0
+RuneAction|3693|2941|0|4|0
+RuneAction|3693|2942|0|4|0
+RuneAction|3693|2945|0|4|0
+RuneAction|3693|2946|0|4|0
+RuneAction|3693|2947|0|4|0
+RuneAction|3693|2948|0|4|0
+RuneAction|3693|2956|0|4|0
+RuneAction|3693|2958|0|4|0
+RuneAction|3693|2959|0|4|0
+RuneAction|3693|2960|0|4|0
+Rune|3694|99300212|0|0|t|Arma||f|t|f|t
+RuneAction|3694|1996|0|4|0
+RuneAction|3694|2935|0|4|0
+RuneAction|3694|2941|0|4|0
+RuneAction|3694|2942|0|4|0
+RuneAction|3694|2945|0|4|0
+RuneAction|3694|2946|0|4|0
+RuneAction|3694|2947|0|4|0
+RuneAction|3694|2948|0|4|0
+RuneAction|3694|2956|0|4|0
+RuneAction|3694|2958|0|4|0
+RuneAction|3694|2959|0|4|0
+RuneAction|3694|2960|0|4|0
+Rune|3695|99300213|0|0|t|Arma||f|t|f|t
+RuneAction|3695|1996|0|4|0
+RuneAction|3695|2935|0|4|0
+RuneAction|3695|2941|0|4|0
+RuneAction|3695|2942|0|4|0
+RuneAction|3695|2945|0|4|0
+RuneAction|3695|2946|0|4|0
+RuneAction|3695|2947|0|4|0
+RuneAction|3695|2948|0|4|0
+RuneAction|3695|2956|0|4|0
+RuneAction|3695|2958|0|4|0
+RuneAction|3695|2959|0|4|0
+RuneAction|3695|2960|0|4|0
+Rune|3696|99300214|0|0|t|Arma||f|t|f|t
+RuneAction|3696|1996|0|4|0
+RuneAction|3696|2935|0|4|0
+RuneAction|3696|2941|0|4|0
+RuneAction|3696|2942|0|4|0
+RuneAction|3696|2945|0|4|0
+RuneAction|3696|2946|0|4|0
+RuneAction|3696|2947|0|4|0
+RuneAction|3696|2948|0|4|0
+RuneAction|3696|2956|0|4|0
+RuneAction|3696|2958|0|4|0
+RuneAction|3696|2959|0|4|0
+RuneAction|3696|2960|0|4|0
+Rune|3697|99300215|0|0|t|Arma||f|t|f|t
+RuneAction|3697|1996|0|4|0
+RuneAction|3697|2935|0|4|0
+RuneAction|3697|2941|0|4|0
+RuneAction|3697|2942|0|4|0
+RuneAction|3697|2945|0|4|0
+RuneAction|3697|2946|0|4|0
+RuneAction|3697|2947|0|4|0
+RuneAction|3697|2948|0|4|0
+RuneAction|3697|2956|0|4|0
+RuneAction|3697|2958|0|4|0
+RuneAction|3697|2959|0|4|0
+RuneAction|3697|2960|0|4|0
+Rune|3698|99300216|0|0|t|Arma||f|t|f|t
+RuneAction|3698|1996|0|4|0
+RuneAction|3698|2935|0|4|0
+RuneAction|3698|2941|0|4|0
+RuneAction|3698|2942|0|4|0
+RuneAction|3698|2945|0|4|0
+RuneAction|3698|2946|0|4|0
+RuneAction|3698|2947|0|4|0
+RuneAction|3698|2948|0|4|0
+RuneAction|3698|2956|0|4|0
+RuneAction|3698|2958|0|4|0
+RuneAction|3698|2959|0|4|0
+RuneAction|3698|2960|0|4|0
+Rune|3699|99300217|0|0|t|Arma||f|t|f|t
+RuneAction|3699|1996|0|4|0
+RuneAction|3699|2935|0|4|0
+RuneAction|3699|2941|0|4|0
+RuneAction|3699|2942|0|4|0
+RuneAction|3699|2945|0|4|0
+RuneAction|3699|2946|0|4|0
+RuneAction|3699|2947|0|4|0
+RuneAction|3699|2948|0|4|0
+RuneAction|3699|2956|0|4|0
+RuneAction|3699|2958|0|4|0
+RuneAction|3699|2959|0|4|0
+RuneAction|3699|2960|0|4|0
+Rune|3700|99300218|0|0|t|Arma||f|t|f|t
+RuneAction|3700|1996|0|4|0
+RuneAction|3700|2935|0|4|0
+RuneAction|3700|2941|0|4|0
+RuneAction|3700|2942|0|4|0
+RuneAction|3700|2945|0|4|0
+RuneAction|3700|2946|0|4|0
+RuneAction|3700|2947|0|4|0
+RuneAction|3700|2948|0|4|0
+RuneAction|3700|2956|0|4|0
+RuneAction|3700|2958|0|4|0
+RuneAction|3700|2959|0|4|0
+RuneAction|3700|2960|0|4|0
+Rune|3701|99300219|0|0|t|Arma||f|t|f|t
+RuneAction|3701|1996|0|4|0
+RuneAction|3701|2935|0|4|0
+RuneAction|3701|2941|0|4|0
+RuneAction|3701|2942|0|4|0
+RuneAction|3701|2945|0|4|0
+RuneAction|3701|2946|0|4|0
+RuneAction|3701|2947|0|4|0
+RuneAction|3701|2948|0|4|0
+RuneAction|3701|2956|0|4|0
+RuneAction|3701|2958|0|4|0
+RuneAction|3701|2959|0|4|0
+RuneAction|3701|2960|0|4|0
+Rune|3702|99300220|0|0|t|Arma||f|t|f|t
+RuneAction|3702|1996|0|4|0
+RuneAction|3702|2935|0|4|0
+RuneAction|3702|2941|0|4|0
+RuneAction|3702|2942|0|4|0
+RuneAction|3702|2945|0|4|0
+RuneAction|3702|2946|0|4|0
+RuneAction|3702|2947|0|4|0
+RuneAction|3702|2948|0|4|0
+RuneAction|3702|2956|0|4|0
+RuneAction|3702|2958|0|4|0
+RuneAction|3702|2959|0|4|0
+RuneAction|3702|2960|0|4|0
+Rune|3703|99300221|0|0|t|Arma||f|t|f|t
+RuneAction|3703|1996|0|4|0
+RuneAction|3703|2935|0|4|0
+RuneAction|3703|2941|0|4|0
+RuneAction|3703|2942|0|4|0
+RuneAction|3703|2945|0|4|0
+RuneAction|3703|2946|0|4|0
+RuneAction|3703|2947|0|4|0
+RuneAction|3703|2948|0|4|0
+RuneAction|3703|2956|0|4|0
+RuneAction|3703|2958|0|4|0
+RuneAction|3703|2959|0|4|0
+RuneAction|3703|2960|0|4|0
+Rune|3704|99300222|0|0|t|Arma||f|t|f|t
+RuneAction|3704|1996|0|4|0
+RuneAction|3704|2935|0|4|0
+RuneAction|3704|2941|0|4|0
+RuneAction|3704|2942|0|4|0
+RuneAction|3704|2945|0|4|0
+RuneAction|3704|2946|0|4|0
+RuneAction|3704|2947|0|4|0
+RuneAction|3704|2948|0|4|0
+RuneAction|3704|2956|0|4|0
+RuneAction|3704|2958|0|4|0
+RuneAction|3704|2959|0|4|0
+RuneAction|3704|2960|0|4|0
+Rune|3705|99300223|0|0|t|Arma||f|t|f|t
+RuneAction|3705|1996|0|4|0
+RuneAction|3705|2935|0|4|0
+RuneAction|3705|2941|0|4|0
+RuneAction|3705|2942|0|4|0
+RuneAction|3705|2945|0|4|0
+RuneAction|3705|2946|0|4|0
+RuneAction|3705|2947|0|4|0
+RuneAction|3705|2948|0|4|0
+RuneAction|3705|2956|0|4|0
+RuneAction|3705|2958|0|4|0
+RuneAction|3705|2959|0|4|0
+RuneAction|3705|2960|0|4|0
+Rune|3706|99300224|0|0|t|Arma||f|t|f|t
+RuneAction|3706|1996|0|4|0
+RuneAction|3706|2935|0|4|0
+RuneAction|3706|2941|0|4|0
+RuneAction|3706|2942|0|4|0
+RuneAction|3706|2945|0|4|0
+RuneAction|3706|2946|0|4|0
+RuneAction|3706|2947|0|4|0
+RuneAction|3706|2948|0|4|0
+RuneAction|3706|2956|0|4|0
+RuneAction|3706|2958|0|4|0
+RuneAction|3706|2959|0|4|0
+RuneAction|3706|2960|0|4|0
+Rune|3707|99300225|0|0|t|Arma||t|t|f|t
+Rune|3708|99300226|0|0|t|Arma||t|t|f|t
+Rune|3709|99300227|0|0|t|Arma||t|t|f|t
+Rune|3710|99300228|0|0|t|Arma||t|t|f|t
+Rune|3711|99300229|0|0|t|Arma||t|t|f|t
+Rune|3712|99300230|0|0|t|Arma||t|t|f|t
+Rune|3713|99300231|0|0|t|Arma||f|f|f|t
+RuneAction|3713|2977|0|4|0
+RuneAction|3713|2978|0|4|0
+RuneAction|3713|2979|0|4|0
+RuneAction|3713|2980|0|4|0
+Rune|3714|99300232|0|0|t|Arma||f|f|f|t
+RuneAction|3714|2977|0|4|0
+RuneAction|3714|2978|0|4|0
+RuneAction|3714|2979|0|4|0
+RuneAction|3714|2980|0|4|0
+Rune|3715|99300233|0|0|t|Arma||t|t|f|t
+RuneAction|3715|3023|0|4|0
+RuneAction|3715|3024|0|4|0
+RuneAction|3715|3025|0|4|0
+RuneAction|3715|3026|0|4|0
+RuneAction|3715|3027|0|4|0
+RuneAction|3715|3028|0|4|0
+RuneAction|3715|3029|0|4|0
+RuneAction|3715|3030|0|4|0
+RuneAction|3715|3031|0|4|0
+RuneAction|3715|3032|0|4|0
+RuneAction|3715|3033|0|4|0
+RuneAction|3715|3034|0|4|0
+Rune|3716|99300234|0|0|t|Arma||t|t|f|t
+RuneAction|3716|3023|0|4|0
+RuneAction|3716|3024|0|4|0
+RuneAction|3716|3025|0|4|0
+RuneAction|3716|3026|0|4|0
+RuneAction|3716|3027|0|4|0
+RuneAction|3716|3028|0|4|0
+RuneAction|3716|3029|0|4|0
+RuneAction|3716|3030|0|4|0
+RuneAction|3716|3031|0|4|0
+RuneAction|3716|3032|0|4|0
+RuneAction|3716|3033|0|4|0
+RuneAction|3716|3034|0|4|0
+Rune|3717|99300235|0|0|t|Arma||t|t|f|t
+RuneAction|3717|3023|0|4|0
+RuneAction|3717|3024|0|4|0
+RuneAction|3717|3025|0|4|0
+RuneAction|3717|3026|0|4|0
+RuneAction|3717|3027|0|4|0
+RuneAction|3717|3028|0|4|0
+RuneAction|3717|3029|0|4|0
+RuneAction|3717|3030|0|4|0
+RuneAction|3717|3031|0|4|0
+RuneAction|3717|3032|0|4|0
+RuneAction|3717|3033|0|4|0
+RuneAction|3717|3034|0|4|0
+Rune|3718|99300236|0|0|t|Arma||t|t|f|t
+RuneAction|3718|3023|0|4|0
+RuneAction|3718|3024|0|4|0
+RuneAction|3718|3025|0|4|0
+RuneAction|3718|3026|0|4|0
+RuneAction|3718|3027|0|4|0
+RuneAction|3718|3028|0|4|0
+RuneAction|3718|3029|0|4|0
+RuneAction|3718|3030|0|4|0
+RuneAction|3718|3031|0|4|0
+RuneAction|3718|3032|0|4|0
+RuneAction|3718|3033|0|4|0
+RuneAction|3718|3034|0|4|0
+Rune|3719|99300237|0|0|t|Arma||t|t|f|t
+RuneAction|3719|3023|0|4|0
+RuneAction|3719|3024|0|4|0
+RuneAction|3719|3025|0|4|0
+RuneAction|3719|3026|0|4|0
+RuneAction|3719|3027|0|4|0
+RuneAction|3719|3028|0|4|0
+RuneAction|3719|3029|0|4|0
+RuneAction|3719|3030|0|4|0
+RuneAction|3719|3031|0|4|0
+RuneAction|3719|3032|0|4|0
+RuneAction|3719|3033|0|4|0
+RuneAction|3719|3034|0|4|0
+Rune|3720|99300238|0|0|t|Arma||t|t|f|t
+RuneAction|3720|3023|0|4|0
+RuneAction|3720|3024|0|4|0
+RuneAction|3720|3025|0|4|0
+RuneAction|3720|3026|0|4|0
+RuneAction|3720|3027|0|4|0
+RuneAction|3720|3028|0|4|0
+RuneAction|3720|3029|0|4|0
+RuneAction|3720|3030|0|4|0
+RuneAction|3720|3031|0|4|0
+RuneAction|3720|3032|0|4|0
+RuneAction|3720|3033|0|4|0
+RuneAction|3720|3034|0|4|0
+Rune|3721|99300239|0|0|t|Arma||t|t|f|t
+RuneAction|3721|3023|0|4|0
+RuneAction|3721|3024|0|4|0
+RuneAction|3721|3025|0|4|0
+RuneAction|3721|3026|0|4|0
+RuneAction|3721|3027|0|4|0
+RuneAction|3721|3028|0|4|0
+RuneAction|3721|3029|0|4|0
+RuneAction|3721|3030|0|4|0
+RuneAction|3721|3031|0|4|0
+RuneAction|3721|3032|0|4|0
+RuneAction|3721|3033|0|4|0
+RuneAction|3721|3034|0|4|0
+Rune|3722|99300240|0|0|t|Arma||t|t|f|t
+RuneAction|3722|3023|0|4|0
+RuneAction|3722|3024|0|4|0
+RuneAction|3722|3025|0|4|0
+RuneAction|3722|3026|0|4|0
+RuneAction|3722|3027|0|4|0
+RuneAction|3722|3028|0|4|0
+RuneAction|3722|3029|0|4|0
+RuneAction|3722|3030|0|4|0
+RuneAction|3722|3031|0|4|0
+RuneAction|3722|3032|0|4|0
+RuneAction|3722|3033|0|4|0
+RuneAction|3722|3034|0|4|0
+Rune|3806|99300323|0|0|t|Arma||t|f|f|t
+RuneAction|3806|2977|0|4|0
+RuneAction|3806|2978|0|4|0
+RuneAction|3806|2979|0|4|0
+RuneAction|3806|2980|0|4|0
+Rune|3064|99299600|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3064|3065|0|4|0
+Rune|3066|99299601|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3066|3067|0|4|0
+Rune|3068|99299602|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3068|3069|0|4|0
+Rune|3070|99299603|0|0|t|Armadura Casco||f|f|f|t
+RuneAction|3070|3071|0|4|0
+Rune|3072|99299604|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3072|3073|0|4|0
+Rune|3074|99299605|0|0|t|Armadura Casco||f|f|f|t
+RuneAction|3074|3075|0|4|0
+Rune|3076|99299606|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3076|3077|0|4|0
+Rune|3078|99299607|0|0|t|Armadura Casco||f|f|f|t
+RuneAction|3078|3079|0|4|0
+Rune|3080|99299608|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3080|3081|0|4|0
+Rune|3082|99299609|0|0|t|Armadura Casco||f|f|f|t
+RuneAction|3082|3083|0|4|0
+Rune|3084|99299610|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3084|3085|0|4|0
+Rune|3086|99299611|0|0|t|Armadura Casco||f|f|f|t
+RuneAction|3086|3087|0|4|0
+Rune|3088|99299612|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3088|3089|0|4|0
+Rune|3090|99299613|0|0|t|Armadura Casco||f|f|f|t
+RuneAction|3090|3091|0|4|0
+Rune|3092|99299614|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3092|3093|0|4|0
+Rune|3094|99299615|0|0|t|Armadura Casco||f|f|f|t
+RuneAction|3094|3095|0|4|0
+Rune|3195|99299715|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3195|3196|0|4|0
+Rune|3606|99300125|0|0|t|Armadura Casco||f|f|f|t
+RuneAction|3606|3607|0|4|0
+Rune|3771|99300289|0|0|t|Armadura Casco||f|f|f|t
+RuneAction|3771|3772|0|4|0
+Rune|3809|99300326|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3809|3810|0|4|0
+Rune|3811|99300327|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3811|3812|0|4|0
+Rune|3813|99300328|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3813|3814|0|4|0
+Rune|3815|99300329|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3815|3816|0|4|0
+Rune|3817|99300330|0|0|t|Armadura Casco||f|f|f|t
+RuneAction|3817|3818|0|4|0
+Rune|3819|99300331|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3819|3820|0|4|0
+Rune|3821|99300332|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3821|3822|0|4|0
+Rune|3823|99300333|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3823|3824|0|4|0
+Rune|3825|99300334|0|0|t|Armadura Cuerpo||f|f|f|t
+RuneAction|3825|3826|0|4|0
+Rune|3299|99299818|0|0|t|Cyberware||f|f|f|t
+Rune|3300|99299819|0|0|t|Cyberware||f|f|f|t
+Rune|3301|99299820|0|0|t|Cyberware||f|f|f|t
+Rune|3302|99299821|0|0|t|Cyberware||f|f|f|t
+Rune|3303|99299822|0|0|t|Cyberware||f|f|f|t
+Rune|3304|99299823|0|0|t|Cyberware||f|f|f|t
+Rune|3305|99299824|0|0|t|Cyberware||f|f|f|t
+Rune|3306|99299825|0|0|t|Cyberware||f|f|f|t
+Rune|3307|99299826|0|0|t|Cyberware||f|f|f|t
+Rune|3308|99299827|0|0|t|Cyberware||f|f|f|t
+Rune|3309|99299828|0|0|t|Cyberware||f|f|f|t
+Rune|3310|99299829|0|0|t|Cyberware||f|f|f|t
+Rune|3311|99299830|0|0|t|Cyberware||f|f|f|t
+Rune|3312|99299831|0|0|t|Cyberware||f|f|f|t
+Rune|3313|99299832|0|0|t|Cyberware||f|f|f|t
+Rune|3314|99299833|0|0|t|Cyberware||f|f|f|t
+Rune|3315|99299834|0|0|t|Cyberware||f|f|f|t
+Rune|3316|99299835|0|0|t|Cyberware||f|f|f|t
+Rune|3317|99299836|0|0|t|Cyberware||f|f|f|t
+Rune|3318|99299837|0|0|t|Cyberware||f|f|f|t
+Rune|3319|99299838|0|0|t|Cyberware||f|f|f|t
+Rune|3320|99299839|0|0|t|Cyberware||f|f|f|t
+Rune|3321|99299840|0|0|t|Cyberware||f|f|f|t
+Rune|3322|99299841|0|0|t|Cyberware||f|f|f|t
+Rune|3323|99299842|0|0|t|Cyberware||f|f|f|t
+Rune|3324|99299843|0|0|t|Cyberware||f|f|f|t
+Rune|3325|99299844|0|0|t|Cyberware||f|f|f|t
+Rune|3326|99299845|0|0|t|Cyberware||f|f|f|t
+Rune|3327|99299846|0|0|t|Cyberware||f|f|f|t
+Rune|3328|99299847|0|0|t|Cyberware||f|f|f|t
+Rune|3329|99299848|0|0|t|Cyberware||f|f|f|t
+Rune|3330|99299849|0|0|t|Cyberware||f|f|f|t
+Rune|3331|99299850|0|0|t|Cyberware||f|f|f|t
+Rune|3332|99299851|0|0|t|Cyberware||f|f|f|t
+Rune|3333|99299852|0|0|t|Cyberware||f|f|f|t
+Rune|3334|99299853|0|0|t|Cyberware||f|f|f|t
+Rune|3335|99299854|0|0|t|Cyberware||f|f|f|t
+Rune|3336|99299855|0|0|t|Cyberware||f|f|f|t
+Rune|3337|99299856|0|0|t|Cyberware||f|f|f|t
+Rune|3338|99299857|0|0|t|Cyberware||f|f|f|t
+Rune|3339|99299858|0|0|t|Cyberware||f|f|f|t
+Rune|3340|99299859|0|0|t|Cyberware||f|f|f|t
+Rune|3341|99299860|0|0|t|Cyberware||f|f|f|t
+Rune|3342|99299861|0|0|t|Cyberware||f|f|f|t
+Rune|3345|99299864|0|0|t|Cyberware||f|f|f|t
+Rune|3346|99299865|0|0|t|Cyberware||f|f|f|t
+Rune|3347|99299866|0|0|t|Cyberware||f|f|f|t
+Rune|3348|99299867|0|0|t|Cyberware||f|f|f|t
+Rune|3349|99299868|0|0|t|Cyberware||f|f|f|t
+Rune|3350|99299869|0|0|t|Cyberware||f|f|f|t
+Rune|3351|99299870|0|0|t|Cyberware||f|f|f|t
+Rune|3352|99299871|0|0|t|Cyberware||f|f|f|t
+Rune|3353|99299872|0|0|t|Cyberware||f|f|f|t
+Rune|3354|99299873|0|0|t|Cyberware||f|f|f|t
+Rune|3355|99299874|0|0|t|Cyberware||f|f|f|t
+Rune|3356|99299875|0|0|t|Cyberware||f|f|f|t
+Rune|3357|99299876|0|0|t|Cyberware||f|f|f|t
+Rune|3358|99299877|0|0|t|Cyberware||f|f|f|t
+Rune|3359|99299878|0|0|t|Cyberware||f|f|f|t
+Rune|3360|99299879|0|0|t|Cyberware||f|f|f|t
+Rune|3361|99299880|0|0|t|Cyberware||f|f|f|t
+Rune|3362|99299881|0|0|t|Cyberware||f|f|f|t
+Rune|3363|99299882|0|0|t|Cyberware||f|f|f|t
+Rune|3364|99299883|0|0|t|Cyberware||f|f|f|t
+Rune|3366|99299885|0|0|t|Cyberware||f|f|f|t
+Rune|3367|99299886|0|0|t|Cyberware||f|f|f|t
+Rune|3368|99299887|0|0|t|Cyberware||f|f|f|t
+Rune|3369|99299888|0|0|t|Cyberware||f|f|f|t
+Rune|3370|99299889|0|0|t|Cyberware||f|f|f|t
+Rune|3371|99299890|0|0|t|Cyberware||f|f|f|t
+Rune|3372|99299891|0|0|t|Cyberware||f|f|f|t
+Rune|3373|99299892|0|0|t|Cyberware||f|f|f|t
+Rune|3374|99299893|0|0|t|Cyberware||f|f|f|t
+Rune|3375|99299894|0|0|t|Cyberware||f|f|f|t
+Rune|3376|99299895|0|0|t|Cyberware||f|f|f|t
+Rune|3377|99299896|0|0|t|Cyberware||f|f|f|t
+Rune|3378|99299897|0|0|t|Cyberware||f|f|f|t
+Rune|3379|99299898|0|0|t|Cyberware||f|f|f|t
+Rune|3380|99299899|0|0|t|Cyberware||f|f|f|t
+Rune|3381|99299900|0|0|t|Cyberware||f|f|f|t
+Rune|3382|99299901|0|0|t|Cyberware||f|f|f|t
+Rune|3383|99299902|0|0|t|Cyberware||f|f|f|t
+Rune|3384|99299903|0|0|t|Cyberware||f|f|f|t
+Rune|3385|99299904|0|0|t|Cyberware||f|f|f|t
+Rune|3386|99299905|0|0|t|Cyberware||f|f|f|t
+Rune|3387|99299906|0|0|t|Cyberware||f|f|f|t
+Rune|3388|99299907|0|0|t|Cyberware||f|f|f|t
+Rune|3389|99299908|0|0|t|Cyberware||f|f|f|t
+Rune|3390|99299909|0|0|t|Cyberware||f|f|f|t
+Rune|3391|99299910|0|0|t|Cyberware||f|f|f|t
+Rune|3392|99299911|0|0|t|Cyberware||f|f|f|t
+Rune|3393|99299912|0|0|t|Cyberware||f|f|f|t
+Rune|3394|99299913|0|0|t|Cyberware||f|f|f|t
+Rune|3395|99299914|0|0|t|Cyberware||f|f|f|t
+Rune|3396|99299915|0|0|t|Cyberware||f|f|f|t
+Rune|3397|99299916|0|0|t|Cyberware||f|f|f|t
+Rune|3398|99299917|0|0|t|Cyberware||f|f|f|t
+Rune|3399|99299918|0|0|t|Cyberware||f|f|f|t
+Rune|3400|99299919|0|0|t|Cyberware||f|f|f|t
+Rune|3401|99299920|0|0|t|Cyberware||f|f|f|t
+Rune|3402|99299921|0|0|t|Cyberware||f|f|f|t
+Rune|3403|99299922|0|0|t|Cyberware||f|f|f|t
+Rune|3404|99299923|0|0|t|Cyberware||f|f|f|t
+Rune|3405|99299924|0|0|t|Cyberware||f|f|f|t
+Rune|3406|99299925|0|0|t|Cyberware||f|f|f|t
+Rune|3407|99299926|0|0|t|Cyberware||f|f|f|t
+Rune|3408|99299927|0|0|t|Cyberware||f|f|f|t
+Rune|3409|99299928|0|0|t|Cyberware||f|f|f|t
+Rune|3410|99299929|0|0|t|Cyberware||f|f|f|t
+Rune|3411|99299930|0|0|t|Cyberware||f|f|f|t
+Rune|3412|99299931|0|0|t|Cyberware||f|f|f|t
+Rune|3413|99299932|0|0|t|Cyberware||f|f|f|t
+Rune|3414|99299933|0|0|t|Cyberware||f|f|f|t
+Rune|3415|99299934|0|0|t|Cyberware||f|f|f|t
+Rune|3416|99299935|0|0|t|Cyberware||f|f|f|t
+Rune|3417|99299936|0|0|t|Cyberware||f|f|f|t
+Rune|3418|99299937|0|0|t|Cyberware||f|f|f|t
+Rune|3419|99299938|0|0|t|Cyberware||f|f|f|t
+Rune|3420|99299939|0|0|t|Cyberware||f|f|f|t
+Rune|3421|99299940|0|0|t|Cyberware||f|f|f|t
+Rune|3422|99299941|0|0|t|Cyberware||f|f|f|t
+Rune|3423|99299942|0|0|t|Cyberware||f|f|f|t
+Rune|3424|99299943|0|0|t|Cyberware||f|f|f|t
+Rune|3425|99299944|0|0|t|Cyberware||f|f|f|t
+Rune|3426|99299945|0|0|t|Cyberware||f|f|f|t
+Rune|3427|99299946|0|0|t|Cyberware||f|f|f|t
+Rune|3428|99299947|0|0|t|Cyberware||f|f|f|t
+Rune|3177|99299697|0|0|f|||f|f|f|t
+Rune|3178|99299698|0|0|f|||f|f|f|t
+Rune|3179|99299699|0|0|f|||f|f|f|t
+Rune|3180|99299700|0|0|f|||f|f|f|t
+Rune|3181|99299701|0|0|f|||f|f|f|t
+Rune|3182|99299702|0|0|f|||f|f|f|t
+Rune|3183|99299703|0|0|f|||f|f|f|t
+Rune|3184|99299704|0|0|f|||f|f|f|t
+Rune|3185|99299705|0|0|f|||f|f|f|t
+Rune|3186|99299706|0|0|f|||f|f|f|t
+Rune|3187|99299707|0|0|f|||f|f|f|t
+Rune|3188|99299708|0|0|f|||f|f|f|t
+Rune|3189|99299709|0|0|f|||f|f|f|t
+Rune|3190|99299710|0|0|f|||f|f|f|t
+Rune|3191|99299711|0|0|f|||f|f|f|t
+Rune|3192|99299712|0|0|f|||f|f|f|t
+Rune|3193|99299713|0|0|f|||f|f|f|t
+Rune|3194|99299714|0|0|f|||f|f|f|t
+Rune|3197|99299716|0|0|f|||f|f|f|t
+Rune|3198|99299717|0|0|f|||f|f|f|t
+Rune|3199|99299718|0|0|f|||f|f|f|t
+Rune|3200|99299719|0|0|f|||f|f|f|t
+Rune|3201|99299720|0|0|f|||f|f|f|t
+Rune|3202|99299721|0|0|f|||f|f|f|t
+Rune|3203|99299722|0|0|f|||f|f|f|t
+Rune|3204|99299723|0|0|f|||f|f|f|t
+Rune|3205|99299724|0|0|f|||f|f|f|t
+Rune|3206|99299725|0|0|f|||f|f|f|t
+Rune|3207|99299726|0|0|f|||f|f|f|t
+Rune|3208|99299727|0|0|f|||f|f|f|t
+Rune|3209|99299728|0|0|f|||f|f|f|t
+Rune|3210|99299729|0|0|f|||f|f|f|t
+Rune|3211|99299730|0|0|f|||f|f|f|t
+Rune|3212|99299731|0|0|f|||f|f|f|t
+Rune|3213|99299732|0|0|f|||f|f|f|t
+Rune|3214|99299733|0|0|f|||f|f|f|t
+Rune|3215|99299734|0|0|f|||f|f|f|t
+Rune|3216|99299735|0|0|f|||f|f|f|t
+Rune|3217|99299736|0|0|f|||f|f|f|t
+Rune|3218|99299737|0|0|f|||f|f|f|t
+Rune|3219|99299738|0|0|f|||f|f|f|t
+Rune|3220|99299739|0|0|f|||f|f|f|t
+Rune|3221|99299740|0|0|f|||f|f|f|t
+Rune|3222|99299741|0|0|f|||f|f|f|t
+Rune|3223|99299742|0|0|f|||f|f|f|t
+Rune|3224|99299743|0|0|f|||f|f|f|t
+Rune|3225|99299744|0|0|f|||f|f|f|t
+Rune|3226|99299745|0|0|f|||f|f|f|t
+Rune|3227|99299746|0|0|f|||f|f|f|t
+Rune|3228|99299747|0|0|f|||f|f|f|t
+Rune|3229|99299748|0|0|f|||f|f|f|t
+Rune|3230|99299749|0|0|f|||f|f|f|t
+Rune|3231|99299750|0|0|f|||f|f|f|t
+Rune|3232|99299751|0|0|f|||f|f|f|t
+Rune|3233|99299752|0|0|f|||f|f|f|t
+Rune|3234|99299753|0|0|f|||f|f|f|t
+Rune|3235|99299754|0|0|f|||f|f|f|t
+Rune|3236|99299755|0|0|f|||f|f|f|t
+Rune|3237|99299756|0|0|f|||f|f|f|t
+Rune|3238|99299757|0|0|f|||f|f|f|t
+Rune|3239|99299758|0|0|f|||f|f|f|t
+Rune|3240|99299759|0|0|f|||f|f|f|t
+Rune|3241|99299760|0|0|f|||f|f|f|t
+Rune|3242|99299761|0|0|f|||f|f|f|t
+Rune|3243|99299762|0|0|f|||f|f|f|t
+Rune|3244|99299763|0|0|f|||f|f|f|t
+Rune|3245|99299764|0|0|f|||f|f|f|t
+Rune|3252|99299771|0|0|f|||f|f|f|t
+Rune|3253|99299772|0|0|f|||f|f|f|t
+Rune|3254|99299773|0|0|f|||f|f|f|t
+Rune|3255|99299774|0|0|f|||f|f|f|t
+Rune|3256|99299775|0|0|f|||f|f|f|t
+Rune|3257|99299776|0|0|f|||f|f|f|t
+Rune|3258|99299777|0|0|f|||f|f|f|t
+Rune|3259|99299778|0|0|f|||f|f|f|t
+Rune|3260|99299779|0|0|f|||f|f|f|t
+Rune|3261|99299780|0|0|f|||f|f|f|t
+Rune|3264|99299783|0|0|f|||f|f|f|t
+Rune|3265|99299784|0|0|f|||f|f|f|t
+Rune|3266|99299785|0|0|f|||f|f|f|t
+Rune|3267|99299786|0|0|f|||f|f|f|t
+Rune|3268|99299787|0|0|f|||f|f|f|t
+Rune|3269|99299788|0|0|f|||f|f|f|t
+Rune|3270|99299789|0|0|f|||f|f|f|t
+Rune|3271|99299790|0|0|f|||f|f|f|t
+Rune|3272|99299791|0|0|f|||f|f|f|t
+Rune|3273|99299792|0|0|f|||f|f|f|t
+Rune|3274|99299793|0|0|f|||f|f|f|t
+Rune|3275|99299794|0|0|f|||f|f|f|t
+Rune|3276|99299795|0|0|f|||f|f|f|t
+Rune|3277|99299796|0|0|f|||f|f|f|t
+Rune|3278|99299797|0|0|f|||f|f|f|t
+Rune|3279|99299798|0|0|f|||f|f|f|t
+Rune|3280|99299799|0|0|f|||f|f|f|t
+Rune|3281|99299800|0|0|f|||f|f|f|t
+Rune|3282|99299801|0|0|f|||f|f|f|t
+Rune|3283|99299802|0|0|f|||f|f|f|t
+Rune|3284|99299803|0|0|f|||f|f|f|t
+Rune|3285|99299804|0|0|f|||f|f|f|t
+Rune|3286|99299805|0|0|f|||f|f|f|t
+Rune|3287|99299806|0|0|f|||f|f|f|t
+Rune|3288|99299807|0|0|f|||f|f|f|t
+Rune|3289|99299808|0|0|f|||f|f|f|t
+Rune|3290|99299809|0|0|f|||f|f|f|t
+Rune|3291|99299810|0|0|f|||f|f|f|t
+Rune|3292|99299811|0|0|f|||f|f|f|t
+Rune|3293|99299812|0|0|f|||f|f|f|t
+Rune|3294|99299813|0|0|f|||f|f|f|t
+Rune|3295|99299814|0|0|f|||f|f|f|t
+Rune|3296|99299815|0|0|f|||f|f|f|t
+Rune|3297|99299816|0|0|f|||f|f|f|t
+Rune|3298|99299817|0|0|f|||f|f|f|t
+Rune|3429|99299948|0|0|f|||f|f|f|t
+Rune|3430|99299949|0|0|f|||f|f|f|t
+Rune|3431|99299950|0|0|f|||f|f|f|t
+Rune|3432|99299951|0|0|f|||f|f|f|t
+Rune|3433|99299952|0|0|f|||f|f|f|t
+Rune|3434|99299953|0|0|f|||f|f|f|t
+Rune|3435|99299954|0|0|f|||f|f|f|t
+Rune|3436|99299955|0|0|f|||f|f|f|t
+Rune|3437|99299956|0|0|f|||f|f|f|t
+Rune|3438|99299957|0|0|f|||f|f|f|t
+Rune|3439|99299958|0|0|f|||f|f|f|t
+Rune|3440|99299959|0|0|f|||f|f|f|t
+Rune|3441|99299960|0|0|f|||f|f|f|t
+Rune|3442|99299961|0|0|f|||f|f|f|t
+Rune|3443|99299962|0|0|f|||f|f|f|t
+Rune|3444|99299963|0|0|f|||f|f|f|t
+Rune|3445|99299964|0|0|f|||f|f|f|t
+Rune|3446|99299965|0|0|f|||f|f|f|t
+Rune|3447|99299966|0|0|f|||f|f|f|t
+Rune|3448|99299967|0|0|f|||f|f|f|t
+Rune|3449|99299968|0|0|f|||f|f|f|t
+Rune|3450|99299969|0|0|f|||f|f|f|t
+Rune|3451|99299970|0|0|f|||f|f|f|t
+Rune|3452|99299971|0|0|f|||f|f|f|t
+Rune|3453|99299972|0|0|f|||f|f|f|t
+Rune|3454|99299973|0|0|f|||f|f|f|t
+Rune|3455|99299974|0|0|f|||f|f|f|t
+Rune|3456|99299975|0|0|f|||f|f|f|t
+Rune|3457|99299976|0|0|f|||f|f|f|t
+Rune|3458|99299977|0|0|f|||f|f|f|t
+Rune|3459|99299978|0|0|f|||f|f|f|t
+Rune|3460|99299979|0|0|f|||f|f|f|t
+Rune|3461|99299980|0|0|f|||f|f|f|t
+Rune|3462|99299981|0|0|f|||f|f|f|t
+Rune|3463|99299982|0|0|f|||f|f|f|t
+Rune|3464|99299983|0|0|f|||f|f|f|t
+Rune|3465|99299984|0|0|f|||f|f|f|t
+Rune|3466|99299985|0|0|f|||f|f|f|t
+Rune|3467|99299986|0|0|f|||f|f|f|t
+Rune|3468|99299987|0|0|f|||f|f|f|t
+Rune|3469|99299988|0|0|f|||f|f|f|t
+Rune|3470|99299989|0|0|f|||f|f|f|t
+Rune|3471|99299990|0|0|f|||f|f|f|t
+Rune|3472|99299991|0|0|f|||f|f|f|t
+Rune|3473|99299992|0|0|f|||f|f|f|t
+Rune|3474|99299993|0|0|f|||f|f|f|t
+Rune|3475|99299994|0|0|f|||f|f|f|t
+Rune|3476|99299995|0|0|f|||f|f|f|t
+Rune|3477|99299996|0|0|f|||f|f|f|t
+Rune|3478|99299997|0|0|f|||f|f|f|t
+Rune|3479|99299998|0|0|f|||f|f|f|t
+Rune|3480|99299999|0|0|f|||f|f|f|t
+Rune|3481|99300000|0|0|f|||f|f|f|t
+Rune|3482|99300001|0|0|f|||f|f|f|t
+Rune|3483|99300002|0|0|f|||f|f|f|t
+Rune|3484|99300003|0|0|f|||f|f|f|t
+Rune|3485|99300004|0|0|f|||f|f|f|t
+Rune|3486|99300005|0|0|f|||f|f|f|t
+Rune|3487|99300006|0|0|f|||f|f|f|t
+Rune|3488|99300007|0|0|f|||f|f|f|t
+Rune|3489|99300008|0|0|f|||f|f|f|t
+Rune|3490|99300009|0|0|f|||f|f|f|t
+Rune|3491|99300010|0|0|f|||f|f|f|t
+Rune|3492|99300011|0|0|f|||f|f|f|t
+Rune|3493|99300012|0|0|f|||f|f|f|t
+Rune|3494|99300013|0|0|f|||f|f|f|t
+Rune|3578|99300097|0|0|f|||f|f|f|t
+Rune|3579|99300098|0|0|f|||f|f|f|t
+Rune|3580|99300099|0|0|f|||f|f|f|t
+Rune|3581|99300100|0|0|f|||f|f|f|t
+Rune|3582|99300101|0|0|f|||f|f|f|t
+Rune|3583|99300102|0|0|f|||f|f|f|t
+Rune|3584|99300103|0|0|f|||f|f|f|t
+Rune|3585|99300104|0|0|f|||f|f|f|t
+Rune|3586|99300105|0|0|f|||f|f|f|t
+Rune|3587|99300106|0|0|f|||f|f|f|t
+Rune|3613|99300131|0|0|f|||f|f|f|t
+Rune|3614|99300132|0|0|f|||f|f|f|t
+Rune|3615|99300133|0|0|f|||f|f|f|t
+Rune|3616|99300134|0|0|f|||f|f|f|t
+Rune|3617|99300135|0|0|f|||f|f|f|t
+Rune|3618|99300136|0|0|f|||f|f|f|t
+Rune|3619|99300137|0|0|f|||f|f|f|t
+Rune|3620|99300138|0|0|f|||f|f|f|t
+Rune|3621|99300139|0|0|f|||f|f|f|t
+Rune|3622|99300140|0|0|f|||f|f|f|t
+Rune|3623|99300141|0|0|f|||f|f|f|t
+Rune|3624|99300142|0|0|f|||f|f|f|t
+Rune|3625|99300143|0|0|f|||f|f|f|t
+Rune|3626|99300144|0|0|f|||f|f|f|t
+Rune|3627|99300145|0|0|f|||f|f|f|t
+Rune|3628|99300146|0|0|f|||f|f|f|t
+Rune|3629|99300147|0|0|f|||f|f|f|t
+Rune|3630|99300148|0|0|f|||f|f|f|t
+Rune|3631|99300149|0|0|f|||f|f|f|t
+Rune|3632|99300150|0|0|f|||f|f|f|t
+Rune|3633|99300151|0|0|f|||f|f|f|t
+Rune|3634|99300152|0|0|f|||f|f|f|t
+Rune|3635|99300153|0|0|f|||f|f|f|t
+Rune|3636|99300154|0|0|f|||f|f|f|t
+Rune|3637|99300155|0|0|f|||f|f|f|t
+Rune|3638|99300156|0|0|f|||f|f|f|t
+Rune|3639|99300157|0|0|f|||f|f|f|t
+Rune|3640|99300158|0|0|f|||f|f|f|t
+Rune|3641|99300159|0|0|f|||f|f|f|t
+Rune|3642|99300160|0|0|f|||f|f|f|t
+Rune|3643|99300161|0|0|f|||f|f|f|t
+Rune|3644|99300162|0|0|f|||f|f|f|t
+Rune|3645|99300163|0|0|f|||f|f|f|t
+Rune|3646|99300164|0|0|f|||f|f|f|t
+Rune|3647|99300165|0|0|f|||f|f|f|t
+Rune|3648|99300166|0|0|f|||f|f|f|t
+Rune|3649|99300167|0|0|f|||f|f|f|t
+Rune|3650|99300168|0|0|f|||f|f|f|t
+Rune|3651|99300169|0|0|f|||f|f|f|t
+Rune|3652|99300170|0|0|f|||f|f|f|t
+Rune|3653|99300171|0|0|f|||f|f|f|t
+Rune|3654|99300172|0|0|f|||f|f|f|t
+Rune|3655|99300173|0|0|f|||f|f|f|t
+Rune|3656|99300174|0|0|f|||f|f|f|t
+Rune|3657|99300175|0|0|f|||f|f|f|t
+Rune|3658|99300176|0|0|f|||f|f|f|t
+Rune|3659|99300177|0|0|f|||f|f|f|t
+Rune|3660|99300178|0|0|f|||f|f|f|t
+Rune|3661|99300179|0|0|f|||f|f|f|t
+Rune|3662|99300180|0|0|f|||f|f|f|t
+Rune|3663|99300181|0|0|f|||f|f|f|t
+Rune|3664|99300182|0|0|f|||f|f|f|t
+Rune|3665|99300183|0|0|f|||f|f|f|t
+Rune|3666|99300184|0|0|f|||f|f|f|t
+Rune|3667|99300185|0|0|f|||f|f|f|t
+Rune|3759|99300277|0|0|f|||f|f|f|t
+Rune|3764|99300282|0|0|f|||f|f|f|t
+Rune|3765|99300283|0|0|f|||f|f|f|t
+Rune|3766|99300284|0|0|f|||f|f|f|t
+Rune|3768|99300286|0|0|f|||f|f|f|t
+Rune|3769|99300287|0|0|f|||f|f|f|t
+Rune|3770|99300288|0|0|f|||f|f|f|t
+Rune|3773|99300290|0|0|f|||f|f|f|t
+Rune|3774|99300291|0|0|f|||f|f|f|t
+Rune|3777|99300294|0|0|f|||f|f|f|t
+Rune|3778|99300295|0|0|f|||f|f|f|t
+Rune|3781|99300298|0|0|f|||f|f|f|t
+Rune|3782|99300299|0|0|f|||f|f|f|t
+Rune|3784|99300301|0|0|f|||f|f|f|t
+Rune|3785|99300302|0|0|f|||f|f|f|t
+Rune|3788|99300305|0|0|f|||f|f|f|t
+Rune|3789|99300306|0|0|f|||f|f|f|t
+Rune|3790|99300307|0|0|f|||f|f|f|t
+Rune|3791|99300308|0|0|f|||f|f|f|t
+Rune|3792|99300309|0|0|f|||f|f|f|t
+Rune|3793|99300310|0|0|f|||f|f|f|t
+Rune|3794|99300311|0|0|f|||f|f|f|t
+Rune|3795|99300312|0|0|f|||f|f|f|t
+Rune|3796|99300313|0|0|f|||f|f|f|t
+Rune|3797|99300314|0|0|f|||f|f|f|t
+Rune|3798|99300315|0|0|f|||f|f|f|t
+Rune|3799|99300316|0|0|f|||f|f|f|t
+Rune|3800|99300317|0|0|f|||f|f|f|t
+Rune|3801|99300318|0|0|f|||f|f|f|t
+Rune|3802|99300319|0|0|f|||f|f|f|t
+Rune|3803|99300320|0|0|f|||f|f|f|t
+Rune|3804|99300321|0|0|f|||f|f|f|t
+Rune|3805|99300322|0|0|f|||f|f|f|t
+Rune|3807|99300324|0|0|f|||f|f|f|t
+Rune|3808|99300325|0|0|f|||f|f|f|t
+Rune|3827|99300335|0|0|f|||f|f|f|t
+Rune|3828|99300336|0|0|f|||f|f|f|t
+Rune|3829|99300337|0|0|f|||f|f|f|t
+Rune|3830|99300338|0|0|f|||f|f|f|t
+Rune|3831|99300339|0|0|f|||f|f|f|t
+Rune|3832|99300340|0|0|f|||f|f|f|t
+Rune|3833|99300341|0|0|f|||f|f|f|t
+Rune|3834|99300342|0|0|f|||f|f|f|t
+Rune|3835|99300343|0|0|f|||f|f|f|t
+Stat|61|Vida|10|1*5.0;182*5.0|0|t|t|t||0.5|t|f|0
+Stat|2911|Humanidad|0|2877*10.0|0|f|f|t||1.0|t|f|0
+Stat|3048|Reputación|0||-100|f|f|t||1.0|f|f|0
+Stat|2082|Movimiento|0|2875*0.5|1|f|f|t||1.0|f|f|0
+Stat|2970|Cyberware|0||0|f|f|t||1.0|f|t|0
+Stat|2766|-------Durabilidad-------|0||0|f|f|t||1.0|f|f|0
+Stat|2943|Armadura Cabeza|0||0|f|f|t||1.0|f|f|0
+Stat|2768|Armadura Cuerpo|0||0|f|f|t||1.0|f|f|0
+Stat|2597|-------Munición-------|0||0|f|f|t||1.0|f|f|0
+Stat|2741|Balas Pistola Media|0||0|f|f|t||1.0|t|f|0
+Stat|3104|Balas Pistola Pesada|0||0|f|f|t||1.0|t|f|0
+Stat|3105|Balas Pistola Muy Pesada|0||0|f|f|t||1.0|t|f|0
+Stat|3001|Balas Fusil|0||0|f|f|t||1.0|t|f|0
+Stat|2999|Balas Escopeta|0||0|f|f|t||1.0|t|f|0
+Stat|3130|Granadas|0||0|f|f|t||1.0|t|f|0
+Stat|3106|Misiles|0||0|f|f|t||1.0|t|f|0
+Stat|247|-------Acciones-------|0||0|f|f|f||1.0|f|f|0
+Stat|239|Acción C|2||0|f|f|t||1.0|t|t|0
+Stat|3019|Acción D|2||0|f|f|t||1.0|t|t|0
+Stat|241|Acción de Movimiento|1||0|f|f|t||1.0|t|t|0
+Stat|2916|-------Stats Invisibles-------|0||0|f|f|f||1.0|f|f|0
+Stat|2918|PeleaDmg|0||0|f|f|t||1.0|f|t|0
+Stat|3139|DadoPelea|0||0|f|f|t||1.0|f|t|0
+Stat|2938|Dado1Arma|0||0|f|f|t||1.0|f|t|0
+Stat|2937|Dado2Arma|0||0|f|f|t||1.0|f|t|0
+Stat|3059|CDMuerte|10||10|f|f|t||1.0|f|t|0
+Stat|3064|CDSanación|4||0|f|f|t||1.0|f|t|0
+SpellDef|3011|--SITUACIONAL--||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0|Situacional|f|f|4|1|
+SpellDef|2982|Librarse de Agarre||1.0|4|1|0|2902||0|2902|f|f|f|f|0|None|f|t|1.0,1.0,1.0,1.0|Situacional|f|f|4|1|
+SpellReqDef|2982|0|0|239|2.0|0.0|
+SpellReqDef|2982|5|0|0|0.0|0.0|Incapacitado
+SpellReqDef|2982|0|0|3019|2.0|0.0|
+SpellEffect|2982|0|0|¡{caster} intenta librarse del agarre de {target}!&brk;&brk;{roll}|0|0|0|0||||1
+SpellEffect|2982|2|1|-2|239|0|2|0||||1
+SpellEffect|2982|0|0|¡{caster} logra librarse del agarre de {target}!|0|0|0|1||||1
+SpellEffect|2982|2|7||0|0|0|1||Incapacitado||1
+SpellDef|3020|Salvación Contra Muerte|Mortalmente Herido|0.0|1|0|2|0|1d10+({c.Tipo Corporal}+4)+({c.Voluntad}+4)|4|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0|Situacional|f|f|4|1|{c.CDMuerte}
+SpellReqDef|3020|5|0|0|0.0|0.0|Mortalmente Herido
+SpellEffect|3020|0|0|¡{caster} realiza su tirada de Salvación contra Muerte!&brk;&brk;{roll}|0|0|0|0||||1
+SpellEffect|3020|0|0|¡{caster} logra estabiliarse al superar la Salvación contra Muerte!|0|0|0|1||||1
+SpellEffect|3020|2|1|1|61|0|0|1||||1
+SpellEffect|3020|2|0|Oh no... {caster} ha fallado la Salvación contra Muerte y ha... muerto... Lo lamento.|0|0|0|2||||1
+SpellEffect|3020|2|7||0|0|2|2||Mortalmente Herido||1
+SpellEffect|3020|2|11||3021|0|0|2|-1|MUERTO||1
+SpellDef|2595|--Recargas/Municiones/Armas--||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|2966|Recoger Arma|Acción&brk;&brk;Recuperas el Arma.|0.0|1|0|2|0||4|0|f|f|f|f|0|99299689|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|2966|0|0|239|2.0|0.0|
+SpellReqDef|2966|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|2966|5|0|0|0.0|0.0|Desarmado
+SpellReqDef|2966|0|0|239|2.0|0.0|
+SpellEffect|2966|2|7||0|0|0|0||Desarmado||1
+SpellEffect|2966|2|0|¡{caster} recoge el arma del suelo!|0|0|0|0||||1
+SpellEffect|2966|2|1|-2|239|0|2|0||||1
+SpellEffect|2966|2|1|-2|3019|0|2|0||||1
+SpellDef|3102|Apuntar Cabeza|Apuntas a la cabeza.|0.0|1|0|2|0||4|0|f|f|t|f|0|None|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|3102|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3102|5|1|0|0.0|0.0|Apuntar Cabeza
+SpellReqDef|3102|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3102|5|1|0|0.0|0.0|Apuntar Objeto
+SpellEffect|3102|0|0|¡{caster} se concentra para apuntar!|0|0|0|0||||1
+SpellEffect|3102|0|11||2552|0|2|0|-1|Apuntar Cabeza||1
+SpellDef|2949|Apuntar Objeto|Apuntas a la cabeza.|0.0|1|0|2|0||4|0|f|f|t|f|0|None|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|2949|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|2949|5|1|0|0.0|0.0|Apuntar Objeto
+SpellReqDef|2949|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|2949|5|1|0|0.0|0.0|Apuntar Cabeza
+SpellEffect|2949|0|0|¡{caster} se concentra para apuntar!|0|0|0|0||||1
+SpellEffect|2949|0|11||2552|0|2|0|-1|Apuntar Objeto||1
+SpellDef|3043|Dejar de Apuntar|Apuntas a la cabeza.|0.0|1|0|2|0||4|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|3043|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3043|5|1|0|0.0|0.0|Desarmado
+SpellEffect|3043|0|0|¡{caster} deja de apuntar!|0|0|0|0||||1
+SpellEffect|3043|2|7||0|0|2|0|-1|Apuntar Cabeza||1
+SpellEffect|3043|2|7||0|0|2|0||Apuntar Objeto||1
+SpellDef|2743|Recargar Balas Medias|Acción&brk;&brk;Recargas las balas.|0.0|1|0|2|0||4|0|f|f|f|f|0|99300214|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|2743|0|0|239|2.0|0.0|
+SpellReqDef|2743|6|0|99300214|0.0|0.0|10
+SpellReqDef|2743|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|2743|0|0|3019|2.0|0.0|
+SpellEffect|2743|0|0|¡{caster} recarga las balas de su arma!|0|0|0|0||||1
+SpellEffect|2743|2|1|10|2741|0|2|0||||1
+SpellEffect|2743|2|3|10|99300214|0|2|0||||1
+SpellEffect|2743|2|1|-2|239|0|2|0||||1
+SpellDef|3134|Recargar Balas Pesadas|Acción&brk;&brk;Recargas las balas.|0.0|1|0|2|0||4|0|f|f|f|f|0|99300214|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|3134|0|0|239|2.0|0.0|
+SpellReqDef|3134|6|0|99300208|0.0|0.0|8
+SpellReqDef|3134|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3134|0|0|3019|2.0|0.0|
+SpellEffect|3134|0|0|¡{caster} recarga las balas de su arma!|0|0|0|0||||1
+SpellEffect|3134|2|1|8|2741|0|2|0||||1
+SpellEffect|3134|2|3|8|99300208|0|2|0||||1
+SpellEffect|3134|2|1|-2|239|0|2|0||||1
+SpellDef|3120|Recargar Balas Muy Pesadas|Acción&brk;&brk;Recargas las balas.|0.0|1|0|2|0||4|0|f|f|f|f|0|99300220|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|3120|0|0|239|2.0|0.0|
+SpellReqDef|3120|6|0|99300220|0.0|0.0|6
+SpellReqDef|3120|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3120|0|0|3019|2.0|0.0|
+SpellEffect|3120|0|0|¡{caster} recarga las balas de su arma!|0|0|0|0||||1
+SpellEffect|3120|2|1|6|3105|0|2|0||||1
+SpellEffect|3120|2|3|6|99300220|0|2|0||||1
+SpellEffect|3120|2|1|-2|239|0|2|0||||1
+SpellDef|3008|Recargar Balas de Escopeta|Acción&brk;&brk;Recargas las balas.|0.0|1|0|2|0||4|0|f|f|f|f|0|99300233|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|3008|0|0|239|2.0|0.0|
+SpellReqDef|3008|6|0|99300233|0.0|0.0|4
+SpellReqDef|3008|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3008|0|0|3019|2.0|0.0|
+SpellEffect|3008|0|0|¡{caster} recarga las balas de su arma!|0|0|0|0||||1
+SpellEffect|3008|2|1|4|2999|0|2|0||||1
+SpellEffect|3008|2|3|4|99300233|0|2|0||||1
+SpellEffect|3008|2|1|-2|239|0|2|0||||1
+SpellDef|3135|Recargar Balas de Fusil|Acción&brk;&brk;Recargas las balas.|0.0|1|0|2|0||4|0|f|f|f|f|0|99300226|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|3135|0|0|239|2.0|0.0|
+SpellReqDef|3135|6|0|99300226|0.0|0.0|10
+SpellReqDef|3135|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3135|0|0|3019|2.0|0.0|
+SpellEffect|3135|0|0|¡{caster} recarga las balas de su arma!|0|0|0|0||||1
+SpellEffect|3135|2|1|10|2999|0|2|0||||1
+SpellEffect|3135|2|3|10|99300226|0|2|0||||1
+SpellEffect|3135|2|1|-2|239|0|2|0||||1
+SpellDef|3136|Recargar Balas de Granada|Acción&brk;&brk;Recargas las balas.|0.0|1|0|2|0||4|0|f|f|f|f|0|99300199|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|3136|0|0|239|2.0|0.0|
+SpellReqDef|3136|6|0|99300199|0.0|0.0|2
+SpellReqDef|3136|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3136|0|0|3019|2.0|0.0|
+SpellEffect|3136|0|0|¡{caster} recarga las balas de su arma!|0|0|0|0||||1
+SpellEffect|3136|2|1|4|2999|0|2|0||||1
+SpellEffect|3136|2|3|2|99300199|0|2|0||||1
+SpellEffect|3136|2|1|-2|239|0|2|0||||1
+SpellDef|3137|Recargar Balas de Misil|Acción&brk;&brk;Recargas las balas.|0.0|1|0|2|0||4|0|f|f|f|f|0|99300186|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|3137|0|0|239|2.0|0.0|
+SpellReqDef|3137|6|0|99300186|0.0|0.0|1
+SpellReqDef|3137|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3137|0|0|3019|2.0|0.0|
+SpellEffect|3137|0|0|¡{caster} recarga las balas de su arma!|0|0|0|0||||1
+SpellEffect|3137|2|1|4|2999|0|2|0||||1
+SpellEffect|3137|2|3|1|99300186|0|2|0||||1
+SpellEffect|3137|2|1|-2|239|0|2|0||||1
+SpellDef|3118|Activar Evasión|Activas la evasión para obligar al atacante a ir contra tu evasión y no contra la esquiva.|0.0|1|0|2|0||4|0|f|f|t|f|0|None|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|3118|5|1|0|0.0|0.0|Evadir
+SpellReqDef|3118|5|1|0|0.0|0.0|Incapacitado
+SpellEffect|3118|0|0|¡{caster} se prepara, estando concentrado, es hora de Evadir!|0|0|0|0||||1
+SpellEffect|3118|0|11||2934|0|2|0|-1|Evadir||1
+SpellDef|3119|Desactivar Evasión|Desactivas tu evasión.|0.0|1|0|2|0||4|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0|Combate|f|f|4|1|
+SpellReqDef|3119|5|0|0|0.0|0.0|Evadir
+SpellEffect|3119|0|0|¡{caster} deja prepararse y se relaja para no Evadir!|0|0|0|0||||1
+SpellEffect|3119|2|7||0|0|2|0|-1|Evadir||1
+SpellDef|2771|-------Equipar-------||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|3065|Equipar Armadura Traje Bodyweight||0.0|1|0|2|0||4|0|f|f|f|f|0|99299600|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3065|6|0|99299600|0.0|0.0|1
+SpellReqDef|3065|0|0|239|2.0|0.0|
+SpellReqDef|3065|0|0|3019|2.0|0.0|
+SpellReqDef|3065|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3065|2|7||0|0|2|0||Durabilidad Armadura Cuerpo||1
+SpellEffect|3065|2|5|4|2768|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3065|2|0|{caster} se equipa con Traje Bodyweight.|0|0|0|0||||1
+SpellEffect|3065|2|3|1|99299600|0|2|0||||1
+SpellEffect|3065|2|1|-2|239|0|2|0||||1
+SpellEffect|3065|2|8||2794|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellDef|3067|Equipar Armadura Escudo Antibalas||0.0|1|0|2|0||4|0|f|f|f|f|0|99299601|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3067|6|0|99299601|0.0|0.0|1
+SpellReqDef|3067|0|0|239|2.0|0.0|
+SpellReqDef|3067|0|0|3019|2.0|0.0|
+SpellReqDef|3067|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3067|2|7||0|0|2|0||Durabilidad Armadura Cuerpo||1
+SpellEffect|3067|2|5|4|2768|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3067|2|0|{caster} se equipa con Escudo Antibalas.|0|0|0|0||||1
+SpellEffect|3067|2|3|1|99299601|0|2|0||||1
+SpellEffect|3067|2|1|-2|239|0|2|0||||1
+SpellEffect|3067|2|8||2794|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellDef|3069|Equipar Armadura Antifragmentación||0.0|1|0|2|0||4|0|f|f|f|f|0|99299602|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3069|6|0|99299602|0.0|0.0|1
+SpellReqDef|3069|0|0|239|2.0|0.0|
+SpellReqDef|3069|0|0|3019|2.0|0.0|
+SpellReqDef|3069|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3069|2|7||0|0|2|0||Durabilidad Armadura Cuerpo||1
+SpellEffect|3069|2|5|4|2768|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3069|2|0|{caster} se equipa con Antifragmentación.|0|0|0|0||||1
+SpellEffect|3069|2|3|1|99299602|0|2|0||||1
+SpellEffect|3069|2|1|-2|239|0|2|0||||1
+SpellEffect|3069|2|8||2794|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellDef|3071|Equipar Casco Antifragmentación||0.0|1|0|2|0||4|0|f|f|f|f|0|99299603|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3071|6|0|99299603|0.0|0.0|1
+SpellReqDef|3071|0|0|239|2.0|0.0|
+SpellReqDef|3071|0|0|3019|2.0|0.0|
+SpellReqDef|3071|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3071|2|7||0|0|2|0||Durabilidad Armadura Casco||1
+SpellEffect|3071|2|5|4|2943|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellEffect|3071|2|0|{caster} se equipa con Antifragmentación.|0|0|0|0||||1
+SpellEffect|3071|2|3|1|99299603|0|2|0||||1
+SpellEffect|3071|2|1|-2|239|0|2|0||||1
+SpellEffect|3071|2|8||2951|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellDef|3073|Equipar Armadura Blindaje Pesado||0.0|1|0|2|0||4|0|f|f|f|f|0|99299604|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3073|6|0|99299604|0.0|0.0|1
+SpellReqDef|3073|0|0|239|2.0|0.0|
+SpellReqDef|3073|0|0|3019|2.0|0.0|
+SpellReqDef|3073|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3073|2|7||0|0|2|0||Durabilidad Armadura Cuerpo||1
+SpellEffect|3073|2|5|4|2768|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3073|2|0|{caster} se equipa con Blindaje Pesado.|0|0|0|0||||1
+SpellEffect|3073|2|3|1|99299604|0|2|0||||1
+SpellEffect|3073|2|1|-2|239|0|2|0||||1
+SpellEffect|3073|2|8||2794|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellDef|3075|Equipar Casco Blindaje Pesado||0.0|1|0|2|0||4|0|f|f|f|f|0|99299605|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3075|6|0|99299605|0.0|0.0|1
+SpellReqDef|3075|0|0|239|2.0|0.0|
+SpellReqDef|3075|0|0|3019|2.0|0.0|
+SpellReqDef|3075|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3075|2|7||0|0|2|0||Durabilidad Armadura Casco||1
+SpellEffect|3075|2|5|4|2943|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellEffect|3075|2|0|{caster} se equipa con Blindaje Pesado.|0|0|0|0||||1
+SpellEffect|3075|2|3|1|99299605|0|2|0||||1
+SpellEffect|3075|2|1|-2|239|0|2|0||||1
+SpellEffect|3075|2|8||2951|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellDef|3077|Equipar Armadura Kevlar||0.0|1|0|2|0||4|0|f|f|f|f|0|99299606|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3077|6|0|99299606|0.0|0.0|1
+SpellReqDef|3077|0|0|239|2.0|0.0|
+SpellReqDef|3077|0|0|3019|2.0|0.0|
+SpellReqDef|3077|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3077|2|7||0|0|2|0||Durabilidad Armadura Cuerpo||1
+SpellEffect|3077|2|5|4|2768|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3077|2|0|{caster} se equipa con Kevlar.|0|0|0|0||||1
+SpellEffect|3077|2|3|1|99299606|0|2|0||||1
+SpellEffect|3077|2|1|-2|239|0|2|0||||1
+SpellEffect|3077|2|8||2794|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellDef|3079|Equipar Casco Kevlar||0.0|1|0|2|0||4|0|f|f|f|f|0|99299607|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3079|6|0|99299607|0.0|0.0|1
+SpellReqDef|3079|0|0|239|2.0|0.0|
+SpellReqDef|3079|0|0|3019|2.0|0.0|
+SpellReqDef|3079|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3079|2|7||0|0|2|0||Durabilidad Armadura Casco||1
+SpellEffect|3079|2|5|4|2943|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellEffect|3079|2|0|{caster} se equipa con Kevlar.|0|0|0|0||||1
+SpellEffect|3079|2|3|1|99299607|0|2|0||||1
+SpellEffect|3079|2|1|-2|239|0|2|0||||1
+SpellEffect|3079|2|8||2951|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellDef|3081|Equipar Armadura Cuero||0.0|1|0|2|0||4|0|f|f|f|f|0|99299608|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3081|6|0|99299608|0.0|0.0|1
+SpellReqDef|3081|0|0|239|2.0|0.0|
+SpellReqDef|3081|0|0|3019|2.0|0.0|
+SpellReqDef|3081|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3081|2|7||0|0|2|0||Durabilidad Armadura Cuerpo||1
+SpellEffect|3081|2|5|4|2768|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3081|2|0|{caster} se equipa con Cuero.|0|0|0|0||||1
+SpellEffect|3081|2|3|1|99299608|0|2|0||||1
+SpellEffect|3081|2|1|-2|239|0|2|0||||1
+SpellEffect|3081|2|8||2794|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellDef|3083|Equipar Casco Cuero||0.0|1|0|2|0||4|0|f|f|f|f|0|99299609|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3083|6|0|99299609|0.0|0.0|1
+SpellReqDef|3083|0|0|239|2.0|0.0|
+SpellReqDef|3083|0|0|3019|2.0|0.0|
+SpellReqDef|3083|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3083|2|7||0|0|2|0||Durabilidad Armadura Casco||1
+SpellEffect|3083|2|5|4|2943|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellEffect|3083|2|0|{caster} se equipa con Cuero.|0|0|0|0||||1
+SpellEffect|3083|2|3|1|99299609|0|2|0||||1
+SpellEffect|3083|2|1|-2|239|0|2|0||||1
+SpellEffect|3083|2|8||2951|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellDef|3085|Equipar Armadura Blindaje Ligero||0.0|1|0|2|0||4|0|f|f|f|f|0|99299610|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3085|6|0|99299610|0.0|0.0|1
+SpellReqDef|3085|0|0|239|2.0|0.0|
+SpellReqDef|3085|0|0|3019|2.0|0.0|
+SpellReqDef|3085|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3085|2|7||0|0|2|0||Durabilidad Armadura Cuerpo||1
+SpellEffect|3085|2|5|4|2768|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3085|2|0|{caster} se equipa con Blindaje Ligero.|0|0|0|0||||1
+SpellEffect|3085|2|3|1|99299610|0|2|0||||1
+SpellEffect|3085|2|1|-2|239|0|2|0||||1
+SpellEffect|3085|2|8||2794|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellDef|3087|Equipar Casco Blindaje Ligero||0.0|1|0|2|0||4|0|f|f|f|f|0|99299611|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3087|6|0|99299611|0.0|0.0|1
+SpellReqDef|3087|0|0|239|2.0|0.0|
+SpellReqDef|3087|0|0|3019|2.0|0.0|
+SpellReqDef|3087|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3087|2|7||0|0|2|0||Durabilidad Armadura Casco||1
+SpellEffect|3087|2|5|4|2943|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellEffect|3087|2|0|{caster} se equipa con Blindaje Ligero.|0|0|0|0||||1
+SpellEffect|3087|2|3|1|99299611|0|2|0||||1
+SpellEffect|3087|2|1|-2|239|0|2|0||||1
+SpellEffect|3087|2|8||2951|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellDef|3089|Equipar Armadura Blindaje Medio||0.0|1|0|2|0||4|0|f|f|f|f|0|99299612|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3089|6|0|99299612|0.0|0.0|1
+SpellReqDef|3089|0|0|239|2.0|0.0|
+SpellReqDef|3089|0|0|3019|2.0|0.0|
+SpellReqDef|3089|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3089|2|7||0|0|2|0||Durabilidad Armadura Cuerpo||1
+SpellEffect|3089|2|5|4|2768|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3089|2|0|{caster} se equipa con Blindaje Medio.|0|0|0|0||||1
+SpellEffect|3089|2|3|1|99299612|0|2|0||||1
+SpellEffect|3089|2|1|-2|239|0|2|0||||1
+SpellEffect|3089|2|8||2794|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellDef|3091|Equipar Casco Blindaje Medio||0.0|1|0|2|0||4|0|f|f|f|f|0|99299613|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3091|6|0|99299613|0.0|0.0|1
+SpellReqDef|3091|0|0|239|2.0|0.0|
+SpellReqDef|3091|0|0|3019|2.0|0.0|
+SpellReqDef|3091|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3091|2|7||0|0|2|0||Durabilidad Armadura Casco||1
+SpellEffect|3091|2|5|4|2943|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellEffect|3091|2|0|{caster} se equipa con Blindaje Medio.|0|0|0|0||||1
+SpellEffect|3091|2|3|1|99299613|0|2|0||||1
+SpellEffect|3091|2|1|-2|239|0|2|0||||1
+SpellEffect|3091|2|8||2951|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellDef|3093|Equipar Armadura Metalgear||0.0|1|0|2|0||4|0|f|f|f|f|0|99299614|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3093|6|0|99299614|0.0|0.0|1
+SpellReqDef|3093|0|0|239|2.0|0.0|
+SpellReqDef|3093|0|0|3019|2.0|0.0|
+SpellReqDef|3093|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3093|2|7||0|0|2|0||Durabilidad Armadura Cuerpo||1
+SpellEffect|3093|2|5|4|2768|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3093|2|0|{caster} se equipa con Metalgear.|0|0|0|0||||1
+SpellEffect|3093|2|3|1|99299614|0|2|0||||1
+SpellEffect|3093|2|1|-2|239|0|2|0||||1
+SpellEffect|3093|2|8||2794|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellDef|3095|Equipar Casco Metalgear||0.0|1|0|2|0||4|0|f|f|f|f|0|99299615|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3095|6|0|99299615|0.0|0.0|1
+SpellReqDef|3095|0|0|239|2.0|0.0|
+SpellReqDef|3095|0|0|3019|2.0|0.0|
+SpellReqDef|3095|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3095|2|7||0|0|2|0||Durabilidad Armadura Casco||1
+SpellEffect|3095|2|5|4|2943|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellEffect|3095|2|0|{caster} se equipa con Metalgear.|0|0|0|0||||1
+SpellEffect|3095|2|3|1|99299615|0|2|0||||1
+SpellEffect|3095|2|1|-2|239|0|2|0||||1
+SpellEffect|3095|2|8||2951|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellDef|3196|Equipar Armadura Dirk Combat Jacket||0.0|1|0|2|0||4|0|f|f|f|f|0|99299715|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3196|6|0|99299715|0.0|0.0|1
+SpellReqDef|3196|0|0|239|2.0|0.0|
+SpellReqDef|3196|0|0|3019|2.0|0.0|
+SpellReqDef|3196|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3196|2|7||0|0|2|0||Durabilidad Armadura Cuerpo||1
+SpellEffect|3196|2|5|4|2768|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3196|2|0|{caster} se equipa con Dirk Combat Jacket.|0|0|0|0||||1
+SpellEffect|3196|2|3|1|99299715|0|2|0||||1
+SpellEffect|3196|2|1|-2|239|0|2|0||||1
+SpellEffect|3196|2|8||2794|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellDef|3772|Equipar Casco Default Armor Head||0.0|1|0|2|0||4|0|f|f|f|f|0|99300289|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|3772|6|0|99300289|0.0|0.0|1
+SpellReqDef|3772|0|0|239|2.0|0.0|
+SpellReqDef|3772|0|0|3019|2.0|0.0|
+SpellReqDef|3772|5|1|0|0.0|0.0|Implante de Blindaje subdérmico
+SpellEffect|3772|2|7||0|0|2|0||Durabilidad Armadura Casco||1
+SpellEffect|3772|2|5|4|2943|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellEffect|3772|2|0|{caster} se equipa con Default Armor Head.|0|0|0|0||||1
+SpellEffect|3772|2|3|1|99300289|0|2|0||||1
+SpellEffect|3772|2|1|-2|239|0|2|0||||1
+SpellEffect|3772|2|8||2951|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellDef|2951|Desequipar Armadura Casco||0.0|1|0|2|0||4|0|f|f|f|t|0|99299611|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|2951|0|3|239|1.0|0.0|
+SpellReqDef|2951|5|0|0|0.0|0.0|Durabilidad Armadura Casco
+SpellReqDef|2951|0|3|2943|1.0|0.0|
+SpellEffect|2951|2|1|-1|239|0|2|0||||1
+SpellEffect|2951|2|0|{caster} se desequipa la armadura que portaba.|0|0|0|0||||1
+SpellEffect|2951|2|7||0|0|2|0||Durabilidad Armadura Casco||1
+SpellDef|2794|Desequipar Armadura Cuerpo||0.0|1|0|2|0||4|0|f|f|f|t|0|99299600|f|f|1.0,1.0,1.0,1.0|Equipamiento|f|f|4|1|
+SpellReqDef|2794|0|3|239|1.0|0.0|
+SpellReqDef|2794|5|0|0|0.0|0.0|Durabilidad Armadura Cuerpo
+SpellReqDef|2794|0|3|2768|1.0|0.0|
+SpellEffect|2794|2|1|-1|239|0|2|0||||1
+SpellEffect|2794|2|0|{caster} se desequipa la armadura que portaba.|0|0|0|0||||1
+SpellEffect|2794|2|7||0|0|2|0||Durabilidad Armadura Cuerpo||1
+SpellDef|2975|----Ataque a Cuerpo a Cuerpo----||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|2977|Ataque Cuerpo a Cuerpo|Acción &pipe; Armas cortas|1.0|4|1|0|2902||0|2901|f|t|t|t|0|99299693|f|f|1.0,1.0,1.0,1.0|Cuerpo a Cuerpo|f|f|4|1|
+SpellReqDef|2977|0|3|239|1.0|0.0|
+SpellReqDef|2977|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|2977|0|0|3019|2.0|0.0|
+SpellEffect|2977|2|0|{caster} intenta golpear a {target}.&brk;&brk;{roll}|0|0|0|0||0||1
+SpellEffect|2977|2|1|-1|239|0|2|0||||1
+SpellEffect|2977|0|1|-f.max[1,(({c.PeleaDmg}d6)-({t.Armadura Cuerpo}))]|61|0|0|1||0||1
+SpellEffect|2977|0|5|-1|2768|0|2|1|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|2977|0|9||3022|0|0|1||||1
+SpellEffect|2977|0|9||3097|1|0|1||||1
+SpellDef|3138|Arma Cuerpo a Cuerpo|Acción &pipe; Armas cortas|1.0|4|1|0|2902||0|2901|f|t|t|t|0|99299629|f|f|1.0,1.0,1.0,1.0|Cuerpo a Cuerpo|f|f|4|1|
+SpellReqDef|3138|0|3|239|1.0|0.0|
+SpellReqDef|3138|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3138|0|0|3019|2.0|0.0|
+SpellEffect|3138|2|0|{caster} intenta golpear a {target} con un arma cuerpo a cuerpo.&brk;&brk;{roll}|0|0|0|0||0||1
+SpellEffect|3138|2|1|-1|239|0|2|0||||1
+SpellEffect|3138|0|1|-f.max[1,(({c.DadoPelea}d6)-({t.Armadura Cuerpo}))]|61|0|0|1||0||1
+SpellEffect|3138|0|5|-1|2768|0|2|1|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3138|0|9||3022|0|0|1||||1
+SpellEffect|3138|0|9||3097|1|0|1||||1
+SpellDef|2978|Agarrón|Acción &pipe; Armas cortas|1.0|4|1|0|2902||0|2901|f|t|t|t|0|99299658|f|f|1.0,1.0,1.0,1.0|Cuerpo a Cuerpo|f|f|4|1|
+SpellReqDef|2978|0|0|239|2.0|0.0|
+SpellReqDef|2978|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|2978|0|0|3019|2.0|0.0|
+SpellEffect|2978|2|0|{caster} intenta garrar a {target}.&brk;&brk;{roll}|0|0|0|0||0||1
+SpellEffect|2978|2|1|-2|239|0|2|0||||1
+SpellEffect|2978|0|0|¡{caster} logra agarrar a {target}! Ahora {target} quedará "incapacitado" hasta que se libere y será arrastrado hacia donde {caster} desee moverse en su turno.|0|0|0|1||||1
+SpellEffect|2978|0|11||2981|0|0|1|-1|Incapacitado||1
+SpellDef|2979|Estrangulamiento|Acción &pipe; Armas cortas &pipe; Requiere de Agarrón|1.0|4|1|0|2902||0|2901|f|t|t|t|0|99299658|f|f|1.0,1.0,1.0,1.0|Cuerpo a Cuerpo|f|f|4|1|
+SpellReqDef|2979|0|0|239|2.0|0.0|
+SpellReqDef|2979|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|2979|0|0|3019|2.0|0.0|
+SpellEffect|2979|2|0|{caster} intenta estrangular a {target}.&brk;&brk;{roll}|0|0|0|0||0||1
+SpellEffect|2979|2|1|-2|239|0|2|0||||1
+SpellEffect|2979|0|1|-{c.Tipo Corporal}|61|0|0|1||0||1
+SpellEffect|2979|0|11||2984|0|0|1|-1|Estrangulamiento||1
+SpellEffect|2979|0|9||3022|0|0|1||||1
+SpellTargetCond|2979|0|20|0|2981|0.0|0.0|
+SpellDef|2980|Lanzar|Acción &pipe; Armas cortas|1.0|4|1|0|2900||0|2901|f|t|t|t|0|99299658|f|f|1.0,1.0,1.0,1.0|Cuerpo a Cuerpo|f|f|4|1|
+SpellReqDef|2980|0|0|239|2.0|0.0|
+SpellReqDef|2980|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|2980|0|0|3019|2.0|0.0|
+SpellEffect|2980|2|1|-2|239|0|2|0||||1
+SpellEffect|2980|2|0|/lanzarpersona {target}|0|0|0|1||||1
+SpellEffect|2980|0|0|¡{caster} intenta lanzar a {target}!&brk;&brk;{roll}|0|0|0|1||||1
+SpellEffect|2980|0|1|-{c.Tipo Corporal}|61|0|0|1||0||1
+SpellEffect|2980|0|5|-1|2768|0|2|1|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|2980|0|9||3022|0|0|1||||1
+SpellEffect|2980|0|0|¡{caster} intenta lanzar a {target}!&brk;&brk;{roll}|0|0|0|2||||1
+SpellDef|2986|-----Ataque Artes Marciales-----||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|2987|Combinación de desarme|Acción &pipe; SOLO SI ACIERTAS EL GOLPEO|1.0|4|1|0|2900||0|2901|f|t|f|t|0|5422358|f|f|1.0,1.0,1.0,1.0|Artes Marciales|f|f|4|1|
+SpellReqDef|2987|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|2987|5|1|0|0.0|0.0|Apuntar
+SpellReqDef|2987|0|0|239|2.0|0.0|
+SpellReqDef|2987|0|0|3019|2.0|0.0|
+SpellEffect|2987|2|0|{caster} intenta desarmar a {target}.&brk;&brk;{roll}|0|0|0|0||0||1
+SpellEffect|2987|0|1|-2|239|0|2|0||||1
+SpellEffect|2987|0|11||2967|0|2|1|-1|Desarmado||1
+SpellDef|2989|Golpe rompehuesos|Acción &pipe; Armas cortas|1.0|4|1|0|2900||0|2901|f|t|f|t|0|5422358|f|f|1.0,1.0,1.0,1.0|Artes Marciales|f|f|4|1|
+SpellReqDef|2989|0|0|239|2.0|0.0|
+SpellReqDef|2989|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|2989|5|1|0|0.0|0.0|Apuntar
+SpellReqDef|2989|0|0|3019|2.0|0.0|
+SpellEffect|2989|2|0|{caster} intenta realizar un golpe rompehuesos a {target}.&brk;&brk;{roll}|0|0|0|0||0||1
+SpellEffect|2989|2|1|-2|239|0|2|0||||1
+SpellEffect|2989|0|1|-f.max[1,(({c.PeleaDmg}d6+({c.Tipo Corporal}/4))-({t.Armadura Cuerpo}))]|61|0|0|1||0||1
+SpellEffect|2989|0|5|-1|2768|0|2|1|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|2989|0|9||3022|0|0|1||||1
+SpellEffect|2989|0|9||3097|1|0|1||||1
+SpellDef|2990|Combinación rompearmaduras|Acción &pipe; Armas cortas|1.0|4|1|0|2900||0|2901|f|t|f|t|0|5422358|f|f|1.0,1.0,1.0,1.0|Artes Marciales|f|f|4|1|
+SpellReqDef|2990|0|0|239|2.0|0.0|
+SpellReqDef|2990|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|2990|5|1|0|0.0|0.0|Apuntar
+SpellReqDef|2990|0|0|3019|2.0|0.0|
+SpellEffect|2990|2|0|{caster} intenta realizar un golpe rompehuesos a {target}.&brk;&brk;{roll}|0|0|0|0||0||1
+SpellEffect|2990|2|1|-2|239|0|2|0||||1
+SpellEffect|2990|0|1|-f.max[1,(({c.PeleaDmg}d6)-({t.Armadura Cuerpo}))]|61|0|0|1||0||1
+SpellEffect|2990|0|5|-2|2768|0|2|1|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|2990|0|9||3022|0|0|1||||1
+SpellEffect|2990|0|9||3097|1|0|1||||1
+SpellDef|2991|Evasión forzada|Acción &pipe; Armas cortas|1.0|4|1|0|2900||0|2901|f|t|f|t|0|5422358|f|f|1.0,1.0,1.0,1.0|Artes Marciales|f|f|4|1|
+SpellReqDef|2991|0|0|239|2.0|0.0|
+SpellReqDef|2991|5|1|0|0.0|0.0|Apuntar
+SpellReqDef|2991|5|0|0|0.0|0.0|Incapacitado
+SpellReqDef|2991|0|0|3019|2.0|0.0|
+SpellEffect|2991|2|0|{caster} intenta evadir las presa de {target}.&brk;&brk;{roll}|0|0|0|0||0||1
+SpellEffect|2991|2|1|-2|239|0|2|0||||1
+SpellEffect|2991|0|7||0|0|0|1||Incapacitado||1
+SpellEffect|2991|0|7||0|0|0|1||Estrangulamiento||1
+SpellEffect|2991|0|1|-f.max[1,(({c.PeleaDmg}d6)-({t.Armadura Cuerpo}))]|61|0|0|1||0||1
+SpellEffect|2991|0|9||3022|0|0|1||||1
+SpellEffect|2991|0|9||3097|1|0|1||||1
+SpellDef|2992|Patada Voladora|Acción &pipe; Armas cortas|4.0|4|1|0|2900||0|2901|f|t|f|t|0|5422358|f|f|1.0,1.0,1.0,1.0|Artes Marciales|f|f|4|1|
+SpellReqDef|2992|0|0|239|2.0|0.0|
+SpellReqDef|2992|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|2992|5|1|0|0.0|0.0|Apuntar
+SpellReqDef|2992|0|0|3019|2.0|0.0|
+SpellEffect|2992|2|0|{caster} intenta realizar un golpe rompehuesos a {target}.&brk;&brk;{roll}|0|0|0|0||0||1
+SpellEffect|2992|2|1|-2|239|0|2|0||||1
+SpellEffect|2992|0|1|-f.max[1,(({c.PeleaDmg}d6)-({t.Armadura Cuerpo}))]|61|0|0|1||0||1
+SpellEffect|2992|0|5|-1|2768|0|2|1|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|2992|0|9||3022|0|0|1||||1
+SpellEffect|2992|0|9||3097|1|0|1||||1
+SpellDef|2932|-------Ataque a Distancia-------||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|3101|Disparar con Pistolas|Acción &pipe; Armas cortas|20.0|0|1|2|0||4|0|f|t|f|t|0|99299659|f|f|1.0,1.0,1.0,1.0|A Distancia|f|f|4|1|
+SpellReqDef|3101|0|3|3019|1.0|0.0|
+SpellReqDef|3101|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3101|0|3|2741|1.0|0.0|
+SpellReqDef|3101|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3101|0|0|239|2.0|0.0|
+SpellEffect|3101|2|0|/vdpistolas {target}|0|0|0|0||0||1
+SpellEffect|3101|2|1|-1|3019|0|2|0||||1
+SpellEffect|3101|2|1|-1|2741|0|2|0||||1
+SpellDef|3127|Disparar con Pistolas Pesadas|Acción &pipe; Armas cortas|20.0|0|1|2|0||4|0|f|t|f|t|0|99299643|f|f|1.0,1.0,1.0,1.0|A Distancia|f|f|4|1|
+SpellReqDef|3127|0|3|3019|1.0|0.0|
+SpellReqDef|3127|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3127|0|3|3104|1.0|0.0|
+SpellReqDef|3127|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3127|0|0|239|2.0|0.0|
+SpellEffect|3127|2|0|/vdpistolas {target}|0|0|0|0||0||1
+SpellEffect|3127|2|1|-1|3019|0|2|0||||1
+SpellEffect|3127|2|1|-1|3104|0|2|0||||1
+SpellDef|3103|Disparar con Pistolas Muy Pesadas|Acción &pipe; Armas cortas|20.0|0|1|2|0||4|0|f|t|f|t|0|99299694|f|f|1.0,1.0,1.0,1.0|A Distancia|f|f|4|1|
+SpellReqDef|3103|0|3|3019|2.0|0.0|
+SpellReqDef|3103|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3103|0|3|3105|1.0|0.0|
+SpellReqDef|3103|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3103|0|0|239|2.0|0.0|
+SpellEffect|3103|2|0|/vdpistolas {target}|0|0|0|0||0||1
+SpellEffect|3103|2|1|-2|3019|0|2|0||||1
+SpellEffect|3103|2|1|-1|3105|0|2|0||||1
+SpellDef|3124|Disparar con Subfusiles|Acción &pipe; Armas cortas|20.0|0|1|2|0||4|0|f|t|f|t|0|99299676|f|f|1.0,1.0,1.0,1.0|A Distancia|f|f|4|1|
+SpellReqDef|3124|0|3|3019|2.0|0.0|
+SpellReqDef|3124|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3124|0|3|2741|1.0|0.0|
+SpellReqDef|3124|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3124|0|0|239|2.0|0.0|
+SpellEffect|3124|2|0|/vdsubfusiles {target}|0|0|0|0||0||1
+SpellEffect|3124|2|1|-2|3019|0|2|0||||1
+SpellEffect|3124|2|1|-1|2741|0|2|0||||1
+SpellDef|3126|Disparar con Subfusiles Pesados|Acción &pipe; Armas cortas|20.0|0|1|2|0||4|0|f|t|f|t|0|99299646|f|f|1.0,1.0,1.0,1.0|A Distancia|f|f|4|1|
+SpellReqDef|3126|0|3|3019|2.0|0.0|
+SpellReqDef|3126|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3126|0|3|3104|1.0|0.0|
+SpellReqDef|3126|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3126|0|0|239|2.0|0.0|
+SpellEffect|3126|2|0|/vdsubfusiles {target}|0|0|0|0||0||1
+SpellEffect|3126|2|1|-2|3019|0|2|0||||1
+SpellEffect|3126|2|1|-1|3104|0|2|0||||1
+SpellDef|3125|Dsiparar con Fusiles|Acción &pipe; Armas cortas|20.0|0|1|2|0||4|0|f|t|f|t|0|99299694|f|f|1.0,1.0,1.0,1.0|A Distancia|f|f|4|1|
+SpellReqDef|3125|0|3|3019|2.0|0.0|
+SpellReqDef|3125|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3125|0|3|3001|1.0|0.0|
+SpellReqDef|3125|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3125|0|0|239|2.0|0.0|
+SpellEffect|3125|2|0|/vdfusiles {target}|0|0|0|0||0||1
+SpellEffect|3125|2|1|-2|3019|0|2|0||||1
+SpellEffect|3125|2|1|-1|3001|0|2|0||||1
+SpellDef|3128|Dsiparar con Fusiles Francotiradores|Acción &pipe; Armas cortas|20.0|0|1|2|0||4|0|f|t|f|t|0|99299679|f|f|1.0,1.0,1.0,1.0|A Distancia|f|f|4|1|
+SpellReqDef|3128|0|3|3019|2.0|0.0|
+SpellReqDef|3128|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3128|0|3|3001|1.0|0.0|
+SpellReqDef|3128|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3128|0|0|239|2.0|0.0|
+SpellEffect|3128|2|0|/vdfusiles {target}|0|0|0|0||0||1
+SpellEffect|3128|2|1|-2|3019|0|2|0||||1
+SpellEffect|3128|2|1|-1|3001|0|2|0||||1
+SpellDef|3129|Dsiparar con Arco/ballesta|Acción &pipe; Armas cortas|20.0|0|1|2|0||4|0|f|t|f|t|0|99299623|f|f|1.0,1.0,1.0,1.0|A Distancia|f|f|4|1|
+SpellReqDef|3129|0|3|3019|2.0|0.0|
+SpellReqDef|3129|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3129|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3129|0|0|239|2.0|0.0|
+SpellReqDef|3129|6|0|99300188|0.0|0.0|1
+SpellEffect|3129|2|0|/vdarcos {target}|0|0|0|0||0||1
+SpellEffect|3129|2|1|-2|3019|0|2|0||||1
+SpellEffect|3129|2|3|1|99300188|0|2|0||||1
+SpellDef|3121|Disparar con Escopeta|Acción &pipe; Armas cortas|20.0|0|1|2|0||4|0|f|t|f|t|0|99299669|f|f|1.0,1.0,1.0,1.0|A Distancia|f|f|4|1|
+SpellReqDef|3121|0|3|3019|2.0|0.0|
+SpellReqDef|3121|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3121|0|3|2999|1.0|0.0|
+SpellReqDef|3121|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3121|0|0|239|2.0|0.0|
+SpellEffect|3121|2|0|/vdescopeta {target}|0|0|0|0||0||1
+SpellEffect|3121|2|1|-2|3019|0|2|0||||1
+SpellEffect|3121|2|1|-1|2999|0|2|0||||1
+SpellDef|3123|Disparar con Escopeta Posta|Acción &pipe; Armas cortas|20.0|1|1|2|0||4|0|f|t|f|t|0|99299669|f|f|1.0,1.0,1.0,1.0|A Distancia|f|f|4|1|
+SpellReqDef|3123|0|3|3019|2.0|0.0|
+SpellReqDef|3123|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3123|0|3|2999|1.0|0.0|
+SpellReqDef|3123|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3123|0|0|239|2.0|0.0|
+SpellEffect|3123|2|0|/vdescopetaposta|0|0|0|0||0||1
+SpellEffect|3123|2|1|-2|3019|0|2|0||||1
+SpellEffect|3123|2|1|-1|2999|0|2|0||||1
+SpellDef|3132|Disparar con Lanzagranadas|Acción &pipe; Armas cortas|20.0|1|1|2|0||4|0|f|t|f|t|0|99299640|f|f|1.0,1.0,1.0,1.0|A Distancia|f|f|4|1|
+SpellReqDef|3132|0|3|3019|2.0|0.0|
+SpellReqDef|3132|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3132|0|3|3130|1.0|0.0|
+SpellReqDef|3132|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3132|0|0|239|2.0|0.0|
+SpellEffect|3132|2|0|/vdlanzagranadas|0|0|0|0||0||1
+SpellEffect|3132|2|1|-2|3019|0|2|0||||1
+SpellEffect|3132|2|1|-1|3130|0|2|0||||1
+SpellDef|3133|Disparar con Lanzamisiles|Acción &pipe; Armas cortas|20.0|1|1|2|0||4|0|f|t|f|t|0|99299666|f|f|1.0,1.0,1.0,1.0|A Distancia|f|f|4|1|
+SpellReqDef|3133|0|3|3019|2.0|0.0|
+SpellReqDef|3133|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3133|0|3|3106|1.0|0.0|
+SpellReqDef|3133|5|1|0|0.0|0.0|Desarmado
+SpellReqDef|3133|0|0|239|2.0|0.0|
+SpellEffect|3133|2|0|/vdlanzamisiles|0|0|0|0||0||1
+SpellEffect|3133|2|1|-2|3019|0|2|0||||1
+SpellEffect|3133|2|1|-1|3106|0|2|0||||1
+SpellDef|2968|-------CYBERPSICOSIS-------||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|2973|Soy un Cyberpsyco||0.0|1|0|2|0|{c.Humanidad}|2|5|f|f|f|t|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellReqDef|2973|0|5|2911|5.0|0.0|
+SpellEffect|2973|2|11||2972|0|0|2|-1|CYBERPSICÓPATA||1
+SpellDef|2969|Instalar Cyberbrazo||1.0|0|1|0|2905||2|12|f|f|f|t|0|99299616|t|f|1.0,1.0,1.0,1.0|Cyberware|f|f|4|1|
+SpellEffect|2969|0|0|{caster} instala un cyberbrazo en {target}&brk;&brk;{roll}|0|0|0|0||||1
+SpellEffect|2969|2|3|1|99299616|0|2|0||||1
+SpellEffect|2969|0|9||2973|0|0|0||||1
+SpellEffect|2969|0|5|1|2970|0|2|0|-1|Cyberbrazo||1
+SpellEffect|2969|0|0|¡{caster} al instalarle el cyberware a {target}, lo hace con la suficiente maña como para no hacerle perder más humanidad de la cuenta!|0|0|0|1||||1
+SpellEffect|2969|0|1|-2d6|2911|0|0|1||||1
+SpellEffect|2969|0|0|Oh no... {caster} al instalarle el cyberware a {target} no lo ha hecho del todo bien y ha perdido mayor humanidad de la que correspondería, pero... ¡Al menos funciona!|0|0|0|2||||1
+SpellEffect|2969|0|1|-2d6-2|2911|0|0|2||||1
+SpellDef|3004|Instalar Garra de Mantis||1.0|0|1|0|2905||2|12|f|f|f|t|0|99299621|t|f|1.0,1.0,1.0,1.0|Cyberware|f|f|4|1|
+SpellReqDef|3004|5|0|0|0.0|0.0|Cyberbrazo
+SpellEffect|3004|0|0|{caster} instala la Garra de Mantis en {target}&brk;&brk;{roll}|0|0|0|0||||1
+SpellEffect|3004|2|3|1|99299621|0|2|0||||1
+SpellEffect|3004|0|9||2973|0|0|0||||1
+SpellEffect|3004|0|8||3005|0|2|0|-1|Garra de Mantis||1
+SpellEffect|3004|0|5|1|2970|0|2|0|-1|Garra de Mantis||1
+SpellEffect|3004|0|0|¡{caster} al instalarle el cyberware a {target}, lo hace con la suficiente maña como para no hacerle perder más humanidad de la cuenta!|0|0|0|1||||1
+SpellEffect|3004|0|1|-2d6|2911|0|0|1||||1
+SpellEffect|3004|0|0|Oh no... {caster} al instalarle el cyberware a {target} no lo ha hecho del todo bien y ha perdido mayor humanidad de la que correspondería, pero... ¡Al menos funciona!|0|0|0|2||||1
+SpellEffect|3004|0|1|-2d6-2|2911|0|0|2||||1
+SpellDef|3005|Garra de Mantis|Acción &pipe; Armas cortas|1.0|4|1|0|2899||0|2901|f|t|f|t|0|99299621|f|f|1.0,1.0,1.0,1.0|Cyberware|f|f|4|1|
+SpellReqDef|3005|0|3|239|1.0|0.0|
+SpellReqDef|3005|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3005|0|0|3019|2.0|0.0|
+SpellEffect|3005|2|0|{caster} intenta golpear con la Garra de Mantis a {target}.&brk;&brk;{roll}|0|0|0|0||0||1
+SpellEffect|3005|2|9||1402|0|2|0||||1
+SpellEffect|3005|2|1|-1|239|0|2|0||||1
+SpellEffect|3005|0|1|-f.max[1,((3d6)-({t.Armadura Cuerpo}))]|61|0|0|1||0||1
+SpellEffect|3005|0|5|-1|2768|0|2|1|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3005|0|9||3022|0|0|1||||1
+SpellDef|3013|Implante de Hueso y Músculo Beta||1.0|0|1|0|2905||2|12|f|f|f|t|0|99299623|t|f|1.0,1.0,1.0,1.0|Cyberware|f|f|4|1|
+SpellEffect|3013|0|0|{caster} instala el Implante de Hueso y Músculo Beta en {target}&brk;&brk;{roll}|0|0|0|0||||1
+SpellEffect|3013|2|3|1|99299623|0|2|0||||1
+SpellEffect|3013|0|9||2973|0|0|0||||1
+SpellEffect|3013|0|4|2|1|0|2|0|-1|Implante de Hueso y Músculo Beta||1
+SpellEffect|3013|0|5|1|2970|0|2|0|-1|Implante de Hueso y Músculo Beta||1
+SpellEffect|3013|0|9||3017|0|2|0||||1
+SpellEffect|3013|0|0|¡{caster} al instalarle el cyberware a {target}, lo hace con la suficiente maña como para no hacerle perder más humanidad de la cuenta!|0|0|0|1||||1
+SpellEffect|3013|0|1|-4d6|2911|0|0|1||||1
+SpellEffect|3013|0|0|Oh no... {caster} al instalarle el cyberware a {target} no lo ha hecho del todo bien y ha perdido mayor humanidad de la que correspondería, pero... ¡Al menos funciona!|0|0|0|2||||1
+SpellEffect|3013|0|1|-4d6-2|2911|0|0|2||||1
+SpellDef|3014|Implante de Hueso y Músculo Sigma||1.0|0|1|0|2905||2|12|f|f|f|t|0|99299624|t|f|1.0,1.0,1.0,1.0|Cyberware|f|f|4|1|
+SpellEffect|3014|0|0|{caster} instala el Implante de Hueso y Músculo Sigma en {target}&brk;&brk;{roll}|0|0|0|0||||1
+SpellEffect|3014|2|3|1|99299624|0|2|0||||1
+SpellEffect|3014|0|9||2973|0|0|0||||1
+SpellEffect|3014|0|4|4|1|0|2|0|-1|Implante de Hueso y Músculo Sigma||1
+SpellEffect|3014|0|5|1|2970|0|2|0|-1|Implante de Hueso y Músculo Sigma||1
+SpellEffect|3014|0|9||3018|0|2|0||||1
+SpellEffect|3014|0|0|¡{caster} al instalarle el cyberware a {target}, lo hace con la suficiente maña como para no hacerle perder más humanidad de la cuenta!|0|0|0|1||||1
+SpellEffect|3014|0|1|-4d6|2911|0|0|1||||1
+SpellEffect|3014|0|0|Oh no... {caster} al instalarle el cyberware a {target} no lo ha hecho del todo bien y ha perdido mayor humanidad de la que correspondería, pero... ¡Al menos funciona!|0|0|0|2||||1
+SpellEffect|3014|0|1|-4d6-2|2911|0|0|2||||1
+SpellDef|3017|Daño para Implante-Hueso-1||1.0|1|1|2|0||4|0|f|f|f|t|0|99299623|t|f|1.0,1.0,1.0,1.0|Cyberware|f|f|4|1|
+SpellReqDef|3017|5|1|0|0.0|0.0|Implante de Hueso y Músculo Sigma
+SpellEffect|3017|2|5|1|2918|0|2|1|-1|Implante de Hueso y Músculo Beta||1
+SpellDef|3018|Daño para Implante-Hueso-2||1.0|1|1|2|0||4|0|f|f|f|t|0|99299623|t|f|1.0,1.0,1.0,1.0|Cyberware|f|f|4|1|
+SpellReqDef|3018|5|1|0|0.0|0.0|Implante de Hueso y Músculo Beta
+SpellEffect|3018|2|5|1|2918|0|2|1|-1|Implante de Hueso y Músculo Sigma||1
+SpellDef|3044|Implantar Blindaje subdérmico||1.0|0|1|0|2905||2|12|f|f|f|t|0|99299637|t|f|1.0,1.0,1.0,1.0|Cyberware|f|f|4|1|
+SpellEffect|3044|0|0|{caster} instala el blindaje subdérmico en {target}&brk;&brk;{roll}|0|0|0|0||||1
+SpellEffect|3044|2|3|1|99299637|0|2|0||||1
+SpellEffect|3044|0|9||2973|0|0|0||||1
+SpellEffect|3044|0|5|11|2943|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellEffect|3044|0|5|11|2768|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3044|0|5|1|2970|0|2|0|-1|Implante de Blindaje subdérmico||1
+SpellEffect|3044|0|9||3018|0|2|0||||1
+SpellEffect|3044|0|8||3045|0|2|0|-1|Implante de Blindaje subdérmico||1
+SpellEffect|3044|0|0|¡{caster} al instalarle el cyberware a {target}, lo hace con la suficiente maña como para no hacerle perder más humanidad de la cuenta!|0|0|0|1||||1
+SpellEffect|3044|0|1|-4d6|2911|0|0|1||||1
+SpellEffect|3044|0|0|Oh no... {caster} al instalarle el cyberware a {target} no lo ha hecho del todo bien y ha perdido mayor humanidad de la que correspondería, pero... ¡Al menos funciona!|0|0|0|2||||1
+SpellEffect|3044|0|1|-4d6-2|2911|0|0|2||||1
+SpellDef|3045|Regeneración del Blindaje subdérmico||1.0|1|1|2|0||4|0|f|f|f|t|1440|99299637|t|f|1.0,1.0,1.0,1.0|Cyberware|f|f|4|1|
+SpellEffect|3045|2|7||0|0|2|0||Durabilidad Armadura Casco||1
+SpellEffect|3045|2|7||0|0|2|0||Durabilidad Armadura Cuerpo||1
+SpellEffect|3045|2|0|{caster} empieza a regenerar su armadura.|0|0|0|0||||1
+SpellEffect|3045|0|5|2|2943|0|2|0|-1|Durabilidad Armadura Casco||1
+SpellEffect|3045|0|5|2|2768|0|2|0|-1|Durabilidad Armadura Cuerpo||1
+SpellEffect|3045|0|5|2|2943|0|2|0|-1|Durabilidad Armadura Casco|720|1
+SpellEffect|3045|0|5|2|2768|0|2|0|-1|Durabilidad Armadura Cuerpo|720|1
+SpellDef|3037|------------Drogas------------||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|3039|Consumir Encaje Negro|Acción &pipe; Armas cortas|1.0|1|1|0|2895||2|15|f|t|f|t|0|99299640|f|f|1.0,1.0,1.0,1.0|Drogas|f|f|4|1|
+SpellReqDef|3039|0|0|239|2.0|0.0|
+SpellReqDef|3039|5|1|0|0.0|0.0|Incapacitado
+SpellReqDef|3039|0|0|3019|2.0|0.0|
+SpellReqDef|3039|6|0|99299640|0.0|0.0|1
+SpellEffect|3039|2|0|¡{caster} toma un poco de Encaje negro!&brk;&brk;{roll}|0|0|0|0||0||1
+SpellEffect|3039|2|9||1402|0|2|0||||1
+SpellEffect|3039|2|1|-2|239|0|2|0||||1
+SpellEffect|3039|2|9||3040|0|0|0||||1
+SpellEffect|3039|2|3|1|99299640|0|2|0||||1
+SpellEffect|3039|2|7||0|0|2|1||Gravemente herido||1
+SpellEffect|3039|2|5|-2d6|2911|0|0|1|1440|Encaje Negro||1
+SpellEffect|3039|2|11||317|0|0|1|-1|Gravemente herido|1440|1
+SpellEffect|3039|0|0|¡{caster} pierde el estado de Gravemente herido, su percepción del dolor desaparece pero las heridas siguen ahí!|0|0|0|1||||1
+SpellEffect|3039|2|7||0|0|2|2||Gravemente herido||1
+SpellEffect|3039|2|1|-2d6|2911|0|0|2||||1
+SpellEffect|3039|0|0|{caster} se vuelve adicto al Encaje negro, parece que no le ha sentado muy bien... ¡Pero al menos pierde el estado de Gravemente herido, solo su percepción del dolor, la herida sigue ahí!|0|0|0|2||||1
+SpellEffect|3039|2|11||317|0|0|2|-1|Gravemente herido|1440|1
+SpellEffect|3039|2|4|-2|2|0|0|2|-1|Mono Encaje negro|1440|1
+SpellDef|3040|Mono de Encaje negro|Acción &pipe; Armas cortas|1.0|1|1|2|0||4|0|f|t|f|t|0|99299640|f|f|1.0,1.0,1.0,1.0|Drogas|f|f|4|1|
+SpellReqDef|3040|5|0|0|0.0|0.0|Mono Encaje negro
+SpellEffect|3040|2|7||0|0|2|0||Mono Encaje negro||1
+SpellEffect|3040|0|4|-2|2|0|0|0|-1|Mono Encaje negro|1440|1
+SpellDef|2461|-------Estilo de Vida-------||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|2462|Reclamar Ingreso|Reclama tu Ingreso.|5.0|1|1|2|0||4|0|f|f|f|t|1320|99300344|f|f|0.320313,0.320313,0.320313,1.0|Estilo de Vida|f|f|4|1|
+SpellEffect|2462|2|0|/reclamocobro|0|0|0|0||||1
+SpellDef|3053|Pagar Pienso|A pagar impuestos, venga, cotiza.|5.0|1|1|2|0||4|0|f|f|f|t|0|99300344|f|f|0.320313,0.320313,0.320313,1.0|Estilo de Vida|f|f|4|1|
+SpellReqDef|3053|5|0|0|0.0|0.0|Impago Estilo de Vida
+SpellReqDef|3053|6|0|99300344|0.0|0.0|100
+SpellEffect|3053|2|0|{caster} usa su teléfono/terminal/neural-link para realizar el pago mensual de su estilo de vida.|0|0|0|0||||1
+SpellEffect|3053|2|7||0|0|2|0||Impago Estilo Vida||1
+SpellEffect|3053|2|11||3060|0|2|0||Impago Estilo Vida|10080|1
+SpellEffect|3053|2|3|100|99300344|0|2|0||||1
+SpellDef|3061|Pagar Precocinados Genéticos|A pagar impuestos, venga, cotiza.|5.0|1|1|2|0||4|0|f|f|f|t|0|99300344|f|f|0.320313,0.320313,0.320313,1.0|Estilo de Vida|f|f|4|1|
+SpellReqDef|3061|5|0|0|0.0|0.0|Impago Estilo Vida
+SpellReqDef|3061|6|0|99300344|0.0|0.0|300
+SpellEffect|3061|2|0|{caster} usa su teléfono/terminal/neural-link para realizar el pago mensual de su estilo de vida.|0|0|0|0||||1
+SpellEffect|3061|2|7||0|0|2|0||Impago Estilo Vida||1
+SpellEffect|3061|2|11||3060|0|2|0||Impago Estilo Vida|10080|1
+SpellEffect|3061|2|3|300|99300344|0|2|0||||1
+SpellDef|3062|Pagar Precocinados Calidad|A pagar impuestos, venga, cotiza.|5.0|1|1|2|0||4|0|f|f|f|t|0|99300344|f|f|0.320313,0.320313,0.320313,1.0|Estilo de Vida|f|f|4|1|
+SpellReqDef|3062|5|0|0|0.0|0.0|Impago Estilo de Vida
+SpellReqDef|3062|6|0|99300344|0.0|0.0|600
+SpellEffect|3062|2|0|{caster} usa su teléfono/terminal/neural-link para realizar el pago mensual de su estilo de vida.|0|0|0|0||||1
+SpellEffect|3062|2|7||0|0|2|0||Impago Estilo Vida||1
+SpellEffect|3062|2|11||3060|0|2|0||Impago Estilo Vida|10080|1
+SpellEffect|3062|2|3|600|99300344|0|2|0||||1
+SpellDef|3063|Pagar Alimentos Frescos|A pagar impuestos, venga, cotiza.|5.0|1|1|2|0||4|0|f|f|f|t|0|99300344|f|f|0.320313,0.320313,0.320313,1.0|Estilo de Vida|f|f|4|1|
+SpellReqDef|3063|5|0|0|0.0|0.0|Impago Estilo de Vida
+SpellReqDef|3063|6|0|99300344|0.0|0.0|1500
+SpellEffect|3063|2|0|{caster} usa su teléfono/terminal/neural-link para realizar el pago mensual de su estilo de vida.|0|0|0|0||||1
+SpellEffect|3063|2|7||0|0|2|0||Impago Estilo Vida||1
+SpellEffect|3063|2|11||3060|0|2|0||Impago Estilo Vida|10080|1
+SpellEffect|3063|2|3|1500|99300344|0|2|0||||1
+SpellDef|258|-------Turnos-------||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|2064|Finalizar Turno|Finalizas turno.|0.0|1|0|2|0||4|0|f|f|t|f|0|5422167|f|f|1.0,1.0,1.0,1.0|Turno|f|f|4|1|
+SpellEffect|2064|0|0|/pasarturno|0|0|0|0||||1
+SpellEffect|2064|2|0|¡{caster} finaliza su turno!|0|0|0|0||||1
+SpellEffect|2064|2|7||0|0|2|0||Apuntar||1
+SpellEffect|2064|2|1|2|239|0|2|0||||1
+SpellEffect|2064|2|1|1|241|0|2|0||||1
+SpellEffect|2064|2|1|2|3019|0|2|0||||1
+SpellDef|2466|Huir|Intentas huir del combate. (DEBE usarse contra los que tengas a 8 pies)&brk;&brk;Una vez usado debes esperar 2 turnos para volver a huir. |8.0|0|10|2|0|1d20|4|0|f|f|t|f|0|5423400|f|f|1.0,1.0,1.0,1.0|Turno|f|f|4|1|1d20
+SpellReqDef|2466|0|3|239|1.0|0.0|
+SpellReqDef|2466|5|1|0|0.0|0.0|Incapacitado
+SpellEffect|2466|2|1|-1|239|0|2|0||||1
+SpellEffect|2466|2|0|¡{caster} intenta huir del combate contra {target}! |0|0|0|0||||1
+SpellEffect|2466|0|0|¡{caster} LOGRA huir de {target} escapando del combate! |0|0|0|1||||1
+SpellEffect|2466|0|0|¡{caster} NO logra huir del combate {target}! &brk;&brk;CD de 2 turnos para volver a intentarlo.|0|0|0|2||||1
+SpellDef|3009|Iniciar Combate||20.0|1|1|2|0||4|0|f|f|t|f|0|5423400|f|f|1.0,1.0,1.0,1.0|Turno|f|f|4|1|
+SpellReqDef|3009|5|1|0|0.0|0.0|En Combate
+SpellEffect|3009|2|0|/inicioturnotrack|0|0|0|0||||1
+SpellEffect|3009|0|0|¡{caster} ha iniciado un combate!&brk;&brk;(Selecciónalo con la habilidad Unirse a Combate para unirte al combate)|0|0|0|0||||1
+SpellEffect|3009|2|11||697|0|2|0|-1|En Combate||1
+SpellDef|3010|Unirse a Combate||20.0|4|1|2|0||4|0|f|f|t|f|0|5423400|f|f|1.0,1.0,1.0,1.0|Turno|f|f|4|1|
+SpellReqDef|3010|5|1|0|0.0|0.0|En Combate
+SpellEffect|3010|2|0|/unirseturnotrack {target}|0|0|0|0||||1
+SpellEffect|3010|2|11||697|0|2|0|-1|En Combate||1
+SpellDef|265|Finalizar Combate||0.0|1|0|2|0||4|0|f|f|t|f|0|5423793|f|f|0.261719,0.0,0.0,1.0|Turno|f|f|4|1|
+SpellEffect|265|0|0|/findecombate|0|0|0|0||||1
+SpellEffect|265|2|0|{caster} deja de combatir.|0|0|0|0||||1
+SpellEffect|265|2|7||0|0|2|0||Dot||1
+SpellEffect|265|2|7||0|0|2|0||Bufo Único||1
+SpellEffect|265|2|7||0|0|2|0||Daño||1
+SpellEffect|265|2|7||0|0|2|0||Velocidad||1
+SpellEffect|265|2|7||0|0|2|0||Ataque||1
+SpellEffect|265|2|7||0|0|2|0||Incapacitado||1
+SpellEffect|265|2|7||0|0|2|0||Evasión ↓||1
+SpellEffect|265|0|7||0|0|2|0||En Combate||1
+SpellDef|683|-------Estados-------||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|647|Incapacitado ||1.0|1|1|2|0|1d20+({c.Nivel}/2)|2|12|t|f|f|f|0|Icon133|f|f|0.132813,0.573181,1.0,1.0||f|f|0|1|
+SpellReqDef|647|5|0|0|0.0|0.0|Incapacitado
+SpellReqDef|647|5|0|0|0.0|0.0|Incapacitado 
+SpellEffect|647|2|7||0|0|2|1||Incapacitado||1
+SpellEffect|647|2|7||0|0|2|1||Incapacitado ||1
+SpellEffect|647|2|0|{caster} logra liberarse del incapacitado.&brk;{roll}|0|0|0|1||||1
+SpellEffect|647|2|0|{caster} falla su salvación, se mantiene incapacitado.&brk;{roll}|0|0|0|2||||1
+SpellDef|789|-------Estados de DOT-------||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0|DOT|f|f|4|1|
+SpellDef|2057|Dot Salvación||4.0|1|1|2|0|{c.DOT Usos}|2|1|f|f|f|f|0|Icon154|f|f|1.0,0.196078,0.196078,1.0||f|f|4|1|
+SpellReqDef|2057|5|0|0|0.0|0.0|Dot
+SpellEffect|2057|2|1|-1|2069|0|2|1||||1
+SpellEffect|2057|2|1|-f.max[((10d8 * ({c.Nivel} * 0.05))),1] -(1d{c.DotDaño})|61|0|0|1||||1
+SpellEffect|2057|2|7||0|0|0|2||Dot||1
+SpellDef|2983|Estrangulamiento Salvación||4.0|1|1|2|0|{c.Estrangulamiento}|2|1|f|f|f|f|0|Icon154|f|f|1.0,0.196078,0.196078,1.0||f|f|4|1|
+SpellReqDef|2983|5|0|0|0.0|0.0|Estrangulamiento
+SpellEffect|2983|2|1|-1|2069|0|2|1||||1
+SpellEffect|2983|2|1|-f.max[((10d8 * ({c.Nivel} * 0.05))),1] -(1d{c.DotDaño})|61|0|0|1||||1
+SpellEffect|2983|2|7||0|0|0|2||Estrangulamiento||1
+SpellDef|2541|Incapacitado Salvación||4.0|1|1|2|0|{c.Usos Incapacitado}|2|1|f|f|f|f|0|Icon154|f|f|1.0,0.196078,0.196078,1.0||f|f|4|1|
+SpellReqDef|2541|5|0|0|0.0|0.0|Incapacitado
+SpellEffect|2541|2|1|-1|2540|0|2|1||||1
+SpellEffect|2541|2|7||0|0|0|2||Incapacitado||1
+SpellDef|2031|-------Usos-------||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|2041|Daño||4.0|1|1|2|0|{c.Daño}|2|1|t|f|f|f|0|Icon154|f|f|1.0,0.196078,0.196078,1.0|Subclase|f|f|4|1|
+SpellReqDef|2041|5|0|0|0.0|0.0|Daño
+SpellReqDef|2041|5|0|0|0.0|0.0|Daño ↑
+SpellEffect|2041|2|1|-1|2042|0|2|1||||1
+SpellEffect|2041|2|7||0|0|0|2||Daño||1
+SpellEffect|2041|2|7||0|0|2|2||Daño ↑||1
+SpellDef|2044|Ataque||4.0|1|1|2|0|{c.Ataque}|2|1|t|f|f|f|0|Icon154|f|f|1.0,0.196078,0.196078,1.0|Subclase|f|f|4|1|
+SpellReqDef|2044|5|0|0|0.0|0.0|Ataque
+SpellReqDef|2044|5|0|0|0.0|0.0|Ataque ↑
+SpellEffect|2044|2|1|-1|2043|0|2|1||||1
+SpellEffect|2044|2|7||0|0|0|2||Ataque||1
+SpellEffect|2044|0|7||0|0|2|2||Ataque ↑||1
+SpellDef|2047|Velocidad||4.0|1|1|2|0|{c.Velocidad}|2|1|f|f|f|f|0|Icon154|f|f|1.0,0.196078,0.196078,1.0|Subclase|f|f|4|1|
+SpellReqDef|2047|5|0|0|0.0|0.0|Velocidad
+SpellEffect|2047|2|1|-1|2048|0|2|1||||1
+SpellEffect|2047|2|7||0|0|0|2||Velocidad||1
+SpellDef|2049|Potencia0||4.0|1|1|2|0|{c.Potencia}|2|1|f|f|f|f|0|Icon154|f|f|1.0,0.196078,0.196078,1.0|Subclase|f|f|4|1|
+SpellReqDef|2049|5|0|0|0.0|0.0|Potencia
+SpellEffect|2049|2|1|-1|2063|0|2|1||||1
+SpellEffect|2049|2|7||0|0|0|2||Potencia||1
+SpellDef|2736|Usos Evasión ↓||4.0|1|1|2|0|{c.Evasión ↓}|2|1|f|f|f|f|0|Icon154|f|f|1.0,0.196078,0.196078,1.0|Subclase|f|f|4|1|
+SpellReqDef|2736|5|0|0|0.0|0.0|Evasión ↓
+SpellEffect|2736|2|1|-1|2735|0|2|1||||1
+SpellEffect|2736|2|7||0|0|0|2||Evasión ↓||1
+SpellDef|2863|Usos Evasión ↑||4.0|1|1|2|0|{c.Evasión ↑}|2|1|f|f|f|f|0|Icon154|f|f|1.0,0.196078,0.196078,1.0|Subclase|f|f|4|1|
+SpellReqDef|2863|5|0|0|0.0|0.0|Evasión ↑
+SpellEffect|2863|2|1|-1|2864|0|2|1||||1
+SpellEffect|2863|2|7||0|0|0|2||Evasión ↑||1
+SpellDef|319|-------Heridas-------||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|3022|Herido Cuerpo||0.0|1|0|2|0||4|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellReqDef|3022|5|1|0|0.0|0.0|Entrenando
+SpellEffect|3022|0|0|/tiraheridocuerpo|0|0|0|0||||1
+SpellTargetCond|3022|1|20|0|3099|0.0|0.0|
+SpellDef|3098|Herido Cabeza||0.0|1|0|2|0||4|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellReqDef|3098|5|1|0|0.0|0.0|Entrenando
+SpellEffect|3098|0|0|/tiraheridocabeza|0|0|0|0||||1
+SpellTargetCond|3098|1|20|0|3099|0.0|0.0|
+SpellDef|3097|Critic Cuerpo||0.0|1|0|2|0||4|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellReqDef|3097|5|1|0|0.0|0.0|Entrenando
+SpellEffect|3097|0|0|/criticuerpo|0|0|0|0||||1
+SpellTargetCond|3097|1|20|0|3099|0.0|0.0|
+SpellDef|3096|Critic Cabeza||0.0|1|0|2|0||4|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellReqDef|3096|5|1|0|0.0|0.0|Entrenando
+SpellEffect|3096|0|0|/criticabeza|0|0|0|0||||1
+SpellTargetCond|3096|1|20|0|3099|0.0|0.0|
+SpellDef|281|-------Fuera de Combate-------||0.0|0|0|0|0||0|0|f|f|f|f|0|None|f|f|1.0,1.0,1.0,1.0||f|f|4|1|
+SpellDef|2091|Descanso||0.0|1|0|2|0||4|0|f|f|t|f|0|5422413|f|f|1.0,1.0,1.0,1.0|Descanso|f|f|4|1|
+SpellEffect|2091|2|0|{caster} inicia un descanso largo.|0|0|0|0||||1
+SpellEffect|2091|0|11||304|0|2|0|8|Descansando||1
+SpellEffect|2091|2|1|100000|61|0|2|0||||1
+SpellEffect|2091|2|9||2601|0|2|0||||1
+MutatorDef|2924|----DAÑO CUERPO A CUERPO----|f|f
+MutatorCondition|2924|0|0|0|357|0.0|0.0|
+MutatorDef|2919|DañoDMG 4|f|f
+MutatorCondition|2919|0|2|3|1|4.0|0.0|
+MutatorAction|2919|1|2918|1
+MutatorDef|2920|DañoDMG 5-6|f|f
+MutatorCondition|2920|0|2|3|1|5.0|0.0|
+MutatorCondition|2920|0|1|0|0|0.0|0.0|Ciberbrazo
+MutatorAction|2920|1|2918|1
+MutatorDef|2921|DañoDMG 7-10|f|f
+MutatorCondition|2921|0|2|3|1|7.0|0.0|
+MutatorAction|2921|1|2918|1
+MutatorDef|2923|DañoDMG 11|f|f
+MutatorCondition|2923|0|2|3|1|11.0|0.0|
+MutatorAction|2923|1|2918|1
+MutatorDef|2974|Unlock Evasión|f|f
+MutatorCondition|2974|0|2|0|2|8.0|0.0|
+MutatorAction|2974|3|3118|0
+MutatorDef|2993|------ARTES MARCIALES------|f|f
+MutatorCondition|2993|0|0|0|2926|0.0|0.0|
+MutatorDef|2994|Obtiene Desarme|f|f
+MutatorCondition|2994|0|2|3|2900|2.0|0.0|
+MutatorAction|2994|3|2987|0
+MutatorDef|2997|Obtiene Evasión Forzada|f|f
+MutatorCondition|2997|0|2|3|2900|2.0|0.0|
+MutatorAction|2997|3|2991|0
+MutatorDef|2995|Obtiene Rompearmaduras|f|f
+MutatorCondition|2995|0|2|3|2900|2.0|0.0|
+MutatorAction|2995|3|2990|0
+MutatorDef|2996|Obtiene Rompehuesos|t|f
+MutatorCondition|2996|0|2|3|2900|2.0|0.0|
+MutatorCondition|2996|0|2|3|182|8.0|0.0|
+MutatorAction|2996|3|2989|0
+MutatorDef|2998|Obtiene Patada Voladora|t|f
+MutatorCondition|2998|0|2|3|2900|2.0|0.0|
+MutatorCondition|2998|0|2|3|2875|8.0|0.0|
+MutatorAction|2998|3|2992|0
+StatusDef|696|-------Generales-------|1.0,1.0,1.0,1.0|f
+StatusDef|697|En Combate|0.519531,0.247589,0.387809,1.0|t
+StatusDef|3099|Entrenando|0.407721,0.517647,0.247059,1.0|t
+StatusDef|2972|CYBERPSICÓPATA|0.242188,0.093658,0.111064,1.0|f
+StatusDef|2551|-------Combate-------|1.0,1.0,1.0,1.0|f
+StatusDef|2552|Apuntar|0.820313,0.237122,0.592503,1.0|f
+StatusAction|2552|2883|-8|0
+StatusAction|2552|2884|-8|0
+StatusAction|2552|2885|-8|0
+StatusAction|2552|2886|-8|0
+StatusAction|2552|3081|-8|0
+StatusAction|2552|3043|0|3
+StatusDef|2934|Evasión|0.659576,0.270935,0.753906,1.0|f
+StatusAction|2934|3119|0|3
+StatusDef|2967|Desarmado|0.394531,0.137306,0.058563,1.0|f
+StatusAction|2967|2966|0|3
+StatusDef|2581|-------Herdias Zonas-------|1.0,1.0,1.0,1.0|f
+StatusDef|2582|Brazo amputado|0.550781,0.220141,0.040878,1.0|f
+StatusAction|2582|3059|1|1
+StatusDef|2583|Mano amputada|0.550781,0.220141,0.040878,1.0|f
+StatusAction|2583|3059|1|1
+StatusDef|3065|Colapso pulmonar|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3065|3059|1|1
+StatusAction|3065|2875|-2|0
+StatusDef|3066|Costillas rotas|0.550781,0.220141,0.040878,1.0|f
+StatusDef|3067|Brazo roto|0.550781,0.220141,0.040878,1.0|f
+StatusDef|3068|Objeto extraño|0.550781,0.220141,0.040878,1.0|f
+StatusDef|3069|Pierna rota|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3069|2875|-4|0
+StatusDef|3070|Desgarro muscular|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3070|2899|-2|0
+StatusAction|3070|2900|-2|0
+StatusAction|3070|2902|-2|0
+StatusDef|3071|Lesión de columna|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3071|3059|1|1
+StatusDef|3072|Dedos aplastados|0.550781,0.220141,0.040878,1.0|f
+StatusDef|3073|Pierna amputada|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3073|2875|-6|0
+StatusAction|3073|3059|1|1
+StatusDef|3074|Ojo perdido|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3074|2883|-4|0
+StatusAction|3074|2884|-4|0
+StatusAction|3074|2885|-4|0
+StatusAction|3074|2886|-4|0
+StatusAction|3074|2889|-4|0
+StatusAction|3074|3059|1|1
+StatusDef|3075|Lesión cerebral|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3075|181|-2|0
+StatusAction|3075|182|-2|0
+StatusAction|3075|4|-2|0
+StatusAction|3075|2877|-2|0
+StatusAction|3075|2497|-2|0
+StatusAction|3075|2|-2|0
+StatusAction|3075|180|-2|0
+StatusAction|3075|2875|-2|0
+StatusAction|3075|3059|1|1
+StatusDef|3076|Ojo dañado|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3076|2883|-2|0
+StatusAction|3076|2884|-2|0
+StatusAction|3076|2885|-2|0
+StatusAction|3076|2886|-2|0
+StatusAction|3076|2889|-2|0
+StatusDef|3077|Conmoción cerebral|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3077|181|-2|0
+StatusAction|3077|182|-2|0
+StatusAction|3077|4|-2|0
+StatusAction|3077|2877|-2|0
+StatusAction|3077|2497|-2|0
+StatusAction|3077|2|-2|0
+StatusAction|3077|180|-2|0
+StatusAction|3077|2875|-2|0
+StatusDef|3078|Mandíbula rota|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3078|2882|-4|0
+StatusAction|3078|2897|-4|0
+StatusAction|3078|3085|-4|0
+StatusAction|3078|3086|-4|0
+StatusAction|3078|3087|-4|0
+StatusAction|3078|3088|-4|0
+StatusAction|3078|3089|-4|0
+StatusDef|3079|Objeto extraño|0.550781,0.220141,0.040878,1.0|f
+StatusDef|3091|Latigazo cervical|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3091|3059|1|1
+StatusDef|3092|Cráneo fracturado|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3092|2943|-3|1
+StatusAction|3092|3059|1|1
+StatusDef|3093|Oído dañado|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3093|2889|-2|0
+StatusDef|3094|Tráquea aplastada|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3094|3059|1|1
+StatusDef|3095|Oreja perdida|0.550781,0.220141,0.040878,1.0|f
+StatusAction|3095|2889|-4|0
+StatusAction|3095|3059|1|1
+StatusDef|312|-------Heridas-------|1.0,1.0,1.0,1.0|f
+StatusDef|317|Gravemente herido|0.691406,0.029709,0.029709,1.0|f
+StatusAction|317|181|-2|0
+StatusAction|317|182|-2|0
+StatusAction|317|4|-2|0
+StatusAction|317|2497|-2|0
+StatusAction|317|2|-2|0
+StatusAction|317|2876|-2|0
+StatusAction|317|1|-2|0
+StatusAction|317|180|-2|0
+StatusAction|317|2875|-2|0
+StatusDef|327|Mortalmente Herido|0.324219,0.002533,0.002533,1.0|f
+StatusAction|327|181|-4|0
+StatusAction|327|182|-4|0
+StatusAction|327|4|-4|0
+StatusAction|327|2497|-4|0
+StatusAction|327|2|-4|0
+StatusAction|327|2876|-4|0
+StatusAction|327|1|-4|0
+StatusAction|327|180|-4|0
+StatusAction|327|2875|-6|0
+StatusAction|327|3020|0|3
+StatusDef|3021|MUERTO|0.136719,0.0,0.0,1.0|f
+StatusDef|3054|-------Estilo de Vida-------|1.0,1.0,1.0,1.0|f
+StatusDef|3060|Impago Estilo Vida|1.0,1.0,1.0,1.0|f
+StatusAction|3060|181|-2|0
+StatusAction|3060|4|-2|0
+StatusAction|3060|2877|-2|0
+StatusAction|3060|2497|-2|0
+StatusAction|3060|2|-2|0
+StatusAction|3060|180|-2|0
+StatusAction|3060|2875|-2|0
+StatusDef|3057|Muerto de Hambre|0.183594,0.169161,0.051636,1.0|f
+StatusAction|3057|181|-3|0
+StatusAction|3057|4|-3|0
+StatusAction|3057|2497|-3|0
+StatusAction|3057|2|-3|0
+StatusAction|3057|180|-3|0
+StatusAction|3057|2875|-3|0
+StatusDef|3055|Hambriento|0.45098,0.341177,0.168627,1.0|f
+StatusAction|3055|181|-1|0
+StatusAction|3055|4|-1|0
+StatusAction|3055|2497|-1|0
+StatusAction|3055|2|-1|0
+StatusAction|3055|180|-1|0
+StatusAction|3055|2875|-1|0
+StatusDef|3056|Bien Comido|0.184826,0.40625,0.104736,1.0|f
+StatusDef|295|-------Otros-------|1.0,1.0,1.0,1.0|f
+StatusDef|304|Descansando|0.0,0.691406,0.156647,1.0|f
+StatusAction|304|180|-5|0
+StatusAction|304|2|-5|0
+StatusAction|304|2497|-5|0
+StatusAction|304|181|-5|0
+StatusAction|304|4|-5|0
+StatusAction|304|2875|-5|0
+StatusDef|515|-------Estados de efecto-------|1.0,1.0,1.0,1.0|f
+StatusDef|645|Ventaja en tirada|0.118286,1.0,0.089844,1.0|f
+StatusDef|516|Desventaja en tirada|1.0,0.167969,0.167969,1.0|f
+StatusDef|636|Ralentizado|1.0,0.650574,0.105469,1.0|f
+StatusAction|636|646|0|3
+StatusAction|636|2082|-2|1
+StatusDef|637|Incapacitado|0.609375,0.51416,0.0,1.0|f
+StatusAction|637|646|0|3
+StatusDef|662|Inmovilizado|0.410156,1.0,0.87558,1.0|f
+StatusAction|662|646|0|3
+StatusAction|662|2082|0|1
+StatusDef|997|Regeneración|0.126672,0.898438,0.101776,1.0|f
+StatusDef|2363|Ataque ↑|0.511719,0.125931,0.125931,1.0|f
+StatusDef|954|Daño ↑|0.102714,0.059128,0.488281,1.0|f
+StatusDef|955|Daño ↓|0.472656,0.379792,0.062775,1.0|f
+StatusDef|924|Defensa ↑|0.018616,0.238281,0.032345,1.0|f
+StatusDef|923|Defensa ↓|0.3125,0.065918,0.0,1.0|f
+StatusDef|2822|Evasión ↑|0.703125,0.254509,0.134583,1.0|f
+StatusDef|2734|Evasión ↓|0.3125,0.170021,0.092773,1.0|f
+StatusDef|2764|Especial ↑|0.419608,0.364706,0.078431,1.0|f
+StatusDef|2765|Especial ↓|0.419608,0.364706,0.078431,1.0|f
+StatusDef|2981|Agarrado|0.140625,0.065201,0.039001,1.0|f
+StatusAction|2981|2982|0|3
+StatusDef|2984|Estrangulamiento|0.269531,0.046326,0.046326,1.0|f
+StatusDef|785|-------Estados de DOT-------|1.0,1.0,1.0,1.0|f
+StatusDef|2070|DOT|0.605469,0.087509,0.488118,1.0|f
+StatusDef|1985|-------Profesiones-------|1.0,1.0,1.0,1.0|f
+StatusDef|1986|De Servicio|0.444794,0.161133,0.859375,1.0|f
+Mechanic|1|f|185|20|23|26|1|30|None
+Mechanic|2|f|189|17|19|21|1|30|833003
+Mechanic|3|f|1|16|22|24|3|15|None
+Mechanic|4|f|10|20|22|24|3|15|833003
+Mechanic|5|f|185|22|25|27|1|30|833005
+Mechanic|6|f|189|18|20|22|1|30|833003
+Mechanic|7|f|1|22|24|26|3|15|833004
+Mechanic|8|f|10|24|27|30|3|15|833002
+Mechanic|9|t|2889|15|0|0|0|0|None
+Mechanic|10|f|0|30|0|0|0|0|None
+Megascope|11|f|f

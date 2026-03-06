@@ -1,0 +1,436 @@
+4Tificar
+Pozo De Aire
+Fuego Arasaka
+Sal Para Heridas De Arasaka
+Artemisa
+Autobús Corporativo Tejón
+Basura De Arco
+Zócalo De Chipware Económico
+Carcasas Adaptadoras De Bala A Bala
+Equipo De Búnker
+Cápsula Atada
+Bóveda De Chips
+Chupacabras
+Tanque De Co2
+Isla Corporativa
+Ciberdedo
+Dayton Tdt 004
+Gladiador Digital
+Chaqueta De Combate Dirk
+Galleta De Puerta
+Beber Maestro 3000
+Econocompacto
+Armadura Ejecutiva
+Estimulador De Memoria Explícito
+Brazo Cibernético Extra Unido
+Cyberleg Extra Unido
+Faisals Magna Nudillos
+Furgoneta Estrella Familiar
+Puño De Colmillo
+Bombilla De Flash
+Furgoneta De Seguridad Gorgona
+Granada Atada
+Sucio
+Harriet
+Harvey Mercenario
+Harvey
+Holograma
+Bolsa De Ropa Jeeves
+Aerotabla Jetboy
+Guardia Mono Kenadachi
+Killchip 100 Micro Bomba
+Micrófono Killstrom Banshee
+Amplificador Sonic Boom Killstrom
+Altavoz Tifoidea Killstrom
+Guitarra Eléctrica Con Luz Láser
+Chaqueta De Calle Con Luz Láser
+Traje De Red De Loto
+Makagai Ebi
+Piloto Masetto
+Casco Mechaman
+Guante Inteligente Mechaman
+Megatransportador
+Cámara De Combustión De Microhidrógeno
+Imitar Kit De Ropa
+Mano Modular
+Cóctel Molotov
+Mono Estrella
+Procesador De Alimentos Mr Galleta Multi
+Base De Datos Criminales Del Ncpd
+Ciberbrazo Neosoviético
+Nitro Ultra9
+Hábitat De Un Toque
+Explosivo De Salida
+Seguimiento De Paintball
+Paladín 500
+Aplastar Piraña
+Basura Pesada De Pistola
+Pistolapesada Pequeña
+Pistola Basura Mediana
+Pistolamediana Pequeña
+Pistolabasura Muy Pesada
+Pistola Muy Pesada Pequeña
+Red Emergente
+Escopeta Emergente
+Perseguidor De Seguridad
+Brazalete De Corredor
+Triciclo De Alcance
+Boomerang De Combate De Guardabosques
+Vaina De Despliegue Rápido
+Ciberbrazo Reforzado
+Ciberpierna Reforzada
+Chatarra De Rifle
+Rifle Pequeño
+Rocas
+Kleaver Rostovich
+Armadura Saqueada
+Patrullero Sh 45
+Armadura De Choque
+Basura De Babosa De Escopeta
+Ducharse En Lata
+Zanja De Skidrow
+Armadura Inteligente
+Solo De La Fortuna Almohada Corporal
+Lubricante Sovoil
+Rey De La Calle
+Traje De Montar De Víbora Callejera
+Caso Callejero
+Botones Tanson
+Trueno X
+Fluido Detonador Tr 4
+Equipo De Trauma Medscan
+Triti Fizz
+Hacha De Guerra Utilitaria
+Línea De Ropa Variable
+Vóljov
+Esfera Aérea Worldsat
+Rickshaw De Ruedas Yangs
+Zacatzontil
+Zetatech Aerovox
+Destino Zetatech
+Zetatech Herakles
+Impresora Portatil Zetatech
+Zhirafa Rinocepuño
+Base De Datos De La Ciudad Del Zigurat
+Molly Zonda
+Paralaje Zonda
+Astilla Zonda
+Piel De Quimica
+Ciberterminal
+Brazo Cibernético Extra Unido
+Cyberleg Extra Unido
+Encaje De Músculo Y Hueso Injertado
+Funda Oculta
+Palma Del Proyector Holográfico
+Mejorar La Imagen
+Beta De Marco Lineal Implantado
+Sigma De Marco Lineal Implantado
+Matar Pantalla
+Los Clientes Potenciales Se Encienden Y Muestran Las Uñas
+Ojo De Humor
+Lengua Neutra
+Calentador De Croquetas Personalpak
+Cubierta De Plastico
+Arma Cuerpo A Cuerpo Emergente
+Arma A Distancia Emergente
+Destructora Personal De Búsqueda De Seguridad Inc.
+Montaje De Cambio Rápido
+Reproductor De Música Con Escáner De Radio
+Revestimiento De Piel Real
+Rascadores
+Cambiar De Tacto
+Reloj De Piel
+Tejido De Piel
+Cortar Y Dados
+Pie Estándar
+Jazzler De La Banda Cybermatrix
+Chip Impostor
+Hombre Relojero Psiberstuff
+Radline Guerra Relámpago Lanzador De Arco Ciberbrazo
+Cuervo Microcibernética Microwaldo
+Tejido De Carne Sycust
+Tecnologías Wyzard Romanova Cyberlegs
+Mascarilla Respiratoria Antismog
+Protectores De Equipo Con Amortiguación De Nivel Automático
+Visor De Danza Cerebral
+Cesto Grande
+Tanque Criogénico
+Palito De Comida
+Productos Farmacéuticos Genéricos
+Drogas Callejeras Genéricas
+Cama Inflable Y Saco De Dormir
+Croquetas
+Beta De Marco Lineal
+Sigma De Marco Lineal
+Juego De Apertura De Cerraduras
+Bolsa De Tecnología Médica
+Señor
+Amplificador De Bolsillo
+Reproductor De Música Con Escáner De Radio
+Llamarada De Carretera
+Tienda De Campaña Y Equipo De Camping
+Ácido
+Asfixiante
+Adicción Frenética
+Adicción Al Encaje Negro
+Cegado
+Adicción Al Vidrio Azul
+Aumentar La Adicción
+Lesión Cerebral
+Brazo Roto
+Mandíbula Rota
+Pierna Rota
+Costillas Rotas
+Arma Rota
+Asfixia1
+Asfixia2
+Pulmón Colapsado
+Conmoción Cerebral
+Cubrir
+Cráneo Roto
+Dedos Aplastados
+Tráquea Aplastada
+Oído Dañado
+Ojo Dañado
+Ensordecido
+Brazo Desmembrado
+Mano Desmembrada
+Pierna Desmembrada
+Ahogo
+Drogado
+Emp
+Descendente
+Objeto Extraño en el Cuerpo
+Objeto Extraño en la Cabeza
+Luchado
+Oculto
+Escudo Humano
+Agarre De Hierro
+Knockear
+Oreja Perdida
+Ojo Perdido
+Funcionamiento En Red
+En Llamas
+En Llamas Mortal
+En Llamas Suave
+En Llamas Fuerte
+Adicción A Aplastar Piraña
+Aplastar Piraña
+Chip Impostor
+Adicción Al Horario De Máxima Audiencia
+Propenso
+Solución Rápida
+Radiación Alta
+Radiación Baja
+Desintoxicación Rápida
+Acción Preparada
+Adicción A Las Seis Armas
+Aplastar Adicción
+Lesión Espinal
+Reprimido
+Adicción A La Coque Sintética
+Adicción A La Distorsión Del Tiempo
+Músculo Desgarrado
+Inconsciente
+Latigazo
+Herido Levemente
+Herido De Muerte
+Herido Gravemente
+Compuesto De Destilación
+Lesión Crítica Del Cuerpo
+Lesión Cerebral
+Brazo Roto
+Mandíbula Rota
+Pierna Rota
+Costillas Rotas
+Pulmón Colapsado
+Conmoción Cerebral
+Cráneo Roto
+Dedos Aplastados
+Tráquea Aplastada
+Oído Dañado
+Ojo Dañado
+Brazo Desmembrado
+Mano Desmembrada
+Pierna Desmembrada
+Objeto Extraño en el Cuerpo
+Objeto Extraño en la Cabeza
+Lesión Crítica En La Cabeza
+Oreja Perdida
+Ojo Perdido
+Lesión Espinal
+Músculo Desgarrado
+Latigazo
+Áspid
+Dragón
+Gigante
+Perro Del Infierno
+Asesino
+Liche
+Cuervo
+Dientes De Sable
+Escorpión
+Mofeta
+Jirón
+Dragón Hambriento
+Tienda De Perfumes
+Herrería
+Trampa De Serpientes
+Niebla Del Pantano
+Limpio Rapido
+Actualización Del Motor Av 4
+Vidrio A Prueba De Balas
+Arado De Combate
+Centro De Comunicaciones
+Tira De Púas Desplegable
+Bloqueo De Adn
+Integración Mejorada Del Conector De Interfaz
+Revista De Tambor Genérica
+Revista Extendida Genérica
+Lanzagranadas Debajo Del Cañón
+Circuitos Endurecidos
+Chasis Pesado
+Capacidad De Vivienda
+Actualización Flotante
+Alcance De Visión Nocturna Por Infrarrojos
+Cableado Aislado
+Barrera Contra Choques
+Nos
+Ametralladora A Bordo
+Arma Cuerpo A Cuerpo A Bordo
+Cápsula De Cohete A Bordo
+Mejora De Rango
+Mejora De Asientos
+Actualización De Seguridad
+Cañón De Escopeta
+Enlace De Pistola Inteligente
+Mejora De Contrabando
+Alcance De Francotirador
+Soporte Para Armas Pesadas En Vehículos
+Batería
+Perforación De Armadura De Arco
+Arco Basico
+Biotoxina De Arco
+Arco Expansivo
+Arco Incendiario
+Veneno De Arco
+Arco De Goma
+Dormir En Arco
+Arco Inteligente
+Biotoxina De Granada
+Veneno De Granada
+Sueño Granada
+Humo De Granada
+Granada De Gas Lacrimógeno
+Ácido De Paintball
+Paintball Basico
+Pistolaarmadura Pesadaperforante
+Pistola Pesada Básica
+Pistolapesada Expansiva
+Pistola Pesada Incendiaria
+Pistola De Goma Pesada
+Pistolapesada Inteligente
+Pistolaperforante De Armadura Media
+Pistolamedia Básica
+Pistolamediana Expansiva
+Pistolamedio Incendiario
+Pistola De Goma Media
+Pistolamediana Inteligente
+Pistolamuypesadaarmaduraperforante
+Pistolamuy Pesada Basica
+Pistola Muy Pesada Expansiva
+Pistolamuypesadaincendiaria
+Pistolagoma Muy Pesada
+Pistolamuypesadainteligente
+Rifle Perforante
+Fusil Basico
+Rifle Expansivo
+Rifle Incendiario
+Goma De Fusil
+Rifle Inteligente
+Perforación De Armadura De Cohete
+Casquillo De Escopeta Básico
+Proyectil De Escopeta Incendiario
+Bala De Escopeta Perforante De Armadura
+Babosa De Escopeta Básica
+Babosa De Escopeta Expansiva
+Babosa De Escopeta Incendiaria
+Goma De Bala De Escopeta
+Babosa De Escopeta Inteligente
+Ad10 1
+Ad10 10
+Ad10 10 Falla
+Ad10 10 Preem
+Ad10 1 Falla
+Ad10 1 Preem
+Ad10 2
+Ad10 3
+Anuncio10 4
+Ad10 5
+Ad10 6
+Ad10 7
+Anuncio10 8
+Ad10 9
+D10 1
+D10 10
+D10 10 Falla
+D10 10 Preem
+D10 1 Falla
+D10 1 Preem
+D10 2
+D10 3
+D10 4
+D10 5
+D10 6
+D10 7
+D10 8
+D10 9
+D6 1
+D6 2
+D6 3
+D6 4
+D6 5
+D6 6
+D6 6 Preem
+Icono De Video
+Tarjeta De Memoria
+Herido Levemente
+Herido De Muerte
+Herido Ninguno
+Herido Gravemente
+Ciberterminal
+Hielo Negro Predeterminado
+Demonio Predeterminado
+Marco Lineal Implantado Predeterminado
+Marco Lineal Predeterminado
+Munición Predeterminada
+Armadura Predeterminada
+Casco de Armadura por Defecto
+Ropa Predeterminada
+Contenedor Predeterminado
+Hombre Misterioso De Rcp Predeterminado
+Lesión Crítica Por Defecto
+Cibercubierta Predeterminada
+Ciberware Predeterminado
+Dados Predeterminados
+Tabla Dv Predeterminada
+Equipo Predeterminado
+Cuerpo A Cuerpo Predeterminado
+Mook Predeterminado
+Arquitectura De Red Predeterminada
+Programa Predeterminado
+Rol Predeterminado
+Habilidad Predeterminada
+Vehículo Predeterminado
+Arma Predeterminada
+Mano De Tarjeta Impaga
+Armadura
+Balon
+Antifragmentación
+Blindaje
+Fondos Genéricos
+Lentes De Contacto Genericos
+Calzado Generico
+Tapa Genérica
+Biotoxina De Paintball
+Veneno De Paintball
